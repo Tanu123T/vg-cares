@@ -1,4 +1,16 @@
 import { useEffect } from "react";
+import {
+  Video,
+  ShieldCheck,
+  Calculator,
+  MapPin,
+  Network,
+  Cpu,
+  Globe,
+  LayoutDashboard,
+  HandHeart
+} from "lucide-react";
+
 import "./Features.css";
 
 export default function Capabilities() {
