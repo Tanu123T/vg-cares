@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import hospitals from "../data/hospitalData";
+import { hospitalData } from "../../data/hospitalData";
 import "./HospitalsPage.css";
 import { createIcons } from "lucide";
 
