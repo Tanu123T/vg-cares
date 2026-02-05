@@ -14,7 +14,8 @@ import Doctors_approach from './components/Doctors_approach/Doctors_approach';
 import Doctors from './pages/Doctors/Doctors';  
 import Features from './components/Features/Features';
 import ContactUs from './pages/Contact_us/Contact_us';
-import { Contact } from 'lucide-react';
+import Blogs from './pages/Blogs/Blogs';
+import { Contact } from 'lucide-react';   
 
 
 
