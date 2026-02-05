@@ -16,6 +16,7 @@ import Blogs from './pages/Blogs/Blogs';
 import Hospitals from './pages/Hospitals/Hospitals';  
 import Features from './components/Features/Features';
 import ContactUs from './pages/Contact_us/Contact_us';
+import Roadmap from './components/Roadmap/Roadmap';
 import { Contact } from 'lucide-react';   
 
 
@@ -30,6 +31,7 @@ function App() {
             <Services />
             <Diseases />
             <Doctors_approach />
+            <Roadmap />
             <Feedback />
             <Stats />
             <Features/>
