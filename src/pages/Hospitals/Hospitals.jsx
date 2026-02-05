@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { hospitalData } from "../../data/hospitalData";
-import "./Hospitals.css";
-import { createIcons } from "lucide";
+import "./Hospitals.css"; 
 
 const HospitalsPage = () => {
   const [search, setSearch] = useState("");
@@ -10,7 +9,7 @@ const HospitalsPage = () => {
   const [selectedHospital, setSelectedHospital] = useState(null);
 
   useEffect(() => {
-    createIcons();
+    // Icon initialization removed (lucide-react doesn't require this)
   }, [selectedHospital]);
 
   const filteredHospitals = hospitals.filter(h =>
