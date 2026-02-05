@@ -12,7 +12,7 @@ import MedicalMap from './components/MedicalMap/MedicalMap';
 import Diseases from './components/Diseases/Diseases';
 import Doctors_approach from './components/Doctors_approach/Doctors_approach';
 import Doctors from './pages/Doctors/Doctors';  
-import Diseases from './components/Features/Features';
+import Features from './components/Features/Features';
 
 
 
@@ -30,7 +30,7 @@ function App() {
             <Doctors_approach />
             <Feedback />
             <Stats />
-            <Features />
+            <Features/>
             <MedicalMap />
             <Download_app />
             <Partners />
@@ -50,7 +50,7 @@ function App() {
             </div>
             <Footer />
           </>
-        } />
+         } />
         <Route path="/blogs" element={
           <>
             <div style={{padding: '100px 20px', textAlign: 'center'}}>
