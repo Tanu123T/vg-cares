@@ -117,5 +117,5 @@ const Diseases = () => {
     </section>
   );
 };
-
+//hello
 export default Diseases;
