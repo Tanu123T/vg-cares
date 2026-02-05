@@ -55,9 +55,8 @@ function App() {
          } />
         <Route path="/blogs" element={
           <>
-            <div style={{padding: '100px 20px', textAlign: 'center'}}>
-              <h1>Blogs page coming soon...</h1>
-            </div>
+            
+            <Blogs />
             <Footer />
           </>
         } />
