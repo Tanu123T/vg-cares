@@ -16,7 +16,6 @@ import Blogs from './pages/Blogs/Blogs';
 import Hospitals from './pages/Hospitals/Hospitals';  
 import Features from './components/Features/Features';
 import ContactUs from './pages/Contact_us/Contact_us';
-import Blogs from './pages/Blogs/Blogs';
 import { Contact } from 'lucide-react';   
 
 
