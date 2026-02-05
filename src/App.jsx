@@ -30,7 +30,7 @@ function App() {
             <Doctors_approach />
             <Feedback />
             <Stats />
-            <Features />
+            <Features/>
             <MedicalMap />
             <Download_app />
             <Partners />
@@ -50,7 +50,7 @@ function App() {
             </div>
             <Footer />
           </>
-        } />
+         } />
         <Route path="/blogs" element={
           <>
             <div style={{padding: '100px 20px', textAlign: 'center'}}>
