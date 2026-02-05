@@ -71,27 +71,26 @@ const Services = () => {
     <section className="expertise">
       <span className="badge">Our Expertise</span>
 
-      <h1>
-        Comprehensive Care <br />
-        <span>Designed for You</span>
+      <h1 className="service-title">
+        Comprehensive Care  Designed for You
       </h1>
 
-      <p className="desc">
-        Healthcare that fits your life. Our services are built to be accessible,
-        transparent and secure.
+      <p className="desc"><b>
+        Healthcare that fits your life. Our services are built to be accessible, transparent and secure.</b>
       </p>
-
-      <div className="grid">
-        {servicesData.map((item, index) => (
-          <div className={`card ${item.card}`} key={index}>
-            <div className={`icon ${item.color}`}>
-              <i className={`fa-solid ${item.icon}`}></i>
+    
+        <div className="grid">
+          {servicesData.map((item, index) => (
+            <div className={`card ${item.card}`} key={index}>
+              <div className={`icon ${item.color}`}>
+                <i className={`fa-solid ${item.icon}`}></i>
+              </div>
+              <h3>{item.title}</h3>
+              <p>{item.desc}</p>
             </div>
-            <h3>{item.title}</h3>
-            <p>{item.desc}</p>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+    
     </section>
   );
 };
