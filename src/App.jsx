@@ -12,7 +12,7 @@ import MedicalMap from './components/MedicalMap/MedicalMap';
 import Diseases from './components/Diseases/Diseases';
 import Doctors_approach from './components/Doctors_approach/Doctors_approach';
 import Doctors from './pages/Doctors/Doctors';  
-import Diseases from './components/Features/Features';
+import Features from './components/Features/Features';
 
 
 

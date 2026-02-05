@@ -11,7 +11,7 @@ import {
   HandHeart
 } from "lucide-react";
 
-import "./capabilities.css";
+import "./Features.css";
 
 export default function Capabilities() {
 
