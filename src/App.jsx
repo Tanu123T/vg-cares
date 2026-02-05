@@ -13,7 +13,11 @@ import Diseases from './components/Diseases/Diseases';
 import Doctors_approach from './components/Doctors_approach/Doctors_approach';
 import Doctors from './pages/Doctors/Doctors'; 
 import Blogs from './pages/Blogs/Blogs'; 
-import Hospitals from './pages/Hospitals/Hospitals';
+import Hospitals from './pages/Hospitals/Hospitals';  
+import Features from './components/Features/Features';
+import ContactUs from './pages/Contact_us/Contact_us';
+import { Contact } from 'lucide-react';
+
 
 function App() {
   return (
@@ -56,9 +60,7 @@ function App() {
         } />
         <Route path="/contact" element={
           <>
-            <div style={{padding: '100px 20px', textAlign: 'center'}}>
-              <h1>Contact page coming soon...</h1>
-            </div>
+            <ContactUs />
             <Footer />
           </>
         } />

@@ -1,4 +1,17 @@
 :root {
+  --bg-blue-section: #eef6ff;
+  --bg-green-section: #f0fdf4;
+}
+
+:root {
+  --brand-blue: #2563eb;
+  --brand-green: #22c55e;
+  --text-main: #0f172a;
+  --card-gradient: #ffffff;
+  --transition: cubic-bezier(.4,0,.2,1);
+}
+
+:root {
   font-family: 'poppins', sans-serif;
   line-height: 1.5;
   font-weight: 400;
