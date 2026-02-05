@@ -1,66 +1,46 @@
 import { useState, useMemo } from "react";
 import { doctorData } from "../../data/doctorData";
 import "./Doctors.css";
-import { Video } from "lucide-react";
+import { Video, X, Star } from "lucide-react";
 
 export default function Doctors() {
   const [search, setSearch] = useState("");
   const [specialty, setSpecialty] = useState("All");
+  const [selectedDoctor, setSelectedDoctor] = useState(null);
 
   const filteredDoctors = useMemo(() => {
     return doctorData.filter((doctor) => {
-      const matchesName = doctor.name
-        .toLowerCase()
-        .includes(search.toLowerCase());
-
-      const matchesSpecialty =
-        specialty === "All" || doctor.specialty === specialty;
-
+      const matchesName = doctor.name.toLowerCase().includes(search.toLowerCase());
+      const matchesSpecialty = specialty === "All" || doctor.specialty === specialty;
       return matchesName && matchesSpecialty;
     });
   }, [search, specialty]);
 
-  const clearFilters = () => {
-    setSearch("");
-    setSpecialty("All");
-  };
-
-  const bookConsultation = (doctor) => {
-    alert(
-      `Booking consultation with ${doctor.name} at ${doctor.hospital}.`
-    );
-  };
-
-  const viewProfile = (doctor) => {
-    alert(`Viewing profile of ${doctor.name}`);
-  };
-
   return (
-    <>
-      {/* SEARCH + FILTER */}
+    <div style={{ background: '#fcfdfe', minHeight: '100vh', paddingBottom: '60px' }}>
+      
+      {/* 1. Header */}
+      <div className="doctors-header-container">
+        <div className="verified-header">✓ VERIFIED GLOBAL HEALTHCARE</div>
+        <h1 style={{ color: '#007bff', fontSize: '48px', fontWeight: '800', margin: '10px 0' }}>Our Doctor Network</h1>
+        <p style={{ color: '#64748b', fontSize: '18px' }}>Connecting you to world-class medical specialists globally.</p>
+      </div>
+
+      {/* 2. Elongated Search Section */}
       <section className="doctors-search-section">
         <div className="search-container">
           <div className="search-input-wrapper">
-            <i className="fas fa-search search-icon"></i>
+            <i className="fas fa-search" style={{ position: 'absolute', left: '18px', color: '#94a3b8' }}></i>
             <input
               type="text"
               placeholder="Search by doctor name, specialty, or hospital..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="search-input"
+              className="search-input2"
             />
-            {search && (
-              <button 
-                onClick={() => setSearch("")}
-                className="search-clear"
-              >
-                <i className="fas fa-times"></i>
-              </button>
-            )}
           </div>
 
           <div className="filter-dropdown">
-            <i className="fas fa-filter filter-icon"></i>
             <select
               value={specialty}
               onChange={(e) => setSpecialty(e.target.value)}
@@ -70,102 +50,100 @@ export default function Doctors() {
               <option value="Cardiology">Cardiology</option>
               <option value="Dermatology">Dermatology</option>
               <option value="Neurology">Neurology</option>
-              <option value="Gynecology">Gynecology</option>
-              <option value="Ophthalmology">Ophthalmology</option>
-              <option value="Oncology">Oncology</option>
               <option value="Orthopedics">Orthopedics</option>
-              <option value="Pediatrics">Pediatrics</option>
-              <option value="Psychiatry">Psychiatry</option>
             </select>
           </div>
-
-          {(search || specialty !== "All") && (
-            <button onClick={clearFilters} className="clear-filters-btn">
-              <i className="fas fa-redo"></i> Clear All
-            </button>
-          )}
         </div>
-        
         <div className="search-results-info">
-          {filteredDoctors.length > 0 && (
-            <span>Found {filteredDoctors.length} doctor{filteredDoctors.length !== 1 ? 's' : ''}</span>
-          )}
+          Found <b>{filteredDoctors.length}</b> doctors
         </div>
       </section>
 
-      {/* GRID */}
+      {/* 3. Original Doctor Cards */}
       <main id="doctorGrid">
-        {filteredDoctors.length === 0 ? (
-          <div className="col-span-full text-center py-16">
-            <div className="text-slate-400 text-lg mb-4">
-              No doctors found matching your criteria
+        {filteredDoctors.map((doctor) => (
+          <div key={doctor.id} className="doctor-card" style={{ background: 'white', padding: '20px', borderRadius: '20px', border: '1px solid #f0f0f0' }}>
+            <div className="doctor-profile" style={{ display: 'flex', gap: '15px', marginBottom: '15px' }}>
+              <div className="doctor-avatar">
+                <img src={doctor.image} alt={doctor.name} style={{ width: '60px', height: '60px', borderRadius: '10px', objectFit: 'cover' }} />
+              </div>
+              <div className="doctor-info">
+                <h3 className="doctor-name" style={{ margin: 0, fontSize: '18px', fontWeight: '700' }}>{doctor.name}</h3>
+                <p className="doctor-specialty" style={{ color: '#007bff', margin: 0, fontSize: '14px', fontWeight: '600' }}>{doctor.specialty}</p>
+              </div>
             </div>
-            <button
-              onClick={clearFilters}
-              className="text-blue-600 font-medium"
+
+            <div className="doctor-meta" style={{ display: 'flex', gap: '15px', marginBottom: '15px', fontSize: '13px' }}>
+              <div className="rating" style={{ background: '#fff9e6', color: '#ffcc00', padding: '4px 8px', borderRadius: '5px', fontWeight: 'bold', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                <Star size={14} fill="#ffcc00" /> {doctor.rating}
+              </div>
+              <div className="experience" style={{ color: '#94a3b8', paddingTop: '4px' }}>
+                {doctor.experience} EXPERIENCE
+              </div>
+            </div>
+
+            <div className="doctor-tags" style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginBottom: '15px' }}>
+              <span style={{ color: '#007bff', fontSize: '12px', display: 'flex', alignItems: 'center', gap: '5px' }}>
+                <Video size={14} /> Teleconsultation
+              </span>
+              <span style={{ background: '#fff0f0', color: '#ff4d4d', padding: '4px 10px', borderRadius: '5px', fontSize: '11px', fontWeight: 'bold', width: 'fit-content' }}>
+                Am. Board of {doctor.specialty}
+              </span>
+            </div>
+
+            <div className="doctor-fee" style={{ marginBottom: '20px' }}>
+              <span style={{ fontSize: '24px', fontWeight: '800', color: '#10b981' }}>{doctor.consultationFee}</span>
+              <span style={{ color: '#94a3b8', fontSize: '12px', marginLeft: '5px' }}>per consultation</span>
+            </div>
+
+            <div className="doctor-actions" style={{ display: 'flex', gap: '10px' }}>
+              <button 
+                className="btn-book" 
+                onClick={() => setSelectedDoctor(doctor)}
+                style={{ flex: 1, background: '#007bff', color: 'white', border: 'none', padding: '12px', borderRadius: '10px', fontWeight: '700', cursor: 'pointer' }}
+              >
+                Book Now
+              </button>
+              <button style={{ background: 'none', border: '1px solid #eef2f6', padding: '12px', borderRadius: '10px', cursor: 'pointer' }}>
+                <Video size={18} color="#94a3b8" />
+              </button>
+            </div>
+          </div>
+        ))}
+      </main>
+
+      {/* 4. Booking Modal (Small Window) */}
+      {selectedDoctor && (
+        <div className="modal-overlay" onClick={() => setSelectedDoctor(null)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <button 
+              onClick={() => setSelectedDoctor(null)} 
+              style={{ position: 'absolute', top: '20px', right: '20px', border: 'none', background: 'none', cursor: 'pointer', color: '#94a3b8' }}
             >
-              Clear filters
+              <X size={24} />
+            </button>
+            
+            <img src={selectedDoctor.image} alt="" style={{ width: '80px', height: '80px', borderRadius: '50%', objectFit: 'cover', marginBottom: '15px', border: '4px solid #f8fafc' }} />
+            <h2 style={{ margin: '0 0 10px 0', fontSize: '22px' }}>Confirm Booking</h2>
+            <p style={{ color: '#64748b', fontSize: '15px', lineHeight: '1.5', marginBottom: '25px' }}>
+              Schedule your appointment with <br/> 
+              <b style={{ color: '#1e293b' }}>{selectedDoctor.name}</b>
+            </p>
+            
+            <div style={{ background: '#f8fafc', padding: '15px', borderRadius: '15px', textAlign: 'left', marginBottom: '25px' }}>
+                <div style={{ fontSize: '12px', color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Consultation Fee</div>
+                <div style={{ fontSize: '20px', fontWeight: '800', color: '#10b981' }}>{selectedDoctor.consultationFee}</div>
+            </div>
+
+            <button 
+              onClick={() => { alert("Appointment Requested Successfully!"); setSelectedDoctor(null); }}
+              style={{ width: '100%', background: '#007bff', color: 'white', border: 'none', padding: '15px', borderRadius: '12px', fontWeight: '700', fontSize: '16px', cursor: 'pointer', boxShadow: '0 4px 12px rgba(0, 123, 255, 0.3)' }}
+            >
+              Confirm Appointment
             </button>
           </div>
-        ) : (
-          filteredDoctors.map((doctor) => (
-            <div key={doctor.id}>
-              <div className="doctor-profile">
-                <div className="doctor-avatar">
-                  <img src={doctor.image} alt={doctor.name} />
-                </div>
-
-                <div className="doctor-info">
-                  <h3 className="doctor-name">{doctor.name}</h3>
-                  <p className="doctor-specialty">{doctor.specialty}</p>
-                </div>
-              </div>
-
-              <div className="doctor-meta">
-                <div className="rating">
-                  <span className="rating-star">★</span>
-                  {doctor.rating}
-                </div>
-                <div className="experience">
-                  {doctor.experience} EXPERIENCE
-                </div>
-              </div>
-
-              <div className="doctor-tags">
-                <span className="tag tag-teleconsultation">
-                  <Video size={14} /> Teleconsultation
-                </span>
-                <span className="tag tag-board">
-                  Am. Board of {doctor.specialty}
-                </span>
-              </div>
-
-              <div className="doctor-fee">
-                <span className="fee-amount">
-                  {doctor.consultationFee}
-                </span>
-                <span className="fee-label">per consultation</span>
-              </div>
-
-              <div className="doctor-actions">
-                <button
-                  className="btn-book"
-                  onClick={() => bookConsultation(doctor)}
-                >
-                  Book Now
-                </button>
-
-                <button
-                  className="btn-teleconsult"
-                  onClick={() => viewProfile(doctor)}
-                >
-                  <Video size={14} /> Teleconsult
-                </button>
-              </div>
-            </div>
-          ))
-        )}
-      </main>
-    </>
+        </div>
+      )}
+    </div>
   );
 }
