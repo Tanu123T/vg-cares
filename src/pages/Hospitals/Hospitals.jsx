@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { hospitalData } from "../../data/hospitalData";
-import "./HospitalsPage.css";
+import "./Hospitals.css";
 import { createIcons } from "lucide";
 
 const HospitalsPage = () => {
