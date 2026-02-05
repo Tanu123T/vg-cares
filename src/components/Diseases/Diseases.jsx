@@ -1,7 +1,5 @@
 import React, { useEffect, useRef } from "react";
 import "./Diseases.css";
-
-// images
 import d1 from "../../assets/images/d1.png";
 import d2 from "../../assets/images/d2.png";
 import d3 from "../../assets/images/d3.png";
