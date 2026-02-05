@@ -13,6 +13,7 @@ import Diseases from './components/Diseases/Diseases';
 import Doctors_approach from './components/Doctors_approach/Doctors_approach';
 import Doctors from './pages/Doctors/Doctors'; 
 import Blogs from './pages/Blogs/Blogs'; 
+import Hospitals from './pages/Hospitals/Hospitals';
 
 function App() {
   return (
@@ -42,9 +43,7 @@ function App() {
         } />
         <Route path="/hospitals" element={
           <>
-            <div style={{padding: '100px 20px', textAlign: 'center'}}>
-              <h1>Hospitals page coming soon...</h1>
-            </div>
+            <Hospitals />
             <Footer />
           </>
          } />
