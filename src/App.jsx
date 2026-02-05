@@ -27,6 +27,7 @@ function App() {
             <Doctors_approach />
             <Feedback />
             <Stats />
+            <Features/>
             <MedicalMap />
             <Download_app />
             <Partners />
@@ -46,7 +47,7 @@ function App() {
             </div>
             <Footer />
           </>
-        } />
+         } />
         <Route path="/blogs" element={
           <>
             
