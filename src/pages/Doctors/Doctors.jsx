@@ -94,7 +94,7 @@ export default function Doctors() {
       </section>
 
       {/* GRID */}
-      <main id="doctorGrid" className="max-w-7xl mx-auto">
+      <main id="doctorGrid">
         {filteredDoctors.length === 0 ? (
           <div className="col-span-full text-center py-16">
             <div className="text-slate-400 text-lg mb-4">

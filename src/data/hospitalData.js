@@ -221,4 +221,5 @@ const hospitals = [
   }
 ];
 
+export const hospitalData = hospitals;
 export default hospitals;

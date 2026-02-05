@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { hospitalData } from "../../data/hospitalData";
+import { MapPin, Phone } from "lucide-react";
 import "./Hospitals.css"; 
 
 const HospitalsPage = () => {
@@ -12,7 +13,7 @@ const HospitalsPage = () => {
     // Icon initialization removed (lucide-react doesn't require this)
   }, [selectedHospital]);
 
-  const filteredHospitals = hospitals.filter(h =>
+  const filteredHospitals = hospitalData.filter(h =>
     h.name.toLowerCase().includes(search.toLowerCase()) &&
     (country === "all" || h.country === country) &&
     (specialist === "all" || h.specialist === specialist)
@@ -137,12 +138,12 @@ const HospitalsPage = () => {
               </div>
 
               <div className="info-row">
-                <i data-lucide="map-pin"></i>
+                <MapPin size={16} />
                 <span>{h.address}</span>
               </div>
 
               <div className="info-row">
-                <i data-lucide="phone"></i>
+                <Phone size={16} />
                 <span>{h.phone}</span>
               </div>
 

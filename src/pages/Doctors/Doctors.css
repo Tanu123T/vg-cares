@@ -205,6 +205,8 @@
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     gap: 24px;
     padding: 0 20px;
+    max-width: 1400px;
+    margin: 0 auto 40px;
 }
 
 /* Doctor Card Styling - Matching the Image Design */
