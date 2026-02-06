@@ -27,10 +27,22 @@ export default function Capabilities() {
         } else {
           // Removes class when scrolling away to allow re-animation
           entry.target.classList.remove("active");
+      rootMargin: "0px 0px -50px 0px" 
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // Triggers animation when entering viewport
+          entry.target.classList.add('active');
+        } else {
+          // Resets animation when leaving viewport for a repeating effect
+          entry.target.classList.remove('active');
         }
       });
     }, observerOptions);
 
+ ui/hero-navbar-services-capabilities-linking
     const revealElements = document.querySelectorAll(".reveal, .reveal-left, .reveal-right");
     revealElements.forEach((el) => observer.observe(el));
 
@@ -41,6 +53,17 @@ export default function Capabilities() {
     <section className="capabilities-container capabilities-wrapper" id="capabilities">
       
       {/* Header Section */}
+
+    const elements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+    elements.forEach(el => observer.observe(el));
+
+    return () => elements.forEach(el => observer.unobserve(el));
+  }, []);
+
+  return (
+    <section className="capabilities-container capabilities-wrapper">
+
+ develop
       <div className="capabilities-text-center reveal">
         <div className="capabilities-badge">Our Capabilities</div>
         <h2 className="capabilities-header-title">
@@ -93,12 +116,19 @@ export default function Capabilities() {
 
       {/* Bottom Detailed Grid */}
       <div className="capabilities-bottom-grid">
+ ui/hero-navbar-services-capabilities-linking
         
         {/* Medical Excellence Box */}
         <div className="capabilities-section-box capabilities-blue-section reveal-left">
           <h4>Medical Excellence</h4>
           <div className="capabilities-mini-card-container">
             
+
+        {/* Medical Excellence */}
+        <div className="capabilities-section-box capabilities-blue-section reveal-left">
+          <h4>Medical Excellence</h4>
+          <div className="capabilities-mini-card-container">
+ develop
             <div className="capabilities-mini-card-wrapper">
               <div className="capabilities-mini-card-front">
                 <div className="capabilities-mini-icon capabilities-blue-mini">
@@ -134,15 +164,17 @@ export default function Capabilities() {
                 Seamless insurance concierge and global coverage support
               </div>
             </div>
-
           </div>
         </div>
 
+ ui/hero-navbar-services-capabilities-linking
         {/* Logistics & Safety Box */}
+
+        {/* Logistics & Safety */}
+ develop
         <div className="capabilities-section-box capabilities-green-section reveal-right">
           <h4>Logistics & Safety</h4>
           <div className="capabilities-mini-card-container">
-
             <div className="capabilities-mini-card-wrapper">
               <div className="capabilities-mini-card-front">
                 <div className="capabilities-mini-icon capabilities-green-mini">
@@ -178,10 +210,8 @@ export default function Capabilities() {
                 Emergency help and immediate post-op support 24/7
               </div>
             </div>
-
           </div>
         </div>
-
       </div>
     </section>
   );

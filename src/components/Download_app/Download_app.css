@@ -69,7 +69,8 @@
     color: #444;
     line-height: 1.6;
     margin-bottom: 35px;
-    max-width: 450px;
+    max-width: 500px;
+    word-wrap: break-word;
 }
 
 /* Phone & Neon Frame */
@@ -107,9 +108,24 @@
 }
 
 /* Buttons */
-.store-btns { display: flex; gap: 15px; }
-.btn-link img { height: 45px; transition: 0.3s; }
-.btn-link:hover img { transform: translateY(-5px) scale(1.05); }
+.store-btns { 
+    display: flex; 
+    gap: 20px;
+    align-items: center;
+}
+.btn-link { 
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+.btn-link img { 
+    height: 52px; 
+    transition: 0.3s;
+    filter: drop-shadow(0 4px 12px rgba(0, 84, 255, 0.15));
+}
+.btn-link:hover img { 
+    transform: translateY(-8px) scale(1.1);
+    filter: drop-shadow(0 8px 20px rgba(0, 84, 255, 0.25));
+}
 
 /* Responsive */
 @media (max-width: 900px) {

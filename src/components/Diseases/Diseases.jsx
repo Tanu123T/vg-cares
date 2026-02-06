@@ -34,13 +34,23 @@ const Diseases = () => {
 
   useEffect(() => {
     const slider = sliderRef.current;
+    if (!slider) return;
 
-    // clone cards for infinite scroll
-    const cards = [...slider.children];
-    cards.forEach(card => {
-      slider.appendChild(card.cloneNode(true));
-    });
+    // prevent double-cloning if effect somehow runs multiple times
+    if (!slider.dataset.cloned) {
+      const cards = Array.from(slider.children);
+      if (cards.length > 0) {
+        cards.forEach((card) => {
+          slider.appendChild(card.cloneNode(true));
+        });
+        slider.dataset.cloned = "true";
+      }
+    }
 
+    // ensure starting transform
+    slider.style.transform = `translateX(${scrollPosition.current}px)`;
+
+    let rafId = null;
     const autoScroll = () => {
       if (!isPaused.current) {
         scrollPosition.current -= autoScrollSpeed;
@@ -51,26 +61,36 @@ const Diseases = () => {
 
         slider.style.transform = `translateX(${scrollPosition.current}px)`;
       }
-      requestAnimationFrame(autoScroll);
+      rafId = requestAnimationFrame(autoScroll);
     };
 
-    autoScroll();
+    rafId = requestAnimationFrame(autoScroll);
+
+    return () => {
+      if (rafId) cancelAnimationFrame(rafId);
+    };
   }, []);
 
   const nextSlide = () => {
     const slider = sliderRef.current;
+    if (!slider) return;
     scrollPosition.current -= scrollStep;
     slider.style.transition = "transform 0.5s ease";
     slider.style.transform = `translateX(${scrollPosition.current}px)`;
-    setTimeout(() => (slider.style.transition = "none"), 500);
+    setTimeout(() => {
+      if (slider) slider.style.transition = "none";
+    }, 500);
   };
 
   const prevSlide = () => {
     const slider = sliderRef.current;
+    if (!slider) return;
     scrollPosition.current += scrollStep;
     slider.style.transition = "transform 0.5s ease";
     slider.style.transform = `translateX(${scrollPosition.current}px)`;
-    setTimeout(() => (slider.style.transition = "none"), 500);
+    setTimeout(() => {
+      if (slider) slider.style.transition = "none";
+    }, 500);
   };
 
   return (
