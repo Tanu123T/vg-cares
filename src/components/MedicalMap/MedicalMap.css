@@ -49,16 +49,14 @@ h1 {
 
 /* UI Controls Overlay */
 .top-controls {
-    max-height: 35px;
-    position: absolute;
-    top: 15px;
-    left: 20px;
+    position: absolute; 
+    top: 5px; 
+    left: 20px; 
     right: 20px;
     z-index: 1000;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-
 }
 
 .button-group {
@@ -86,7 +84,7 @@ h1 {
     overflow: hidden;
     transform: translateY(0) scale(1);
     box-sizing: border-box;
-    height: 35px;
+    height: 44px;
 }
 
 .pill-btn::before {
@@ -175,17 +173,17 @@ h1 {
 }
 
 .search-container {
-    background: white;
-    border-radius: 50px;
+    background: white; 
+    border-radius: 50px; 
+    padding: 0 20px;
     border: 1px solid #e2e8f0;
-    display: flex;
-    align-items: center;
-    width: 400px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    display: flex; 
+    align-items: center; 
+    width: 420px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     position: relative;
-    box-sizing: border-box; 
-    height: 35px;
-
+    box-sizing: border-box;
+    height: 44px;
 }
 
 .search-suggestions {
@@ -242,23 +240,21 @@ h1 {
     margin-left: 5px;
 }
 
-.search-container input {
-    border: none;
-    outline: none;
-    margin-left: 8px;
-    width: calc(100% - 32px);
-    font-size: 14px;
-    background: transparent;
-    line-height: normal;
-    padding: 0;
-    vertical-align: middle;
-    box-sizing: border-box;
-   
+.search-container input { 
+    border: none; 
+    outline: none; 
+    margin-left: 8px; 
+    width: calc(100% - 32px); 
+    font-size: 14px; 
+    background: transparent; 
+    line-height: normal; 
+    padding: 0; 
+    vertical-align: middle; 
+    box-sizing: border-box; 
 }
-
-.search-container i {
-    color: var(--primary, #007BFF);
-    font-size: 16px;
+.search-container i { 
+    color: var(--primary, #007BFF); 
+    font-size: 16px; 
     flex-shrink: 0;
 }
 
