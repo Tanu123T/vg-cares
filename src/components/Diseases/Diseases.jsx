@@ -33,48 +33,27 @@ const Diseases = () => {
   const autoScrollSpeed = 0.5;
 
   useEffect(() => {
-    const slider = sliderRef.current;
-    if (!slider) return;
+  let rafId;
 
-    // prevent double-cloning if effect somehow runs multiple times
-    if (!slider.dataset.cloned) {
-      const cards = Array.from(slider.children);
-      if (cards.length > 0) {
-        cards.forEach((card) => {
-          slider.appendChild(card.cloneNode(true));
-        });
-        slider.dataset.cloned = "true";
-      }
-    }
-
-    // ensure starting transform
-    slider.style.transform = `translateX(${scrollPosition.current}px)`;
-
-    let rafId = null;
-    const autoScroll = () => {
-  if (!isPaused.current) {
-    scrollPosition.current -= autoScrollSpeed;
-
-    if (Math.abs(scrollPosition.current) >= slider.scrollWidth / 2) {
-      scrollPosition.current = 0;
-    }
-
-    slider.style.transform = `translateX(${scrollPosition.current}px)`;
-  }
-  requestAnimationFrame(autoScroll);
-};
-
-        slider.style.transform = `translateX(${scrollPosition.current}px)`;
-      }
+  const autoScroll = () => {
+    if (!sliderRef.current || isPaused.current) {
       rafId = requestAnimationFrame(autoScroll);
-    };
+      return;
+    }
+
+    scrollPosition.current -= 0.5;
+    sliderRef.current.style.transform = `translateX(${scrollPosition.current}px)`;
 
     rafId = requestAnimationFrame(autoScroll);
+  };
 
-    return () => {
-      if (rafId) cancelAnimationFrame(rafId);
-    };
-  }, []);
+  rafId = requestAnimationFrame(autoScroll);
+
+  return () => {
+    cancelAnimationFrame(rafId);
+  };
+}, []);
+
 
 const nextSlide = () => {
   const slider = sliderRef.current;
