@@ -1,58 +1,59 @@
+/* ============================================================
+   FULL REFINED DOWNLOAD APP SECTION
+   ============================================================ */
 
-.downloadapp{
+/* 1. Main Section - Creates the necessary contrast */
+.downloadapp {
     position: relative;
     padding: 100px 0;
     display: flex;
     justify-content: center;
-    align-items: center; 
+    align-items: center;
+    overflow: hidden;
+    /* Soft blue-grey background makes the white card pop */
+    background-color: #f5f8fb; 
 }
 
-/* Background Blobs */
+/* 2. Background Decorative Blobs */
 .bg-blob {
     position: absolute;
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(circle, rgba(0, 132, 255, 0.1) 0%, transparent 70%);
-    filter: blur(60px);
-    z-index: -1;
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle, rgba(0, 132, 255, 0.08) 0%, transparent 70%);
+    filter: blur(100px);
+    z-index: 0;
 }
-.blob-1 { top: -150px; right: -150px; }
-.blob-2 { bottom: -150px; left: -150px; }
+.blob-1 { top: -200px; right: -200px; }
+.blob-2 { bottom: -200px; left: -200px; }
 
-/* The Glass Card */
+/* 3. The Glass Card - Fixed the "Double Border" issue */
 .app-card {
     position: relative;
-    width: 75%;
-    height: fit-content;
-    max-width: 1100px;
-    background: var(--glass-bg);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.6);
+    z-index: 1;
+    width: 88%;
+    max-width: 1140px;
+    /* Solid white background prevents transparency ghosting */
+    background: #ffffff; 
     border-radius: 40px;
     padding: 60px;
     display: grid;
     grid-template-columns: 1.2fr 1fr;
     gap: 50px;
     align-items: center;
-    box-shadow: 0 40px 100px rgba(0, 84, 255, 0.08);
-    transform-style: preserve-3d;
-    transition: transform 0.1s ease-out;
-    align-self: center;
+    /* REFINED SHADOW: Soft, neutral grey (not blue) to stop the double-card look */
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.05);
 }
 
-/* Text Effects */
+/* 4. Text & Typography */
 .app-title {
     font-size: 52px;
     font-weight: 800;
     line-height: 1.1;
     color: #111;
     margin-bottom: 20px;
-    letter-spacing: -2px;
 }
 
 .gradient-text {
-    display: inline-block;
     background: linear-gradient(90deg, #0044cc, #0084ff, #0044cc);
     background-size: 200% auto;
     -webkit-background-clip: text;
@@ -66,70 +67,81 @@
 
 .app-description {
     font-size: 18px;
-    color: #444;
+    color: #555;
     line-height: 1.6;
     margin-bottom: 35px;
     max-width: 500px;
-    word-wrap: break-word;
 }
 
-/* Phone & Neon Frame */
+/* 5. Store Buttons */
+.store-btns {
+    display: flex;
+    gap: 20px;
+}
+
+.btn-link img {
+    height: 52px;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.btn-link:hover img {
+    transform: translateY(-5px);
+}
+
+/* 6. Phone Section - Cleaned up the inner shadows */
 .phone-wrapper {
     position: relative;
     display: flex;
     justify-content: center;
-    transform: translateZ(60px); /* Gives 3D lift */
+    align-items: center;
+    width: 100%;
 }
 
 .phone-img {
     width: 100%;
     max-width: 320px;
-    filter: drop-shadow(0 20px 40px rgba(0,0,0,0.15));
+    display: block;
+    /* Added z-index to ensure it sits above the wrapper glow */
+    z-index: 2;
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.12));
     animation: float 5s ease-in-out infinite;
 }
 
-.phone-frame {
+/* Optional: Soft glow behind the phone ONLY (replaces the "second card") */
+.phone-wrapper::after {
+    content: "";
     position: absolute;
-    width: 95%;
-    height: 95%;
-    box-shadow: 0 0 15px var(--neon-glow), inset 0 0 15px var(--neon-glow);
-    opacity: 0.4;
-    animation: pulse 3s ease-in-out infinite;
+    width: 70%;
+    height: 70%;
+    background: rgba(0, 132, 255, 0.1);
+    filter: blur(40px);
+    z-index: 1;
+    border-radius: 50%;
 }
 
+/* 7. Animations */
 @keyframes float {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-15px); }
 }
 
-@keyframes pulse {
-    0%, 100% { opacity: 0.3; transform: scale(1); }
-    50% { opacity: 0.6; transform: scale(1.03); }
-}
-
-/* Buttons */
-.store-btns { 
-    display: flex; 
-    gap: 20px;
-    align-items: center;
-}
-.btn-link { 
-    display: inline-block;
-    transition: all 0.3s ease;
-}
-.btn-link img { 
-    height: 52px; 
-    transition: 0.3s;
-    filter: drop-shadow(0 4px 12px rgba(0, 84, 255, 0.15));
-}
-.btn-link:hover img { 
-    transform: translateY(-8px) scale(1.1);
-    filter: drop-shadow(0 8px 20px rgba(0, 84, 255, 0.25));
-}
-
-/* Responsive */
+/* 8. Responsive Design */
 @media (max-width: 900px) {
-    .app-card { grid-template-columns: 1fr; text-align: center; padding: 40px; }
+    .app-card {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding: 40px 25px;
+        width: 95%;
+    }
+
+    .app-title { font-size: 36px; }
+
     .app-description { margin: 0 auto 30px; }
+
     .store-btns { justify-content: center; }
+
+    .phone-wrapper { margin-top: 40px; }
+
+    .phone-img { max-width: 260px; }
 }
