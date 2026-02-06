@@ -42,36 +42,54 @@ const Diseases = () => {
     });
 
     const autoScroll = () => {
-      if (!isPaused.current) {
-        scrollPosition.current -= autoScrollSpeed;
+  if (!isPaused.current) {
+    scrollPosition.current -= autoScrollSpeed;
 
-        if (Math.abs(scrollPosition.current) >= slider.scrollWidth / 2) {
-          scrollPosition.current = 0;
-        }
+    if (Math.abs(scrollPosition.current) >= slider.scrollWidth / 2) {
+      scrollPosition.current = 0;
+    }
 
-        slider.style.transform = `translateX(${scrollPosition.current}px)`;
-      }
-      requestAnimationFrame(autoScroll);
-    };
+    slider.style.transform = `translateX(${scrollPosition.current}px)`;
+  }
+  requestAnimationFrame(autoScroll);
+};
+
 
     autoScroll();
   }, []);
 
-  const nextSlide = () => {
-    const slider = sliderRef.current;
-    scrollPosition.current -= scrollStep;
-    slider.style.transition = "transform 0.5s ease";
-    slider.style.transform = `translateX(${scrollPosition.current}px)`;
-    setTimeout(() => (slider.style.transition = "none"), 500);
-  };
+const nextSlide = () => {
+  const slider = sliderRef.current;
+  if (!slider) return;
 
-  const prevSlide = () => {
-    const slider = sliderRef.current;
-    scrollPosition.current += scrollStep;
-    slider.style.transition = "transform 0.5s ease";
-    slider.style.transform = `translateX(${scrollPosition.current}px)`;
-    setTimeout(() => (slider.style.transition = "none"), 500);
-  };
+  isPaused.current = true; // ⛔ pause auto-scroll
+
+  scrollPosition.current -= scrollStep;
+  slider.style.transition = "transform 0.4s ease";
+  slider.style.transform = `translateX(${scrollPosition.current}px)`;
+
+  setTimeout(() => {
+    slider.style.transition = "none";
+    isPaused.current = false; // ▶ resume auto-scroll
+  }, 450);
+};
+
+const prevSlide = () => {
+  const slider = sliderRef.current;
+  if (!slider) return;
+
+  isPaused.current = true; // ⛔ pause auto-scroll
+
+  scrollPosition.current += scrollStep;
+  slider.style.transition = "transform 0.4s ease";
+  slider.style.transform = `translateX(${scrollPosition.current}px)`;
+
+  setTimeout(() => {
+    slider.style.transition = "none";
+    isPaused.current = false; // ▶ resume auto-scroll
+  }, 450);
+};
+
 
   return (
     <section className="consult-container">
@@ -82,10 +100,9 @@ const Diseases = () => {
           <h1>Consult top doctors online for any health concern</h1>
 
           <div className="disease-nav-wrapper">
-            <button onClick={prevSlide} className="disease-scroll-arrow">←</button>
-            <button onClick={nextSlide} className="disease-scroll-arrow">→</button>
-            <button className="disease-view-all">View all Specialists →</button>
-          </div>
+ <a href="/doctors"> <button className="disease-view-all">View all Specialists →</button></a>
+</div>
+
         </div>
 
         <p className="disease-subtitle">
@@ -93,27 +110,50 @@ const Diseases = () => {
         </p>
       </div>
 
-      <div className="disease-slider-viewport">
-        <div
-          className="disease-specialist-grid"
-          ref={sliderRef}
-          onMouseEnter={() => (isPaused.current = true)}
-          onMouseLeave={() => (isPaused.current = false)}
-        >
-          {diseases.map((item, index) => (
-            <div className="disease-card" key={index}>
-              <div className="disease-circle-container">
-                <div className="disease-dashed-outline"></div>
-                <div className="disease-icon-inner">
-                  <img src={item.img} alt={item.name} />
-                </div>
-              </div>
-              <h3>{item.name}</h3>
-              <button className="disease-consult-btn">Consult Now</button>
+      <div className="disease-slider-wrapper">
+
+  {/* LEFT ARROW */}
+  <button
+    className="disease-outside-arrow left"
+    onClick={prevSlide}
+  >
+    &lt;
+  </button>
+
+  {/* SLIDER */}
+  <div className="disease-slider-viewport">
+    <div
+      className="disease-specialist-grid"
+      ref={sliderRef}
+      onMouseEnter={() => (isPaused.current = true)}
+      onMouseLeave={() => (isPaused.current = false)}
+    >
+      {diseases.map((item, index) => (
+        <div className="disease-card" key={index}>
+          <div className="disease-circle-container">
+            <div className="disease-dashed-outline"></div>
+            <div className="disease-icon-inner">
+              <img src={item.img} alt={item.name} />
             </div>
-          ))}
+          </div>
+          <h3>{item.name}</h3>
+          <button className="disease-consult-btn">Consult Now</button>
         </div>
-      </div>
+      ))}
+    </div>
+  </div>
+
+  {/* RIGHT ARROW */}
+  <button
+    className="disease-outside-arrow right"
+    onClick={nextSlide}
+  >
+    &gt;
+  </button>
+
+</div>
+
+
     </section>
   );
 };
