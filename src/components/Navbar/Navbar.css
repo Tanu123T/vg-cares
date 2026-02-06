@@ -14,8 +14,6 @@ body {
   width: 100%;
   z-index: 1000;
   box-sizing: border-box;
-
-  /* Navbar Glass Effect */
   background: rgba(255, 255, 255, 0.75); 
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -32,7 +30,7 @@ body {
   padding: 0;
 }
 
-/* --- KILL ALL BLACK BOXES/BORDERS --- */
+/* --- Navigation Items --- */
 .nav-item, .dropdown-btn {
   position: relative;
   text-decoration: none;
@@ -66,7 +64,7 @@ body {
 .nav-item:hover::after { width: 100%; }
 .nav-item:hover { color: #007bff; }
 
-/* --- SOLID CENTERED DROPDOWN (No Glass) --- */
+/* --- DROPDOWN DESIGN --- */
 .more-dropdown-trigger {
   position: relative;
   display: flex;
@@ -78,11 +76,8 @@ body {
   top: 100%;
   left: 50%;
   transform: translateX(-50%) translateY(15px);
-  
-  /* Solid White Design */
   background: #ffffff; 
   border: 1px solid #eeeeee;
-  
   min-width: 200px;
   border-radius: 12px;
   box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
@@ -119,11 +114,10 @@ body {
   padding-left: 25px;
 }
 
-/* Icon Rotation */
 .arrow-icon { transition: transform 0.3s ease; }
 .arrow-icon.open { transform: rotate(180deg); }
 
-/* Logo & Button Styling */
+/* Logo Styling */
 .logo-link {
   display: flex;
   align-items: center;
@@ -136,9 +130,10 @@ body {
 .logo-text h2 { margin: 0; font-size: 1.3rem; color: #1a1a1a; }
 .logo-text p { margin: 0; font-size: 0.7rem; color: #666; }
 
+/* --- THE SIGN IN BUTTON (Fixed Shine & White Text) --- */
 .btn-signin {
   background-color: #007bff;
-  color: white;
+  color: white !important; /* Forces text to stay white */
   padding: 10px 24px;
   border-radius: 50px;
   text-decoration: none;
@@ -146,9 +141,39 @@ body {
   transition: all 0.3s ease;
   border: none;
   outline: none;
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
 }
 
+/* The light streak */
+.btn-signin::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -100%;
+  width: 50%;
+  height: 200%;
+  background: linear-gradient(
+    to right, 
+    rgba(255, 255, 255, 0) 0%, 
+    rgba(255, 255, 255, 0.4) 50%, 
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: rotate(25deg);
+  pointer-events: none;
+  animation: autoShine 4s infinite;
+}
+
+@keyframes autoShine {
+  0% { left: -100%; }
+  20% { left: 150%; }
+  100% { left: 150%; }
+}
+
+/* Hover State: Stays white, no position movement */
 .btn-signin:hover {
   background-color: #0056b3;
-  box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+  color: white !important; /* Ensure text never turns blue on hover */
+  box-shadow: 0 4px 15px rgba(0, 123, 255, 0.4);
 }
