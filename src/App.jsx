@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
+import { Routes, Route, useLocation } from 'react-router-dom'
 import './App.css'
 import Navbar from "./components/Navbar/Navbar";
 import Hero from "./components/Hero/Hero";
@@ -26,7 +26,7 @@ function App() {
   const isHomePage = location.pathname === '/';
 
   return (
-    <BrowserRouter>
+    <>
       <Navbar />
       {isHomePage && <AIAssistant />}
       <Routes>
@@ -80,7 +80,7 @@ function App() {
           </>
         } />
       </Routes>
-    </BrowserRouter>
+    </>
   )
 }
 
