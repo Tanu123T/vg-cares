@@ -69,9 +69,7 @@ const Diseases = () => {
 
   rafId = requestAnimationFrame(autoScroll);
 
-  return () => {
-    cancelAnimationFrame(rafId);
-  };
+  return () => cancelAnimationFrame(rafId);
 }, []);
 
 
