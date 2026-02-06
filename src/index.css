@@ -1,4 +1,17 @@
 :root {
+  --bg-blue-section: #eef6ff;
+  --bg-green-section: #f0fdf4;
+}
+
+:root {
+  --brand-blue: #2563eb;
+  --brand-green: #22c55e;
+  --text-main: #0f172a;
+  --card-gradient: #ffffff;
+  --transition: cubic-bezier(.4,0,.2,1);
+}
+
+:root {
   font-family: 'poppins', sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -10,8 +23,8 @@
   --brand-blue: #006ce0;
   --body-text: #666;
   --success-green: #28a745;
-  --badge-green: #cdf4d8;
-  --badge-text-green: #6db770;
+  --badge-green: #d1f0da;
+  --badge-text-green: #62c965;
   --primary-blue: #007bff;
   --text-gray: #666;
   --surface-dark: #0f1419;

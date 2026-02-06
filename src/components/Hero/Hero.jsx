@@ -7,7 +7,7 @@ const Hero = () => {
       <div className="hero-content">
         <div className="hipaa-badge">HIPAA Compliant & Secure</div>
 
-        <h1 style={{ color: "black", fontFamily: "Poppins" }}>
+        <h1 className="hero-title" style={{ color: "black", fontFamily: "Poppins", }}>
           Your Health, Your Schedule, <br />
           <span className="animated-choice" style={{ fontFamily: "Poppins" }}>
             Your Choice
@@ -21,7 +21,7 @@ const Hero = () => {
         </p>
 
         <div className="cta-group">
-          <a href="#services" className="btn-book">
+          <a href="#services" className="btn-book1">
             <span className="shimmer-text">Book Appointment →</span>
           </a>
 
@@ -59,7 +59,7 @@ const Hero = () => {
 
         <div className="stats-card">
           <div className="big-check">
-            <i className="fas fa-check"></i>
+            <i className="fas fa-check" style={{ fontSize: "24px", color: "white" }}></i>
           </div>
           <div className="stats-text">
             <h3>98%</h3>

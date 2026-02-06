@@ -5,7 +5,9 @@
   padding: 0;
   font-family: 'poppins', sans-serif;
 }
-
+html {
+  scroll-behavior: smooth;
+}
 .logo {
   height: 6em;
   padding: 1.5em;

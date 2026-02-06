@@ -1,171 +1,136 @@
 import { useState, useMemo } from "react";
 import { doctorData } from "../../data/doctorData";
 import "./Doctors.css";
-import { Video } from "lucide-react";
+import { Video, X, Star, Search } from "lucide-react";
 
 export default function Doctors() {
   const [search, setSearch] = useState("");
   const [specialty, setSpecialty] = useState("All");
+  const [selectedDoctor, setSelectedDoctor] = useState(null);
 
   const filteredDoctors = useMemo(() => {
     return doctorData.filter((doctor) => {
-      const matchesName = doctor.name
-        .toLowerCase()
-        .includes(search.toLowerCase());
-
-      const matchesSpecialty =
-        specialty === "All" || doctor.specialty === specialty;
-
-      return matchesName && matchesSpecialty;
+      const matchesSearch = doctor.name.toLowerCase().includes(search.toLowerCase());
+      const matchesSpecialty = specialty === "All" || doctor.specialty === specialty;
+      return matchesSearch && matchesSpecialty;
     });
   }, [search, specialty]);
 
-  const clearFilters = () => {
-    setSearch("");
-    setSpecialty("All");
-  };
-
-  const bookConsultation = (doctor) => {
-    alert(
-      `Booking consultation with ${doctor.name} at ${doctor.hospital}.`
-    );
-  };
-
-  const viewProfile = (doctor) => {
-    alert(`Viewing profile of ${doctor.name}`);
-  };
-
   return (
-    <>
-      {/* SEARCH + FILTER */}
+    <div className="doctors-page-wrapper">
+      {/* 1. Header */}
+      <div className="doctors-header-container">
+        <div className="verified-header">✓ VERIFIED GLOBAL HEALTHCARE</div>
+        <h1>Our Doctor Network</h1>
+        <p>Connecting you to world-class medical specialists globally.</p>
+      </div>
+
+      {/* 2. Dual Search Section */}
       <section className="doctors-search-section">
-        <div className="search-container">
-          <div className="search-input-wrapper">
-            <i className="fas fa-search search-icon"></i>
+        <div className="search-outer-container">
+          <div className="search-box">
+            <Search className="search-icon" size={18} />
             <input
               type="text"
               placeholder="Search by doctor name, specialty, or hospital..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="search-input"
             />
-            {search && (
-              <button 
-                onClick={() => setSearch("")}
-                className="search-clear"
-              >
-                <i className="fas fa-times"></i>
-              </button>
-            )}
           </div>
 
-          <div className="filter-dropdown">
-            <i className="fas fa-filter filter-icon"></i>
-            <select
-              value={specialty}
-              onChange={(e) => setSpecialty(e.target.value)}
-              className="filter-select"
-            >
+          <div className="filter-box">
+            <select value={specialty} onChange={(e) => setSpecialty(e.target.value)}>
               <option value="All">All Specialties</option>
               <option value="Cardiology">Cardiology</option>
               <option value="Dermatology">Dermatology</option>
               <option value="Neurology">Neurology</option>
-              <option value="Gynecology">Gynecology</option>
-              <option value="Ophthalmology">Ophthalmology</option>
-              <option value="Oncology">Oncology</option>
               <option value="Orthopedics">Orthopedics</option>
-              <option value="Pediatrics">Pediatrics</option>
-              <option value="Psychiatry">Psychiatry</option>
             </select>
           </div>
-
-          {(search || specialty !== "All") && (
-            <button onClick={clearFilters} className="clear-filters-btn">
-              <i className="fas fa-redo"></i> Clear All
-            </button>
-          )}
         </div>
-        
-        <div className="search-results-info">
-          {filteredDoctors.length > 0 && (
-            <span>Found {filteredDoctors.length} doctor{filteredDoctors.length !== 1 ? 's' : ''}</span>
-          )}
+        <div className="results-count">
+          Found <b>{filteredDoctors.length}</b> doctors
         </div>
       </section>
 
-      {/* GRID */}
-      <main id="doctorGrid" className="max-w-7xl mx-auto">
-        {filteredDoctors.length === 0 ? (
-          <div className="col-span-full text-center py-16">
-            <div className="text-slate-400 text-lg mb-4">
-              No doctors found matching your criteria
+      {/* 3. Doctor Cards Grid */}
+      <main id="doctorGrid">
+        {filteredDoctors.map((doctor) => (
+          <div key={doctor.id} className="doctor-card">
+            <div className="card-top">
+              <img src={doctor.image} alt={doctor.name} className="doctor-img" />
+              <div className="doctor-title">
+                <h3 className="doctor-name">{doctor.name}</h3>
+                <p className="doctor-specialty">{doctor.specialty}</p>
+              </div>
             </div>
-            <button
-              onClick={clearFilters}
-              className="text-blue-600 font-medium"
+
+            <div className="card-stats">
+              <div className="rating-pill">
+                <Star size={14} fill="#ffcc00" color="#ffcc00" /> {doctor.rating}
+              </div>
+              <span className="exp-text">{doctor.experience} EXPERIENCE</span>
+            </div>
+
+            <div className="card-features">
+              <span className="tele-link">
+                <Video size={14} /> Teleconsultation
+              </span>
+              <span className="board-badge">Am. Board of {doctor.specialty}</span>
+            </div>
+
+            <div className="card-price">
+              <span className="amount">{doctor.consultationFee}</span>
+              <span className="unit">per consultation</span>
+            </div>
+
+            <div className="card-footer">
+              <button 
+                className="btn-book-now" 
+                onClick={() => setSelectedDoctor(doctor)} // Logic to open modal
+              >
+                Book Now
+              </button>
+              <button className="btn-video-alt">
+                <Video size={18} />
+              </button>
+            </div>
+          </div>
+        ))}
+      </main>
+
+      {/* 4. Functional Booking Modal */}
+      {selectedDoctor && (
+        <div className="modal-overlay" onClick={() => setSelectedDoctor(null)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <button className="close-btn" onClick={() => setSelectedDoctor(null)}>
+              <X size={24} />
+            </button>
+            
+            <img src={selectedDoctor.image} alt="" className="modal-avatar" />
+            <h2>Confirm Booking</h2>
+            <p className="modal-text">
+              Schedule your appointment with <br/> 
+              <b>{selectedDoctor.name}</b>
+            </p>
+            
+            <div className="modal-fee-box">
+                <label>Consultation Fee</label>
+                <div className="fee">{selectedDoctor.consultationFee}</div>
+            </div>
+
+            <button 
+              className="confirm-btn"
+              onClick={() => {
+                alert(`Appointment Requested with ${selectedDoctor.name}!`);
+                setSelectedDoctor(null);
+              }}
             >
-              Clear filters
+              Confirm Appointment
             </button>
           </div>
-        ) : (
-          filteredDoctors.map((doctor) => (
-            <div key={doctor.id}>
-              <div className="doctor-profile">
-                <div className="doctor-avatar">
-                  <img src={doctor.image} alt={doctor.name} />
-                </div>
-
-                <div className="doctor-info">
-                  <h3 className="doctor-name">{doctor.name}</h3>
-                  <p className="doctor-specialty">{doctor.specialty}</p>
-                </div>
-              </div>
-
-              <div className="doctor-meta">
-                <div className="rating">
-                  <span className="rating-star">★</span>
-                  {doctor.rating}
-                </div>
-                <div className="experience">
-                  {doctor.experience} EXPERIENCE
-                </div>
-              </div>
-
-              <div className="doctor-tags">
-                <span className="tag tag-teleconsultation">
-                  <Video size={14} /> Teleconsultation
-                </span>
-                <span className="tag tag-board">
-                  Am. Board of {doctor.specialty}
-                </span>
-              </div>
-
-              <div className="doctor-fee">
-                <span className="fee-amount">
-                  {doctor.consultationFee}
-                </span>
-                <span className="fee-label">per consultation</span>
-              </div>
-
-              <div className="doctor-actions">
-                <button
-                  className="btn-book"
-                  onClick={() => bookConsultation(doctor)}
-                >
-                  Book Now
-                </button>
-
-                <button
-                  className="btn-teleconsult"
-                  onClick={() => viewProfile(doctor)}
-                >
-                  <Video size={14} /> Teleconsult
-                </button>
-              </div>
-            </div>
-          ))
-        )}
-      </main>
-    </>
+        </div>
+      )}
+    </div>
   );
 }
