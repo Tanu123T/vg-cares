@@ -1,111 +1,148 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+/* Container and Header */
+.doctors-page-wrapper {
+    background: #fcfdfe;
+    min-height: 100vh;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    padding-bottom: 50px;
+}
 
-/* --- Header Section --- */
 .doctors-header-container {
-    max-width: 1400px;
-    margin: 40px auto 20px;
+    max-width: 1200px;
+    margin: 40px auto 25px;
     padding: 0 20px;
 }
 
 .verified-header {
     background: #e8fdf5;
     color: #10b981;
-    padding: 6px 16px;
+    padding: 6px 14px;
     border-radius: 100px;
     font-size: 12px;
     font-weight: 700;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    margin-bottom: 10px;
+    display: inline-block;
 }
 
-/* --- Elongated Search Section --- */
+.doctors-header-container h1 {
+    color: #007bff;
+    font-size: 42px;
+    font-weight: 800;
+    margin: 10px 0;
+}
+
+/* Search Bar (Matches Hospital Layout) */
 .doctors-search-section {
-    max-width: 1400px;
+    max-width: 1200px;
     margin: 0 auto 40px;
     padding: 0 20px;
 }
 
-.search-container {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+.search-outer-container {
     background: white;
-    padding: 15px 25px;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-    border: 1px solid #f0f0f0;
-    width: 100%;
-    box-sizing: border-box;
+    padding: 20px;
+    border-radius: 20px;
+    border: 1px solid #e1effe;
+    display: flex;
     gap: 20px;
-    height: 100px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
 }
 
-.search-input-wrapper {
-    background: #f8fafc;
-    border: 1px solid #eef2f6;
-    border-radius: 100px;
-    height: 60px;
-    flex: 3;
-    position: relative;
+.search-box {
+    flex: 2.5;
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
     display: flex;
     align-items: center;
-    
+    padding: 0 15px;
 }
-.search-input2,
-.filter-dropdown {
+
+.filter-box {
     flex: 1;
-    min-width: 200px;
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
 }
 
-.filter-select {
+.search-box input, .filter-box select {
     width: 100%;
-    padding: 12px 15px 12px 45px;
-    border: 1px solid #eef2f6;
-    border-radius: 100px;
-    background: #f8fafc;
-    font-size: 15px;
+    padding: 14px 0;
+    border: none;
     outline: none;
+    font-size: 15px;
+    color: #475569;
 }
 
-.search-results-info {
-    max-width: 1400px;
-    margin: 15px auto 0;
-    padding: 0 20px;
+.search-icon { color: #94a3b8; margin-right: 10px; }
+
+.results-count {
+    margin-top: 15px;
     text-align: right;
     color: #94a3b8;
+    font-weight: 600;
     font-size: 14px;
 }
 
-/* --- Doctor Grid --- */
+/* Doctor Grid and Cards */
 #doctorGrid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
     gap: 25px;
-    padding: 0 20px;
-    max-width: 1400px;
+    max-width: 1200px;
     margin: 0 auto;
+    padding: 0 20px;
 }
 
-/* --- Booking Modal (Small Window) --- */
+.doctor-card {
+    background: white;
+    padding: 24px;
+    border-radius: 24px;
+    border: 1px solid #f1f5f9;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.card-top { display: flex; gap: 15px; margin-bottom: 15px; align-items: center; }
+.doctor-img { width: 60px; height: 60px; border-radius: 12px; object-fit: cover; }
+.doctor-name { font-size: 18px; font-weight: 700; margin: 0; }
+.doctor-specialty { color: #007bff; font-weight: 600; font-size: 14px; margin: 2px 0 0; }
+
+.card-stats { display: flex; gap: 12px; align-items: center; margin-bottom: 15px; }
+.rating-pill { background: #fff9e6; color: #ffcc00; padding: 4px 10px; border-radius: 8px; font-weight: 800; display: flex; align-items: center; gap: 4px; }
+.exp-text { color: #94a3b8; font-size: 12px; font-weight: 700; }
+
+.card-features { display: flex; flex-direction: column; gap: 8px; margin-bottom: 15px; }
+.tele-link { color: #007bff; font-size: 13px; display: flex; align-items: center; gap: 6px; }
+.board-badge { background: #fff1f2; color: #f43f5e; padding: 5px 12px; border-radius: 6px; font-size: 11px; font-weight: 800; width: fit-content; }
+
+.card-price { margin-top: auto; margin-bottom: 20px; }
+.amount { font-size: 24px; font-weight: 800; color: #10b981; }
+.unit { color: #94a3b8; font-size: 12px; margin-left: 5px; }
+
+.card-footer { display: flex; gap: 10px; }
+.btn-book-now { flex: 1; background: #007bff; color: white; border: none; padding: 14px; border-radius: 12px; font-weight: 700; cursor: pointer; transition: 0.2s; }
+.btn-book-now:hover { background: #0056b3; }
+.btn-video-alt { background: #f8fafc; border: 1px solid #eef2f6; padding: 14px; border-radius: 12px; color: #94a3b8; cursor: pointer; }
+
+/* MODAL STYLES - REQUIRED FOR BUTTON TO "WORK" */
 .modal-overlay {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.4);
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.5);
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 9999;
+    z-index: 1000;
 }
 
 .modal-content {
     background: white;
-    padding: 30px;
-    border-radius: 24px;
+    padding: 35px;
+    border-radius: 25px;
     width: 90%;
     max-width: 400px;
     position: relative;
@@ -114,13 +151,15 @@
 }
 
 @keyframes slideUp {
-    from {
-        transform: translateY(20px);
-        opacity: 0;
-    }
-
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
 }
+
+.modal-avatar { width: 90px; height: 90px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; border: 4px solid #f8fafc; }
+.modal-text { color: #64748b; font-size: 15px; margin-bottom: 20px; line-height: 1.5; }
+.modal-fee-box { background: #f8fafc; padding: 15px; border-radius: 15px; text-align: left; margin-bottom: 25px; }
+.modal-fee-box label { font-size: 11px; color: #94a3b8; text-transform: uppercase; font-weight: 700; }
+.modal-fee-box .fee { font-size: 20px; font-weight: 800; color: #10b981; }
+
+.confirm-btn { width: 100%; background: #007bff; color: white; padding: 15px; border-radius: 12px; border: none; font-weight: 700; font-size: 16px; cursor: pointer; }
+.close-btn { position: absolute; top: 20px; right: 20px; background: none; border: none; color: #94a3b8; cursor: pointer; }
