@@ -1,64 +1,57 @@
-/* --- Navbar Container --- */
+/* --- Push page content down so it doesn't hide under the navbar --- */
+body {
+  padding-top: 80px;
+}
+
+/* --- Glassmorphism Navbar --- */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 5%;
-  background: #ffffff;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 12px 5%;
   position: fixed;
   top: 0;
   width: 100%;
   z-index: 1000;
   box-sizing: border-box;
+
+  /* Navbar Glass Effect */
+  background: rgba(255, 255, 255, 0.75); 
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
 }
 
-/* --- Logo Section --- */
-.logo-link {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  gap: 12px;
-}
-
-.logo-text h2 {
-  margin: 0;
-  font-size: 1.4rem;
-  color: #1a1a1a;
-  font-weight: 700;
-}
-
-.logo-text p {
-  margin: 0;
-  font-size: 0.75rem;
-  color: #666;
-}
-
-/* --- Navigation Links --- */
 .nav-links {
   display: flex;
   list-style: none;
   gap: 30px;
+  align-items: center;
   margin: 0;
   padding: 0;
-  align-items: center;
 }
 
-.nav-item {
+/* --- KILL ALL BLACK BOXES/BORDERS --- */
+.nav-item, .dropdown-btn {
   position: relative;
   text-decoration: none;
   color: #333;
   font-weight: 500;
-  font-size: 1rem;
   padding: 8px 0;
-  background: none;
-  border: none;
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
   cursor: pointer;
   font-family: inherit;
-  transition: color 0.3s ease;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  -webkit-tap-highlight-color: transparent;
 }
 
-/* The Blue Underline Hover Effect */
 .nav-item::after {
   content: '';
   position: absolute;
@@ -67,97 +60,95 @@
   bottom: 0;
   left: 0;
   background-color: #007bff;
-  transition: width 0.3s ease-in-out;
+  transition: width 0.3s ease;
 }
 
-.nav-item:hover::after {
-  width: 100%;
-}
+.nav-item:hover::after { width: 100%; }
+.nav-item:hover { color: #007bff; }
 
-.nav-item:hover {
-  color: #007bff;
-}
-
-/* --- Dropdown Logic --- */
+/* --- SOLID CENTERED DROPDOWN (No Glass) --- */
 .more-dropdown-trigger {
   position: relative;
-}
-
-.dropdown-btn {
   display: flex;
   align-items: center;
-  gap: 6px;
-}
-
-/* The CSS-only Arrow Icon */
-.arrow-icon {
-  width: 0;
-  height: 0;
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  border-top: 5px solid #333;
-  transition: transform 0.3s ease, border-top-color 0.3s ease;
-}
-
-.arrow-icon.open {
-  transform: rotate(180deg);
-  border-top-color: #007bff;
 }
 
 .dropdown {
   position: absolute;
   top: 100%;
-  left: 0;
-  background: #ffffff;
-  min-width: 180px;
-  border-radius: 8px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  left: 50%;
+  transform: translateX(-50%) translateY(15px);
+  
+  /* Solid White Design */
+  background: #ffffff; 
+  border: 1px solid #eeeeee;
+  
+  min-width: 200px;
+  border-radius: 12px;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
   padding: 10px 0;
   opacity: 0;
   visibility: hidden;
-  transform: translateY(15px);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
 }
 
 .dropdown.show {
   opacity: 1;
   visibility: visible;
-  transform: translateY(0);
+  transform: translateX(-50%) translateY(5px);
+  pointer-events: auto;
 }
 
 .dropdown-item {
-  display: block;
-  padding: 10px 20px;
-  color: #333;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 20px;
   text-decoration: none;
+  color: #444;
   font-size: 0.95rem;
-  transition: background 0.2s, color 0.2s;
+  transition: all 0.2s ease;
 }
+
+.dropdown-item svg { color: #007bff; }
 
 .dropdown-item:hover {
   background-color: #f0f7ff;
   color: #007bff;
+  padding-left: 25px;
 }
 
-/* --- Sign In Button --- */
+/* Icon Rotation */
+.arrow-icon { transition: transform 0.3s ease; }
+.arrow-icon.open { transform: rotate(180deg); }
+
+/* Logo & Button Styling */
+.logo-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  background: transparent !important;
+  border: none !important;
+}
+
+.logo-text h2 { margin: 0; font-size: 1.3rem; color: #1a1a1a; }
+.logo-text p { margin: 0; font-size: 0.7rem; color: #666; }
+
 .btn-signin {
   background-color: #007bff;
   color: white;
-  padding: 10px 22px;
+  padding: 10px 24px;
   border-radius: 50px;
   text-decoration: none;
   font-weight: 600;
-  transition: background 0.3s, transform 0.2s;
+  transition: all 0.3s ease;
+  border: none;
+  outline: none;
 }
 
 .btn-signin:hover {
   background-color: #0056b3;
-  transform: translateY(-2px);
-}
-
-/* --- Responsive Menu (Optional basic fix) --- */
-@media (max-width: 768px) {
-  .nav-links {
-    display: none; /* You'd typically add a hamburger menu here */
-  }
+  box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
 }
