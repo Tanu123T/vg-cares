@@ -62,6 +62,7 @@ h1 span {
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 30px;
   margin-left: 100px;
+  margin-top: 40px;
 }
 
 /* --- CARD STYLING --- */
@@ -85,6 +86,10 @@ h1 span {
 .card-orange:hover { background-color: rgba(255, 237, 213, 0.4); }
 .card-sky:hover { background-color: rgba(224, 242, 254, 0.4); }
 
+
+.card:hover .icon{
+    transform: scale(1.1) rotate(5deg);
+}
 /* --- ICON ANIMATIONS --- */
 .icon {
   width: 55px;
