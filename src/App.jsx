@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { Routes, Route, useLocation } from 'react-router-dom'
 import './App.css'
 import Navbar from "./components/Navbar/Navbar";
 import Hero from "./components/Hero/Hero";
@@ -16,13 +16,19 @@ import Blogs from './pages/Blogs/Blogs';
 import Hospitals from './pages/Hospitals/Hospitals';  
 import Features from './components/Features/Features';
 import ContactUs from './pages/Contact_us/Contact_us';
+import Roadmap from './components/Roadmap/Roadmap';
+import AIAssistant from './components/AIAssistant/AIAssistant';
 import { Contact } from 'lucide-react';   
 
 
 function App() {
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
+
   return (
-    <BrowserRouter>
+    <>
       <Navbar />
+      {isHomePage && <AIAssistant />}
       <Routes>
         <Route path="/" element={
           <>
@@ -30,6 +36,7 @@ function App() {
             <Services />
             <Diseases />
             <Doctors_approach />
+            <Roadmap />
             <Feedback />
             <Stats />
             <Features/>
@@ -73,7 +80,7 @@ function App() {
           </>
         } />
       </Routes>
-    </BrowserRouter>
+    </>
   )
 }
 

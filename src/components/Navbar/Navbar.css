@@ -1,67 +1,53 @@
-nav {
+/* --- Push page content down so it doesn't hide under the navbar --- */
+body {
+  padding-top: 80px;
+}
+
+/* --- Glassmorphism Navbar --- */
+.navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 30px;
-  background: white;
-  position: sticky;
+  padding: 12px 5%;
+  position: fixed;
   top: 0;
-  z-index: 1000;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
   width: 100%;
+  z-index: 1000;
   box-sizing: border-box;
-}
-
-.logo-container {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.logo-mark {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 3px;
-}
-
-.logo-mark span {
-  width: 10px;
-  height: 10px;
-  background: #000;
-  border-radius: 2px;
-}
-
-.logo-text h2 {
-  font-size: 1.5rem;
-  font-weight: 800;
-  color: var(--dark-heading);
-  margin: 0;
-}
-
-.logo-text p {
-  font-size: 0.75rem;
-  color: #888;
-  margin: 0;
+  background: rgba(255, 255, 255, 0.75); 
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
 }
 
 .nav-links {
   display: flex;
-  gap: 35px;
   list-style: none;
+  gap: 30px;
   align-items: center;
+  margin: 0;
+  padding: 0;
 }
 
-/* Nav Hover Effects */
-.nav-item {
-  text-decoration: none;
-  color: var(--dark-heading);
-  font-weight: 600;
-  font-size: 0.95rem;
+/* --- Navigation Items --- */
+.nav-item, .dropdown-btn {
   position: relative;
-  transition: all 0.3s ease;
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  padding: 8px 0;
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 1rem;
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 5px;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .nav-item::after {
@@ -69,91 +55,125 @@ nav {
   position: absolute;
   width: 0;
   height: 2px;
-  bottom: -2px;
-  left: 50%;
-  background-color: var(--brand-blue);
-  transition: all 0.3s ease;
-  transform: translateX(-50%);
+  bottom: 0;
+  left: 0;
+  background-color: #007bff;
+  transition: width 0.3s ease;
 }
 
-.nav-item:hover {
-  color: var(--brand-blue);
-  transform: translateY(-2px);
+.nav-item:hover::after { width: 100%; }
+.nav-item:hover { color: #007bff; }
+
+/* --- DROPDOWN DESIGN --- */
+.more-dropdown-trigger {
+  position: relative;
+  display: flex;
+  align-items: center;
 }
 
-.nav-item:hover::after {
-  width: 100%;
-}
-
-/* --- DROPDOWN --- */
 .dropdown {
   position: absolute;
   top: 100%;
-  /* Directly below the 'More' text */
-  left: 65%;
-  /* Move to the middle of the parent */
-  transform: translateX(-50%) translateY(10px);
-  /* Center it horizontally */
-
-  background: white;
+  left: 50%;
+  transform: translateX(-50%) translateY(15px);
+  background: #ffffff; 
+  border: 1px solid #eeeeee;
   min-width: 200px;
   border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  padding: 10px;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+  padding: 10px 0;
   opacity: 0;
   visibility: hidden;
-  transition: all 0.3s ease;
-  border: 1px solid #f0f0f0;
-  z-index: 1001;
-  /* Ensure it stays above hero content */
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
 }
 
-.more-dropdown-trigger:hover .dropdown,
 .dropdown.show {
   opacity: 1;
   visibility: visible;
-  transform: translateX(-50%) translateY(0);
-  /* Final centered position */
-}
-
-.more-dropdown-trigger .fa-chevron-down {
-  transition: transform 0.3s ease;
-}
-
-.more-dropdown-trigger .fa-chevron-down.rotate {
-  transform: rotate(180deg);
+  transform: translateX(-50%) translateY(5px);
+  pointer-events: auto;
 }
 
 .dropdown-item {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 10px 15px;
+  padding: 12px 20px;
   text-decoration: none;
-  color: var(--body-text);
-  font-size: 0.9rem;
-  font-weight: 500;
-  border-radius: 8px;
-  transition: 0.2s;
+  color: #444;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
 }
+
+.dropdown-item svg { color: #007bff; }
 
 .dropdown-item:hover {
-  background: #f0f7ff;
-  color: var(--brand-blue);
-  transform: translateX(5px);
+  background-color: #f0f7ff;
+  color: #007bff;
+  padding-left: 25px;
 }
 
+.arrow-icon { transition: transform 0.3s ease; }
+.arrow-icon.open { transform: rotate(180deg); }
+
+/* Logo Styling */
+.logo-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  background: transparent !important;
+  border: none !important;
+}
+
+.logo-text h2 { margin: 0; font-size: 1.3rem; color: #1a1a1a; }
+.logo-text p { margin: 0; font-size: 0.7rem; color: #666; }
+
+/* --- THE SIGN IN BUTTON (Fixed Shine & White Text) --- */
 .btn-signin {
-  background: #006ce0;
-  color: white;
-  padding: 10px 25px;
+  background-color: #007bff;
+  color: white !important; /* Forces text to stay white */
+  padding: 10px 24px;
   border-radius: 50px;
   text-decoration: none;
   font-weight: 600;
-  transition: 0.3s;
+  transition: all 0.3s ease;
+  border: none;
+  outline: none;
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
 }
 
+/* The light streak */
+.btn-signin::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -100%;
+  width: 50%;
+  height: 200%;
+  background: linear-gradient(
+    to right, 
+    rgba(255, 255, 255, 0) 0%, 
+    rgba(255, 255, 255, 0.4) 50%, 
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: rotate(25deg);
+  pointer-events: none;
+  animation: autoShine 4s infinite;
+}
+
+@keyframes autoShine {
+  0% { left: -100%; }
+  20% { left: 150%; }
+  100% { left: 150%; }
+}
+
+/* Hover State: Stays white, no position movement */
 .btn-signin:hover {
-  background: var(--dark-heading);
-  transform: scale(1.05);
+  background-color: #0056b3;
+  color: white !important; /* Ensure text never turns blue on hover */
+  box-shadow: 0 4px 15px rgba(0, 123, 255, 0.4);
 }
