@@ -65,11 +65,15 @@ const Diseases = () => {
     };
 
     rafId = requestAnimationFrame(autoScroll);
+  };
 
-    return () => {
-      if (rafId) cancelAnimationFrame(rafId);
-    };
-  }, []);
+  rafId = requestAnimationFrame(autoScroll);
+
+  return () => {
+    cancelAnimationFrame(rafId);
+  };
+}, []);
+
 
   const nextSlide = () => {
     const slider = sliderRef.current;
