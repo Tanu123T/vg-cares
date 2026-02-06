@@ -34,25 +34,33 @@ const Diseases = () => {
 
   useEffect(() => {
   let rafId;
+  const slider = sliderRef.current;
+  if (!slider) return;
+
+  const totalWidth = slider.scrollWidth / 2; // half because duplicated
 
   const autoScroll = () => {
-    if (!sliderRef.current || isPaused.current) {
-      rafId = requestAnimationFrame(autoScroll);
-      return;
-    }
+    if (!isPaused.current) {
+      scrollPosition.current -= 0.5;
 
-    scrollPosition.current -= 0.5;
-    sliderRef.current.style.transform = `translateX(${scrollPosition.current}px)`;
+      // 🔁 LOOP RESET
+      if (Math.abs(scrollPosition.current) >= totalWidth) {
+        scrollPosition.current = 0;
+        slider.style.transition = "none";
+        slider.style.transform = `translateX(0px)`;
+      } else {
+        slider.style.transform = `translateX(${scrollPosition.current}px)`;
+      }
+    }
 
     rafId = requestAnimationFrame(autoScroll);
   };
 
   rafId = requestAnimationFrame(autoScroll);
 
-  return () => {
-    cancelAnimationFrame(rafId);
-  };
+  return () => cancelAnimationFrame(rafId);
 }, []);
+
 
 
 const nextSlide = () => {
@@ -125,7 +133,7 @@ const prevSlide = () => {
       onMouseEnter={() => (isPaused.current = true)}
       onMouseLeave={() => (isPaused.current = false)}
     >
-      {diseases.map((item, index) => (
+      {[...diseases, ...diseases].map((item, index) => (
         <div className="disease-card" key={index}>
           <div className="disease-circle-container">
             <div className="disease-dashed-outline"></div>
