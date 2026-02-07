@@ -104,12 +104,12 @@ function Approach() {
           </div>
         </div>
 
-        <div className="hero-side-cards1">
-          <div className="mini-card1">
+        <div className="hero-side-cards1-approach">
+          <div className="mini-card1-approach">
             <div className="icon-circle1 green-tint1"><i className="fa-solid fa-user-doctor"></i></div>
             <h3>Onboard Doctors<br />easily</h3>
           </div>
-          <div className="mini-card1">
+          <div className="mini-card1-approach">
             <div className="icon-circle1 orange-tint1"><i className="fa-solid fa-id-card"></i></div>
             <h3>Centralized Doctor<br />management</h3>
           </div>

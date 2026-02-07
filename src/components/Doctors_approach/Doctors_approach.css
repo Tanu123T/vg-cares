@@ -131,14 +131,14 @@
     animation: subtlePulse 2s infinite;
 }
 
-.hero-side-cards1 {
+.hero-side-cards1-approach {
     display: flex;
     gap: 25px;
     justify-content: flex-end;
     flex: 1.5;
 }
 
-.mini-card1 {
+.mini-card1-approach {
     background: white;
     border: 1px solid var(--border-light);
     border-radius: 35px;
@@ -154,7 +154,7 @@
     transition: 0.4s ease;
 }
 
-.mini-card1:hover {
+.mini-card1-approach:hover {
     transform: scale(1.05) translateY(-5px);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
 }
