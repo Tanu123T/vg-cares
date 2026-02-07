@@ -1,3 +1,4 @@
+
 .stats-card2 {
     background: #ffffff;
     width: 80%;
@@ -8,9 +9,16 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    margin: 5% auto 0;
-    height: 200px;
+    margin: 40px auto; /* Changed from 5% to fixed px for stability */
+    min-height: 200px; /* Use min-height so it can grow if needed */
     animation: floatingCard 3s ease-in-out infinite;
+    position: relative;
+    z-index: 5;
+}
+
+@keyframes floatingCard {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
 }
 
 .stat-item {
@@ -20,7 +28,7 @@
 }
 
 .stat-num {
-    font-size: 2.5rem;
+    font-size: 2.4rem;
     font-weight: 700;
     margin-bottom: 2px;
     display: inline-block;
@@ -39,16 +47,36 @@
     color: #888;
 }
 
+/* Colors */
 .blue { color: #007bff; }
 .green { color: #2ecc71; }
 .orange { color: #f39c12; }
 .navy { color: #0056b3; }
 
-@media (max-width: 650px) {
+/* --- MOBILE VIEW --- */
+@media (max-width: 768px) {
     .stats-card2 {
         flex-direction: column;
-        gap: 25px;
-        max-width: 300px;
+        height: auto; /* IMPORTANT: This removes the overlap issue */
+        min-height: unset;
+        gap: 30px;
+        width: 90%;
+        max-width: 400px;
         padding: 40px 10px;
+        margin: 20px auto;
+    }
+
+    .stat-item {
+        width: 100%;
+        padding: 15px 0;
+        border-bottom: 1px solid #f0f0f0;
+    }
+
+    .stat-item:last-child {
+        border-bottom: none;
+    }
+
+    .stat-num {
+        font-size: 2.2rem;
     }
 }

@@ -14,28 +14,24 @@ const journeySteps = [
   { id: 10, title: "Experience", desc: "Help others by sharing your journey.", icon: "fa-solid fa-comment-dots", color: "jt-icon-green", cls: "jt-s10" }
 ];
 
-
 export default function JourneyTimeline() {
   const pathRef = useRef(null);
   const stepRefs = useRef([]);
-  const handlersRef = useRef([]);
 
   useEffect(() => {
     const path = pathRef.current;
     if (!path) return;
     
     const pathLength = path.getTotalLength();
-
     path.style.strokeDasharray = pathLength;
     path.style.strokeDashoffset = pathLength;
 
-    const updatePath = (hoverIndex) => {
-      const progress = hoverIndex / (stepRefs.current.length - 1);
-      const drawLength = pathLength * progress;
-      path.style.strokeDashoffset = pathLength - drawLength;
+    const updatePath = (index) => {
+      const progress = index === -1 ? 0 : index / (journeySteps.length - 1);
+      path.style.strokeDashoffset = pathLength - (pathLength * progress);
 
-      stepRefs.current.forEach((step, index) => {
-        if (index <= hoverIndex) {
+      stepRefs.current.forEach((step, i) => {
+        if (index !== -1 && i <= index) {
           step.classList.add("jt-active");
         } else {
           step.classList.remove("jt-active");
@@ -43,65 +39,48 @@ export default function JourneyTimeline() {
       });
     };
 
-    handlersRef.current = stepRefs.current.map((step, index) => {
-      const handleMouseEnter = () => updatePath(index);
-      const handleMouseLeave = () => updatePath(-1);
-      
-      step.addEventListener("mouseenter", handleMouseEnter);
-      step.addEventListener("mouseleave", handleMouseLeave);
-      
-      return { step, handleMouseEnter, handleMouseLeave };
+    stepRefs.current.forEach((step, i) => {
+      if (!step) return;
+      step.onmouseenter = () => updatePath(i);
+      step.onmouseleave = () => updatePath(-1);
     });
-
-    return () => {
-      handlersRef.current.forEach(({ step, handleMouseEnter, handleMouseLeave }) => {
-        step.removeEventListener("mouseenter", handleMouseEnter);
-        step.removeEventListener("mouseleave", handleMouseLeave);
-      });
-    };
   }, []);
 
   return (
-    <>
+    <section className="roadmap-section">
       <div className="jt-header">
-        <h1>
-          Your easy path to World class Medical Care
-        </h1>
-        <p><b>Hover to zoom details • Scroll to track progress</b></p>
+        <h1>Your easy path to <span>World class Medical Care</span></h1>
+        <p>Hover to zoom details • Swipe to track progress</p>
       </div>
 
-      <div className="jt-container">
-        <svg className="jt-path-svg" viewBox="0 0 1200 1000">
-          <path
-            className="jt-path-bg"
-            d="M 220 180 C 220 350, 240 450, 320 450 S 450 350, 580 320 S 720 350, 750 480 S 850 650, 930 750 S 950 900, 930 950 S 650 880, 550 880 S 350 900, 300 950"
-          />
-          <path
-            ref={pathRef}
-            className="jt-path-active"
-            d="M 220 180 C 220 350, 240 450, 320 450 S 450 350, 580 320 S 720 350, 750 480 S 850 650, 930 750 S 950 900, 930 950 S 650 880, 550 880 S 350 900, 300 950"
-          />
-        </svg>
+      <div className="jt-scroll-viewport">
+        <div className="jt-container">
+          <svg className="jt-path-svg" viewBox="0 0 1200 1100">
+            <path className="jt-path-bg" d="M 220 180 C 220 350, 240 450, 320 450 S 450 350, 580 320 S 720 350, 750 480 S 850 650, 930 750 S 950 900, 930 950 S 650 880, 550 880 S 350 900, 300 950" />
+            <path ref={pathRef} className="jt-path-active" d="M 220 180 C 220 350, 240 450, 320 450 S 450 350, 580 320 S 720 350, 750 480 S 850 650, 930 750 S 950 900, 930 950 S 650 880, 550 880 S 350 900, 300 950" />
+          </svg>
 
-        {journeySteps.map((step, i) => (
-          <div
-            key={step.id}
-            ref={(el) => (stepRefs.current[i] = el)}
-            className={`jt-step-card ${step.cls}`}
-          >
-            <div className="jt-card">
-              <div className="jt-number">{step.id}</div>
-              <div className={`jt-icon ${step.color}`}>
-                <i className={step.icon}></i>
-              </div>
-              <div className="jt-info">
-                <span>{step.title}</span>
-                <span className="jt-hover">{step.desc}</span>
+          {journeySteps.map((step, i) => (
+            <div key={step.id} ref={(el) => (stepRefs.current[i] = el)} className={`jt-step-card ${step.cls}`}>
+              <div className="jt-card">
+                <div className="jt-number">{step.id}</div>
+                <div className={`jt-icon ${step.color}`}>
+                  <i className={step.icon}></i>
+                </div>
+                <div className="jt-info">
+                  <span>{step.title}</span>
+                  <div className="jt-desc">{step.desc}</div>
+                </div>
+                <div className="jt-arrow-wrapper">
+                  <svg width="12" height="18" viewBox="0 0 10 16" fill="none">
+                    <path d="M1.5 1L8.5 8L1.5 15" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
-    </>
+    </section>
   );
 }

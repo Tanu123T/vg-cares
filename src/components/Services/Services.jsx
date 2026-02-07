@@ -47,13 +47,12 @@ const servicesData = [
 ];
 
 const Services = () => {
-
   useEffect(() => {
     const cards = document.querySelectorAll(".card");
 
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach(entry => {
+        entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add("show");
           } else {
@@ -65,7 +64,7 @@ const Services = () => {
       { threshold: 0.1 } 
     );
 
-    cards.forEach(card => observer.observe(card));
+    cards.forEach((card) => observer.observe(card));
 
     return () => observer.disconnect();
   }, []);

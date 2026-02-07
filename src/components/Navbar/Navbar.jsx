@@ -9,9 +9,7 @@ if (typeof window !== "undefined" && "scrollRestoration" in window.history) {
 
 const Navbar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const navigate = useNavigate();
-  const location = useLocation();
-  const isFirstRender = useRef(true);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     // 1. If we are NOT on the home page (e.g., /blogs, /doctors), 
@@ -51,36 +49,40 @@ const Navbar = () => {
       if (element) {
         element.scrollIntoView({ behavior: "smooth" });
       }
-    } else {
-      navigate(`/#${sectionId}`);
-    }
-    setIsDropdownOpen(false);
-  };
+    };
+    document.addEventListener('click', handleClickOutside);
+    return () => document.removeEventListener('click', handleClickOutside);
+  }, []);
 
   return (
     <nav className="navbar">
       <div className="logo-container">
-        <Link to="/" onClick={() => window.scrollTo(0, 0)} className="logo-link">
-          <div className="logo-mark"><span></span><span></span><span></span><span></span></div>
-          <div className="logo-text">
-            <h2>VG Cares Global</h2>
-            <p>Powered by VishwaGuru Infotech</p>
-          </div>
-        </Link>
+        <div className="logo-mark">
+          <span></span><span></span><span></span><span></span>
+        </div>
+        <div className="logo-text">
+          <h2>VG Cares Global</h2>
+          <p>Powered by VishwaGuru Infotech</p>
+        </div>
       </div>
 
-      <ul className="nav-links">
-        <li><a href="#home" onClick={(e) => handleNavClick(e, 'home')} className="nav-item">Home</a></li>
-        <li><a href="#services" onClick={(e) => handleNavClick(e, 'services')} className="nav-item">Services</a></li>
-        <li><a href="#capabilities" onClick={(e) => handleNavClick(e, 'capabilities')} className="nav-item">Our Capabilities</a></li>
+      <div className="menu-toggle" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+        <i className={`fas ${isMenuOpen ? 'fa-times' : 'fa-bars'}`}></i>
+      </div>
 
-        <li className="more-dropdown-trigger" 
-            onMouseEnter={() => setIsDropdownOpen(true)} 
-            onMouseLeave={() => setIsDropdownOpen(false)}>
-          <button className="nav-item dropdown-btn">
-            More <ChevronDown size={16} className={`arrow-icon ${isDropdownOpen ? 'open' : ''}`} />
-          </button>
-          
+      <ul className={`nav-links ${isMenuOpen ? 'active' : ''}`}>
+        <li><a href="#home" className="nav-item" onClick={() => setIsMenuOpen(false)}>Home</a></li>
+        <li><a href="#services" className="nav-item" onClick={() => setIsMenuOpen(false)}>Services</a></li>
+        <li><a href="#capabilities" className="nav-item" onClick={() => setIsMenuOpen(false)}>Our Capabilities</a></li>
+
+        <li className="more-dropdown-trigger">
+          <div 
+            className="nav-item more-text" 
+            onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+          >
+            More <i className={`fas fa-chevron-down ${isDropdownOpen ? 'rotate' : ''}`}></i>
+          </div>
+
           <div className={`dropdown ${isDropdownOpen ? 'show' : ''}`}>
             <Link to="/doctors" className="dropdown-item" onClick={() => setIsDropdownOpen(false)}>
               <UserRound size={18} /> <span>Doctor</span>
@@ -96,9 +98,17 @@ const Navbar = () => {
             </Link>
           </div>
         </li>
+
+        <li className="mobile-only">
+          <Link to="/signin" className="btn-signin" onClick={() => setIsMenuOpen(false)}>
+            Sign In / Sign Up
+          </Link>
+        </li>
       </ul>
 
-      <Link to="/signin" className="btn-signin">Sign In / Sign Up</Link>
+      <Link to="/signin" className="btn-signin desktop-only">
+        Sign In / Sign Up
+      </Link>
     </nav>
   );
 };

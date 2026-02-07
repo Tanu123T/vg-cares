@@ -69,8 +69,8 @@
 /* Cards */
 .partner-card {
   width: var(--card-width);
-  height: 150px;
-  width: 170px;
+  height: 180px;
+  width: 220px;
   background: #fff;
   border-radius: 15px;
   display: flex;
