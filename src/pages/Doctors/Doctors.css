@@ -175,15 +175,13 @@
 }
 
 @keyframes slideUp {
-    from { transform: translateY(20px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
-
-.modal-avatar { width: 90px; height: 90px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; border: 4px solid #f8fafc; }
-.modal-text { color: #64748b; font-size: 15px; margin-bottom: 20px; line-height: 1.5; }
-.modal-fee-box { background: #f8fafc; padding: 15px; border-radius: 15px; text-align: left; margin-bottom: 25px; }
-.modal-fee-box label { font-size: 11px; color: #94a3b8; text-transform: uppercase; font-weight: 700; }
-.modal-fee-box .fee { font-size: 20px; font-weight: 800; color: #10b981; }
-
-.confirm-btn { width: 100%; background: #007bff; color: white; padding: 15px; border-radius: 12px; border: none; font-weight: 700; font-size: 16px; cursor: pointer; }
-.close-btn { position: absolute; top: 20px; right: 20px; background: none; border: none; color: #94a3b8; cursor: pointer; }
