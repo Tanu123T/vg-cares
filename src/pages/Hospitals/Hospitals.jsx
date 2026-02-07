@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { hospitalData } from "../../data/hospitalData";
 import { MapPin, Phone } from "lucide-react";
+import { Link } from "react-router-dom";
+
 import "./Hospitals.css"; 
 
 const HospitalsPage = () => {
@@ -163,8 +165,9 @@ const HospitalsPage = () => {
           </div>
         ))}
       </div>
-      <a href="/services" class="hospital-home-btn"><i class="fa-solid fa-house"></i></a>
+      <Link to="/"  className="hospital-home-btn"><i class="fa-solid fa-house"></i></Link>
     </section>
+    
   );
 };
 

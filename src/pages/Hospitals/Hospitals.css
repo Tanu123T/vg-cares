@@ -37,7 +37,7 @@ select { flex: 1; padding: 15px; border-radius: 10px; border: 1px solid #ddd; ba
     bottom: 40px;
     right: 60px;
     background: #0d6efd;
-    color: white;
+    color: rgb(255, 255, 255);
     width: 60px;
     height: 60px;
     border-radius: 50%;
@@ -54,7 +54,7 @@ select { flex: 1; padding: 15px; border-radius: 10px; border: 1px solid #ddd; ba
 .hospital-home-btn:hover {
     transform: scale(1.1);
     background: #0e56c1;
-    color:#ffffff
+    color:#ffffff;
 }
 
 @keyframes blog-pulse {
