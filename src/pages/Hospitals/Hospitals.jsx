@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { hospitalData } from "../../data/hospitalData";
-import { MapPin, Phone } from "lucide-react";
+import { MapPin, Phone, Search, ChevronLeft } from "lucide-react"; // Added Search and Chevron
 import { Link } from "react-router-dom";
 
 import "./Hospitals.css"; 
@@ -10,10 +10,6 @@ const HospitalsPage = () => {
   const [country, setCountry] = useState("all");
   const [specialist, setSpecialist] = useState("all");
   const [selectedHospital, setSelectedHospital] = useState(null);
-
-  useEffect(() => {
-    // Icon initialization removed (lucide-react doesn't require this)
-  }, [selectedHospital]);
 
   const filteredHospitals = hospitalData.filter(h =>
     h.name.toLowerCase().includes(search.toLowerCase()) &&
@@ -26,7 +22,7 @@ const HospitalsPage = () => {
     return (
       <section id="detailsPage">
         <button className="back-link" onClick={() => setSelectedHospital(null)}>
-          ← Back to Hospitals
+          <ChevronLeft size={20} /> Back to Hospitals
         </button>
 
         <div className="details-card">
@@ -47,24 +43,21 @@ const HospitalsPage = () => {
               <div className="rating">★ {selectedHospital.rating}</div>
             </div>
 
-            <p>{selectedHospital.desc}</p>
+            <p style={{ lineHeight: '1.6', color: '#4a5568' }}>{selectedHospital.desc}</p>
 
             <div className="details-grid">
               <div className="detail-item">
                 <label>Specialty</label>
                 <p>{selectedHospital.specialist}</p>
               </div>
-
               <div className="detail-item">
                 <label>Address</label>
                 <p>{selectedHospital.address}</p>
               </div>
-
               <div className="detail-item">
                 <label>Phone</label>
                 <p>{selectedHospital.phone}</p>
               </div>
-
               <div className="detail-item">
                 <label>Accreditation</label>
                 <p>JCI & ISO Certified</p>
@@ -72,7 +65,7 @@ const HospitalsPage = () => {
             </div>
 
             <div className="btn-group">
-              <button className="btn btn-request">
+              <button className="btn btn-request" style={{ padding: '18px' }}>
                 Schedule Appointment
               </button>
             </div>
@@ -91,18 +84,19 @@ const HospitalsPage = () => {
         <p>Connecting you to world-class medical facilities globally.</p>
       </header>
 
-      {/* FILTERS */}
+      {/* FILTERS - Now Responsive */}
       <div className="filter-section">
         <div className="search-wrapper">
+          <Search size={18} className="search-icon-fixed" />
           <input
             type="text"
-            placeholder="Search hospital..."
+            placeholder="Search hospital name..."
             value={search}
             onChange={e => setSearch(e.target.value)}
           />
         </div>
 
-        <select onChange={e => setCountry(e.target.value)}>
+        <select value={country} onChange={e => setCountry(e.target.value)}>
           <option value="all">All Countries</option>
           <option value="India">India</option>
           <option value="USA">USA</option>
@@ -111,7 +105,7 @@ const HospitalsPage = () => {
           <option value="Germany">Germany</option>
         </select>
 
-        <select onChange={e => setSpecialist(e.target.value)}>
+        <select value={specialist} onChange={e => setSpecialist(e.target.value)}>
           <option value="all">All Specialties</option>
           <option value="Cardiology">Cardiology</option>
           <option value="Neurology">Neurology</option>
@@ -122,7 +116,7 @@ const HospitalsPage = () => {
       </div>
 
       <div className="stats-count">
-        All Hospitals ({filteredHospitals.length})
+        Found {filteredHospitals.length} Results
       </div>
 
       {/* GRID */}
@@ -154,20 +148,21 @@ const HospitalsPage = () => {
                   className="btn btn-view"
                   onClick={() => setSelectedHospital(h)}
                 >
-                  View Hospital
+                  View Details
                 </button>
-
                 <button className="btn btn-request">
-                  Request Consultation
+                  Consultation
                 </button>
               </div>
             </div>
           </div>
         ))}
       </div>
-      <Link to="/"  className="hospital-home-btn"><i class="fa-solid fa-house"></i></Link>
+      
+      <Link to="/" className="hospital-home-btn">
+        <i className="fa-solid fa-house"></i>
+      </Link>
     </section>
-    
   );
 };
 
