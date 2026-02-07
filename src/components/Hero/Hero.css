@@ -17,6 +17,7 @@
   font-size: clamp(2.2rem, 4vw, 3rem);
   line-height: 1.1;
   margin-bottom: 20px;
+  color: black;
 }
 
 .hero-description {
@@ -161,6 +162,7 @@
 }
 
 .big-check {
+  margin-top: 6%;
   background: var(--success-green);
   color: white;
   width: 55px;
