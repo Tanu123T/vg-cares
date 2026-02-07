@@ -10,6 +10,7 @@ import {
   Phone,
   MapPin
 } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const ContactUs = () => {
   const [loading, setLoading] = useState(false);
@@ -117,7 +118,7 @@ const ContactUs = () => {
         </div>
       </div>
 
-
+<Link to="/"  className="contactus-home-btn"><i class="fa-solid fa-house"></i></Link>
     </>
   );
 };
