@@ -4,14 +4,14 @@ import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (!event.target.closest('.more-dropdown-trigger')) {
+      if (!event.target.closest('.more-dropdown-trigger') && !event.target.closest('.menu-toggle')) {
         setIsDropdownOpen(false);
       }
     };
-
     document.addEventListener('click', handleClickOutside);
     return () => document.removeEventListener('click', handleClickOutside);
   }, []);
@@ -28,45 +28,47 @@ const Navbar = () => {
         </div>
       </div>
 
-      <ul className="nav-links">
-        {/* ONE-SCROLL links */}
-        <li>
-          <a href="#home" className="nav-item">Home</a>
-        </li>
-        <li>
-          <a href="#services" className="nav-item">Services</a>
-        </li>
-        <li>
-          <a href="#capabilities" className="nav-item">Our Capabilities</a>
-        </li>
+      <div className="menu-toggle" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+        <i className={`fas ${isMenuOpen ? 'fa-times' : 'fa-bars'}`}></i>
+      </div>
 
-        {/* DROPDOWN (new pages) */}
+      <ul className={`nav-links ${isMenuOpen ? 'active' : ''}`}>
+        <li><a href="#home" className="nav-item" onClick={() => setIsMenuOpen(false)}>Home</a></li>
+        <li><a href="#services" className="nav-item" onClick={() => setIsMenuOpen(false)}>Services</a></li>
+        <li><a href="#capabilities" className="nav-item" onClick={() => setIsMenuOpen(false)}>Our Capabilities</a></li>
+
         <li className="more-dropdown-trigger">
-          <span 
-            className="nav-item" 
+          <div 
+            className="nav-item more-text" 
             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
           >
             More <i className={`fas fa-chevron-down ${isDropdownOpen ? 'rotate' : ''}`}></i>
-          </span>
+          </div>
 
           <div className={`dropdown ${isDropdownOpen ? 'show' : ''}`}>
-            <Link to="/doctors" className="dropdown-item" onClick={() => setIsDropdownOpen(false)}>
+            <Link to="/doctors" className="dropdown-item" onClick={() => {setIsDropdownOpen(false); setIsMenuOpen(false);}}>
               <i className="fas fa-user-doctor"></i> Doctor
             </Link>
-            <Link to="/hospitals" className="dropdown-item" onClick={() => setIsDropdownOpen(false)}>
+            <Link to="/hospitals" className="dropdown-item" onClick={() => {setIsDropdownOpen(false); setIsMenuOpen(false);}}>
               <i className="fas fa-hospital"></i> Hospital
             </Link>
-            <Link to="/blogs" className="dropdown-item" onClick={() => setIsDropdownOpen(false)}>
+            <Link to="/blogs" className="dropdown-item" onClick={() => {setIsDropdownOpen(false); setIsMenuOpen(false);}}>
               <i className="fas fa-book"></i> Blogs
             </Link>
-            <Link to="/contact" className="dropdown-item" onClick={() => setIsDropdownOpen(false)}>
+            <Link to="/contact" className="dropdown-item" onClick={() => {setIsDropdownOpen(false); setIsMenuOpen(false);}}>
               <i className="fas fa-phone"></i> Contact Us
             </Link>
           </div>
         </li>
+
+        <li className="mobile-only">
+          <Link to="/signin" className="btn-signin" onClick={() => setIsMenuOpen(false)}>
+            Sign In / Sign Up
+          </Link>
+        </li>
       </ul>
 
-      <Link to="/signin" className="btn-signin">
+      <Link to="/signin" className="btn-signin desktop-only">
         Sign In / Sign Up
       </Link>
     </nav>

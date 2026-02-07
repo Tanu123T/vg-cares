@@ -3,7 +3,7 @@
 :root {
   --primary-blue: #007bff;
   --border-gray: #ddd;
-  --text-main: #333;
+  --text-main: #333232;
   --text-light: #777;
   --badge-bg: #e6f4ea;
 }
@@ -72,7 +72,7 @@
   font-weight: 600;
   text-decoration: none;
 
-  border: 1px solid #e6e6e6;     /* very light border */
+  border: 1px solid #0d6efd;     /* very light border */
   transition: all 0.25s ease;
 }
 .disease-view-all:hover {
@@ -174,4 +174,83 @@
 .disease-consult-btn:hover {
   background-color: #0d6efd;
   color: #ffffff;
+}
+/* === SLIDER + OUTSIDE ARROWS WRAPPER === */
+.disease-slider-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+
+/* === SLIDER VIEWPORT === */
+.disease-slider-viewport {
+  overflow: hidden;
+  width: 100%;
+}
+
+/* === OUTSIDE ARROWS === */
+.disease-outside-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 41px;
+  height: 45px;
+  border-radius: 50%;
+  border: 1px solid #ddd;
+  background: #ffffff;
+  font-size: 22px;
+  font-weight: 600;
+  color: #0d6efd;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  z-index: 20;
+}
+
+.disease-outside-arrow.left {
+  left: -60px;
+}
+
+.disease-outside-arrow.right {
+  right: -60px;
+}
+
+.disease-outside-arrow:hover {
+  background: #0d6efd;
+  color: #fff;
+}
+
+
+
+
+/* smooth edge fade */
+.disease-slider-viewport::before,
+.disease-slider-viewport::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 80px;
+  height: 100%;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.disease-slider-viewport::before {
+  left: 0;
+  background: linear-gradient(
+    to right,
+    #ffffff 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+.disease-slider-viewport::after {
+  right: 0;
+  background: linear-gradient(
+    to left,
+    #ffffff 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
 }

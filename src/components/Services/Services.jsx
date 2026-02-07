@@ -55,10 +55,13 @@ const Services = () => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add("show");
+          } else {
+            // FIX: Remove "show" when scrolling away so it animates again next time
+            entry.target.classList.remove("show");
           }
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 } 
     );
 
     cards.forEach((card) => observer.observe(card));
@@ -67,19 +70,18 @@ const Services = () => {
   }, []);
 
   return (
+    /* ADDED id="services" for the Navbar scroll logic */
     <section className="expertise" id="services">
-      <div className="expertise-header">
-        <span className="badge">Our Expertise</span>
+      <span className="badge">Our Expertise</span>
 
-        <h1 className="service-title">
-          Comprehensive Care <span>Designed for You</span>
-        </h1>
+      <h1 className="service-title">
+        Comprehensive Care Designed for You
+      </h1>
 
-        <p className="desc">
-          <b>Healthcare that fits your life. Our services are built to be accessible, transparent and secure.</b>
-        </p>
-      </div>
-
+      <p className="desc"><b>
+        Healthcare that fits your life. Our services are built to be accessible, transparent and secure.</b>
+      </p>
+    
       <div className="grid">
         {servicesData.map((item, index) => (
           <div className={`card ${item.card}`} key={index}>
@@ -91,6 +93,7 @@ const Services = () => {
           </div>
         ))}
       </div>
+    
     </section>
   );
 };

@@ -11,8 +11,9 @@ const DownloadApp = () => {
       <div className="bg-blob blob-1"></div>
       <div className="bg-blob blob-2"></div>
 
-      {/* Glass card */}
-      <section className="app-card" id="tiltCard">
+      {/* Glass Card */}
+      <section className="app-card">
+        {/* Left Content */}
         <div className="app-content">
           <h1 className="app-title">
             Download the <br />
@@ -34,6 +35,7 @@ const DownloadApp = () => {
           </div>
         </div>
 
+        {/* Right Phone */}
         <div className="phone-wrapper">
           <div className="phone-frame"></div>
           <img
