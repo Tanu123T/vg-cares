@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./Blogs.css";
+import { Link } from "react-router-dom";
 
 export default function Blogs() {
   const [activeBlog, setActiveBlog] = useState(null);
@@ -199,6 +200,7 @@ export default function Blogs() {
           </div>
         </div>
       )}
+      <Link to="/"  className="blog-home-btn"><i class="fa-solid fa-house"></i></Link>
     </div>
   );
 }
