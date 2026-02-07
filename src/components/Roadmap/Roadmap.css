@@ -1,9 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
 
 body {
-  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-family: 'poppins', sans-serif;
+}
+
+.roadmap-section {
+  margin-top: 20px;
   position: relative;
-  background: #ffffff;
+  background:
+    linear-gradient(
+      rgba(255, 255, 255, 0.7),
+      rgba(255, 255, 255, 0.7)
+    ),
+    url("../../assets/images/roadmapbg.png");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: fit-content;
 }
 
 /* HEADER */

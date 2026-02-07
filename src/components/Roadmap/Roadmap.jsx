@@ -62,7 +62,7 @@ export default function JourneyTimeline() {
   }, []);
 
   return (
-    <>
+    <section className="roadmap-section">
       <div className="jt-header">
         <h1>
           Your easy path to World class Medical Care
@@ -102,6 +102,6 @@ export default function JourneyTimeline() {
           </div>
         ))}
       </div>
-    </>
+    </section>
   );
 }
