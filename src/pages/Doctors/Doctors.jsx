@@ -2,6 +2,7 @@ import { useState, useMemo } from "react";
 import { doctorData } from "../../data/doctorData";
 import "./Doctors.css";
 import { Video, X, Star, Search } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export default function Doctors() {
   const [search, setSearch] = useState("");
@@ -131,6 +132,7 @@ export default function Doctors() {
           </div>
         </div>
       )}
+      <Link to="/"  className="doctor-home-btn"><i class="fa-solid fa-house"></i></Link>
     </div>
   );
 }

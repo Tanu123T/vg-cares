@@ -105,6 +105,30 @@
     height: 100%;
 }
 
+.doctor-home-btn {
+    position: fixed;
+    bottom: 40px;
+    right: 60px;
+    background: #0d6efd;
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 23px;
+    z-index: 10;
+    animation: blog-pulse 2s infinite;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.doctor-home-btn:hover {
+    transform: scale(1.1);
+    background: #0e56c1;
+    color:#ffffff
+}
 .card-top { display: flex; gap: 15px; margin-bottom: 15px; align-items: center; }
 .doctor-img { width: 60px; height: 60px; border-radius: 12px; object-fit: cover; }
 .doctor-name { font-size: 18px; font-weight: 700; margin: 0; }
