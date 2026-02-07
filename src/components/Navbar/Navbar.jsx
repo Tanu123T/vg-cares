@@ -10,6 +10,8 @@ if (typeof window !== "undefined" && "scrollRestoration" in window.history) {
 const Navbar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
+  const isFirstRender = useRef(true);
 
   useEffect(() => {
     // 1. If we are NOT on the home page (e.g., /blogs, /doctors), 
@@ -49,10 +51,8 @@ const Navbar = () => {
       if (element) {
         element.scrollIntoView({ behavior: "smooth" });
       }
-    };
-    document.addEventListener('click', handleClickOutside);
-    return () => document.removeEventListener('click', handleClickOutside);
-  }, []);
+    }
+  };
 
   return (
     <nav className="navbar">
