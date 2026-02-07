@@ -3,7 +3,6 @@ import { useState, useEffect, useRef } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { ChevronDown, UserRound, Hospital, BookOpen, Mail } from "lucide-react";
 
-// THIS LINE KILLS THE AUTO-JUMP (Crucial)
 if (typeof window !== "undefined" && "scrollRestoration" in window.history) {
   window.history.scrollRestoration = "manual";
 }
@@ -14,31 +13,36 @@ const Navbar = () => {
   const location = useLocation();
   const isFirstRender = useRef(true);
 
-  // 1. Logic to handle smooth scrolling and URL cleaning
   useEffect(() => {
-    if (isFirstRender.current) {
-      window.scrollTo(0, 0); // Force top on refresh
-      isFirstRender.current = false;
-      
-      // Remove hash from URL silently so it doesn't jump on next refresh
-      if (window.location.hash) {
-        window.history.replaceState(null, "", window.location.pathname);
-      }
-      return;
+    // 1. If we are NOT on the home page (e.g., /blogs, /doctors), 
+    // always jump to the absolute top and STOP the logic there.
+    if (location.pathname !== "/") {
+      window.scrollTo(0, 0);
+      return; 
     }
 
-    // Handle scrolling when a hash is actually present and clicked
+    // 2. Handle Initial Load / Refresh on Home Page
+    if (isFirstRender.current) {
+      if (!window.location.hash) {
+        window.scrollTo(0, 0);
+      }
+      isFirstRender.current = false;
+    }
+
+    // 3. Handle Section Scrolling ONLY if on Home Page and a Hash exists
     if (location.hash && location.pathname === "/") {
       const id = location.hash.replace("#", "");
       const timer = setTimeout(() => {
         const element = document.getElementById(id);
         if (element) {
           element.scrollIntoView({ behavior: "smooth" });
+          // Clean hash from URL after scrolling
+          window.history.replaceState(null, "", window.location.pathname);
         }
       }, 100);
       return () => clearTimeout(timer);
     }
-  }, [location]);
+  }, [location]); // This triggers on every page change
 
   const handleNavClick = (e, sectionId) => {
     e.preventDefault();
@@ -78,16 +82,16 @@ const Navbar = () => {
           </button>
           
           <div className={`dropdown ${isDropdownOpen ? 'show' : ''}`}>
-            <Link to="/doctors" className="dropdown-item">
+            <Link to="/doctors" className="dropdown-item" onClick={() => setIsDropdownOpen(false)}>
               <UserRound size={18} /> <span>Doctor</span>
             </Link>
-            <Link to="/hospitals" className="dropdown-item">
+            <Link to="/hospitals" className="dropdown-item" onClick={() => setIsDropdownOpen(false)}>
               <Hospital size={18} /> <span>Hospital</span>
             </Link>
-            <Link to="/blogs" className="dropdown-item">
+            <Link to="/blogs" className="dropdown-item" onClick={() => setIsDropdownOpen(false)}>
               <BookOpen size={18} /> <span>Blogs</span>
             </Link>
-            <Link to="/contact" className="dropdown-item">
+            <Link to="/contact" className="dropdown-item" onClick={() => setIsDropdownOpen(false)}>
               <Mail size={18} /> <span>Contact Us</span>
             </Link>
           </div>
