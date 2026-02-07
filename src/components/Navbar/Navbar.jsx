@@ -1,64 +1,78 @@
-import { useState } from "react";
-import {
-  Menu,
-  X,
-  ChevronDown,
-  Stethoscope,
-  Hospital,
-  FileText,
-  Phone
-} from "lucide-react";
 import "./Navbar.css";
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
-export default function Navbar() {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [moreOpen, setMoreOpen] = useState(false);
+const Navbar = () => {
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (!event.target.closest('.more-dropdown-trigger') && !event.target.closest('.menu-toggle')) {
+        setIsDropdownOpen(false);
+      }
+    };
+    document.addEventListener('click', handleClickOutside);
+    return () => document.removeEventListener('click', handleClickOutside);
+  }, []);
 
   return (
-    <header className="navbar">
-      <div className="nav-container">
-        <div className="logo">VG Cares Global</div>
-
-        <button className="menu-btn" onClick={() => setMenuOpen(!menuOpen)}>
-          {menuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
-
-        <nav className={`nav-links ${menuOpen ? "open" : ""}`}>
-          <a className="nav-item" href="#">Home</a>
-          <a className="nav-item" href="#">Services</a>
-          <a className="nav-item" href="#">Our Capabilities</a>
-
-          <div className="nav-item more">
-            <button
-              className="more-btn"
-              onClick={() => setMoreOpen(!moreOpen)}
-            >
-              More <ChevronDown size={16} />
-            </button>
-
-            {moreOpen && (
-              <div className="dropdown">
-                <a href="#"><Stethoscope size={16} /> Doctor</a>
-                <a href="#"><Hospital size={16} /> Hospital</a>
-                <a href="#"><FileText size={16} /> Blogs</a>
-                <a href="#"><Phone size={16} /> Contact Us</a>
-              </div>
-            )}
-          </div>
-
-          {/* MOBILE ACTIONS */}
-          <div className="mobile-actions">
-            <button className="signin">Sign In</button>
-            <button className="signup">Sign Up</button>
-          </div>
-        </nav>
-
-        {/* DESKTOP ACTIONS */}
-        <div className="nav-actions">
-          <button className="signin">Sign In</button>
-          <button className="signup">Sign Up</button>
+    <nav className="navbar">
+      <div className="logo-container">
+        <div className="logo-mark">
+          <span></span><span></span><span></span><span></span>
+        </div>
+        <div className="logo-text">
+          <h2>VG Cares Global</h2>
+          <p>Powered by VishwaGuru Infotech</p>
         </div>
       </div>
-    </header>
+
+      <div className="menu-toggle" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+        <i className={`fas ${isMenuOpen ? 'fa-times' : 'fa-bars'}`}></i>
+      </div>
+
+      <ul className={`nav-links ${isMenuOpen ? 'active' : ''}`}>
+        <li><a href="#home" className="nav-item" onClick={() => setIsMenuOpen(false)}>Home</a></li>
+        <li><a href="#services" className="nav-item" onClick={() => setIsMenuOpen(false)}>Services</a></li>
+        <li><a href="#capabilities" className="nav-item" onClick={() => setIsMenuOpen(false)}>Our Capabilities</a></li>
+
+        <li className="more-dropdown-trigger">
+          <div 
+            className="nav-item more-text" 
+            onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+          >
+            More <i className={`fas fa-chevron-down ${isDropdownOpen ? 'rotate' : ''}`}></i>
+          </div>
+
+          <div className={`dropdown ${isDropdownOpen ? 'show' : ''}`}>
+            <Link to="/doctors" className="dropdown-item" onClick={() => {setIsDropdownOpen(false); setIsMenuOpen(false);}}>
+              <i className="fas fa-user-doctor"></i> Doctor
+            </Link>
+            <Link to="/hospitals" className="dropdown-item" onClick={() => {setIsDropdownOpen(false); setIsMenuOpen(false);}}>
+              <i className="fas fa-hospital"></i> Hospital
+            </Link>
+            <Link to="/blogs" className="dropdown-item" onClick={() => {setIsDropdownOpen(false); setIsMenuOpen(false);}}>
+              <i className="fas fa-book"></i> Blogs
+            </Link>
+            <Link to="/contact" className="dropdown-item" onClick={() => {setIsDropdownOpen(false); setIsMenuOpen(false);}}>
+              <i className="fas fa-phone"></i> Contact Us
+            </Link>
+          </div>
+        </li>
+
+        <li className="mobile-only">
+          <Link to="/signin" className="btn-signin" onClick={() => setIsMenuOpen(false)}>
+            Sign In / Sign Up
+          </Link>
+        </li>
+      </ul>
+
+      <Link to="/signin" className="btn-signin desktop-only">
+        Sign In / Sign Up
+      </Link>
+    </nav>
   );
-}
+};
+
+export default Navbar;
