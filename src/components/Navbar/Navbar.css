@@ -1,63 +1,37 @@
-/* Push content below fixed navbar */
-body {
-  padding-top: 80px;
+.navbar {
+  background: #fff;
+  border-bottom: 1px solid #eee;
 }
 
-/* Navbar */
-.navbar {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 1000;
+.nav-container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 14px 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 12px 5%;
-  background: rgba(255, 255, 255, 0.75);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
 }
 
-/* Logo */
-.logo-link {
-  text-decoration: none;
+.logo {
+  font-weight: 700;
+  color: #2563eb;
 }
 
-.logo-text h2 {
-  margin: 0;
-  font-size: 1.3rem;
-  color: #1a1a1a;
-}
-
-.logo-text p {
-  margin: 0;
-  font-size: 0.7rem;
-  color: #666;
-}
-
-/* Nav links */
+/* DESKTOP NAV */
 .nav-links {
   display: flex;
+  gap: 24px;
   align-items: center;
-  list-style: none;
-  gap: 30px;
-  margin: 0;
-  padding: 0;
 }
 
-/* Nav items */
-.nav-item,
-.dropdown-btn {
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 1rem;
-  color: #333;
-  font-weight: 500;
+.nav-item {
   position: relative;
+  text-decoration: none;
+  color: #111;
+  font-weight: 500;
 }
 
+/* 🔥 YOUR UNDERLINE EFFECT (RESTORED) */
 .nav-item::after {
   content: "";
   position: absolute;
@@ -73,102 +47,106 @@ body {
   width: 100%;
 }
 
-/* Dropdown */
-.more-dropdown-trigger {
-  position: relative;
+/* MORE DROPDOWN */
+.more-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  gap: 4px;
+  align-items: center;
 }
 
 .dropdown {
   position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%) translateY(15px);
+  top: 30px;
+  left: 0;
   background: #fff;
-  min-width: 200px;
-  border-radius: 12px;
-  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
-  opacity: 0;
-  visibility: hidden;
-  transition: 0.3s;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  z-index: 20;
 }
 
-.dropdown.show {
-  opacity: 1;
-  visibility: visible;
-  transform: translateX(-50%) translateY(5px);
-}
-
-.dropdown-item {
-  padding: 12px 20px;
+.dropdown a {
+  padding: 10px 14px;
   display: flex;
-  gap: 10px;
+  gap: 8px;
+  align-items: center;
   text-decoration: none;
-  color: #444;
+  color: #111;
 }
 
-.dropdown-item:hover {
-  background: #f0f7ff;
-  color: #007bff;
+.dropdown a:hover {
+  background: #f1f5f9;
 }
 
-/* Sign in button */
-.btn-signin {
-  background: #007bff;
+/* ACTION BUTTONS */
+.nav-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.signin {
+  background: none;
+  border: 1px solid #2563eb;
+  padding: 6px 14px;
+  border-radius: 20px;
+}
+
+.signup {
+  background: #2563eb;
   color: #fff;
-  padding: 10px 24px;
-  border-radius: 50px;
-  text-decoration: none;
-  font-weight: 600;
+  border: none;
+  padding: 6px 16px;
+  border-radius: 20px;
 }
 
-/* Hamburger (hidden on desktop) */
-.hamburger {
+/* HAMBURGER */
+.menu-btn {
   display: none;
-  flex-direction: column;
-  gap: 5px;
   background: none;
   border: none;
-  cursor: pointer;
 }
 
-.hamburger span {
-  width: 24px;
-  height: 2px;
-  background: #333;
+/* MOBILE */
+.mobile-actions {
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
 }
 
-/* ================= MOBILE ================= */
 @media (max-width: 768px) {
-  .hamburger {
-    display: flex;
+  .menu-btn {
+    display: block;
   }
 
   .nav-links {
-    position: fixed;
-    top: 80px;
+    position: absolute;
+    top: 64px;
     left: 0;
     width: 100%;
+    background: #fff;
     flex-direction: column;
-    background: rgba(255, 255, 255, 0.95);
     padding: 20px;
-    gap: 20px;
-    transform: translateY(-120%);
-    transition: transform 0.3s ease;
+    display: none;
   }
 
   .nav-links.open {
-    transform: translateY(0);
+    display: flex;
   }
 
-  .btn-signin {
+  .nav-actions {
     display: none;
+  }
+
+  .mobile-actions {
+    display: flex;
   }
 
   .dropdown {
     position: static;
-    transform: none;
     box-shadow: none;
-    opacity: 1;
-    visibility: visible;
   }
 }
