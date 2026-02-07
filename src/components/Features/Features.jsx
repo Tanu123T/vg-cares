@@ -23,14 +23,13 @@ export default function Features() {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('active');
+          entry.target.classList.add("active");
         } else {
-          entry.target.classList.remove('active');
+          entry.target.classList.remove("active");
         }
       });
     }, observerOptions);
 
-    // Target all reveal types
     const revealElements = document.querySelectorAll(".reveal, .reveal-left, .reveal-right");
     revealElements.forEach((el) => observer.observe(el));
 
@@ -50,7 +49,7 @@ export default function Features() {
         </h2>
       </div>
 
-      {/* Top Features Grid */}
+      {/* Top Features Grid - These are the cards that usually have the blue hover */}
       <div className="capabilities-top-grid">
         <div className="capabilities-feature-card reveal">
           <div className="capabilities-icon-wrapper">
@@ -95,10 +94,11 @@ export default function Features() {
 
       {/* Bottom Detailed Grid */}
       <div className="capabilities-bottom-grid">
+        
+        {/* Medical Excellence Box */}
         <div className="capabilities-section-box capabilities-blue-section reveal-left">
           <h4>Medical Excellence</h4>
           <div className="capabilities-mini-card-container">
-
             <div className="capabilities-mini-card-wrapper">
               <div className="capabilities-mini-card-front">
                 <div className="capabilities-mini-icon capabilities-blue-mini">
@@ -137,6 +137,7 @@ export default function Features() {
           </div>
         </div>
 
+        {/* Logistics & Safety Box */}
         <div className="capabilities-section-box capabilities-green-section reveal-right">
           <h4>Logistics & Safety</h4>
           <div className="capabilities-mini-card-container">
