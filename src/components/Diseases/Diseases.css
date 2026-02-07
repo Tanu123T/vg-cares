@@ -2,101 +2,99 @@
 
 :root {
   --primary-blue: #007bff;
-  --border-gray: #ddd;
+  --border-gray: #eee;
   --text-main: #333;
-  --text-light: #777;
+  --text-light: #666;
   --badge-bg: #e6f4ea;
 }
 
 .consult-container {
-  max-width: 1300px;
-  margin: 60px auto;
-  padding: 0 40px;
-   font-family: 'Poppins', sans-serif;
+  max-width: 1250px;
+  margin: 80px auto;
+  padding: 0 20px;
+  font-family: 'Poppins', sans-serif;
+  overflow: hidden;
+  /* Prevent horizontal scroll on body */
 }
 
+.consult-container h1 {
+  color:var(--primary-blue); /* Darker black for better contrast */
+  font-size: clamp(1.8rem, 4vw, 2.4rem); /* Responsive size */
+  line-height: 1.2;
+  margin: 0;
+  font-weight: 800; /* This increases the thickness */
+  letter-spacing: -0.5px; /* Makes professional headings look tighter */
+}
 .disease-badge {
   background-color: var(--badge-bg);
   color: #28a745;
-  padding: 6px 14px;
+  padding: 6px 16px;
   border-radius: 20px;
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
 }
 
 .disease-title-row {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-end;
   margin-top: 15px;
+  gap: 20px;
+
 }
 
 .consult-container h1 {
-  color: var(--primary-blue);
-  font-size: 32px;
-  margin: 0;
+  color: #1a1a1a;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  line-height: 1.3;
+  max-width: 800px;
 }
 
-.disease-nav-wrapper {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-}
-
-.disease-scroll-arrow {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: 1px solid var(--border-gray);
-  background: white;
-  cursor: pointer;
-  font-size: 18px;
-  color: var(--primary-blue);
-}
-
-.disease-scroll-arrow:hover {
-  background: var(--primary-blue);
-  color: white;
+.disease-subtitle {
+  color: var(--text-light);
+  font-size: 1.05rem;
+  margin-top: 10px;
 }
 
 .disease-view-all {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-
-  padding: 12px 26px;
-  border-radius: 20px;          /* pill shape */
-  background-color: #ffffff;     /* white background */
-  color: #0d6efd;                /* blue text */
-  font-size: 15px;
+  padding: 12px 24px;
+  border-radius: 30px;
+  background-color: white;
+  color: var(--primary-blue);
   font-weight: 600;
   text-decoration: none;
-
-  border: 1px solid #e6e6e6;     /* very light border */
-  transition: all 0.25s ease;
+  border: 1.5px solid var(--primary-blue);
+  transition: 0.3s;
+  white-space: nowrap;
+  cursor: pointer;
 }
+
 .disease-view-all:hover {
-  background-color: #f5f9ff;     /* very light blue */
-  border-color: #0d6efd;
+  background-color: var(--primary-blue);
+  color: white;
 }
 
-
-.disease-subtitle {
-  color: var(--text-light);
-  font-size: 18px;
-  margin-top: 10px;
+/* Slider Layout */
+.disease-slider-wrapper {
+  position: relative;
+  margin-top: 50px;
+  padding: 0 10px;
 }
 
 /* Slider */
 .disease-slider-viewport {
   overflow: hidden;
-  margin-top: 50px;
+  position: relative;
+  width: 100%;
 }
 
 .disease-specialist-grid {
   display: flex;
-  gap: 30px;
-  padding: 20px 0;
+  gap: 40px;
+  padding: 30px 0;
   will-change: transform;
 }
 
@@ -107,9 +105,9 @@
 
 .disease-circle-container {
   position: relative;
-  width: 130px;
-  height: 130px;
-  margin: 0 auto 15px;
+  width: 140px;
+  height: 140px;
+  margin: 0 auto 20px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -120,15 +118,15 @@
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  border: 1.5px dashed var(--border-gray);
+  border: 2px dashed #ddd;
   transition: 0.4s;
 }
 
 .disease-icon-inner {
-  width: 110px;
-  height: 110px;
+  width: 115px;
+  height: 115px;
   border-radius: 50%;
-  background: #fff;
+  background: #f8fbff;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -137,41 +135,138 @@
 }
 
 .disease-icon-inner img {
-  width: 100%;
-  transition: transform 0.4s ease;
+  width: 70%;
+  height: auto;
+  transition: 0.4s ease;
 }
 
+/* Hover effects */
 .disease-card:hover .disease-dashed-outline {
   border-style: solid;
   border-color: var(--primary-blue);
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 
 .disease-card:hover img {
-  transform: scale(1.1);
+  transform: scale(1.15);
 }
 
 .disease-card h3 {
-  font-size: 17px;
-  margin-bottom: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #333;
 }
 
 .disease-consult-btn {
-  display: inline-block;
-  padding: 10px 28px;
-  border-radius: 999px;
-  background-color: #eaf3ff;   /* light blue */
-  color: #0d6efd;
+  padding: 8px 24px;
+  border-radius: 20px;
+  background-color: #eff6ff;
+  color: var(--primary-blue);
   font-size: 14px;
   font-weight: 600;
-  text-decoration: none;
   border: none;
   cursor: pointer;
-  transition: all 0.25s ease;
+  transition: 0.3s;
 }
 
-
 .disease-consult-btn:hover {
-  background-color: #0d6efd;
-  color: #ffffff;
+  background-color: var(--primary-blue);
+  color: white;
+}
+
+/* Navigation Arrows */
+.disease-outside-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: 1px solid #ddd;
+  background: white;
+  color: var(--primary-blue);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 30;
+  transition: 0.3s;
+}
+
+.disease-outside-arrow.left {
+  left: -25px;
+}
+
+.disease-outside-arrow.right {
+  right: -25px;
+}
+
+.disease-outside-arrow:hover {
+  background: var(--primary-blue);
+  color: white;
+  border-color: var(--primary-blue);
+}
+
+/* RESPONSIVE */
+.mobile-only-btn {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  .disease-outside-arrow {
+    display: none;
+  }
+
+  /* Use touch scroll on mobile/tablet */
+  .disease-slider-viewport {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .disease-specialist-grid {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .consult-container {
+    margin: 40px auto;
+  }
+
+  .disease-title-row {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .desktop-only {
+    display: none;
+  }
+
+  .mobile-only-btn {
+    display: block;
+    text-align: center;
+    margin-top: 30px;
+  }
+
+  .disease-view-all {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .disease-card {
+    flex: 0 0 150px;
+  }
+
+  .disease-circle-container {
+    width: 120px;
+    height: 120px;
+  }
+
+  .disease-icon-inner {
+    width: 100px;
+    height: 100px;
+  }
 }

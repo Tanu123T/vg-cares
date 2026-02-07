@@ -163,6 +163,7 @@ const HospitalsPage = () => {
           </div>
         ))}
       </div>
+      <a href="/services" class="hospital-home-btn"><i class="fa-solid fa-house"></i></a>
     </section>
   );
 };

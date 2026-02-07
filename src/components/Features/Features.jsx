@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import {
   Video,
   ShieldCheck,
@@ -8,21 +8,20 @@ import {
   Cpu,
   Globe,
   LayoutDashboard,
-  HandHeart
+  HandHeart,
 } from "lucide-react";
 
 import "./Features.css";
 
-export default function Capabilities() {
-
+export default function Features() {
   useEffect(() => {
-    const observerOptions = { 
+    const observerOptions = {
       threshold: 0.1,
-      rootMargin: "0px 0px -50px 0px" 
+      rootMargin: "0px 0px -50px 0px",
     };
 
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
+      entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add('active');
         } else {
@@ -31,22 +30,27 @@ export default function Capabilities() {
       });
     }, observerOptions);
 
-    const elements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
-    elements.forEach(el => observer.observe(el));
+    // Target all reveal types
+    const revealElements = document.querySelectorAll(".reveal, .reveal-left, .reveal-right");
+    revealElements.forEach((el) => observer.observe(el));
 
-    return () => elements.forEach(el => observer.unobserve(el));
+    // Cleanup: Disconnect the observer when the component unmounts
+    return () => observer.disconnect();
   }, []);
 
   return (
-    <section className="capabilities-container capabilities-wrapper">
-
+    <section className="capabilities-container capabilities-wrapper" id="capabilities">
+      
+      {/* Header Section */}
       <div className="capabilities-text-center reveal">
         <div className="capabilities-badge">Our Capabilities</div>
         <h2 className="capabilities-header-title">
-          Features That Bridge <br /><span>Borders</span>
+          Features That Bridge <br />
+          <span>Borders</span>
         </h2>
       </div>
 
+      {/* Top Features Grid */}
       <div className="capabilities-top-grid">
         <div className="capabilities-feature-card reveal">
           <div className="capabilities-icon-wrapper">
@@ -89,10 +93,12 @@ export default function Capabilities() {
         Comprehensive Features Overview
       </h3>
 
+      {/* Bottom Detailed Grid */}
       <div className="capabilities-bottom-grid">
         <div className="capabilities-section-box capabilities-blue-section reveal-left">
           <h4>Medical Excellence</h4>
           <div className="capabilities-mini-card-container">
+
             <div className="capabilities-mini-card-wrapper">
               <div className="capabilities-mini-card-front">
                 <div className="capabilities-mini-icon capabilities-blue-mini">
@@ -134,6 +140,7 @@ export default function Capabilities() {
         <div className="capabilities-section-box capabilities-green-section reveal-right">
           <h4>Logistics & Safety</h4>
           <div className="capabilities-mini-card-container">
+            
             <div className="capabilities-mini-card-wrapper">
               <div className="capabilities-mini-card-front">
                 <div className="capabilities-mini-icon capabilities-green-mini">
@@ -171,6 +178,7 @@ export default function Capabilities() {
             </div>
           </div>
         </div>
+
       </div>
     </section>
   );
