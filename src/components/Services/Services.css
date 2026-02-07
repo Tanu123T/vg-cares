@@ -16,8 +16,8 @@
 .badge {
   display: inline-block;
   padding: 8px 20px;
-  background: #eff6ff;
-  color: #2563eb;
+  background:  #dcfce7;
+  color: #84d598;
   border-radius: 50px;
   font-size: 0.85rem;
   font-weight: 700;
@@ -41,8 +41,9 @@
 .desc {
   max-width: 700px;
   color: #555;
-  font-size: 1.1rem;
+  font-size: 16px;
   line-height: 1.6;
+  font-weight:200;
 }
 
 /* --- GRID SYSTEM --- */
@@ -50,6 +51,7 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr); /* Default 3 columns */
   gap: 30px;
+  padding :20px;
 }
 
 /* --- CARD STYLING --- */
