@@ -24,10 +24,8 @@ export default function Capabilities() {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          // Triggers animation when entering viewport
           entry.target.classList.add('active');
         } else {
-          // Resets animation when leaving viewport for a repeating effect
           entry.target.classList.remove('active');
         }
       });
@@ -92,7 +90,6 @@ export default function Capabilities() {
       </h3>
 
       <div className="capabilities-bottom-grid">
-        {/* Medical Excellence */}
         <div className="capabilities-section-box capabilities-blue-section reveal-left">
           <h4>Medical Excellence</h4>
           <div className="capabilities-mini-card-container">
@@ -134,7 +131,6 @@ export default function Capabilities() {
           </div>
         </div>
 
-        {/* Logistics & Safety */}
         <div className="capabilities-section-box capabilities-green-section reveal-right">
           <h4>Logistics & Safety</h4>
           <div className="capabilities-mini-card-container">
