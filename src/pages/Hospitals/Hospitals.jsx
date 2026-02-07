@@ -1,8 +1,7 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { hospitalData } from "../../data/hospitalData";
-import { MapPin, Phone, Search, ChevronLeft } from "lucide-react"; // Added Search and Chevron
+import { MapPin, Phone, Search } from "lucide-react";
 import { Link } from "react-router-dom";
-
 import "./Hospitals.css"; 
 
 const HospitalsPage = () => {
@@ -11,6 +10,7 @@ const HospitalsPage = () => {
   const [specialist, setSpecialist] = useState("all");
   const [selectedHospital, setSelectedHospital] = useState(null);
 
+  // Filter Logic
   const filteredHospitals = hospitalData.filter(h =>
     h.name.toLowerCase().includes(search.toLowerCase()) &&
     (country === "all" || h.country === country) &&
@@ -22,7 +22,7 @@ const HospitalsPage = () => {
     return (
       <section id="detailsPage">
         <button className="back-link" onClick={() => setSelectedHospital(null)}>
-          <ChevronLeft size={20} /> Back to Hospitals
+          ← Back to Hospitals
         </button>
 
         <div className="details-card">
@@ -33,17 +33,15 @@ const HospitalsPage = () => {
           />
 
           <div className="details-content">
-            <div className="details-meta">
+            <div className="card-top" style={{ marginBottom: '20px' }}>
               <div>
-                <span className="badge">
-                  Verified • {selectedHospital.country}
-                </span>
+                <span className="badge">Verified • {selectedHospital.country}</span>
                 <h1>{selectedHospital.name}</h1>
               </div>
               <div className="rating">★ {selectedHospital.rating}</div>
             </div>
 
-            <p style={{ lineHeight: '1.6', color: '#4a5568' }}>{selectedHospital.desc}</p>
+            <p style={{ color: '#4a5568', lineHeight: '1.6' }}>{selectedHospital.desc}</p>
 
             <div className="details-grid">
               <div className="detail-item">
@@ -84,13 +82,13 @@ const HospitalsPage = () => {
         <p>Connecting you to world-class medical facilities globally.</p>
       </header>
 
-      {/* FILTERS - Now Responsive */}
+      {/* FILTERS */}
       <div className="filter-section">
         <div className="search-wrapper">
-          <Search size={18} className="search-icon-fixed" />
+          <Search size={18} color="#94a3b8" />
           <input
             type="text"
-            placeholder="Search hospital name..."
+            placeholder="Search hospital..."
             value={search}
             onChange={e => setSearch(e.target.value)}
           />
@@ -116,7 +114,7 @@ const HospitalsPage = () => {
       </div>
 
       <div className="stats-count">
-        Found {filteredHospitals.length} Results
+        All Hospitals ({filteredHospitals.length})
       </div>
 
       {/* GRID */}
@@ -148,17 +146,18 @@ const HospitalsPage = () => {
                   className="btn btn-view"
                   onClick={() => setSelectedHospital(h)}
                 >
-                  View Details
+                  View Hospital
                 </button>
+
                 <button className="btn btn-request">
-                  Consultation
+                  Request Consultation
                 </button>
               </div>
             </div>
           </div>
         ))}
       </div>
-      
+
       <Link to="/" className="hospital-home-btn">
         <i className="fa-solid fa-house"></i>
       </Link>
