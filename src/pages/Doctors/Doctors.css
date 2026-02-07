@@ -20,7 +20,7 @@
     margin-bottom: 10px;
 }
 
-/* --- Elongated Search Section --- */
+/* --- Elongated Search Section (DESKTOP) --- */
 .doctors-search-section {
     max-width: 1400px;
     margin: 0 auto 40px;
@@ -39,7 +39,7 @@
     width: 100%;
     box-sizing: border-box;
     gap: 20px;
-    height: 100px;
+    height: 100px; /* Kept your exact height */
 }
 
 .search-input-wrapper {
@@ -51,22 +51,39 @@
     position: relative;
     display: flex;
     align-items: center;
-    
 }
-.search-input2,
+
+.search-input2 {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: transparent;
+    padding: 0 20px 0 55px; /* FIXED: Prevents text-icon collision */
+    font-size: 15px;
+    outline: none;
+    color: #1e293b;
+}
+
 .filter-dropdown {
     flex: 1;
     min-width: 200px;
 }
 
+/* Modernized Dropdown Styling */
 .filter-select {
     width: 100%;
-    padding: 12px 15px 12px 45px;
+    padding: 12px 40px 12px 20px;
     border: 1px solid #eef2f6;
     border-radius: 100px;
     background: #f8fafc;
     font-size: 15px;
     outline: none;
+    cursor: pointer;
+    appearance: none; /* Modern look */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 18px center;
+    background-size: 16px;
 }
 
 .search-results-info {
@@ -88,17 +105,12 @@
     margin: 0 auto;
 }
 
-/* --- Booking Modal (Small Window) --- */
+/* --- Modal --- */
 .modal-overlay {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0; width: 100%; height: 100%;
     background: rgba(0, 0, 0, 0.4);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: flex; justify-content: center; align-items: center;
     z-index: 9999;
 }
 
@@ -114,13 +126,41 @@
 }
 
 @keyframes slideUp {
-    from {
-        transform: translateY(20px);
-        opacity: 0;
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* --- PERFECT MOBILE VIEW --- */
+@media (max-width: 768px) {
+    .doctors-header-container h1 {
+        font-size: 32px !important; /* Smaller text for mobile screens */
+        text-align: center;
+    }
+    
+    .doctors-header-container p {
+        text-align: center;
+        font-size: 16px !important;
     }
 
-    to {
-        transform: translateY(0);
-        opacity: 1;
+    .search-container {
+        flex-direction: column; /* Stack vertically on mobile */
+        height: auto; /* Remove fixed 100px height for mobile */
+        padding: 20px;
+        gap: 15px;
+        border-radius: 25px;
+    }
+
+    .search-input-wrapper, 
+    .filter-dropdown {
+        width: 100%;
+        flex: none;
+    }
+
+    #doctorGrid {
+        grid-template-columns: 1fr; /* Single card per row on mobile */
+    }
+
+    .search-results-info {
+        text-align: center;
     }
 }

@@ -1,7 +1,7 @@
 import { useState, useMemo } from "react";
 import { doctorData } from "../../data/doctorData";
 import "./Doctors.css";
-import { Video, X, Star } from "lucide-react";
+import { Video, X, Star, Search } from "lucide-react";
 
 export default function Doctors() {
   const [search, setSearch] = useState("");
@@ -30,10 +30,11 @@ export default function Doctors() {
       <section className="doctors-search-section">
         <div className="search-container">
           <div className="search-input-wrapper">
-            <i className="fas fa-search" style={{ position: 'absolute', left: '18px', color: '#94a3b8' }}></i>
+            {/* Added Search Icon from Lucide for better scaling */}
+            <Search size={20} style={{ position: 'absolute', left: '18px', color: '#94a3b8' }} />
             <input
               type="text"
-              placeholder="Search by doctor name, specialty, or hospital..."
+              placeholder="Search by doctor name or specialty..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               className="search-input2"
@@ -112,7 +113,7 @@ export default function Doctors() {
         ))}
       </main>
 
-      {/* 4. Booking Modal (Small Window) */}
+      {/* 4. Booking Modal */}
       {selectedDoctor && (
         <div className="modal-overlay" onClick={() => setSelectedDoctor(null)}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
@@ -122,22 +123,15 @@ export default function Doctors() {
             >
               <X size={24} />
             </button>
-            
             <img src={selectedDoctor.image} alt="" style={{ width: '80px', height: '80px', borderRadius: '50%', objectFit: 'cover', marginBottom: '15px', border: '4px solid #f8fafc' }} />
             <h2 style={{ margin: '0 0 10px 0', fontSize: '22px' }}>Confirm Booking</h2>
             <p style={{ color: '#64748b', fontSize: '15px', lineHeight: '1.5', marginBottom: '25px' }}>
               Schedule your appointment with <br/> 
               <b style={{ color: '#1e293b' }}>{selectedDoctor.name}</b>
             </p>
-            
-            <div style={{ background: '#f8fafc', padding: '15px', borderRadius: '15px', textAlign: 'left', marginBottom: '25px' }}>
-                <div style={{ fontSize: '12px', color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Consultation Fee</div>
-                <div style={{ fontSize: '20px', fontWeight: '800', color: '#10b981' }}>{selectedDoctor.consultationFee}</div>
-            </div>
-
             <button 
-              onClick={() => { alert("Appointment Requested Successfully!"); setSelectedDoctor(null); }}
-              style={{ width: '100%', background: '#007bff', color: 'white', border: 'none', padding: '15px', borderRadius: '12px', fontWeight: '700', fontSize: '16px', cursor: 'pointer', boxShadow: '0 4px 12px rgba(0, 123, 255, 0.3)' }}
+              onClick={() => { alert("Appointment Requested!"); setSelectedDoctor(null); }}
+              style={{ width: '100%', background: '#007bff', color: 'white', border: 'none', padding: '15px', borderRadius: '12px', fontWeight: '700', fontSize: '16px', cursor: 'pointer' }}
             >
               Confirm Appointment
             </button>
