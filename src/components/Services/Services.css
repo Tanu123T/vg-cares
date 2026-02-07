@@ -12,21 +12,18 @@ body {
 
 /* --- Main Container --- */
 .expertise {
-  max-width: 90%; 
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 0 2%;
+  padding: 0 20px;
 }
 
-/* --- HEADER ALIGNMENT FIX --- */
-/* This aligns the text exactly with the cards below */
+/* --- HEADER --- */
 .expertise-header {
-  margin-left: 2%; 
-  margin-bottom: 5%;
+  margin-bottom: 60px;
 }
-
 
 h1 {
-  font-size: 2.8rem;
+  font-size: clamp(2rem, 4vw, 2.8rem);
   margin-bottom: 15px;
   font-weight: 700;
   color: #1a1a1a;
@@ -38,21 +35,18 @@ h1 span {
 }
 
 .desc {
-  max-width: 800px; 
+  max-width: 800px;
   color: #555;
   font-weight: 500;
   line-height: 1.5;
+  margin-bottom: 25px;
 }
 
 /* --- GRID SYSTEM --- */
 .grid {
   display: grid;
-  /* Adjusts width to account for the 100px margin */
-  width: calc(100% - 100px); 
-  grid-template-columns: repeat(3, minmax(300px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 30px;
-  margin-left: 100px;
-  margin-top: 40px;
 }
 
 /* --- CARD STYLING --- */
@@ -71,16 +65,24 @@ h1 span {
 }
 
 /* Hover Backgrounds */
-.card-special1:hover { background-color: rgba(220, 252, 231, 0.4); }
-.card-blue:hover { background-color: rgba(219, 234, 254, 0.4); }
-.card-orange:hover { background-color: rgba(255, 237, 213, 0.4); }
-.card-sky:hover { background-color: rgba(224, 242, 254, 0.4); }
-
-
-.card:hover .icon{
-    transform: scale(1.1) rotate(5deg);
+.card-special1:hover {
+  background-color: rgba(220, 252, 231, 0.4);
 }
+.card-blue:hover {
+  background-color: rgba(219, 234, 254, 0.4);
+}
+.card-orange:hover {
+  background-color: rgba(255, 237, 213, 0.4);
+}
+.card-sky:hover {
+  background-color: rgba(224, 242, 254, 0.4);
+}
+
 /* --- ICON ANIMATIONS --- */
+.card:hover .icon {
+  transform: scale(1.1) rotate(5deg);
+}
+
 .icon {
   width: 55px;
   height: 55px;
@@ -93,32 +95,57 @@ h1 span {
   animation: float 3s ease-in-out infinite;
 }
 
-.green { background: #dcfce7; color: #16a34a; }
-.blue { background: #dbeafe; color: #2563eb; }
-.orange { background: #ffedd5; color: #ea580c; }
-.sky { background: #e0f2fe; color: #0284c7; }
+.green {
+  background: #dcfce7;
+  color: #16a34a;
+}
+.blue {
+  background: #dbeafe;
+  color: #2563eb;
+}
+.orange {
+  background: #ffedd5;
+  color: #ea580c;
+}
+.sky {
+  background: #e0f2fe;
+  color: #0284c7;
+}
 
 @keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
-}
-
-/* --- MOBILE RESPONSIVENESS --- */
-@media (max-width: 1024px) {
-  .expertise-header, .grid {
-    margin-left: 20px;
-    width: calc(100% - 40px);
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
   }
 }
 
+/* --- RESPONSIVE BREAKPOINTS --- */
+
+/* Tablets */
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile */
 @media (max-width: 768px) {
   .expertise-header {
-    margin-left: 0;
     text-align: center;
   }
+
+  .desc {
+    margin: 0 auto;
+  }
+
   .grid {
-    margin-left: 0;
-    width: 100%;
     grid-template-columns: 1fr;
+  }
+
+  .card {
+    padding: 28px;
   }
 }
