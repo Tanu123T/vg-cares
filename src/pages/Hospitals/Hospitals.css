@@ -4,7 +4,7 @@
 /* Header */
 header { margin-bottom: 40px; }
 .badge { background: #dcfce7; color: #166534; padding: 6px 16px; border-radius: 50px; font-size: 0.85rem; font-weight: 700; display: inline-block; margin-bottom: 15px; }
-h1 { color: var(--primary-blue); font-size: 35px; margin-bottom: 10px; }
+h1 { color: var(--primary-blue); font-size: 2.2rem; margin-bottom: 10px; }
 header p { color: var(--text-gray); font-size: 1.1rem; }
 
 /* Filters */
@@ -32,12 +32,12 @@ select { flex: 1; padding: 15px; border-radius: 10px; border: 1px solid #ddd; ba
 }
 
 /* Blog Home Button - Same as Blogs Page */
-.hospital-home-btn {
+.blog-home-btn {
     position: fixed;
-    bottom: 40px;
-    right: 60px;
+    bottom: 20px;
+    right: 20px;
     background: #0d6efd;
-    color: rgb(255, 255, 255);
+    color: white;
     width: 60px;
     height: 60px;
     border-radius: 50%;
@@ -45,16 +45,15 @@ select { flex: 1; padding: 15px; border-radius: 10px; border: 1px solid #ddd; ba
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 23px;
+    font-size: 22px;
     z-index: 10;
     animation: blog-pulse 2s infinite;
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-.hospital-home-btn:hover {
+.blog-home-btn:hover {
     transform: scale(1.1);
-    background: #0e56c1;
-    color:#ffffff;
+    background: #0b5ed7;
 }
 
 @keyframes blog-pulse {
