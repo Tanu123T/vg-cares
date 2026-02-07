@@ -33,7 +33,7 @@ export default function Doctors() {
             <Search className="search-icon" size={18} />
             <input
               type="text"
-              placeholder="Search by doctor name, specialty, or hospital..."
+              placeholder="Search by doctor name or specialty..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
@@ -136,3 +136,4 @@ export default function Doctors() {
     </div>
   );
 }
+
