@@ -165,11 +165,9 @@ const HospitalsPage = () => {
           </div>
         ))}
       </div>
-      
-        <Link to="/"  className="hospital-home-btn"><i class="fa-solid fa-house"></i></Link>
-      
-
+      <Link to="/"  className="hospital-home-btn"><i class="fa-solid fa-house"></i></Link>
     </section>
+    
   );
 };
 
