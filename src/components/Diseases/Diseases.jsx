@@ -36,7 +36,7 @@ const Diseases = () => {
     const slider = sliderRef.current;
     if (!slider) return;
 
-    // 1. Prevent double-cloning
+    // 1. Prevent double-cloning by checking a data attribute
     if (!slider.dataset.cloned) {
       const cards = Array.from(slider.children);
       if (cards.length > 0) {
@@ -49,12 +49,12 @@ const Diseases = () => {
 
     let rafId = null;
 
-    // 2. Optimized Auto-scroll Function
+    // 2. Auto-scroll function
     const autoScroll = () => {
       if (!isPaused.current) {
         scrollPosition.current -= autoScrollSpeed;
 
-        // Reset to middle for infinite effect
+        // Reset to middle for infinite effect once it hits halfway
         if (Math.abs(scrollPosition.current) >= slider.scrollWidth / 2) {
           scrollPosition.current = 0;
         }
@@ -66,11 +66,9 @@ const Diseases = () => {
 
     rafId = requestAnimationFrame(autoScroll);
 
-    return () => {
-      cancelAnimationFrame(rafId);
-    };
+    // Cleanup: stop animation when component unmounts
+    return () => cancelAnimationFrame(rafId);
   }, []);
-
 
   const nextSlide = () => {
     const slider = sliderRef.current;
@@ -107,9 +105,11 @@ const Diseases = () => {
       <div className="header">
         <span className="disease-badge">Diseases</span>
         <div className="disease-title-row">
+    
           <h1>Consult top doctors online for any health concern</h1>
+      
           <div className="disease-nav-wrapper">
-            <a href="/doctors">
+            <a href="/doctors" className="disease-view-all-link">
               <button className="disease-view-all">View all Specialists →</button>
             </a>
           </div>
