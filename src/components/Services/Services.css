@@ -12,28 +12,18 @@ body {
 
 /* --- Main Container --- */
 .expertise {
-  max-width: 1400px; 
+  max-width: 90%; 
   margin: 0 auto;
-  padding: 60px 20px;
+  padding: 0 2%;
 }
 
 /* --- HEADER ALIGNMENT FIX --- */
 /* This aligns the text exactly with the cards below */
 .expertise-header {
-  margin-left: 100px; 
-  margin-bottom: 50px;
+  margin-left: 2%; 
+  margin-bottom: 5%;
 }
 
-.badge {
-  background: #e7f9ef;
-  color: #22c55e;
-  padding: 6px 14px;
-  border-radius: 20px;
-  font-size: 14px;
-  display: inline-block;
-  margin-bottom: 100px;
-  font-weight: 700;
-}
 
 h1 {
   font-size: 2.8rem;
@@ -59,7 +49,7 @@ h1 span {
   display: grid;
   /* Adjusts width to account for the 100px margin */
   width: calc(100% - 100px); 
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(3, minmax(300px, 1fr));
   gap: 30px;
   margin-left: 100px;
   margin-top: 40px;
