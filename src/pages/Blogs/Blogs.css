@@ -76,6 +76,31 @@ body {
   flex-direction: column;
 }
 
+.blog-home-btn {
+    position: fixed;
+    bottom: 40px;
+    right: 60px;
+    background: #0d6efd;
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 23px;
+    z-index: 10;
+    animation: blog-pulse 2s infinite;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.blog-home-btn:hover {
+    transform: scale(1.1);
+    background: #0e56c1;
+    color:#ffffff
+}
+
 .article-card:hover {
   transform: translateY(-10px);
   box-shadow: 0 20px 40px rgba(13, 110, 253, 0.12);
