@@ -1,152 +1,244 @@
+/* --- BASE STYLES --- */
 .navbar {
-  background: #fff;
-  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 30px;
+  background: white;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+  width: 100%;
+  box-sizing: border-box;
 }
 
-.nav-container {
-  max-width: 1200px;
-  margin: auto;
-  padding: 14px 20px;
+.logo-container {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 12px;
 }
 
-.logo {
-  font-weight: 700;
-  color: #2563eb;
+.logo-mark {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3px;
 }
 
-/* DESKTOP NAV */
+.logo-mark span {
+  width: 10px;
+  height: 10px;
+  background: #000;
+  border-radius: 2px;
+}
+
+.logo-text h2 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #333;
+  margin: 0;
+}
+
+.logo-text p {
+  font-size: 0.75rem;
+  color: #888;
+  margin: 0;
+}
+
 .nav-links {
   display: flex;
-  gap: 24px;
+  gap: 35px;
+  list-style: none;
   align-items: center;
+  margin: 0;
+  padding: 0;
 }
 
 .nav-item {
-  position: relative;
   text-decoration: none;
-  color: #111;
-  font-weight: 500;
+  color: #333;
+  font-weight: 600;
+  font-size: 0.95rem;
+  position: relative;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
 }
 
-/* 🔥 YOUR UNDERLINE EFFECT (RESTORED) */
 .nav-item::after {
-  content: "";
+  content: '';
   position: absolute;
-  bottom: -4px;
-  left: 0;
   width: 0;
   height: 2px;
-  background: #007bff;
-  transition: width 0.3s ease;
+  bottom: -2px;
+  left: 50%;
+  background-color: #006ce0;
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.nav-item:hover {
+  color: #006ce0;
+  transform: translateY(-2px);
 }
 
 .nav-item:hover::after {
   width: 100%;
 }
 
-/* MORE DROPDOWN */
-.more-btn {
-  background: none;
-  border: none;
-  cursor: pointer;
-  display: flex;
-  gap: 4px;
-  align-items: center;
+/* --- DROPDOWN (Desktop Defaults) --- */
+.more-dropdown-trigger {
+  position: relative;
 }
 
 .dropdown {
   position: absolute;
-  top: 30px;
-  left: 0;
-  background: #fff;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-  border-radius: 8px;
-  overflow: hidden;
-  z-index: 20;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  background: white;
+  min-width: 200px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  border: 1px solid #f0f0f0;
+  z-index: 1001;
 }
 
-.dropdown a {
-  padding: 10px 14px;
+.dropdown.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+.dropdown-item {
   display: flex;
-  gap: 8px;
   align-items: center;
-  text-decoration: none;
-  color: #111;
-}
-
-.dropdown a:hover {
-  background: #f1f5f9;
-}
-
-/* ACTION BUTTONS */
-.nav-actions {
-  display: flex;
   gap: 12px;
+  padding: 10px 15px;
+  text-decoration: none;
+  color: #666;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border-radius: 8px;
+  transition: 0.2s;
 }
 
-.signin {
-  background: none;
-  border: 1px solid #2563eb;
-  padding: 6px 14px;
-  border-radius: 20px;
+.dropdown-item:hover {
+  background: #f0f7ff;
+  color: #006ce0;
+  transform: translateX(5px);
 }
 
-.signup {
-  background: #2563eb;
-  color: #fff;
-  border: none;
-  padding: 6px 16px;
-  border-radius: 20px;
+.btn-signin {
+  background: #006ce0;
+  color: white;
+  padding: 10px 25px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s;
+  display: inline-block;
 }
 
-/* HAMBURGER */
-.menu-btn {
+.btn-signin:hover {
+  background: #333;
+}
+
+/* --- MOBILE RESPONSIVE LOGIC --- */
+.menu-toggle {
   display: none;
-  background: none;
-  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
 }
 
-/* MOBILE */
-.mobile-actions {
-  display: none;
-  flex-direction: column;
-  gap: 10px;
-  margin-top: 20px;
-}
+.mobile-only { display: none; }
 
-@media (max-width: 768px) {
-  .menu-btn {
+@media (max-width: 1024px) {
+  .menu-toggle {
     display: block;
+    z-index: 1001;
+  }
+
+  .desktop-only {
+    display: none;
+  }
+
+  .mobile-only {
+    display: block;
+    width: 100%;
+    margin-top: 10px;
   }
 
   .nav-links {
     position: absolute;
-    top: 64px;
+    top: 100%;
     left: 0;
     width: 100%;
-    background: #fff;
+    
+    /* CHANGE 1: Remove max-height and overflow: hidden */
+    display: none; 
     flex-direction: column;
-    padding: 20px;
-    display: none;
+    background: white;
+    padding: 20px 30px;
+    gap: 5px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    align-items: flex-start;
+    border-top: 1px solid #f0f0f0;
   }
 
-  .nav-links.open {
+  /* CHANGE 2: Use display: flex to show the menu instead of max-height */
+  .nav-links.active {
     display: flex;
   }
 
-  .nav-actions {
-    display: none;
+  .nav-item {
+    width: 100%;
+    padding: 15px 0;
+    font-size: 1.1rem;
+    border-bottom: 1px solid #fafafa;
   }
 
-  .mobile-actions {
-    display: flex;
-  }
-
+  /* CHANGE 3: Ensure dropdown pushes everything down */
   .dropdown {
-    position: static;
+    position: static;      /* Removes the "floating" behavior */
+    transform: none;       /* Resets the desktop centering */
+    opacity: 1;
+    visibility: visible;
+    display: none;         /* Toggled by the 'show' class */
     box-shadow: none;
+    border: none;
+    width: 100%;
+    background: transparent;
+    
+    /* This moves the dropdown menu items to the right */
+    padding-left: 40px;    
+    margin-top: 5px;
+  }
+
+  .dropdown.show {
+    display: block;        /* Pushes the 'Sign In' button down */
+  }
+
+  .dropdown-item {
+    padding: 10px 0;       /* Vertical spacing between items */
+    justify-content: flex-start;
+    font-size: 1rem;
+    color: #555;
+    background: transparent !important; /* Remove hover background on mobile for cleaner look */
+  }
+  
+  .dropdown-item i {
+    width: 25px;           /* Keeps icons aligned */
+    color: #006ce0;
+  }
+
+  .more-text {
+    color: var(--brand-blue, #006ce0);
   }
 }
