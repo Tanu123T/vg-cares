@@ -12,7 +12,7 @@
     overflow: hidden; /* Prevents blobs from causing scrollbars */
 }
 
-/* Background Blobs */
+/* 2. Background Decorative Blobs */
 .bg-blob {
     position: absolute;
     width: 600px;
@@ -24,7 +24,7 @@
 .blob-1 { top: -100px; right: -100px; }
 .blob-2 { bottom: -100px; left: -100px; }
 
-/* The Glass Card */
+/* 3. The Glass Card - Fixed the "Double Border" issue */
 .app-card {
     position: relative;
     width: 90%;
@@ -86,7 +86,9 @@
     animation: float 5s ease-in-out infinite;
 }
 
-.phone-frame {
+/* Optional: Soft glow behind the phone ONLY (replaces the "second card") */
+.phone-wrapper::after {
+    content: "";
     position: absolute;
     width: 240px;
     height: 240px;
@@ -145,6 +147,7 @@
             .phone-img{ max-width: 220px; }
     }
     .app-description { margin: 0 auto 30px; }
+
     .store-btns { justify-content: center; }
     .phone-wrapper { margin-top: 40px; }
 }

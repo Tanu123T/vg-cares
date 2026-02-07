@@ -33,126 +33,125 @@ const Diseases = () => {
   const autoScrollSpeed = 0.5;
 
   useEffect(() => {
-  let rafId;
+    const slider = sliderRef.current;
+    if (!slider) return;
 
-  const autoScroll = () => {
-    if (!sliderRef.current || isPaused.current) {
-      rafId = requestAnimationFrame(autoScroll);
-      return;
+    // 1. Prevent double-cloning by checking a data attribute
+    if (!slider.dataset.cloned) {
+      const cards = Array.from(slider.children);
+      if (cards.length > 0) {
+        cards.forEach((card) => {
+          slider.appendChild(card.cloneNode(true));
+        });
+        slider.dataset.cloned = "true";
+      }
     }
 
-    scrollPosition.current -= 0.5;
-    sliderRef.current.style.transform = `translateX(${scrollPosition.current}px)`;
+    let rafId = null;
+
+    // 2. Auto-scroll function
+    const autoScroll = () => {
+      if (!isPaused.current) {
+        scrollPosition.current -= autoScrollSpeed;
+
+        // Reset to middle for infinite effect once it hits halfway
+        if (Math.abs(scrollPosition.current) >= slider.scrollWidth / 2) {
+          scrollPosition.current = 0;
+        }
+
+        slider.style.transform = `translateX(${scrollPosition.current}px)`;
+      }
+      rafId = requestAnimationFrame(autoScroll);
+    };
 
     rafId = requestAnimationFrame(autoScroll);
+
+    // Cleanup: stop animation when component unmounts
+    return () => cancelAnimationFrame(rafId);
+  }, []);
+
+  const nextSlide = () => {
+    const slider = sliderRef.current;
+    if (!slider) return;
+
+    isPaused.current = true;
+    scrollPosition.current -= scrollStep;
+    slider.style.transition = "transform 0.4s ease";
+    slider.style.transform = `translateX(${scrollPosition.current}px)`;
+
+    setTimeout(() => {
+      if (slider) slider.style.transition = "none";
+      isPaused.current = false;
+    }, 450);
   };
 
-  rafId = requestAnimationFrame(autoScroll);
+  const prevSlide = () => {
+    const slider = sliderRef.current;
+    if (!slider) return;
 
-  return () => {
-    cancelAnimationFrame(rafId);
+    isPaused.current = true;
+    scrollPosition.current += scrollStep;
+    slider.style.transition = "transform 0.4s ease";
+    slider.style.transform = `translateX(${scrollPosition.current}px)`;
+
+    setTimeout(() => {
+      if (slider) slider.style.transition = "none";
+      isPaused.current = false;
+    }, 450);
   };
-}, []);
-
-
-const nextSlide = () => {
-  const slider = sliderRef.current;
-  if (!slider) return;
-
-  isPaused.current = true; // ⛔ pause auto-scroll
-
-  scrollPosition.current -= scrollStep;
-  slider.style.transition = "transform 0.4s ease";
-  slider.style.transform = `translateX(${scrollPosition.current}px)`;
-
-  setTimeout(() => {
-    if (slider) slider.style.transition = "none";
-    isPaused.current = false; // ▶ resume auto-scroll
-  }, 450);
-};
-
-const prevSlide = () => {
-  const slider = sliderRef.current;
-  if (!slider) return;
-
-  isPaused.current = true; // ⛔ pause auto-scroll
-
-  scrollPosition.current += scrollStep;
-  slider.style.transition = "transform 0.4s ease";
-  slider.style.transform = `translateX(${scrollPosition.current}px)`;
-
-  setTimeout(() => {
-    if (slider) slider.style.transition = "none";
-    isPaused.current = false; // ▶ resume auto-scroll
-  }, 450);
-};
-
 
   return (
     <section className="consult-container">
       <div className="header">
         <span className="disease-badge">Diseases</span>
-
         <div className="disease-title-row">
+    
           <h1>Consult top doctors online for any health concern</h1>
-
+      
           <div className="disease-nav-wrapper">
- <a href="/doctors"> <button className="disease-view-all">View all Specialists →</button></a>
-</div>
-
+            <a href="/doctors" className="disease-view-all-link">
+              <button className="disease-view-all">View all Specialists →</button>
+            </a>
+          </div>
         </div>
-
         <p className="disease-subtitle">
-          Private online consultation with verified doctors in all specialist.
+          Private online consultation with verified doctors in all specialties.
         </p>
       </div>
 
       <div className="disease-slider-wrapper">
+        <button className="disease-outside-arrow left" onClick={prevSlide}>
+          &lt;
+        </button>
 
-  {/* LEFT ARROW */}
-  <button
-    className="disease-outside-arrow left"
-    onClick={prevSlide}
-  >
-    &lt;
-  </button>
-
-  {/* SLIDER */}
-  <div className="disease-slider-viewport">
-    <div
-      className="disease-specialist-grid"
-      ref={sliderRef}
-      onMouseEnter={() => (isPaused.current = true)}
-      onMouseLeave={() => (isPaused.current = false)}
-    >
-      {diseases.map((item, index) => (
-        <div className="disease-card" key={index}>
-          <div className="disease-circle-container">
-            <div className="disease-dashed-outline"></div>
-            <div className="disease-icon-inner">
-              <img src={item.img} alt={item.name} />
-            </div>
+        <div className="disease-slider-viewport">
+          <div
+            className="disease-specialist-grid"
+            ref={sliderRef}
+            onMouseEnter={() => (isPaused.current = true)}
+            onMouseLeave={() => (isPaused.current = false)}
+          >
+            {diseases.map((item, index) => (
+              <div className="disease-card" key={index}>
+                <div className="disease-circle-container">
+                  <div className="disease-dashed-outline"></div>
+                  <div className="disease-icon-inner">
+                    <img src={item.img} alt={item.name} />
+                  </div>
+                </div>
+                <h3>{item.name}</h3>
+                <button className="disease-consult-btn">Consult Now</button>
+              </div>
+            ))}
           </div>
-          <h3>{item.name}</h3>
-          <button className="disease-consult-btn">Consult Now</button>
         </div>
-      ))}
-    </div>
-  </div>
 
-  {/* RIGHT ARROW */}
-  <button
-    className="disease-outside-arrow right"
-    onClick={nextSlide}
-  >
-    &gt;
-  </button>
-
-</div>
-
-
+        <button className="disease-outside-arrow right" onClick={nextSlide}>
+          &gt;
+        </button>
+      </div>
     </section>
   );
 };
-//hello
+
 export default Diseases;

@@ -65,6 +65,7 @@ const DownloadApp = () => {
           </div>
         </div>
 
+        {/* Right Phone */}
         <div className="phone-wrapper">
           <div className="phone-frame"></div>
           <img
