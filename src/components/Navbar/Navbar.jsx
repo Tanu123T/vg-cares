@@ -12,6 +12,10 @@ const Navbar = () => {
 
   const navigate = useNavigate();
   const location = useLocation();
+  const isFirstRender = useRef(true);
+
+  const navigate = useNavigate();
+  const location = useLocation();
 
   /* =========================
      CLOSE DROPDOWN ON OUTSIDE CLICK
@@ -30,13 +34,12 @@ const Navbar = () => {
     return () => document.removeEventListener("click", handleClickOutside);
   }, []);
 
-  /* =========================
+  /* -----------------------------
      SCROLL HANDLERS
-  ========================= */
+  ------------------------------*/
 
   const goToHome = () => {
     setIsMenuOpen(false);
-
     if (location.pathname === "/") {
       document.getElementById("home")?.scrollIntoView({ behavior: "smooth" });
     } else {
@@ -84,7 +87,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* MOBILE MENU TOGGLE */}
+      {/* MOBILE TOGGLE */}
       <div
         className="menu-toggle"
         onClick={() => setIsMenuOpen(!isMenuOpen)}
