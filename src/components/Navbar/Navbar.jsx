@@ -2,7 +2,7 @@ import "./Navbar.css";
 import { useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 
-if (typeof window !== "undefined" && "scrollRestoration" in window.history) {
+if ("scrollRestoration" in window.history) {
   window.history.scrollRestoration = "manual";
 }
 
@@ -12,19 +12,15 @@ const Navbar = () => {
 
   const navigate = useNavigate();
   const location = useLocation();
-  const isFirstRender = useRef(true);
-
-  const navigate = useNavigate();
-  const location = useLocation();
 
   /* =========================
      CLOSE DROPDOWN ON OUTSIDE CLICK
   ========================= */
   useEffect(() => {
-    const handleClickOutside = (event) => {
+    const handleClickOutside = (e) => {
       if (
-        !event.target.closest(".more-dropdown-trigger") &&
-        !event.target.closest(".menu-toggle")
+        !e.target.closest(".more-dropdown-trigger") &&
+        !e.target.closest(".menu-toggle")
       ) {
         setIsDropdownOpen(false);
       }
@@ -34,12 +30,12 @@ const Navbar = () => {
     return () => document.removeEventListener("click", handleClickOutside);
   }, []);
 
-  /* -----------------------------
-     SCROLL HANDLERS
-  ------------------------------*/
-
+  /* =========================
+     NAVIGATION HELPERS
+  ========================= */
   const goToHome = () => {
     setIsMenuOpen(false);
+
     if (location.pathname === "/") {
       document.getElementById("home")?.scrollIntoView({ behavior: "smooth" });
     } else {
@@ -51,9 +47,7 @@ const Navbar = () => {
     setIsMenuOpen(false);
 
     if (location.pathname === "/") {
-      document
-        .getElementById("services")
-        ?.scrollIntoView({ behavior: "smooth" });
+      document.getElementById("services")?.scrollIntoView({ behavior: "smooth" });
     } else {
       navigate("/", { state: { scrollTo: "services" } });
     }
@@ -76,10 +70,7 @@ const Navbar = () => {
       {/* LOGO */}
       <div className="logo-container" onClick={goToHome}>
         <div className="logo-mark">
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
+          <span></span><span></span><span></span><span></span>
         </div>
         <div className="logo-text">
           <h2>VG Cares Global</h2>
@@ -88,107 +79,40 @@ const Navbar = () => {
       </div>
 
       {/* MOBILE TOGGLE */}
-      <div
-        className="menu-toggle"
-        onClick={() => setIsMenuOpen(!isMenuOpen)}
-      >
-        <i className={`fas ${isMenuOpen ? "fa-times" : "fa-bars"}`}></i>
+      <div className="menu-toggle" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+        <i className={`fas ${isMenuOpen ? "fa-times" : "fa-bars"}`} />
       </div>
 
       {/* NAV LINKS */}
       <ul className={`nav-links ${isMenuOpen ? "active" : ""}`}>
-        <li>
-          <button className="nav-item" onClick={goToHome}>
-            Home
-          </button>
-        </li>
+        <li><button className="nav-item" onClick={goToHome}>Home</button></li>
+        <li><button className="nav-item" onClick={goToServices}>Services</button></li>
+        <li><button className="nav-item" onClick={goToCapabilities}>Our Capabilities</button></li>
 
-        <li>
-          <button className="nav-item" onClick={goToServices}>
-            Services
-          </button>
-        </li>
-
-        <li>
-          <button className="nav-item" onClick={goToCapabilities}>
-            Our Capabilities
-          </button>
-        </li>
-
-        {/* MORE DROPDOWN */}
+        {/* MORE */}
         <li className="more-dropdown-trigger">
           <div
             className="nav-item more-text"
             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
           >
-            More{" "}
-            <i
-              className={`fas fa-chevron-down ${
-                isDropdownOpen ? "rotate" : ""
-              }`}
-            ></i>
+            More <i className={`fas fa-chevron-down ${isDropdownOpen ? "rotate" : ""}`} />
           </div>
 
           <div className={`dropdown ${isDropdownOpen ? "show" : ""}`}>
-            <Link
-              to="/doctors"
-              className="dropdown-item"
-              onClick={() => {
-                setIsDropdownOpen(false);
-                setIsMenuOpen(false);
-              }}
-            >
-              <i className="fas fa-user-doctor"></i> Doctor
-            </Link>
-
-            <Link
-              to="/hospitals"
-              className="dropdown-item"
-              onClick={() => {
-                setIsDropdownOpen(false);
-                setIsMenuOpen(false);
-              }}
-            >
-              <i className="fas fa-hospital"></i> Hospital
-            </Link>
-
-            <Link
-              to="/blogs"
-              className="dropdown-item"
-              onClick={() => {
-                setIsDropdownOpen(false);
-                setIsMenuOpen(false);
-              }}
-            >
-              <i className="fas fa-book"></i> Blogs
-            </Link>
-
-            <Link
-              to="/contact"
-              className="dropdown-item"
-              onClick={() => {
-                setIsDropdownOpen(false);
-                setIsMenuOpen(false);
-              }}
-            >
-              <i className="fas fa-phone"></i> Contact Us
-            </Link>
+            <Link to="/doctors" className="dropdown-item" onClick={() => setIsMenuOpen(false)}>Doctor</Link>
+            <Link to="/hospitals" className="dropdown-item" onClick={() => setIsMenuOpen(false)}>Hospital</Link>
+            <Link to="/blogs" className="dropdown-item" onClick={() => setIsMenuOpen(false)}>Blogs</Link>
+            <Link to="/contact" className="dropdown-item" onClick={() => setIsMenuOpen(false)}>Contact</Link>
           </div>
         </li>
 
-        {/* MOBILE AUTH */}
         <li className="mobile-only">
-          <Link
-            to="/signin"
-            className="btn-signin"
-            onClick={() => setIsMenuOpen(false)}
-          >
+          <Link to="/signin" className="btn-signin" onClick={() => setIsMenuOpen(false)}>
             Sign In / Sign Up
           </Link>
         </li>
       </ul>
 
-      {/* DESKTOP AUTH */}
       <Link to="/signin" className="btn-signin desktop-only">
         Sign In / Sign Up
       </Link>
