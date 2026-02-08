@@ -6,7 +6,7 @@ const AIAssistant = () => {
     const injectId = 'botpress-inject';
     const configId = 'botpress-config';
 
-    const configSrc = 'https://files.bpcontent.cloud/2026/02/08/08/20260208084019-57HEEECF.js';
+    const configSrc = 'https://files.bpcontent.cloud/2026/02/08/17/20260208173021-J6T01B2S.js';
     const injectSrc = 'https://cdn.botpress.cloud/webchat/v3.5/inject.js';
 
     const ensureConfigScript = () => {
