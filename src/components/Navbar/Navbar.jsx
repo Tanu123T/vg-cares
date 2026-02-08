@@ -14,7 +14,7 @@ const Navbar = () => {
   const location = useLocation();
 
   /* =========================
-     CLOSE DROPDOWN ON OUTSIDE CLICK
+      CLOSE DROPDOWN ON OUTSIDE CLICK
   ========================= */
   useEffect(() => {
     const handleClickOutside = (e) => {
@@ -31,13 +31,13 @@ const Navbar = () => {
   }, []);
 
   /* =========================
-     NAVIGATION HELPERS
+      NAVIGATION HELPERS
   ========================= */
   const goToHome = () => {
     setIsMenuOpen(false);
 
     if (location.pathname === "/") {
-      document.getElementById("home")?.scrollIntoView({ behavior: "smooth" });
+      window.scrollTo({ top: 0, behavior: "smooth" });
     } else {
       navigate("/");
     }
@@ -45,7 +45,6 @@ const Navbar = () => {
 
   const goToServices = () => {
     setIsMenuOpen(false);
-
     if (location.pathname === "/") {
       document.getElementById("services")?.scrollIntoView({ behavior: "smooth" });
     } else {
@@ -55,11 +54,8 @@ const Navbar = () => {
 
   const goToCapabilities = () => {
     setIsMenuOpen(false);
-
     if (location.pathname === "/") {
-      document
-        .getElementById("capabilities")
-        ?.scrollIntoView({ behavior: "smooth" });
+      document.getElementById("capabilities")?.scrollIntoView({ behavior: "smooth" });
     } else {
       navigate("/", { state: { scrollTo: "capabilities" } });
     }
@@ -68,7 +64,7 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       {/* LOGO */}
-      <div className="logo-container" onClick={goToHome}>
+      <div className="logo-container" onClick={goToHome} style={{ cursor: 'pointer' }}>
         <div className="logo-mark">
           <span></span><span></span><span></span><span></span>
         </div>
@@ -91,8 +87,9 @@ const Navbar = () => {
 
         {/* MORE */}
         <li className="more-dropdown-trigger">
-          <div
-            className="nav-item more-text"
+          <button 
+            type="button"
+            className="nav-item more-text" 
             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
           >
             More <i className={`fa-solid fa-chevron-down ${isDropdownOpen ? "rotate" : ""}`} />
