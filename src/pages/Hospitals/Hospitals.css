@@ -15,7 +15,12 @@ header p { color: var(--text-gray); font-size: 1.1rem; }
 }
 .search-wrapper { flex: 2; display: flex; align-items: center; border: 1px solid #ddd; border-radius: 10px; padding: 0 15px; background: white; }
 .search-wrapper input { border: none; padding: 15px; width: 100%; outline: none; font-size: 1rem; }
-select { flex: 1; padding: 15px; border-radius: 10px; border: 1px solid #ddd; background-color: white; font-size: 1rem; color: var(--text-dark); cursor: pointer; }
+.filter-section select { flex: 1; padding: 15px; border-radius: 10px; border: 1px solid #ddd; background-color: white; font-size: 1rem; color: var(--text-dark); cursor: pointer; transition: border-color 0.2s ease, box-shadow 0.2s ease; }
+
+.filter-section select:focus-visible {
+  border-color: var(--primary-blue);
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.12);
+}
 
 .stats-count { text-align: right; margin-bottom: 15px; font-weight: 600; color: var(--text-gray); }
 
@@ -31,8 +36,8 @@ select { flex: 1; padding: 15px; border-radius: 10px; border: 1px solid #ddd; ba
     box-shadow: 0 15px 30px rgba(0,0,0,0.1);
 }
 
-/* Blog Home Button - Same as Blogs Page */
-.blog-home-btn {
+/* Home Button */
+.hospital-home-btn {
     position: fixed;
     bottom: 20px;
     right: 20px;
@@ -51,7 +56,7 @@ select { flex: 1; padding: 15px; border-radius: 10px; border: 1px solid #ddd; ba
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-.blog-home-btn:hover {
+.hospital-home-btn:hover {
     transform: scale(1.1);
     background: #0b5ed7;
 }
@@ -98,4 +103,8 @@ select { flex: 1; padding: 15px; border-radius: 10px; border: 1px solid #ddd; ba
 .detail-item label { display: block; font-size: 0.75rem; text-transform: uppercase; color: var(--text-gray); font-weight: 700; margin-bottom: 5px; }
 .detail-item p { font-weight: 600; color: var(--text-dark); }
 
-@media (max-width: 768px) { .filter-section { flex-direction: column; } .details-banner { height: 250px; } }
+@media (max-width: 768px) {
+  .filter-section { flex-direction: column; }
+  .filter-section select { width: 100%; }
+  .details-banner { height: 250px; }
+}

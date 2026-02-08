@@ -80,7 +80,7 @@ const Navbar = () => {
 
       {/* MOBILE TOGGLE */}
       <div className="menu-toggle" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-        <i className={`fas ${isMenuOpen ? "fa-times" : "fa-bars"}`} />
+        <i className={`fa-solid ${isMenuOpen ? "fa-times" : "fa-bars"}`} />
       </div>
 
       {/* NAV LINKS */}
@@ -95,14 +95,26 @@ const Navbar = () => {
             className="nav-item more-text"
             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
           >
-            More <i className={`fas fa-chevron-down ${isDropdownOpen ? "rotate" : ""}`} />
+            More <i className={`fa-solid fa-chevron-down ${isDropdownOpen ? "rotate" : ""}`} />
           </div>
 
           <div className={`dropdown ${isDropdownOpen ? "show" : ""}`}>
-            <Link to="/doctors" className="dropdown-item" onClick={() => setIsMenuOpen(false)}>Doctor</Link>
-            <Link to="/hospitals" className="dropdown-item" onClick={() => setIsMenuOpen(false)}>Hospital</Link>
-            <Link to="/blogs" className="dropdown-item" onClick={() => setIsMenuOpen(false)}>Blogs</Link>
-            <Link to="/contact" className="dropdown-item" onClick={() => setIsMenuOpen(false)}>Contact</Link>
+            <Link to="/doctors" className="dropdown-item" onClick={() => setIsMenuOpen(false)}>
+              <i className="fa-solid fa-user-doctor" />
+              Doctor
+            </Link>
+            <Link to="/hospitals" className="dropdown-item" onClick={() => setIsMenuOpen(false)}>
+              <i className="fa-solid fa-hospital" />
+              Hospital
+            </Link>
+            <Link to="/blogs" className="dropdown-item" onClick={() => setIsMenuOpen(false)}>
+              <i className="fa-solid fa-book" />
+              Blogs
+            </Link>
+            <Link to="/contact" className="dropdown-item" onClick={() => setIsMenuOpen(false)}>
+              <i className="fa-solid fa-phone" />
+              Contact
+            </Link>
           </div>
         </li>
 

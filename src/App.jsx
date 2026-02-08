@@ -70,7 +70,7 @@ export default function App() {
   return (
     <>
       <Navbar />
-      {isHomePage && <AIAssistant />}
+      {isHomePage ? <AIAssistant key="home-ai" /> : null}
 
       <Routes>
         <Route path="/" element={<Home />} />
