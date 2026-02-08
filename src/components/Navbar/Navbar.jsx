@@ -1,24 +1,69 @@
 import "./Navbar.css";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 
 const Navbar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const navigate = useNavigate();
+  const location = useLocation();
+
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (!event.target.closest('.more-dropdown-trigger') && !event.target.closest('.menu-toggle')) {
+      if (
+        !event.target.closest(".more-dropdown-trigger") &&
+        !event.target.closest(".menu-toggle")
+      ) {
         setIsDropdownOpen(false);
       }
     };
-    document.addEventListener('click', handleClickOutside);
-    return () => document.removeEventListener('click', handleClickOutside);
+
+    document.addEventListener("click", handleClickOutside);
+    return () => document.removeEventListener("click", handleClickOutside);
   }, []);
+
+  /* -----------------------------
+     SCROLL HANDLERS
+  ------------------------------*/
+
+  const goToHome = () => {
+    setIsMenuOpen(false);
+    if (location.pathname === "/") {
+      document.getElementById("home")?.scrollIntoView({ behavior: "smooth" });
+    } else {
+      navigate("/");
+    }
+  };
+
+  const goToServices = () => {
+    setIsMenuOpen(false);
+
+    if (location.pathname === "/") {
+      document
+        .getElementById("services")
+        ?.scrollIntoView({ behavior: "smooth" });
+    } else {
+      navigate("/", { state: { scrollTo: "services" } });
+    }
+  };
+
+  const goToCapabilities = () => {
+    setIsMenuOpen(false);
+
+    if (location.pathname === "/") {
+      document
+        .getElementById("capabilities")
+        ?.scrollIntoView({ behavior: "smooth" });
+    } else {
+      navigate("/", { state: { scrollTo: "capabilities" } });
+    }
+  };
 
   return (
     <nav className="navbar">
-      <div className="logo-container">
+      {/* LOGO */}
+      <div className="logo-container" onClick={goToHome}>
         <div className="logo-mark">
           <span></span><span></span><span></span><span></span>
         </div>
@@ -28,46 +73,108 @@ const Navbar = () => {
         </div>
       </div>
 
-      <div className="menu-toggle" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-        <i className={`fas ${isMenuOpen ? 'fa-times' : 'fa-bars'}`}></i>
+      {/* MOBILE TOGGLE */}
+      <div
+        className="menu-toggle"
+        onClick={() => setIsMenuOpen(!isMenuOpen)}
+      >
+        <i className={`fas ${isMenuOpen ? "fa-times" : "fa-bars"}`}></i>
       </div>
 
-      <ul className={`nav-links ${isMenuOpen ? 'active' : ''}`}>
-        <li><a href="#home" className="nav-item" onClick={() => setIsMenuOpen(false)}>Home</a></li>
-        <li><a href="#services" className="nav-item" onClick={() => setIsMenuOpen(false)}>Services</a></li>
-        <li><a href="#capabilities" className="nav-item" onClick={() => setIsMenuOpen(false)}>Our Capabilities</a></li>
+      {/* NAV LINKS */}
+      <ul className={`nav-links ${isMenuOpen ? "active" : ""}`}>
+        <li>
+          <button className="nav-item" onClick={goToHome}>
+            Home
+          </button>
+        </li>
 
+        <li>
+          <button className="nav-item" onClick={goToServices}>
+            Services
+          </button>
+        </li>
+
+        <li>
+          <button className="nav-item" onClick={goToCapabilities}>
+            Our Capabilities
+          </button>
+        </li>
+
+        {/* MORE DROPDOWN */}
         <li className="more-dropdown-trigger">
-          <div 
-            className="nav-item more-text" 
+          <div
+            className="nav-item more-text"
             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
           >
-            More <i className={`fas fa-chevron-down ${isDropdownOpen ? 'rotate' : ''}`}></i>
+            More{" "}
+            <i
+              className={`fas fa-chevron-down ${
+                isDropdownOpen ? "rotate" : ""
+              }`}
+            ></i>
           </div>
 
-          <div className={`dropdown ${isDropdownOpen ? 'show' : ''}`}>
-            <Link to="/doctors" className="dropdown-item" onClick={() => {setIsDropdownOpen(false); setIsMenuOpen(false);}}>
+          <div className={`dropdown ${isDropdownOpen ? "show" : ""}`}>
+            <Link
+              to="/doctors"
+              className="dropdown-item"
+              onClick={() => {
+                setIsDropdownOpen(false);
+                setIsMenuOpen(false);
+              }}
+            >
               <i className="fas fa-user-doctor"></i> Doctor
             </Link>
-            <Link to="/hospitals" className="dropdown-item" onClick={() => {setIsDropdownOpen(false); setIsMenuOpen(false);}}>
+
+            <Link
+              to="/hospitals"
+              className="dropdown-item"
+              onClick={() => {
+                setIsDropdownOpen(false);
+                setIsMenuOpen(false);
+              }}
+            >
               <i className="fas fa-hospital"></i> Hospital
             </Link>
-            <Link to="/blogs" className="dropdown-item" onClick={() => {setIsDropdownOpen(false); setIsMenuOpen(false);}}>
+
+            <Link
+              to="/blogs"
+              className="dropdown-item"
+              onClick={() => {
+                setIsDropdownOpen(false);
+                setIsMenuOpen(false);
+              }}
+            >
               <i className="fas fa-book"></i> Blogs
             </Link>
-            <Link to="/contact" className="dropdown-item" onClick={() => {setIsDropdownOpen(false); setIsMenuOpen(false);}}>
+
+            <Link
+              to="/contact"
+              className="dropdown-item"
+              onClick={() => {
+                setIsDropdownOpen(false);
+                setIsMenuOpen(false);
+              }}
+            >
               <i className="fas fa-phone"></i> Contact Us
             </Link>
           </div>
         </li>
 
+        {/* MOBILE AUTH */}
         <li className="mobile-only">
-          <Link to="/signin" className="btn-signin" onClick={() => setIsMenuOpen(false)}>
+          <Link
+            to="/signin"
+            className="btn-signin"
+            onClick={() => setIsMenuOpen(false)}
+          >
             Sign In / Sign Up
           </Link>
         </li>
       </ul>
 
+      {/* DESKTOP AUTH */}
       <Link to="/signin" className="btn-signin desktop-only">
         Sign In / Sign Up
       </Link>
