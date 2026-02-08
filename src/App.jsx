@@ -2,25 +2,21 @@ import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import "./App.css";
 
-/* ========= GLOBAL COMPONENTS ========= */
 import Navbar from "./components/Navbar/Navbar";
-import Footer from "./components/Footer/Footer";
-import AIAssistant from "./components/AIAssistant/AIAssistant";
-
-/* ========= HOME SECTIONS ========= */
 import Hero from "./components/Hero/Hero";
 import Services from "./components/Services/Services";
-import Diseases from "./components/Diseases/Diseases";
-import Doctors_approach from "./components/Doctors_approach/Doctors_approach";
-import Roadmap from "./components/Roadmap/Roadmap";
 import Feedback from "./components/Feedback/Feedback";
-import Stats from "./components/Stats/Stats";
-import Features from "./components/Features/Features";
-import MedicalMap from "./components/MedicalMap/MedicalMap";
 import Download_app from "./components/Download_app/Download_app";
 import Partners from "./components/Partners/Partners";
+import Stats from "./components/Stats/Stats";
+import Footer from "./components/Footer/Footer";
+import MedicalMap from "./components/MedicalMap/MedicalMap";
+import Diseases from "./components/Diseases/Diseases";
+import Doctors_approach from "./components/Doctors_approach/Doctors_approach";
+import Features from "./components/Features/Features";
+import Roadmap from "./components/Roadmap/Roadmap";
+import AIAssistant from "./components/AIAssistant/AIAssistant";
 
-/* ========= PAGES ========= */
 import Doctors from "./pages/Doctors/Doctors";
 import Blogs from "./pages/Blogs/Blogs";
 import Hospitals from "./pages/Hospitals/Hospitals";
@@ -35,14 +31,14 @@ function Home() {
 
   useEffect(() => {
     if (location.state?.scrollTo) {
-      // wait until DOM is painted
-      requestAnimationFrame(() => {
-        const section = document.getElementById(location.state.scrollTo);
-        section?.scrollIntoView({ behavior: "smooth" });
+      const section = document.getElementById(location.state.scrollTo);
 
-        // clear state to prevent re-scroll
-        navigate("/", { replace: true });
-      });
+      if (section) {
+        section.scrollIntoView({ behavior: "smooth" });
+      }
+
+      // clear state so it doesn't scroll again
+      navigate("/", { replace: true });
     }
   }, [location, navigate]);
 
@@ -59,6 +55,7 @@ function Home() {
       <MedicalMap />
       <Download_app />
       <Partners />
+      <Footer />
     </>
   );
 }
@@ -66,7 +63,7 @@ function Home() {
 /* =========================
    APP
 ========================= */
-function App() {
+export default function App() {
   const location = useLocation();
   const isHomePage = location.pathname === "/";
 
@@ -77,24 +74,22 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/doctors" element={<Doctors />} />
-        <Route path="/hospitals" element={<Hospitals />} />
-        <Route path="/blogs" element={<Blogs />} />
-        <Route path="/contact" element={<ContactUs />} />
-
+        <Route path="/doctors" element={<><Doctors /><Footer /></>} />
+        <Route path="/hospitals" element={<><Hospitals /><Footer /></>} />
+        <Route path="/blogs" element={<><Blogs /><Footer /></>} />
+        <Route path="/contact" element={<><ContactUs /><Footer /></>} />
         <Route
           path="/signin"
           element={
-            <div style={{ padding: "100px 20px", textAlign: "center" }}>
-              <h1>Sign In page coming soon...</h1>
-            </div>
+            <>
+              <div style={{ padding: "100px 20px", textAlign: "center" }}>
+                <h1>Sign In page coming soon...</h1>
+              </div>
+              <Footer />
+            </>
           }
         />
       </Routes>
-
-      <Footer />
     </>
   );
 }
-
-export default App;
