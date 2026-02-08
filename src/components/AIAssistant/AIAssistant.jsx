@@ -52,6 +52,13 @@ const AIAssistant = () => {
 
       const s2 = document.getElementById(configId);
       if (s2) document.body.removeChild(s2);
+
+      // Botpress often injects persistent DOM nodes (bubble + widget container).
+      // Remove them so the icon does not remain visible on other routes.
+      const widgetNodes = document.querySelectorAll(
+        '#bp-web-widget-container, .bpw-widget-container, .bpw-widget, iframe[src*="botpress"], iframe[title*="Botpress" i]'
+      );
+      widgetNodes.forEach((n) => n?.parentNode?.removeChild(n));
     };
   }, []);
 
