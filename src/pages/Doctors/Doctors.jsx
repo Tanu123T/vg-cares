@@ -2,12 +2,13 @@ import { useState, useMemo } from "react";
 import { doctorData } from "../../data/doctorData";
 import "./Doctors.css";
 import { Video, X, Star, Search } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Doctors() {
   const [search, setSearch] = useState("");
   const [specialty, setSpecialty] = useState("All");
   const [selectedDoctor, setSelectedDoctor] = useState(null);
+  const navigate = useNavigate();
 
   const filteredDoctors = useMemo(() => {
     return doctorData.filter((doctor) => {
@@ -75,7 +76,7 @@ export default function Doctors() {
 
             <div className="card-features">
               <span className="tele-link">
-                <Video size={14} /> Teleconsultation
+                Teleconsultation
               </span>
               <span className="board-badge">Am. Board of {doctor.specialty}</span>
             </div>
@@ -90,10 +91,8 @@ export default function Doctors() {
                 className="btn-book-now" 
                 onClick={() => setSelectedDoctor(doctor)} // Logic to open modal
               >
-                Book Now
-              </button>
-              <button className="btn-video-alt">
                 <Video size={18} />
+                Book Appointment
               </button>
             </div>
           </div>
@@ -123,8 +122,8 @@ export default function Doctors() {
             <button 
               className="confirm-btn"
               onClick={() => {
-                alert(`Appointment Requested with ${selectedDoctor.name}!`);
                 setSelectedDoctor(null);
+                navigate('/signin');
               }}
             >
               Confirm Appointment
