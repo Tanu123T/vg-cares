@@ -1,5 +1,6 @@
 import "./hero.css";
 import heroImg from "../../assets/images/hero1.jpg";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   return (
@@ -19,13 +20,13 @@ const Hero = () => {
         </p>
 
         <div className="cta-group">
-          <a href="#services" className="btn-book1">
+          <Link to="/signin" className="btn-book1">
             <span className="shimmer-text">Book Appointment →</span>
-          </a>
+          </Link>
 
-          <a href="/doctors" className="btn-find">
+          <Link to="/doctors" className="btn-find">
             Find a Doctor
-          </a>
+          </Link>
         </div>
 
         <div className="trust-row">
