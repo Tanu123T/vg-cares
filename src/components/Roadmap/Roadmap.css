@@ -3,6 +3,8 @@
 /* --- MAIN SECTION --- */
 .roadmap-section {
   width: 100%;
+  padding:0px;
+   margin-top: 80px;
   overflow: hidden;
   background: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)),
               url("../../assets/images/roadmapbg.png");/* Page background */
@@ -13,7 +15,7 @@
 /* HEADER */
 .jt-header {
   max-width: 72rem;
-  margin: 0 auto 40px auto;
+  margin: 0px auto 1px auto;
   padding-top: 60px;
   text-align: center;
 }
