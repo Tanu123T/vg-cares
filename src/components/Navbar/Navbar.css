@@ -135,6 +135,7 @@
   transform: translateX(5px);
 }
 
+/* --- UPDATED SIGNIN BUTTON WITH SHINE --- */
 .btn-signin {
   background: #006ce0;
   color: white;
@@ -142,12 +143,39 @@
   border-radius: 50px;
   text-decoration: none;
   font-weight: 600;
-  transition: 0.3s;
+  transition: all 0.3s ease;
   display: inline-block;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
 }
 
 .btn-signin:hover {
-  background: #333;
+  background: #005bbd; /* Brand blue hover instead of black */
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 108, 224, 0.3);
+}
+
+.btn-signin::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: skewX(-25deg);
+  transition: none;
+}
+
+.btn-signin:hover::after {
+  left: 150%;
+  transition: all 0.6s ease;
 }
 
 /* --- MOBILE RESPONSIVE LOGIC --- */
@@ -180,8 +208,6 @@
     top: 100%;
     left: 0;
     width: 100%;
-    
-    /* CHANGE 1: Remove max-height and overflow: hidden */
     display: none; 
     flex-direction: column;
     background: white;
@@ -192,7 +218,6 @@
     border-top: 1px solid #f0f0f0;
   }
 
-  /* CHANGE 2: Use display: flex to show the menu instead of max-height */
   .nav-links.active {
     display: flex;
   }
@@ -204,41 +229,38 @@
     border-bottom: 1px solid #fafafa;
   }
 
-  /* CHANGE 3: Ensure dropdown pushes everything down */
   .dropdown {
-    position: static;      /* Removes the "floating" behavior */
-    transform: none;       /* Resets the desktop centering */
+    position: static;
+    transform: none;
     opacity: 1;
     visibility: visible;
-    display: none;         /* Toggled by the 'show' class */
+    display: none;
     box-shadow: none;
     border: none;
     width: 100%;
     background: transparent;
-    
-    /* This moves the dropdown menu items to the right */
     padding-left: 40px;    
     margin-top: 5px;
   }
 
   .dropdown.show {
-    display: block;        /* Pushes the 'Sign In' button down */
+    display: block;
   }
 
   .dropdown-item {
-    padding: 10px 0;       /* Vertical spacing between items */
+    padding: 10px 0;
     justify-content: flex-start;
     font-size: 1rem;
     color: #555;
-    background: transparent !important; /* Remove hover background on mobile for cleaner look */
+    background: transparent !important;
   }
   
   .dropdown-item i {
-    width: 25px;           /* Keeps icons aligned */
+    width: 25px;
     color: #006ce0;
   }
 
   .more-text {
-    color: var(--brand-blue, #006ce0);
+    color: #006ce0;
   }
 }

@@ -1,7 +1,7 @@
 import "./Navbar.css";
 import { useState, useEffect, useRef } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { ChevronDown, UserRound, Hospital, BookOpen, Mail } from "lucide-react";
+import { UserRound, Hospital, BookOpen, Mail } from "lucide-react";
 
 if (typeof window !== "undefined" && "scrollRestoration" in window.history) {
   window.history.scrollRestoration = "manual";
@@ -10,16 +10,17 @@ if (typeof window !== "undefined" && "scrollRestoration" in window.history) {
 const Navbar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  
+  const location = useLocation();
+  const navigate = useNavigate(); // Added this to enable cross-page navigation
+  const isFirstRender = useRef(true);
 
   useEffect(() => {
-    // 1. If we are NOT on the home page (e.g., /blogs, /doctors), 
-    // always jump to the absolute top and STOP the logic there.
     if (location.pathname !== "/") {
       window.scrollTo(0, 0);
       return; 
     }
 
-    // 2. Handle Initial Load / Refresh on Home Page
     if (isFirstRender.current) {
       if (!window.location.hash) {
         window.scrollTo(0, 0);
@@ -27,32 +28,34 @@ const Navbar = () => {
       isFirstRender.current = false;
     }
 
-    // 3. Handle Section Scrolling ONLY if on Home Page and a Hash exists
     if (location.hash && location.pathname === "/") {
       const id = location.hash.replace("#", "");
       const timer = setTimeout(() => {
         const element = document.getElementById(id);
         if (element) {
           element.scrollIntoView({ behavior: "smooth" });
-          // Clean hash from URL after scrolling
           window.history.replaceState(null, "", window.location.pathname);
         }
       }, 100);
       return () => clearTimeout(timer);
     }
-  }, [location]); // This triggers on every page change
+  }, [location]);
 
+  // FIX: Logic updated to work from other pages
   const handleNavClick = (e, sectionId) => {
     e.preventDefault();
     if (location.pathname === "/") {
+      // If already on home, just scroll
       const element = document.getElementById(sectionId);
       if (element) {
         element.scrollIntoView({ behavior: "smooth" });
       }
-    };
-    document.addEventListener('click', handleClickOutside);
-    return () => document.removeEventListener('click', handleClickOutside);
-  }, []);
+    } else {
+      // If on another page (like /blogs), navigate back home with the hash
+      navigate(`/#${sectionId}`);
+    }
+    setIsMenuOpen(false);
+  };
 
   return (
     <nav className="navbar">
@@ -71,15 +74,12 @@ const Navbar = () => {
       </div>
 
       <ul className={`nav-links ${isMenuOpen ? 'active' : ''}`}>
-        <li><a href="#home" className="nav-item" onClick={() => setIsMenuOpen(false)}>Home</a></li>
-        <li><a href="#services" className="nav-item" onClick={() => setIsMenuOpen(false)}>Services</a></li>
-        <li><a href="#capabilities" className="nav-item" onClick={() => setIsMenuOpen(false)}>Our Capabilities</a></li>
+        <li><a href="#home" className="nav-item" onClick={(e) => handleNavClick(e, 'home')}>Home</a></li>
+        <li><a href="#services" className="nav-item" onClick={(e) => handleNavClick(e, 'services')}>Services</a></li>
+        <li><a href="#capabilities" className="nav-item" onClick={(e) => handleNavClick(e, 'capabilities')}>Our Capabilities</a></li>
 
         <li className="more-dropdown-trigger">
-          <div 
-            className="nav-item more-text" 
-            onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-          >
+          <div className="nav-item more-text" onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
             More <i className={`fas fa-chevron-down ${isDropdownOpen ? 'rotate' : ''}`}></i>
           </div>
 
