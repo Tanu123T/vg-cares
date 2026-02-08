@@ -13,9 +13,7 @@ const AIAssistant = () => {
   const [inputValue, setInputValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  // OpenAI API Configuration - Add your API key here
-  const OPENAI_API_KEY = 'your-openai-api-key-here'; // Replace with your actual API key
-  const OPENAI_API_URL = 'https://api.openai.com/v1/chat/completions';
+  const AI_API_URL = '/api/ai/chat';
 
   const toggleAssistant = () => {
     setIsOpen(!isOpen);
@@ -25,12 +23,13 @@ const AIAssistant = () => {
     if (inputValue.trim() === '' || isLoading) return;
 
     const userMessage = { type: 'user', text: inputValue };
-    setMessages(prev => [...prev, userMessage]);
+    const nextMessages = [...messages, userMessage];
+    setMessages(nextMessages);
     setInputValue('');
     setIsLoading(true);
 
     try {
-      const botResponse = await generateAIResponse(inputValue, messages);
+      const botResponse = await generateAIResponse(userMessage.text, nextMessages);
       setMessages(prev => [...prev, botResponse]);
     } catch (error) {
       console.error('AI Error:', error);
@@ -45,59 +44,36 @@ const AIAssistant = () => {
   };
 
   const generateAIResponse = async (userInput, conversationHistory) => {
-    // If no API key is set, use enhanced fallback
-    if (OPENAI_API_KEY === 'your-openai-api-key-here') {
+    try {
+      const response = await fetch(AI_API_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          userInput,
+          history: (conversationHistory || []).slice(-12),
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`API Error: ${response.status}`);
+      }
+
+      const data = await response.json();
+      const aiResponse = data?.reply;
+
+      if (typeof aiResponse !== 'string' || aiResponse.trim() === '') {
+        throw new Error('Empty AI reply');
+      }
+
+      return {
+        type: 'bot',
+        text: aiResponse.trim(),
+      };
+    } catch (_e) {
       return generateFallbackResponse(userInput);
     }
-
-    // Prepare conversation context for OpenAI
-    const systemMessage = {
-      role: 'system',
-      content: `You are a helpful AI assistant for VG CARES, a medical services platform. You provide accurate, helpful information about:
-      - Medical services and healthcare
-      - Finding doctors and specialists
-      - Hospital information and emergency services
-      - Appointment booking and medical consultations
-      - General health guidance (with disclaimer)
-      - Pharmacy and medication information
-      - Insurance and cost guidance
-      
-      Always be professional, empathetic, and helpful. For serious medical concerns, always recommend consulting with qualified healthcare professionals.`
-    };
-
-    const userMessage = {
-      role: 'user',
-      content: userInput
-    };
-
-    // Convert conversation history to OpenAI format
-    const messages = [systemMessage, userMessage];
-
-    const response = await fetch(OPENAI_API_URL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${OPENAI_API_KEY}`
-      },
-      body: JSON.stringify({
-        model: 'gpt-3.5-turbo',
-        messages: messages,
-        max_tokens: 300,
-        temperature: 0.7,
-      })
-    });
-
-    if (!response.ok) {
-      throw new Error(`API Error: ${response.status}`);
-    }
-
-    const data = await response.json();
-    const aiResponse = data.choices[0].message.content;
-
-    return {
-      type: 'bot',
-      text: aiResponse.trim()
-    };
   };
 
   const generateFallbackResponse = (userInput) => {
@@ -230,10 +206,7 @@ const AIAssistant = () => {
 
         <div className="ai-footer">
           <small>
-            {OPENAI_API_KEY === 'your-openai-api-key-here' 
-              ? 'Using enhanced keyword responses • Add OpenAI API key for AI-powered responses' 
-              : 'Powered by OpenAI GPT • Not a substitute for professional medical advice'
-            }
+            Powered by VG CARES AI • Not a substitute for professional medical advice
           </small>
         </div>
       </div>
