@@ -47,49 +47,52 @@ const servicesData = [
 ];
 
 const Services = () => {
-
   useEffect(() => {
     const cards = document.querySelectorAll(".card");
 
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach(entry => {
+        entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add("show");
+          } else {
+            // FIX: Remove "show" when scrolling away so it animates again next time
+            entry.target.classList.remove("show");
           }
         });
       },
-      { threshold: 0.2 }
+      { threshold: 0.1 } 
     );
 
-    cards.forEach(card => observer.observe(card));
+    cards.forEach((card) => observer.observe(card));
 
     return () => observer.disconnect();
   }, []);
 
   return (
-    <section className="expertise">
+    /* ADDED id="services" for the Navbar scroll logic */
+    <section className="expertise" id="services">
       <span className="badge">Our Expertise</span>
 
       <h1 className="service-title">
-        Comprehensive Care  Designed for You
+        Comprehensive Care Designed for You
       </h1>
 
       <p className="desc"><b>
         Healthcare that fits your life. Our services are built to be accessible, transparent and secure.</b>
       </p>
     
-        <div className="grid">
-          {servicesData.map((item, index) => (
-            <div className={`card ${item.card}`} key={index}>
-              <div className={`icon ${item.color}`}>
-                <i className={`fa-solid ${item.icon}`}></i>
-              </div>
-              <h3>{item.title}</h3>
-              <p>{item.desc}</p>
+      <div className="grid">
+        {servicesData.map((item, index) => (
+          <div className={`card ${item.card}`} key={index}>
+            <div className={`icon ${item.color}`}>
+              <i className={`fa-solid ${item.icon}`}></i>
             </div>
-          ))}
-        </div>
+            <h3>{item.title}</h3>
+            <p>{item.desc}</p>
+          </div>
+        ))}
+      </div>
     
     </section>
   );

@@ -1,159 +1,69 @@
-/* Section Styling */
+/* ==========================================================================
+   Section Layout
+   ========================================================================== */
 #maps {
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 20px 0;
+    font-family: 'Inter', sans-serif;
 }
 
 .outer-container {
-    background: white; 
-    padding: 40px; 
+    background: white;
+    padding: 40px;
     border-radius: 40px;
-    width: 98%; 
-    max-width: 1400px; 
+    width: 98%;
+    max-width: 1400px;
     text-align: center;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.08);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
 }
 
-h1 { font-size: 26px; font-weight: 700; color: #1e293b; margin-bottom: 25px; }
+h1 {
+    font-size: 26px;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 20px;
+}
 
+/* ==========================================================================
+   Map Frame & Effects
+   ========================================================================== */
 .map-frame {
-    position: relative !important; /* Forces absolute children to stay inside */
-    height: 500px; 
+    position: relative !important;
+    height: 500px;
+    margin-top: 30px;
     border-radius: 35px;
-    overflow: hidden; 
+    overflow: hidden;
     background: #0f172a;
-    z-index: 1; /* Keep it below your website's nav bar (usually z-index 100+) */
+    z-index: 1;
 }
 
-/* Map Blur Effect */
 #map {
-    height: 100%; 
+    height: 100%;
     width: 100%;
     filter: brightness(0.5) grayscale(0.5) blur(3px);
     transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.map-bright #map { 
-    filter: brightness(1) grayscale(0) blur(0px); 
+.map-bright #map {
+    filter: brightness(1) grayscale(0) blur(0px);
 }
 
-/* UI Controls Overlay */
+/* ==========================================================================
+   UI Controls (Search & Buttons)
+   ========================================================================== */
 .top-controls {
     position: absolute; 
-    top: 5px; 
+    top: 20px; 
     left: 20px; 
     right: 20px;
-    z-index: 1000; 
-    display: flex; 
+    z-index: 1000;
+    display: flex;
     justify-content: space-between;
     align-items: flex-start;
-}
-
-.button-group { display: flex; gap: 10px; }
-
-.pill-btn {
-    background: var(--dark-ui, #1e293b); 
-    color: #f1f5f9; 
-    border: 1px solid rgba(255,255,255,0.1);
-    padding: 12px 20px; 
-    border-radius: 50px; 
-    font-size: 11px; 
-    font-weight: 600;
-    cursor: pointer; 
-    display: flex; 
-    align-items: center; 
-    gap: 8px;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-    position: relative;
-    overflow: hidden;
-    transform: translateY(0) scale(1);
-    box-sizing: border-box;
-    height: 44px;
-}
-
-.pill-btn::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-    transition: left 0.5s;
-}
-
-.pill-btn:hover::before {
-    left: 100%;
-}
-
-.pill-btn:hover { 
-    transform: translateY(-2px) scale(1.05); 
-    box-shadow: 0 8px 25px rgba(0,0,0,0.5);
-    background: #1e293b;
-}
-
-.pill-btn:active {
-    transform: translateY(0) scale(0.98);
-    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-}
-
-.pill-btn i {
-    font-size: 14px;
-    filter: drop-shadow(0 1px 2px rgba(0,0,0,0.2));
-}
-
-.dropdown-wrapper { position: relative; }
-
-.filter-menu {
-    position: absolute; 
-    top: 45px; 
-    left: 0; 
-    background: var(--dark-ui, #1e293b);
-    border-radius: 15px; 
-    padding: 8px; 
-    width: 160px;
-    display: none; 
-    flex-direction: column; 
-    z-index: 3000;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-    opacity: 0;
-    transform: translateY(-10px);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.filter-menu.show {
-    display: flex; 
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.filter-item { 
-    color: white; 
-    font-size: 12px; 
-    padding: 10px; 
-    cursor: pointer; 
-    border-radius: 8px; 
-    text-align: left; 
-    display: flex; 
-    align-items: center; 
-    gap: 10px; 
-    transition: all 0.2s ease;
-    transform: translateX(0);
-}
-
-.filter-item:hover { 
-    background: rgba(255,255,255,0.1); 
-    transform: translateX(4px);
-}
-
-.filter-item:active {
-    transform: translateX(2px) scale(0.98);
+    gap: 15px;
 }
 
 .search-container {
@@ -170,6 +80,91 @@ h1 { font-size: 26px; font-weight: 700; color: #1e293b; margin-bottom: 25px; }
     height: 44px;
 }
 
+.search-container input { 
+    border: none; 
+    outline: none; 
+    margin-left: 8px; 
+    width: 100%; 
+    font-size: 14px; 
+    background: transparent; 
+}
+
+.search-container i { 
+    color: #007BFF; 
+    font-size: 16px; 
+}
+
+/* ==========================================================================
+   Buttons & Dropdowns
+   ========================================================================== */
+.button-group {
+    display: flex;
+    gap: 10px;
+}
+
+.pill-btn {
+    background: #1e293b;
+    color: #f1f5f9;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0 20px;
+    border-radius: 50px;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    height: 44px;
+    white-space: nowrap;
+}
+
+.pill-btn:hover {
+    transform: translateY(-2px);
+    background: #334155;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* Dropdown Menus */
+.filter-menu {
+    position: absolute;
+    top: 50px;
+    left: 0;
+    background: #1e293b;
+    border-radius: 15px;
+    padding: 8px;
+    width: 160px;
+    display: none;
+    flex-direction: column;
+    z-index: 3000;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.filter-menu.show {
+    display: flex;
+}
+
+.filter-item {
+    color: white;
+    font-size: 12px;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: background 0.2s;
+}
+
+.filter-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* ==========================================================================
+   Suggestions & Overlays
+   ========================================================================== */
 .search-suggestions {
     position: absolute;
     top: 100%;
@@ -177,21 +172,16 @@ h1 { font-size: 26px; font-weight: 700; color: #1e293b; margin-bottom: 25px; }
     right: 0;
     background: white;
     border-radius: 15px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
     margin-top: 5px;
-    max-height: 200px;
+    max-height: 250px;
     overflow-y: auto;
     z-index: 1000;
     display: none;
-    opacity: 0;
-    transform: translateY(-10px);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .search-suggestions.show {
     display: block;
-    opacity: 1;
-    transform: translateY(0);
 }
 
 .suggestion-item {
@@ -199,125 +189,128 @@ h1 { font-size: 26px; font-weight: 700; color: #1e293b; margin-bottom: 25px; }
     cursor: pointer;
     border-bottom: 1px solid #f0f0f0;
     font-size: 14px;
-    color: #333;
-    transition: all 0.2s ease;
-    transform: translateX(0);
+    text-align: left;
 }
 
-.suggestion-item:hover {
-    background: #f8f9fa;
-    transform: translateX(4px);
-}
-
-.suggestion-item:last-child {
-    border-bottom: none;
-}
-
-.suggestion-item .city-name {
-    font-weight: 600;
-    color: #1e293b;
-}
-
-.suggestion-item .country-name {
-    font-size: 12px;
-    color: #64748b;
-    margin-left: 5px;
-}
-
-.search-container input { 
-    border: none; 
-    outline: none; 
-    margin-left: 8px; 
-    width: calc(100% - 32px); 
-    font-size: 14px; 
-    background: transparent; 
-    line-height: normal; 
-    padding: 0; 
-    vertical-align: middle; 
-    box-sizing: border-box; 
-}
-.search-container i { 
-    color: var(--primary, #007BFF); 
-    font-size: 16px; 
-    flex-shrink: 0;
-}
-
-/* Status Loader */
 #loader {
-    position: absolute; 
-    top: 85px; 
-    left: 50%; 
+    position: absolute;
+    top: 85px;
+    left: 50%;
     transform: translateX(-50%);
-    z-index: 1001; 
-    background: #10b981; 
+    z-index: 1001;
+    background: #10b981;
     color: white;
-    padding: 8px 25px; 
-    border-radius: 50px; 
-    font-size: 11px;
-    display: none; 
-    font-weight: 700; 
-    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
-}
-
-/* Enable Location Card */
-#enable-overlay {
-    position: absolute; 
-    bottom: 40px; 
-    left: 40px;
-    width: 300px; 
-    z-index: 2000; 
-    text-align: center; 
-    color: white;
-}
-
-.loc-img { width: 120px; margin-bottom: 10px; }
-.title { font-size: 24px; font-weight: 700; margin-bottom: 8px;text-align: center; }
-.subtitle { font-size: 14px; opacity: 0.8; margin-bottom: 25px; line-height: 1.4;text-align: center; }
-
-.blue-btn {
-    background: var(--primary, #007BFF); 
-    color: white; 
-    border: none;
-    padding: 14px 0; 
-    width: 90%; 
+    padding: 8px 25px;
     border-radius: 50px;
-    font-weight: 700; 
-    font-size: 15px; 
-    cursor: pointer;
-    box-shadow: 0 8px 20px rgba(0, 123, 255, 0.3);
-    transition: 0.3s;
-    text-align: center;
+    font-size: 11px;
+    font-weight: 700;
+}
+.loc-img {
+    width: 150px; /* Controlled size */
+    height: auto;
+    margin-bottom: 20px;
+    
+    /* Soft glow effect to make it pop on the dark map */
+    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.2));
+    
+    /* Gentle floating animation */
+    animation: float 3s ease-in-out infinite;
 }
 
-.blue-btn:hover { background: #0069d9; transform: scale(1.02); }
+#enable-overlay {
+    position: absolute;
+    bottom: 40px;
+    left: 40px;
+    width: 300px;
+    z-index: 2000;
+    color: white;
+}
 
-.hidden { opacity: 0 !important; pointer-events: none !important; transition: 0.6s; }
+@media (max-width: 768px) {
+    .loc-img {
+        width: 80px; /* Slightly smaller for mobile */
+        margin-bottom: 15px;
+    }
+}
+.blue-btn {
+    background: #007BFF;
+    color: white;
+    border: none;
+    padding: 14px 0;
+    width: 100%;
+    border-radius: 50px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 15px;
+}
 
-/* Fullscreen Mode */
+.hidden {
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+/* ==========================================================================
+   MOBILE VIEW OPTIMIZATION
+   ========================================================================== */
+@media (max-width: 768px) {
+    /* 1. Remove all buttons for mobile view */
+    .button-group {
+        display: none !important;
+    }
+
+    /* 2. Center and expand search bar */
+    .top-controls {
+        top: 15px;
+        left: 15px;
+        right: 15px;
+        justify-content: center;
+    }
+
+    .search-container {
+        width: 100%;
+        max-width: 100%;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+
+    /* 3. Adjust container and headers */
+    .outer-container {
+        padding: 20px 10px;
+        border-radius: 20px;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    .map-frame {
+        height: 450px;
+        border-radius: 20px;
+    }
+
+    /* 4. Center the 'Enable Location' overlay */
+    #enable-overlay {
+        left: 50%;
+        bottom: 20px;
+        transform: translateX(-50%);
+        width: 90%;
+        text-align: center;
+    }
+
+    /* 5. Adjust loader position so it doesn't overlap search */
+    #loader {
+        top: 70px;
+        width: 80%;
+        text-align: center;
+    }
+}
+
+/* Fullscreen Mode Fixes */
 .fullscreen-mode {
     position: fixed !important;
     top: 0 !important;
     left: 0 !important;
     width: 100vw !important;
     height: 100vh !important;
-    max-width: none !important;
-    border-radius: 0 !important;
     z-index: 9999 !important;
-}
-
-.fullscreen-mode .map-frame {
-    height: 100vh !important;
     border-radius: 0 !important;
-}
-
-.fullscreen-mode .outer-container {
-    padding: 0 !important;
-    border-radius: 0 !important;
-    width: 100vw !important;
-    max-width: none !important;
-    height: 100vh !important;
-}
-
-.fullscreen-mode h1 {
-    display: none;
 }
