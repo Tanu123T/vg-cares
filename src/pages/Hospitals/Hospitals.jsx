@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { hospitalData } from "../../data/hospitalData";
-import { MapPin, Phone } from "lucide-react";
+import { MapPin, Phone, Search } from "lucide-react";
+import { Link } from "react-router-dom";
 import "./Hospitals.css"; 
 
 const HospitalsPage = () => {
@@ -9,10 +10,7 @@ const HospitalsPage = () => {
   const [specialist, setSpecialist] = useState("all");
   const [selectedHospital, setSelectedHospital] = useState(null);
 
-  useEffect(() => {
-    // Icon initialization removed (lucide-react doesn't require this)
-  }, [selectedHospital]);
-
+  // Filter Logic
   const filteredHospitals = hospitalData.filter(h =>
     h.name.toLowerCase().includes(search.toLowerCase()) &&
     (country === "all" || h.country === country) &&
@@ -35,34 +33,29 @@ const HospitalsPage = () => {
           />
 
           <div className="details-content">
-            <div className="details-meta">
+            <div className="card-top" style={{ marginBottom: '20px' }}>
               <div>
-                <span className="badge">
-                  Verified • {selectedHospital.country}
-                </span>
+                <span className="badge">Verified • {selectedHospital.country}</span>
                 <h1>{selectedHospital.name}</h1>
               </div>
               <div className="rating">★ {selectedHospital.rating}</div>
             </div>
 
-            <p>{selectedHospital.desc}</p>
+            <p style={{ color: '#4a5568', lineHeight: '1.6' }}>{selectedHospital.desc}</p>
 
             <div className="details-grid">
               <div className="detail-item">
                 <label>Specialty</label>
                 <p>{selectedHospital.specialist}</p>
               </div>
-
               <div className="detail-item">
                 <label>Address</label>
                 <p>{selectedHospital.address}</p>
               </div>
-
               <div className="detail-item">
                 <label>Phone</label>
                 <p>{selectedHospital.phone}</p>
               </div>
-
               <div className="detail-item">
                 <label>Accreditation</label>
                 <p>JCI & ISO Certified</p>
@@ -70,7 +63,7 @@ const HospitalsPage = () => {
             </div>
 
             <div className="btn-group">
-              <button className="btn btn-request">
+              <button className="btn btn-request" style={{ padding: '18px' }}>
                 Schedule Appointment
               </button>
             </div>
@@ -92,6 +85,7 @@ const HospitalsPage = () => {
       {/* FILTERS */}
       <div className="filter-section">
         <div className="search-wrapper">
+          <Search size={18} color="#94a3b8" />
           <input
             type="text"
             placeholder="Search hospital..."
@@ -100,7 +94,7 @@ const HospitalsPage = () => {
           />
         </div>
 
-        <select onChange={e => setCountry(e.target.value)}>
+        <select value={country} onChange={e => setCountry(e.target.value)}>
           <option value="all">All Countries</option>
           <option value="India">India</option>
           <option value="USA">USA</option>
@@ -109,7 +103,7 @@ const HospitalsPage = () => {
           <option value="Germany">Germany</option>
         </select>
 
-        <select onChange={e => setSpecialist(e.target.value)}>
+        <select value={specialist} onChange={e => setSpecialist(e.target.value)}>
           <option value="all">All Specialties</option>
           <option value="Cardiology">Cardiology</option>
           <option value="Neurology">Neurology</option>
@@ -163,7 +157,10 @@ const HospitalsPage = () => {
           </div>
         ))}
       </div>
-      <a href="/services" class="hospital-home-btn"><i class="fa-solid fa-house"></i></a>
+
+      <Link to="/" className="hospital-home-btn">
+        <i className="fa-solid fa-house"></i>
+      </Link>
     </section>
   );
 };

@@ -9,7 +9,8 @@ const StatsCard = () => {
     counters.forEach((counter) => {
       const updateCount = () => {
         const target = +counter.getAttribute("data-target");
-        const count = +counter.innerText;
+        // We parse current text to a number to avoid issues with symbols during calculation
+        const count = parseInt(counter.innerText) || 0;
         const inc = target / speed;
 
         if (count < target) {
@@ -23,6 +24,7 @@ const StatsCard = () => {
       updateCount();
     });
   }, []);
+
 
   return (
     <section className="stats-card2">

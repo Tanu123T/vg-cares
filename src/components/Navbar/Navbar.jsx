@@ -1,10 +1,17 @@
 import "./Navbar.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
+import { ChevronDown, UserRound, Hospital, BookOpen, Mail } from "lucide-react";
+
+if (typeof window !== "undefined" && "scrollRestoration" in window.history) {
+  window.history.scrollRestoration = "manual";
+}
 
 const Navbar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
+  const isFirstRender = useRef(true);
 
   const navigate = useNavigate();
   const location = useLocation();

@@ -28,25 +28,25 @@ export default function Feedback() {
   const trackRef = useRef(null);
   const [current, setCurrent] = useState(0);
   const [paused, setPaused] = useState(false);
+  const total = testimonials.length;
 
   const showTestimonial = (i) => {
-    trackRef.current.style.transform = `translateX(-${i * 20}%)`;
-    setCurrent(i);
+    if (trackRef.current) {
+      trackRef.current.style.transform = `translateX(-${i * (100 / total)}%)`;
+      setCurrent(i);
+    }
   };
 
   useEffect(() => {
     const interval = setInterval(() => {
       if (!paused) {
-        setCurrent((prev) => {
-          const next = (prev + 1) % testimonials.length;
-          showTestimonial(next);
-          return next;
-        });
+        const next = (current + 1) % total;
+        showTestimonial(next);
       }
     }, 5000);
 
     return () => clearInterval(interval);
-  }, [paused]);
+  }, [paused, current, total]);
 
   return (
     <section className="feedback-section">
@@ -68,9 +68,17 @@ export default function Feedback() {
           onMouseLeave={() => setPaused(false)}
         >
           <div className="testimonial-viewport">
-            <div className="testimonial-track" ref={trackRef}>
+            <div 
+              className="testimonial-track" 
+              ref={trackRef}
+              style={{ width: `${total * 100}%` }}
+            >
               {testimonials.map((item, index) => (
-                <div className="testimonial-slide" key={index}>
+                <div 
+                  className="testimonial-slide" 
+                  key={index}
+                  style={{ width: `${100 / total}%` }}
+                >
                   <p className="patient-comment">"{item.text}"</p>
 
                   <div className="patient-card-footer">

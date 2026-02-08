@@ -1,12 +1,13 @@
 .hero {
   background-color: #f4faff;
-  padding: 80px 7% 120px;
+  padding: 40px 7% 120px; /* reduced top padding */
   display: flex;
   align-items: center;
   gap: 40px;
-  min-height: 85vh;
+  min-height: calc(85vh - 80px); /* accounts for navbar */
   font-family: "Poppins", sans-serif;
 }
+
 
 /* CONTENT */
 .hero-content {
@@ -208,18 +209,32 @@
 /* ================= MOBILE ================= */
 @media (max-width: 600px) {
   .hero {
-    padding: 60px 5% 100px;
+    padding: 40px 5% 90px;
+    min-height: auto;
   }
+
 
   .cta-group {
     flex-direction: column;
     align-items: center;
   }
 
-  .stats-card {
+   .stats-card {
     position: static;
-    margin-top: 20px;
+    margin: 16px auto 0;
     transform: none;
+    width: fit-content;
+    padding: 16px 22px;
+    border-radius: 20px;
+  }
+
+  .stats-text h3 {
+    font-size: 1.2rem;
+  }
+
+  .big-check {
+    width: 40px;
+    height: 40px;
   }
 }
 

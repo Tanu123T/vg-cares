@@ -1,151 +1,156 @@
-/* --- Global Reset --- */
-* {
-  box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  background: #fff;
-}
-
-/* --- Main Container --- */
+/* --- Container & Layout --- */
 .expertise {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
+  max-width: 1430px;
+  margin: 80px auto;
+  padding: 0 25px;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
-/* --- HEADER --- */
+/* --- Header Section --- */
 .expertise-header {
   margin-bottom: 60px;
 }
 
-h1 {
-  font-size: clamp(2rem, 4vw, 2.8rem);
-  margin-bottom: 15px;
+.badge {
+  display: inline-block;
+  padding: 8px 20px;
+  background:  #dcfce7;
+  color: #84d598;
+  border-radius: 50px;
+  font-size: 0.85rem;
   font-weight: 700;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.service-title {
+  font-size: clamp(1.8rem, 5vw, 2.8rem); /* Adjusts size based on screen width */
+  line-height: 1.2;
+  margin-bottom: 20px;
+  font-weight: 800;
   color: #1a1a1a;
 }
 
-h1 span {
+.service-title span {
   color: #2563eb;
-  font-weight: 750;
 }
 
 .desc {
-  max-width: 800px;
+  max-width: 700px;
   color: #555;
-  font-weight: 500;
-  line-height: 1.5;
-  margin-bottom: 25px;
+  font-size: 16px;
+  line-height: 1.6;
+  font-weight:200;
 }
 
 /* --- GRID SYSTEM --- */
 .grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 1fr); /* Default 3 columns */
   gap: 30px;
+  padding :20px;
 }
 
 /* --- CARD STYLING --- */
 .card {
   background: white;
-  padding: 35px;
-  border-radius: 40px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  padding: 40px;
+  border-radius: 35px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
   cursor: pointer;
-  transition: all 0.4s ease;
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  border: 1px solid #f0f0f0;
+  
+  /* Initial state for Intersection Observer */
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.card.show {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.card h3 {
+  margin-bottom: 12px;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+.card p {
+  color: #666;
+  line-height: 1.5;
+  font-size: 0.95rem;
 }
 
 /* Hover Backgrounds */
-.card-special1:hover {
-  background-color: rgba(220, 252, 231, 0.4);
-}
-.card-blue:hover {
-  background-color: rgba(219, 234, 254, 0.4);
-}
-.card-orange:hover {
-  background-color: rgba(255, 237, 213, 0.4);
-}
-.card-sky:hover {
-  background-color: rgba(224, 242, 254, 0.4);
-}
+.card-special1:hover { background-color: rgba(220, 252, 231, 0.3); }
+.card-blue:hover { background-color: rgba(219, 234, 254, 0.3); }
+.card-orange:hover { background-color: rgba(255, 237, 213, 0.3); }
+.card-sky:hover { background-color: rgba(224, 242, 254, 0.3); }
 
-/* --- ICON ANIMATIONS --- */
-.card:hover .icon {
-  transform: scale(1.1) rotate(5deg);
-}
-
+/* --- ICON STYLING --- */
 .icon {
-  width: 55px;
-  height: 55px;
-  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  border-radius: 18px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 24px;
-  margin-bottom: 20px;
-  animation: float 3s ease-in-out infinite;
+  margin-bottom: 25px;
+  transition: transform 0.3s ease;
 }
 
-.green {
-  background: #dcfce7;
-  color: #16a34a;
-}
-.blue {
-  background: #dbeafe;
-  color: #2563eb;
-}
-.orange {
-  background: #ffedd5;
-  color: #ea580c;
-}
-.sky {
-  background: #e0f2fe;
-  color: #0284c7;
+.card:hover .icon {
+  transform: scale(1.1) rotate(5deg);
 }
 
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-8px);
-  }
-}
+.green { background: #dcfce7; color: #16a34a; }
+.blue { background: #dbeafe; color: #2563eb; }
+.orange { background: #ffedd5; color: #ea580c; }
+.sky { background: #e0f2fe; color: #0284c7; }
 
 /* --- RESPONSIVE BREAKPOINTS --- */
 
-/* Tablets */
 @media (max-width: 1024px) {
   .grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr); /* 2 Columns for Tablets */
+    gap: 20px;
   }
 }
 
-/* Mobile */
 @media (max-width: 768px) {
+  .expertise {
+    margin: 40px auto;
+    padding: 0 20px;
+  }
+
   .expertise-header {
     text-align: center;
   }
 
   .desc {
     margin: 0 auto;
+    font-size: 1rem;
   }
 
   .grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* 1 Column for Mobile */
+    gap: 20px;
   }
 
   .card {
-    padding: 28px;
+    padding: 30px;
+    border-radius: 25px;
   }
 }

@@ -30,7 +30,6 @@ export default function Features() {
       });
     }, observerOptions);
 
-    // Target all reveal types
     const revealElements = document.querySelectorAll(".reveal, .reveal-left, .reveal-right");
     revealElements.forEach((el) => observer.observe(el));
 
@@ -50,7 +49,7 @@ export default function Features() {
         </h2>
       </div>
 
-      {/* Top Features Grid */}
+      {/* Top Features Grid - These are the cards that usually have the blue hover */}
       <div className="capabilities-top-grid">
         <div className="capabilities-feature-card reveal">
           <div className="capabilities-icon-wrapper">
@@ -100,7 +99,6 @@ export default function Features() {
         <div className="capabilities-section-box capabilities-blue-section reveal-left">
           <h4>Medical Excellence</h4>
           <div className="capabilities-mini-card-container">
-
             <div className="capabilities-mini-card-wrapper">
               <div className="capabilities-mini-card-front">
                 <div className="capabilities-mini-icon capabilities-blue-mini">
