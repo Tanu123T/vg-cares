@@ -1,150 +1,18 @@
-/* --- Floating Button --- */
-.ai-help-button {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  width: 65px;
-  height: 65px;
-  background: linear-gradient(135deg, #007bff, #0056b3);
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  box-shadow: 0 8px 25px rgba(0, 123, 255, 0.4);
-  z-index: 10001;
-  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  animation: ai-float 3s ease-in-out infinite;
+/* Intentionally left blank: Botpress webchat provides its own UI */
+
+#bp-web-widget-container .bpw-powered,
+#bp-web-widget-container .bpw-powered-by,
+#bp-web-widget-container .bpw-powered-by-container,
+#bp-web-widget-container .bpw-branding,
+#bp-web-widget-container .bpw-credit,
+#bp-web-widget-container .bpw-widget-footer,
+#bp-web-widget-container [class*="powered" i],
+#bp-web-widget-container [class*="branding" i],
+#bp-web-widget-container a[href*="botpress" i] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  height: 0 !important;
+  width: 0 !important;
+  overflow: hidden !important;
 }
-
-.ai-help-button.active { transform: rotate(90deg); background: #1e293b; }
-
-.help-tooltip {
-  position: absolute;
-  top: -45px;
-  right: 0;
-  background: #1e293b;
-  color: white;
-  padding: 6px 12px;
-  border-radius: 6px;
-  font-size: 12px;
-  opacity: 0;
-  pointer-events: none;
-  transition: 0.3s;
-}
-
-.ai-help-button:hover .help-tooltip { opacity: 1; }
-
-/* --- Chat Window --- */
-.ai-assistant-window {
-  position: fixed;
-  bottom: 110px;
-  right: 30px;
-  width: 400px;
-  height: 580px;
-  max-height: calc(100vh - 150px);
-  background: white;
-  border-radius: 20px;
-  box-shadow: 0 15px 50px rgba(0,0,0,0.15);
-  z-index: 10000;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  border: 1px solid #e2e8f0;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(30px) scale(0.95);
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.ai-assistant-window.open {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0) scale(1);
-}
-
-/* --- Header --- */
-.ai-header {
-  padding: 18px 22px;
-  background: linear-gradient(135deg, #007bff, #0056b3);
-  color: white;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.ai-title { display: flex; align-items: center; gap: 12px; }
-.bot-avatar { background: rgba(255,255,255,0.2); padding: 8px; border-radius: 50%; display: flex; }
-.title-text span { display: block; font-weight: 700; font-size: 15px; }
-.title-text small { font-size: 11px; opacity: 0.8; }
-.ai-close-btn { background: none; border: none; color: white; cursor: pointer; opacity: 0.7; }
-
-/* --- Messages Area --- */
-.ai-messages {
-  flex: 1;
-  padding: 20px;
-  overflow-y: auto;
-  background: #f8fafc;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.message-row { display: flex; gap: 10px; max-width: 85%; }
-.message-row.user { align-self: flex-end; flex-direction: row-reverse; }
-
-.msg-icon {
-  width: 28px; height: 28px; border-radius: 50%;
-  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-}
-.bot .msg-icon { background: #007bff; color: white; }
-.user .msg-icon { background: #e2e8f0; color: #475569; }
-
-.message-content {
-  padding: 12px 16px; border-radius: 18px; font-size: 14px; line-height: 1.5;
-}
-.bot .message-content { background: white; color: #334155; border: 1px solid #e2e8f0; border-top-left-radius: 4px; }
-.user .message-content { background: #007bff; color: white; border-top-right-radius: 4px; }
-
-/* --- Input Area --- */
-.ai-input-area { padding: 15px 20px; display: flex; gap: 10px; background: white; border-top: 1px solid #f1f5f9; }
-.ai-input-area input {
-  flex: 1; border: 1.5px solid #e2e8f0; padding: 12px 15px; border-radius: 12px; outline: none; transition: 0.3s;
-}
-.ai-input-area input:focus { border-color: #007bff; box-shadow: 0 0 0 3px rgba(0,123,255,0.1); }
-.send-btn { background: #007bff; color: white; border: none; padding: 10px; border-radius: 10px; cursor: pointer; }
-
-.ai-footer { font-size: 10px; text-align: center; padding: 8px; color: #94a3b8; background: #f8fafc; }
-
-/* --- Animations --- */
-@keyframes ai-float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-}
-
-.typing span {
-  width: 6px; height: 6px; background: #cbd5e1; border-radius: 50%; display: inline-block;
-  animation: bounce 1.4s infinite ease-in-out; margin: 0 2px;
-}
-@keyframes bounce { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1); } }
-
-.spinner { animation: rotate 2s linear infinite; }
-@keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-
-/* --- RESPONSIVE DESIGN --- */
-@media (max-width: 520px) {
-  .ai-help-button { bottom: 20px; right: 20px; width: 55px; height: 55px; }
-  .ai-assistant-window {
-    width: calc(100vw - 40px);
-    height: 70vh;
-    right: 20px;
-    left: 20px;
-    bottom: 85px;
-    border-radius: 15px;
-  }
-  .help-tooltip { display: none; }
-}
-
-
