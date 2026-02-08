@@ -23,7 +23,7 @@ import Hospitals from "./pages/Hospitals/Hospitals";
 import ContactUs from "./pages/Contact_us/Contact_us";
 
 /* =========================
-   HOME PAGE COMPONENT
+   HOME PAGE
 ========================= */
 function Home() {
   const location = useLocation();
@@ -32,7 +32,10 @@ function Home() {
   useEffect(() => {
     if (location.state?.scrollTo) {
       const section = document.getElementById(location.state.scrollTo);
-      section?.scrollIntoView({ behavior: "smooth" });
+
+      if (section) {
+        section.scrollIntoView({ behavior: "smooth" });
+      }
 
       // clear state so it doesn't scroll again
       navigate("/", { replace: true });
@@ -60,58 +63,21 @@ function Home() {
 /* =========================
    APP
 ========================= */
-function App() {
+export default function App() {
   const location = useLocation();
   const isHomePage = location.pathname === "/";
 
   return (
     <>
       <Navbar />
-      {isHomePage && <AIAssistant />}
+      {isHomePage ? <AIAssistant key="home-ai" /> : null}
 
       <Routes>
         <Route path="/" element={<Home />} />
-
-        <Route
-          path="/doctors"
-          element={
-            <>
-              <Doctors />
-              <Footer />
-            </>
-          }
-        />
-
-        <Route
-          path="/hospitals"
-          element={
-            <>
-              <Hospitals />
-              <Footer />
-            </>
-          }
-        />
-
-        <Route
-          path="/blogs"
-          element={
-            <>
-              <Blogs />
-              <Footer />
-            </>
-          }
-        />
-
-        <Route
-          path="/contact"
-          element={
-            <>
-              <ContactUs />
-              <Footer />
-            </>
-          }
-        />
-
+        <Route path="/doctors" element={<><Doctors /><Footer /></>} />
+        <Route path="/hospitals" element={<><Hospitals /><Footer /></>} />
+        <Route path="/blogs" element={<><Blogs /><Footer /></>} />
+        <Route path="/contact" element={<><ContactUs /><Footer /></>} />
         <Route
           path="/signin"
           element={
@@ -127,5 +93,3 @@ function App() {
     </>
   );
 }
-
-export default App;

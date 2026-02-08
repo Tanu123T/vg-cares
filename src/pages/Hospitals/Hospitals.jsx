@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { hospitalData } from "../../data/hospitalData";
 import { MapPin, Phone, Search } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Hospitals.css"; 
 
 const HospitalsPage = () => {
@@ -9,6 +9,7 @@ const HospitalsPage = () => {
   const [country, setCountry] = useState("all");
   const [specialist, setSpecialist] = useState("all");
   const [selectedHospital, setSelectedHospital] = useState(null);
+  const navigate = useNavigate();
 
   // Filter Logic
   const filteredHospitals = hospitalData.filter(h =>
@@ -24,6 +25,8 @@ const HospitalsPage = () => {
         <button className="back-link" onClick={() => setSelectedHospital(null)}>
           ← Back to Hospitals
         </button>
+
+        <button className="back-link" onClick={() => navigate("/")}>← Back to Home</button>
 
         <div className="details-card">
           <img
@@ -63,7 +66,7 @@ const HospitalsPage = () => {
             </div>
 
             <div className="btn-group">
-              <button className="btn btn-request" style={{ padding: '18px' }}>
+              <button className="btn btn-request" style={{ padding: '18px' }} onClick={() => navigate('/signin')}>
                 Schedule Appointment
               </button>
             </div>
@@ -149,7 +152,7 @@ const HospitalsPage = () => {
                   View Hospital
                 </button>
 
-                <button className="btn btn-request">
+                <button className="btn btn-request" onClick={() => navigate('/signin')}>
                   Request Consultation
                 </button>
               </div>
