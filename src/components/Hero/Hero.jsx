@@ -1,6 +1,7 @@
 import "./hero.css";
 import heroImg from "../../assets/images/hero1.jpg";
 import { Link } from "react-router-dom";
+import { Check } from "lucide-react";
 
 const Hero = () => {
   return (
@@ -51,7 +52,7 @@ const Hero = () => {
         <img src={heroImg} alt="Doctor" className="main-img" />
 
         <div className="stats-card">
-          <div className="big-check">✓</div>
+          <div className="big-check"><Check size={30} /></div>
           <div className="stats-text">
             <h3>98%</h3>
             <p>Satisfaction</p>
