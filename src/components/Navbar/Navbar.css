@@ -31,7 +31,7 @@ button.nav-item {
   justify-content: space-between;
   align-items: center;
   padding: 20px 30px;
-  background: white;
+  background:rgb(255, 255, 255,0.9);
   position: sticky;
   top: 0;
   z-index: 1000;
