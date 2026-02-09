@@ -8,10 +8,10 @@
   font-family: "Poppins", sans-serif;
 }
 
-
 /* CONTENT */
 .hero-content {
   flex: 1;
+  margin-top: 5%;
 }
 
 .hero-title {
@@ -137,7 +137,7 @@
   position: relative;
 }
 
-.main-img {
+.main-img {margin-top: 5%;
   width: 100%;
   border-radius: 40px;
   box-shadow: 0 25px 50px rgba(0, 0, 0, 0.07);
