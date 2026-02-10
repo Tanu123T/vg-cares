@@ -56,17 +56,96 @@
     padding: 0 15px;
 }
 
-.filter-box {
+/* The Container */
+.filter-box.modern-dropdown {
     flex: 1;
+    position: relative;
     background: #fff;
     border: 1px solid #e2e8f0;
     border-radius: 12px;
+    height: 54px; /* Matches your search-box height */
     display: flex;
     align-items: center;
+    justify-content: space-between;
     padding: 0 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
-.search-box input, .filter-box select {
+/* Hover/Active Effect from the 2nd Photo */
+/* Ensure the container is relative for the floating menu */
+.modern-dropdown {
+    position: relative;
+    flex: 1;
+}
+
+.dropdown-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    color: #475569;
+    font-weight: 500;
+}
+
+.chevron {
+    transition: transform 0.3s ease;
+    color: #94a3b8;
+}
+
+.chevron.rotate {
+    transform: rotate(180deg);
+}
+
+.dropdown-floating-menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    width: 100%;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    border: 1px solid #f1f5f9;
+    padding: 8px;
+    /* High z-index is key */
+    z-index: 9999 !important; 
+    pointer-events: all;
+}
+
+/* Update these specific parts in your Doctors.css */
+
+.dropdown-item {
+    padding: 12px 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    /* This makes them all look identical by default */
+    color: #475569 !important; 
+    transition: all 0.2s;
+    font-weight: 500;
+}
+
+.dropdown-item:hover {
+    background: #f0f7ff;
+    color: #007bff !important;
+}
+
+/* Update the selected state to be subtle */
+.dropdown-item.selected {
+    background: #e1effe;
+    color: #007bff !important;
+    /* Remove 'font-weight: 700' if it was there to keep text thickness the same */
+    font-weight: 500; 
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.search-box input {
     width: 100%;
     padding: 14px 0;
     border: none;
