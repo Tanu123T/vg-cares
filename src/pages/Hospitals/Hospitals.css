@@ -7,20 +7,8 @@ header { margin-bottom: 40px; }
 h1 { color: var(--primary-blue); font-size: 2.2rem; margin-bottom: 10px; }
 header p { color: var(--text-gray); font-size: 1.1rem; }
 
-/* Filters */
-.filter-section {
-    background: var(--white); padding: 25px; border-radius: 20px;
-    display: flex; gap: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-    margin-bottom: 30px; border: 1px solid #e1effe;
-}
 .search-wrapper { flex: 2; display: flex; align-items: center; border: 1px solid #ddd; border-radius: 10px; padding: 0 15px; background: white; }
 .search-wrapper input { border: none; padding: 15px; width: 100%; outline: none; font-size: 1rem; }
-.filter-section select { flex: 1; padding: 15px; border-radius: 10px; border: 1px solid #ddd; background-color: white; font-size: 1rem; color: var(--text-dark); cursor: pointer; transition: border-color 0.2s ease, box-shadow 0.2s ease; }
-
-.filter-section select:focus-visible {
-  border-color: var(--primary-blue);
-  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.12);
-}
 
 .stats-count { text-align: right; margin-bottom: 15px; font-weight: 600; color: var(--text-gray); }
 
@@ -39,8 +27,8 @@ header p { color: var(--text-gray); font-size: 1.1rem; }
 /* Home Button */
 .hospital-home-btn {
     position: fixed;
-    bottom: 40px;
-    right: 60px;
+    bottom: 20px;
+    right: 20px;
     background: #0d6efd;
     color: white;
     width: 60px;
@@ -50,7 +38,7 @@ header p { color: var(--text-gray); font-size: 1.1rem; }
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 23px;
+    font-size: 22px;
     z-index: 10;
     animation: blog-pulse 2s infinite;
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -58,8 +46,7 @@ header p { color: var(--text-gray); font-size: 1.1rem; }
 
 .hospital-home-btn:hover {
     transform: scale(1.1);
-    background: #0e62df;
-    color:#ffffff;
+    background: #0b5ed7;
 }
 
 @keyframes blog-pulse {
@@ -80,7 +67,7 @@ header p { color: var(--text-gray); font-size: 1.1rem; }
 .specialist-tag { font-size: 0.75rem; color: var(--primary-blue); font-weight: 800; text-transform: uppercase; margin-bottom: 8px; letter-spacing: 0.5px; }
 .card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
 .card-top h3 { font-size: 1.25rem; font-weight: 700; color: #1a202c; }
-.rating { background: #15a40b21; color: #15a40ba7; padding: 4px 10px; border-radius: 8px; font-weight: 600; font-size: 0.9rem; }
+.rating{ background: #18b40d16; color: #15a40ba7; padding: 3px 8px; border-radius: 8px; font-weight: 500; display: flex; align-items: center; gap: 4px;font-size: 0.8rem; }
 
 .info-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; color: var(--text-gray); font-size: 0.9rem; }
 .btn-group { margin-top: auto; padding-top: 20px; display: flex; flex-direction: column; gap: 12px; }
@@ -105,7 +92,151 @@ header p { color: var(--text-gray); font-size: 1.1rem; }
 .detail-item p { font-weight: 600; color: var(--text-dark); }
 
 @media (max-width: 768px) {
-  .filter-section { flex-direction: column; }
-  .filter-section select { width: 100%; }
   .details-banner { height: 250px; }
+}
+
+/* Existing container & header styles remain... */
+
+.filter-section {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 20px;
+    display: flex;
+    gap: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+    margin-bottom: 30px;
+    border: 1px solid #e1effe;
+    align-items: center;
+}
+
+.search-wrapper { 
+    flex: 2; 
+    display: flex; 
+    align-items: center; 
+    border: 1px solid #ddd; 
+    border-radius: 12px; 
+    padding: 0 15px; 
+    background: white;
+    height: 54px;
+}
+
+.search-wrapper input { 
+    border: none; 
+    padding: 10px; 
+    width: 100%; 
+    outline: none; 
+    font-size: 1rem; 
+}
+
+/* Modern Dropdown Styles */
+.modern-dropdown {
+    flex: 1;
+    position: relative;
+    height: 54px;
+}
+
+.dropdown-header {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 0 15px;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
+    color: #475569;
+    font-weight: 500;
+}
+
+.dropdown-header:hover, .dropdown-header.active {
+    border-color: #007bff;
+    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.08);
+}
+
+.dropdown-header svg {
+    color: #94a3b8;
+    transition: transform 0.3s ease;
+}
+
+.dropdown-header svg.rotate {
+    transform: rotate(180deg);
+    color: #007bff;
+}
+
+.dropdown-floating-menu {
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 0;
+    width: 100%;
+    background: white;
+    border-radius: 16px; /* Your rounded corners */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+    border: 1px solid #f1f5f9;
+    
+    /* FIX: Remove general padding so the scrollbar can touch the edge */
+    padding: 4px 0; 
+    z-index: 1000;
+    
+    /* FIX: This ensures the scrollbar stays inside the rounded border */
+    overflow: hidden; 
+    display: flex;
+    flex-direction: column;
+
+    max-height: 240px;
+    overflow-y: auto; 
+}
+/* Custom Scrollbar for a modern look */
+/* Thin out the scrollbar */
+.dropdown-floating-menu::-webkit-scrollbar {
+    width: 8px; /* Slightly wider for better grabbing */
+}
+
+.dropdown-floating-menu::-webkit-scrollbar-track {
+    background: transparent;
+    /* Margin top/bottom keeps scrollbar from hitting the rounded corners */
+    margin: 10px 0; 
+}
+
+.dropdown-floating-menu::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 20px;
+    /* This 'border' trick creates padding around the scrollbar thumb 
+       making it look like it's floating inside the menu */
+    border: 2px solid white; 
+}
+
+.dropdown-floating-menu::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+.dropdown-item {
+    margin: 0 4px; /* Give space for the scrollbar on the right */
+    padding: 10px 14px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.dropdown-item:hover {
+    background: #f0f7ff;
+    color: #007bff;
+    padding-left: 20px;
+}
+
+.dropdown-item.selected {
+    background: #e1effe;
+    color: #007bff;
+}
+
+@keyframes dropIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+  .filter-section { flex-direction: column; height: auto; }
+  .search-wrapper, .modern-dropdown { width: 100%; }
 }
