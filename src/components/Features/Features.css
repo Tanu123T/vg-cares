@@ -1,21 +1,32 @@
+:root {
+    --brand-blue: #007bff; /* This is your UI blue */
+    --brand-green: #22c55e;
+    --text-main: #1e293b;
+    --bg-blue-section: #f0f7ff;
+    --bg-green-section: #f0fdf4;
+    --transition: cubic-bezier(0.4, 0, 0.2, 1);
+    --card-gradient: linear-gradient(145deg, #ffffff, #f8faff);
+}
 
+/* --- CONTAINER STRUCTURE --- */
 .capabilities-container { 
     max-width: 1200px; 
-    margin: 80px auto; 
+    margin: 60px auto; 
     padding: 0 20px; 
 }
 
-/* --- ANIMATED ENTRANCE --- */
+.capabilities-wrapper { padding: 10px 0 60px 0; }
+.capabilities-text-center { text-align: center; margin-bottom: 35px; }
+
+/* --- REPEATABLE ANIMATIONS --- */
 .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s var(--transition); }
 .reveal-left { opacity: 0; transform: translateX(-50px); transition: all 1s var(--transition); }
 .reveal-right { opacity: 0; transform: translateX(50px); transition: all 1s var(--transition); }
-.reveal.active, .reveal-left.active, .reveal-right.active { opacity: 1; transform: translate(0); }
+.reveal.active, .reveal-left.active, .reveal-right.active { opacity: 1; transform: translate(0, 0); }
 
 /* --- HEADER --- */
-.capabilities-wrapper { padding: 80px 0; }
-.capabilities-text-center { text-align: center; margin-bottom: 60px; }
-.capabilities-badge { background: #dcfce7; color: #22c55e; padding: 6px 16px; border-radius: 50px; font-size: 0.75rem; font-weight: 800; display: inline-block; margin-bottom: 15px; }
-.capabilities-header-title { font-size: 3rem; font-weight: 800; color: var(--text-main); line-height: 1.2; margin-bottom: 15px; }
+.capabilities-badge { background: #dcfce7; color: #22c55e; padding: 5px 15px; border-radius: 50px; font-size: 0.75rem; font-weight: 800; display: inline-block; margin-bottom: 10px; }
+.capabilities-header-title { font-size: 3rem; font-weight: 800; color: var(--text-main); line-height: 1.1; margin: 0; }
 .capabilities-header-title span { 
     background: linear-gradient(to right, var(--brand-blue) 20%, #60a5fa 40%, #60a5fa 60%, var(--brand-blue) 80%);
     background-size: 200% auto; color: transparent; -webkit-background-clip: text; background-clip: text; 
@@ -23,76 +34,212 @@
 }
 @keyframes shine { to { background-position: 200% center; } }
 
-/* --- TOP 4 CARDS --- */
-.capabilities-top-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 80px; }
+/* --- TOP GRID CARDS (Desktop) --- */
+.capabilities-top-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 40px; margin-bottom: 60px; }
+
 .capabilities-feature-card {
-    background: var(--card-gradient); padding: 50px 25px; border-radius: 28px; border: 1px solid rgba(0, 123, 255, 0.1);
-    text-align: center; position: relative; transition: all 0.5s var(--transition);
-    box-shadow: 0 10px 20px rgba(0, 123, 255, 0.03); display: flex; flex-direction: column; align-items: center;
+    background: var(--card-gradient); 
+    padding: 40px 25px; 
+    border-radius: 28px; 
+    border: 1px solid rgba(0, 123, 255, 0.1); /* Default light border */
+    text-align: center; 
+    position: relative; 
+    transition: all 0.4s var(--transition);
+    box-shadow: 0 10px 20px rgba(0, 123, 255, 0.03); 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center;
 }
-.capabilities-feature-card:hover { transform: translateY(-10px); border-color: var(--brand-blue); box-shadow: 0 25px 50px rgba(0, 123, 255, 0.12); }
 
+/* THE DARK BLUE HOVER EFFECT */
+.capabilities-feature-card:hover { 
+    transform: translateY(-12px); 
+    border-color: var(--brand-blue); /* Solid Blue Border */
+    box-shadow: 0 20px 40px rgba(0, 123, 255, 0.2); /* Deep Blue Glow */
+    background: #ffffff;
+}
+
+.capabilities-feature-card h3 {
+    margin-top: 0;
+    font-size: 1.25rem;
+    transition: color 0.3s ease;
+}
+
+.capabilities-feature-card:hover h3 {
+    color: var(--brand-blue); /* Text turns blue */
+}
+
+/* ICON WRAPPER COLOR FLIP */
 .capabilities-icon-wrapper {
-    width: 80px; height: 80px; border-radius: 22px; background: #ffffff; color: var(--brand-blue);
-    display: flex; align-items: center; justify-content: center; margin-bottom: 30px;
+    width: 70px; height: 70px; border-radius: 20px; background: #ffffff; color: var(--brand-blue);
+    display: flex; align-items: center; justify-content: center; margin-bottom: 25px;
     box-shadow: 0 8px 15px rgba(0, 123, 255, 0.08); position: relative; 
-    transition: 0.4s ease; /* Dissolve effect speed */
+    transition: all 0.3s ease;
 }
 
-/* PULSE EFFECT */
-.capabilities-pulse { position: absolute; inset: 0; border: 2px solid var(--brand-blue); border-radius: 22px; opacity: 0; animation: pulse-anim 2.5s infinite; }
-@keyframes pulse-anim { 0% { transform: scale(0.9); opacity: 0.8; } 100% { transform: scale(1.5); opacity: 0; } }
+.capabilities-feature-card:hover .capabilities-icon-wrapper {
+    background: var(--brand-blue); /* Wrapper turns blue */
+    color: #ffffff; /* Icon turns white */
+    transform: scale(1.1);
+}
 
-/* HOVER: BLUE DISSOLVE */
-.capabilities-feature-card:hover .capabilities-icon-wrapper { background: var(--brand-blue); color: white; }
+/* --- THE UI-MATCHED BLUE HOVER (FOR TOP 4) --- */
+.capabilities-feature-card:hover .capabilities-icon-wrapper {
+    background-color: var(--brand-blue) !important; /* Now matches your exact UI blue */
+    color: #ffffff !important; /* Icon turns white */
+    box-shadow: 0 10px 20px rgba(0, 123, 255, 0.3); /* Adds a soft blue glow */
+}
+.capabilities-pulse { position: absolute; inset: 0; border: 2px solid var(--brand-blue); border-radius: 20px; opacity: 0; animation: pulse-anim 2.5s infinite; }
+@keyframes pulse-anim { 0% { transform: scale(0.9); opacity: 0.8; } 100% { transform: scale(1.4); opacity: 0; } }
 
-/* --- ICON DANCING EFFECTS --- */
-.anim-video { animation: videoMove 3s ease-in-out infinite; }
-@keyframes videoMove { 0%, 100% { transform: rotate(-8deg); } 50% { transform: rotate(8deg); } }
-
-.anim-shield { animation: shieldPulse 2s ease-in-out infinite; }
-@keyframes shieldPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
-
-.anim-calc { animation: calcTap 1.5s ease-in-out infinite; }
-@keyframes calcTap { 0%, 100% { transform: translateY(0); } 30% { transform: translateY(4px) scale(0.95); } }
-
-.anim-pin { animation: pinBounce 1.8s ease-in-out infinite; transform-origin: bottom center; }
-@keyframes pinBounce { 0%, 100% { transform: translateY(0); } 40% { transform: translateY(-12px); } 60% { transform: translateY(-4px); } }
-
-.anim-globe { animation: globeRotate 8s linear infinite; }
-@keyframes globeRotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-
-.anim-heart { animation: heartBeat 1.5s ease-in-out infinite; }
-@keyframes heartBeat { 0%, 100% { transform: scale(1); } 15% { transform: scale(1.2); } 30% { transform: scale(1); } 45% { transform: scale(1.15); } }
-
-/* --- COMPREHENSIVE SECTION --- */
-.capabilities-overview-label { text-align: left; font-size: 1.6rem; font-weight: 800; color: var(--brand-blue); margin-bottom: 40px; display: flex; align-items: center; gap: 15px; }
+/* --- BOTTOM DETAILED GRID --- */
+.capabilities-overview-label { font-size: 1.5rem; font-weight: 800; color: var(--brand-blue); margin-bottom: 30px; display: flex; align-items: center; gap: 15px; }
 .capabilities-overview-label::after { content: ''; flex: 1; height: 1px; background: linear-gradient(to right, rgba(0,123,255,0.2), transparent); }
-.capabilities-bottom-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
-.capabilities-section-box { border-radius: 32px; padding: 45px 25px; }
+
+.capabilities-bottom-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
+.capabilities-section-box { border-radius: 32px; padding: 40px 20px; transition: 0.3s; }
+
 .capabilities-blue-section { background-color: var(--bg-blue-section); }
 .capabilities-green-section { background-color: var(--bg-green-section); }
-.capabilities-section-box h4 { font-size: 1.4rem; color: var(--text-main); margin-bottom: 35px; text-align: center; font-weight: 700; }
 
-/* --- MINI CARDS --- */
-.capabilities-mini-card-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
-.capabilities-mini-card-wrapper { position: relative; height: 190px; cursor: pointer; }
-.capabilities-mini-card-front, .capabilities-mini-card-back {
-    position: absolute; inset: 0; border-radius: 22px; padding: 25px 15px;
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    transition: all 0.4s var(--transition); background: white; text-align: center;
+.capabilities-section-box:hover {
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05);
 }
-.capabilities-mini-card-front { z-index: 2; opacity: 1; box-shadow: 0 4px 12px rgba(0,0,0,0.03); }
-.capabilities-mini-card-back { z-index: 1; opacity: 0; transform: scale(0.95); font-size: 0.88rem; font-weight: 600; color: var(--text-main); }
-.capabilities-mini-card-wrapper:hover .capabilities-mini-card-back { opacity: 1; transform: scale(1); z-index: 3;}
-.capabilities-mini-card-wrapper:hover .capabilities-mini-card-front { opacity: 0; transform: scale(1.05); pointer-events: none; }
 
-.capabilities-mini-icon { width: 65px; height: 65px; border-radius: 18px; display: flex; align-items: center; justify-content: center; margin-bottom: 15px; transition: 0.3s; }
-.capabilities-blue-mini { background: linear-gradient(135deg, #eef6ff, #d0e7ff); color: var(--brand-blue); }
-.capabilities-green-mini { background: linear-gradient(135deg, #f0fdf4, #dcfce7); color: var(--brand-green); }
+.capabilities-section-box h4 { font-size: 1.3rem; margin-bottom: 30px; text-align: center; font-weight: 700; color: var(--text-main); }
 
-.capabilities-mini-card-wrapper:hover .capabilities-mini-icon { background: var(--brand-blue); color: white; transform: translateY(-5px); }
+/* MINI CARDS ALIGNMENT */
+.capabilities-mini-card-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.capabilities-mini-card-wrapper { position: relative; height: 170px; cursor: pointer; }
 
-/* RESPONSIVE */
-@media (max-width: 1100px) { .capabilities-top-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 768px) { .capabilities-top-grid, .capabilities-bottom-grid, .capabilities-mini-card-container { grid-template-columns: 1fr; } }
+/* Desktop Flip Logic */
+.capabilities-mini-card-wrapper { position: relative; height: 180px; cursor: pointer; }
+.capabilities-mini-card-front, .capabilities-mini-card-back {
+    position: absolute; inset: 0; border-radius: 20px; padding: 15px;
+    display: flex; flex-direction: column; 
+    align-items: center; justify-content: center;
+    transition: all 0.4s var(--transition); background: white; text-align: center;
+    border: 1px solid rgba(0, 123, 255, 0.05);
+}
+.capabilities-mini-card-front { z-index: 2; box-shadow: 0 4px 10px rgba(0,0,0,0.02); }
+.capabilities-mini-card-back { 
+    z-index: 1; opacity: 0; transform: scale(0.9); 
+    font-size: 0.8rem; font-weight: 600; padding: 20px;
+    background: var(--brand-blue);
+    color: white;
+    border: none;
+}
+
+.capabilities-mini-card-wrapper:hover .capabilities-mini-card-back { opacity: 1; transform: scale(1); z-index: 3; }
+.capabilities-mini-card-wrapper:hover .capabilities-mini-card-front { opacity: 0; }
+
+.capabilities-mini-icon { 
+    width: 55px; height: 55px; border-radius: 15px; 
+    display: flex; align-items: center; justify-content: center; 
+    margin: 0 auto 12px;
+}
+.capabilities-blue-mini { background: #eef6ff; color: var(--brand-blue); }
+.capabilities-green-mini { background: #f0fdf4; color: var(--brand-green); }
+
+/* --- ICON ANIMATIONS --- */
+.anim-video { animation: videoMove 3s ease-in-out infinite; }
+@keyframes videoMove { 0%, 100% { transform: rotate(-8deg); } 50% { transform: rotate(8deg); } }
+.anim-shield { animation: shieldPulse 2s ease-in-out infinite; }
+@keyframes shieldPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
+.anim-calc { animation: calcTap 1.5s ease-in-out infinite; }
+@keyframes calcTap { 0%, 100% { transform: translateY(0); } 30% { transform: translateY(4px) scale(0.95); } }
+.anim-pin { animation: pinBounce 1.8s ease-in-out infinite; transform-origin: bottom center; }
+@keyframes pinBounce { 0%, 100% { transform: translateY(0); } 40% { transform: translateY(-12px); } 60% { transform: translateY(-4px); } }
+.anim-globe { animation: globeRotate 8s linear infinite; }
+@keyframes globeRotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+.anim-heart { animation: heartBeat 1.5s ease-in-out infinite; }
+@keyframes heartBeat { 0%, 100% { transform: scale(1); } 15% { transform: scale(1.2); } 30% { transform: scale(1); } 45% { transform: scale(1.15); } }
+/* --- MOBILE VIEW --- */
+@media (max-width: 768px) {
+    /* 1. Fix Heading Overlap */
+    .capabilities-container {
+        margin-top: 20px; /* Reduced to prevent pushing into top section */
+        padding: 0 15px;
+    }
+
+    .capabilities-text-center {
+        margin-bottom: 20px;
+        position: relative;
+        z-index: 10; /* Ensure heading stays above background elements if any */
+    }
+
+    .capabilities-header-title {
+        font-size: 2rem;
+        line-height: 1.2;
+    }
+
+    /* 2. Top Grid Stacking & Alignment */
+    .capabilities-top-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        margin-top: 20px; /* Space between header and first card */
+        margin-bottom: 40px;
+    }
+
+    /* 3. Comprehensive Features - Fixed Overlapping */
+    .capabilities-bottom-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .capabilities-mini-card-container {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    /* Reset absolute positioning that causes cards to sit on top of each other */
+    .capabilities-mini-card-wrapper {
+        height: auto;
+        position: static; 
+        background: #ffffff;
+        border-radius: 20px;
+        padding: 20px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+        border: 1px solid #f1f5f9;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* 4. Display Description Automatically (No Hover) */
+    .capabilities-mini-card-front, 
+    .capabilities-mini-card-back {
+        position: static;
+        opacity: 1 !important;
+        transform: none !important;
+        background: transparent;
+        padding: 0;
+        text-align: center;
+        width: 100%;
+        display: block;
+    }
+
+    .capabilities-mini-card-front {
+        margin-bottom: 10px;
+        border-bottom: 1px solid #f1f5f9;
+        padding-bottom: 10px;
+    }
+
+    .capabilities-mini-card-front p {
+        font-size: 1rem;
+        font-weight: 700;
+        margin-top: 5px;
+    }
+
+    .capabilities-mini-card-back {
+        font-size: 0.85rem;
+        color: #64748b;
+        font-weight: 500;
+        line-height: 1.4;
+    }
+
+    /* Center the icons in mobile view */
+    .capabilities-mini-icon {
+        margin: 0 auto 10px;
+    }
+}

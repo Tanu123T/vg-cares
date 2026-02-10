@@ -1,0 +1,18 @@
+/* Intentionally left blank: Botpress webchat provides its own UI */
+
+#bp-web-widget-container .bpw-powered,
+#bp-web-widget-container .bpw-powered-by,
+#bp-web-widget-container .bpw-powered-by-container,
+#bp-web-widget-container .bpw-branding,
+#bp-web-widget-container .bpw-credit,
+#bp-web-widget-container .bpw-widget-footer,
+#bp-web-widget-container [class*="powered" i],
+#bp-web-widget-container [class*="branding" i],
+#bp-web-widget-container a[href*="botpress" i] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  height: 0 !important;
+  width: 0 !important;
+  overflow: hidden !important;
+}

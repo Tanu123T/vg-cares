@@ -1,5 +1,7 @@
 import "./hero.css";
 import heroImg from "../../assets/images/hero1.jpg";
+import { Link } from "react-router-dom";
+import { Check } from "lucide-react";
 
 const Hero = () => {
   return (
@@ -7,11 +9,9 @@ const Hero = () => {
       <div className="hero-content">
         <div className="hipaa-badge">HIPAA Compliant & Secure</div>
 
-        <h1 className="hero-title" style={{ color: "black", fontFamily: "Poppins", }}>
+        <h1 className="hero-title">
           Your Health, Your Schedule, <br />
-          <span className="animated-choice" style={{ fontFamily: "Poppins" }}>
-            Your Choice
-          </span>
+          <span className="animated-choice">Your Choice</span>
         </h1>
 
         <p className="hero-description">
@@ -21,34 +21,28 @@ const Hero = () => {
         </p>
 
         <div className="cta-group">
-          <a href="#services" className="btn-book1">
+          <Link to="/signin" className="btn-book1">
             <span className="shimmer-text">Book Appointment →</span>
-          </a>
+          </Link>
 
-          <a href="/doctors" className="btn-find">
-            Find a Doctor <i className="fas fa-search"></i>
-          </a>
+          <Link to="/doctors" className="btn-find">
+            Find a Doctor
+          </Link>
         </div>
 
         <div className="trust-row">
           <div className="trust-item">
-            <div className="check-circle-small">
-              <i className="fas fa-check"></i>
-            </div>
-            50K + Patients
+            <div className="check-circle-small">✓</div>
+            50K+ Patients
           </div>
 
           <div className="trust-item">
-            <div className="check-circle-small">
-              <i className="fas fa-check"></i>
-            </div>
+            <div className="check-circle-small">✓</div>
             500+ Doctors
           </div>
 
           <div className="trust-item">
-            <div className="check-circle-small">
-              <i className="fas fa-check"></i>
-            </div>
+            <div className="check-circle-small">✓</div>
             24/7 Support
           </div>
         </div>
@@ -58,12 +52,10 @@ const Hero = () => {
         <img src={heroImg} alt="Doctor" className="main-img" />
 
         <div className="stats-card">
-          <div className="big-check">
-            <i className="fas fa-check" style={{ fontSize: "24px", color: "white" }}></i>
-          </div>
+          <div className="big-check"><Check size={30} /></div>
           <div className="stats-text">
             <h3>98%</h3>
-            <p style={{ color: "#333", fontWeight: "600" }}>Satisfaction</p>
+            <p>Satisfaction</p>
           </div>
         </div>
       </div>
