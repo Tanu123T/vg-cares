@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { hospitalData } from "../../data/hospitalData";
-import { MapPin, Phone, Search } from "lucide-react";
+import { MapPin, Phone, Search, Star } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Hospitals.css"; 
 
@@ -41,7 +41,7 @@ const HospitalsPage = () => {
                 <span className="badge">Verified • {selectedHospital.country}</span>
                 <h1>{selectedHospital.name}</h1>
               </div>
-              <div className="rating">★ {selectedHospital.rating}</div>
+              <div className="rating"><Star size={16} /> {selectedHospital.rating}</div>
             </div>
 
             <p style={{ color: '#4a5568', lineHeight: '1.6' }}>{selectedHospital.desc}</p>
@@ -131,7 +131,7 @@ const HospitalsPage = () => {
 
               <div className="card-top">
                 <h3>{h.name}</h3>
-                <span className="rating">★ {h.rating}</span>
+                <span className="rating"><Star fill="#ffcc00" color="#ffcc00" size={14} /> {h.rating}</span>
               </div>
 
               <div className="info-row">
