@@ -56,22 +56,6 @@
     padding: 0 15px;
 }
 
-/* The Container */
-.filter-box.modern-dropdown {
-    flex: 1;
-    position: relative;
-    background: #fff;
-    border: 1px solid #e2e8f0;
-    border-radius: 12px;
-    height: 54px; /* Matches your search-box height */
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 15px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
 /* Hover/Active Effect from the 2nd Photo */
 /* Ensure the container is relative for the floating menu */
 .modern-dropdown {
