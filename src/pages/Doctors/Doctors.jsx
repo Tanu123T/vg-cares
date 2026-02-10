@@ -1,14 +1,38 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useRef, useEffect } from "react";
 import { doctorData } from "../../data/doctorData";
 import "./Doctors.css";
-import { Video, X, Star, Search } from "lucide-react";
+import { Video, X, Star, Search, ChevronDown } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 
 export default function Doctors() {
   const [search, setSearch] = useState("");
   const [specialty, setSpecialty] = useState("All");
   const [selectedDoctor, setSelectedDoctor] = useState(null);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
   const navigate = useNavigate();
+
+  useEffect(() => {
+  const handleEvents = (event) => {
+    // 1. Close if clicking outside
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      setIsDropdownOpen(false);
+    }
+  };
+
+  const handleScroll = () => {
+    // 2. Close immediately on scroll
+    setIsDropdownOpen(false);
+  };
+
+  document.addEventListener("mousedown", handleEvents);
+  window.addEventListener("scroll", handleScroll, true); // 'true' helps detect scroll in nested containers
+
+  return () => {
+    document.removeEventListener("mousedown", handleEvents);
+    window.removeEventListener("scroll", handleScroll, true);
+  };
+}, []);
 
   const filteredDoctors = useMemo(() => {
     return doctorData.filter((doctor) => {
@@ -40,14 +64,32 @@ export default function Doctors() {
             />
           </div>
 
-          <div className="filter-box">
-            <select value={specialty} onChange={(e) => setSpecialty(e.target.value)}>
-              <option value="All">All Specialties</option>
-              <option value="Cardiology">Cardiology</option>
-              <option value="Dermatology">Dermatology</option>
-              <option value="Neurology">Neurology</option>
-              <option value="Orthopedics">Orthopedics</option>
-            </select>
+          <div className="filter-box modern-dropdown" ref={dropdownRef}>
+            <div 
+              className={`dropdown-header ${isDropdownOpen ? "active" : ""}`} 
+              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+            >
+              <span>{specialty === "All" ? "All Specialties" : specialty}</span>
+              <ChevronDown className={`chevron ${isDropdownOpen ? "rotate" : ""}`} size={18} />
+            </div>
+
+            {isDropdownOpen && (
+              <div className="dropdown-floating-menu">
+                {["All", "Cardiology", "Dermatology", "Neurology", "Orthopedics"].map((opt) => (
+  <div 
+    key={opt} 
+    /* The logic below applies the 'selected' class equally to any active option */
+    className={`dropdown-item ${specialty === opt ? "selected" : ""}`}
+    onClick={() => {
+      setSpecialty(opt);
+      setIsDropdownOpen(false);
+    }}
+  >
+    {opt === "All" ? "All Specialties" : opt}
+  </div>
+))}
+              </div>
+            )}
           </div>
         </div>
         <div className="results-count">
