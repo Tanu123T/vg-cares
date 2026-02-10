@@ -88,7 +88,7 @@ export default function JourneyTimeline() {
           margin-top: 80px;
           overflow: hidden;
           background: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)),
-                      url("../../assets/images/roadmapbg.png") center/cover;
+                      url("../../assets/images/roadmapbg.jpg") center/cover;
           font-family: 'Plus Jakarta Sans', sans-serif;
         }
 
