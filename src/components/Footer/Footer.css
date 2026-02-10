@@ -86,6 +86,7 @@
     transform: translateY(-5px); 
     background: var(--primary-blue);
     border-color: var(--primary-blue);
+    color :#ffffff;
     box-shadow: 0 10px 20px rgba(0, 123, 255, 0.3);
 }
 
