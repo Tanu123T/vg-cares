@@ -79,7 +79,7 @@ header p { color: var(--text-gray); font-size: 1.1rem; }
 .specialist-tag { font-size: 0.75rem; color: var(--primary-blue); font-weight: 800; text-transform: uppercase; margin-bottom: 8px; letter-spacing: 0.5px; }
 .card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
 .card-top h3 { font-size: 1.25rem; font-weight: 700; color: #1a202c; }
-.rating-badge { background: #18b40d16; color: #15a40ba7; padding: 3px 8px; border-radius: 8px; font-weight: 500; display: flex; align-items: center; gap: 4px;font-size: 0.8rem; }
+.rating { background: #15a40b21; color: #15a40ba7; padding: 4px 10px; border-radius: 8px; font-weight: 600; font-size: 0.9rem; }
 
 .info-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; color: var(--text-gray); font-size: 0.9rem; }
 .btn-group { margin-top: auto; padding-top: 20px; display: flex; flex-direction: column; gap: 12px; }
