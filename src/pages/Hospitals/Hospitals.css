@@ -79,15 +79,15 @@ header p { color: var(--text-gray); font-size: 1.1rem; }
 .specialist-tag { font-size: 0.75rem; color: var(--primary-blue); font-weight: 800; text-transform: uppercase; margin-bottom: 8px; letter-spacing: 0.5px; }
 .card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
 .card-top h3 { font-size: 1.25rem; font-weight: 700; color: #1a202c; }
-.rating { background: #fff9c4; color: #fbc02d; padding: 4px 10px; border-radius: 8px; font-weight: 800; font-size: 0.9rem; }
+.rating { background: #15a40b21; color: #15a40ba7; padding: 4px 10px; border-radius: 8px; font-weight: 600; font-size: 0.9rem; }
 
 .info-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; color: var(--text-gray); font-size: 0.9rem; }
 .btn-group { margin-top: auto; padding-top: 20px; display: flex; flex-direction: column; gap: 12px; }
 .btn { width: 100%; padding: 14px; border: none; border-radius: 12px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; transition: 0.2s; }
-.btn-view { background: var(--light-blue); color: var(--primary-blue); }
-.btn-view:hover { background: #d0e9ff; }
-.btn-request { background: #d1fae5; color: #065f46; }
-.btn-request:hover { background: #bcf6d9; }
+.btn-view {  background: #d1fae5; color: #065f46; }
+.btn-view:hover { background: #bcf6d9; }
+.btn-request { background: #007bff37;  color:#007bff; }
+.btn-request:hover { background: #d0e9ff; }
 
 /* Details View */
 #detailsPage { padding: 60px 20px; max-width: 1000px; margin: 0 auto; animation: fadeIn 0.4s ease; }

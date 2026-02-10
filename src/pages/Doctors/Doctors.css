@@ -135,7 +135,7 @@
 .doctor-specialty { color: #007bff; font-weight: 600; font-size: 14px; margin: 2px 0 0; }
 
 .card-stats { display: flex; gap: 12px; align-items: center; margin-bottom: 15px; }
-.rating-pill { background: #fff9e6; color: #ffcc00; padding: 4px 10px; border-radius: 8px; font-weight: 800; display: flex; align-items: center; gap: 4px; }
+.rating-pill { background: #18b40d16; color: #15a40ba7; padding: 3px 8px; border-radius: 8px; font-weight: 500; display: flex; align-items: center; gap: 4px;font-size: 0.8rem; }
 .exp-text { color: #94a3b8; font-size: 12px; font-weight: 700; }
 
 .card-features { display: flex; flex-direction: column; gap: 8px; margin-bottom: 15px; }
