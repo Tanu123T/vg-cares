@@ -9,7 +9,6 @@ const HospitalsPage = () => {
   const [country, setCountry] = useState("all");
   const [specialist, setSpecialist] = useState("all");
   const [selectedHospital, setSelectedHospital] = useState(null);
-  const navigate = useNavigate();
 
   // Filter Logic
   const filteredHospitals = hospitalData.filter(h =>
@@ -25,8 +24,6 @@ const HospitalsPage = () => {
         <button className="back-link" onClick={() => setSelectedHospital(null)}>
           ← Back to Hospitals
         </button>
-
-        <button className="back-link" onClick={() => navigate("/")}>← Back to Home</button>
 
         <div className="details-card">
           <img
@@ -69,7 +66,7 @@ const HospitalsPage = () => {
             </div>
 
             <div className="btn-group">
-              <button className="btn btn-request" style={{ padding: '18px' }} onClick={() => navigate('/signin')}>
+              <button className="btn btn-request" style={{ padding: '18px' }}>
                 Schedule Appointment
               </button>
             </div>
@@ -158,7 +155,7 @@ const HospitalsPage = () => {
                   View Hospital
                 </button>
 
-                <button className="btn btn-request" onClick={() => navigate('/signin')}>
+                <button className="btn btn-request">
                   Request Consultation
                 </button>
               </div>
