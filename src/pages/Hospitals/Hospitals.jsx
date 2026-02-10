@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { hospitalData } from "../../data/hospitalData";
-import { MapPin, Phone, Search, Star } from "lucide-react";
-import { Link } from "react-router-dom";
+import { MapPin, Phone, Search } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
 import "./Hospitals.css"; 
 
 const HospitalsPage = () => {
@@ -9,6 +9,7 @@ const HospitalsPage = () => {
   const [country, setCountry] = useState("all");
   const [specialist, setSpecialist] = useState("all");
   const [selectedHospital, setSelectedHospital] = useState(null);
+  const navigate = useNavigate();
 
   // Filter Logic
   const filteredHospitals = hospitalData.filter(h =>
@@ -25,6 +26,8 @@ const HospitalsPage = () => {
           ← Back to Hospitals
         </button>
 
+        <button className="back-link" onClick={() => navigate("/")}>← Back to Home</button>
+
         <div className="details-card">
           <img
             src={selectedHospital.img}
@@ -38,10 +41,7 @@ const HospitalsPage = () => {
                 <span className="badge">Verified • {selectedHospital.country}</span>
                 <h1>{selectedHospital.name}</h1>
               </div>
-              <div className="rating-badge">
-                <Star size={20} fill="#FFC107" color="#FFC107" />
-                <span>{selectedHospital.rating}</span>
-              </div>
+              <div className="rating">★ {selectedHospital.rating}</div>
             </div>
 
             <p style={{ color: '#4a5568', lineHeight: '1.6' }}>{selectedHospital.desc}</p>
@@ -66,7 +66,7 @@ const HospitalsPage = () => {
             </div>
 
             <div className="btn-group">
-              <button className="btn btn-request" style={{ padding: '18px' }}>
+              <button className="btn btn-request" style={{ padding: '18px' }} onClick={() => navigate('/signin')}>
                 Schedule Appointment
               </button>
             </div>
@@ -131,10 +131,7 @@ const HospitalsPage = () => {
 
               <div className="card-top">
                 <h3>{h.name}</h3>
-                <div className="rating-badge">
-                  <Star size={14} fill="#FFC107" color="#FFC107" />
-                  <span>{h.rating}</span>
-                </div>
+                <span className="rating">★ {h.rating}</span>
               </div>
 
               <div className="info-row">
@@ -155,7 +152,7 @@ const HospitalsPage = () => {
                   View Hospital
                 </button>
 
-                <button className="btn btn-request">
+                <button className="btn btn-request" onClick={() => navigate('/signin')}>
                   Request Consultation
                 </button>
               </div>
