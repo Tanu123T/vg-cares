@@ -184,6 +184,11 @@
     height: 100%;
 }
 
+.doctor-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
 .doctor-home-btn {
     position: fixed;
     bottom: 40px;
