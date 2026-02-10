@@ -70,7 +70,7 @@ const HospitalsPage = () => {
         <button className="back-link" onClick={() => setSelectedHospital(null)}>
           ← Back to Hospitals
         </button>
-        <button className="back-link" onClick={() => navigate("/")}>← Back to Home</button>
+        
 
         <div className="details-card">
           <img src={selectedHospital.img} className="details-banner" alt={selectedHospital.name} />
@@ -80,7 +80,7 @@ const HospitalsPage = () => {
                 <span className="badge">Verified • {selectedHospital.country}</span>
                 <h1>{selectedHospital.name}</h1>
               </div>
-              <div className="rating"><Star size={16} /> {selectedHospital.rating}</div>
+              <div className="rating"><Star size={16} fill="#ffcc00" color="#ffcc00"/> {selectedHospital.rating}</div>
             </div>
             <p style={{ color: '#4a5568', lineHeight: '1.6' }}>{selectedHospital.desc}</p>
             <div className="details-grid">
