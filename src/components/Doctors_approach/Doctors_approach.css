@@ -26,6 +26,7 @@
     margin: 0 auto; 
     padding: 0 20px; 
     font-family: 'Inter', sans-serif; /* Ensuring clean font scaling */
+    overflow-x: hidden; /* Prevent horizontal scroll from animations */
 }
 
 /* --- 3. HERO SECTION (STRICT DESKTOP VIEW) --- */
