@@ -96,6 +96,26 @@
     /* High z-index is key */
     z-index: 9999 !important; 
     pointer-events: all;
+    max-height: 250px;    /* Limits the height to about 5-6 items */
+    overflow-y: auto;     /* Enables vertical scrolling */
+    overflow-x: hidden;
+}
+
+.dropdown-floating-menu::-webkit-scrollbar {
+    width: 6px; /* Very thin */
+}
+
+.dropdown-floating-menu::-webkit-scrollbar-track {
+    background: transparent; 
+}
+
+.dropdown-floating-menu::-webkit-scrollbar-thumb {
+    background: #e2e8f0; /* Subtle light gray */
+    border-radius: 10px;
+}
+
+.dropdown-floating-menu::-webkit-scrollbar-thumb:hover {
+    background: #cbd5e1; /* Slightly darker on hover */
 }
 
 /* Update these specific parts in your Doctors.css */

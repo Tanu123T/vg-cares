@@ -27,8 +27,8 @@ header p { color: var(--text-gray); font-size: 1.1rem; }
 /* Home Button */
 .hospital-home-btn {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
+    bottom: 40px;
+    right: 60px;
     background: #0d6efd;
     color: white;
     width: 60px;
@@ -38,7 +38,7 @@ header p { color: var(--text-gray); font-size: 1.1rem; }
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 22px;
+    font-size: 23px;
     z-index: 10;
     animation: blog-pulse 2s infinite;
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -46,7 +46,8 @@ header p { color: var(--text-gray); font-size: 1.1rem; }
 
 .hospital-home-btn:hover {
     transform: scale(1.1);
-    background: #0b5ed7;
+    background: #0e62df;
+    color:#ffffff;
 }
 
 @keyframes blog-pulse {

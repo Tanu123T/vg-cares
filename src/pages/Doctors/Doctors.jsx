@@ -13,26 +13,45 @@ export default function Doctors() {
   const navigate = useNavigate();
 
   useEffect(() => {
-  const handleEvents = (event) => {
-    // 1. Close if clicking outside
-    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-      setIsDropdownOpen(false);
+  if (!isDropdownOpen) return;
+
+  // 1. Snapshot the vertical position of the dropdown when opened
+  const initialRect = dropdownRef.current?.getBoundingClientRect();
+  const initialTop = initialRect ? initialRect.top : 0;
+
+  const handleScrollBehavior = (event) => {
+    if (!dropdownRef.current) return;
+
+    // 2. CHECK: If the scroll is happening INSIDE the dropdown list, STOP here.
+    // This allows your new scrollbar to work!
+    if (event.target.classList?.contains('dropdown-floating-menu')) {
+      return;
+    }
+
+    // 3. Get the NEW position of the filter box
+    const currentRect = dropdownRef.current.getBoundingClientRect();
+    
+    // 4. If the box moved more than 1px (meaning the main page scrolled), CLOSE IT
+    if (Math.abs(currentRect.top - initialTop) > 1) {
+      setIsDropdownOpen(false); // FIXED: matched your state name
     }
   };
 
-  const handleScroll = () => {
-    // 2. Close immediately on scroll
-    setIsDropdownOpen(false);
+  const handleOutsideClick = (event) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      setIsDropdownOpen(false); // FIXED: matched your state name
+    }
   };
 
-  document.addEventListener("mousedown", handleEvents);
-  window.addEventListener("scroll", handleScroll, true); // 'true' helps detect scroll in nested containers
+  document.addEventListener("mousedown", handleOutsideClick);
+  // 'true' is critical to detect the scroll properly
+  window.addEventListener("scroll", handleScrollBehavior, true);
 
   return () => {
-    document.removeEventListener("mousedown", handleEvents);
-    window.removeEventListener("scroll", handleScroll, true);
+    document.removeEventListener("mousedown", handleOutsideClick);
+    window.removeEventListener("scroll", handleScrollBehavior, true);
   };
-}, []);
+}, [isDropdownOpen]); // Re-run when it opens to reset lastScrollY// Keep dependency array empty to prevent infinite re-renders
 
   const filteredDoctors = useMemo(() => {
     return doctorData.filter((doctor) => {
@@ -58,7 +77,7 @@ export default function Doctors() {
             <Search className="search-icon" size={18} />
             <input
               type="text"
-              placeholder="Search by doctor name, specialty, or hospital..."
+              placeholder="Search by doctor name, speciality, or hospital..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
@@ -69,13 +88,13 @@ export default function Doctors() {
               className={`dropdown-header ${isDropdownOpen ? "active" : ""}`} 
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
             >
-              <span>{specialty === "All" ? "All Specialties" : specialty}</span>
+              <span>{specialty === "All" ? "All Specialities" : specialty}</span>
               <ChevronDown className={`chevron ${isDropdownOpen ? "rotate" : ""}`} size={18} />
             </div>
 
             {isDropdownOpen && (
-              <div className="dropdown-floating-menu">
-                {["All", "Cardiology", "Dermatology", "Neurology", "Orthopedics"].map((opt) => (
+              <div className="dropdown-floating-menu" style={{ overflowY: 'auto', maxHeight: '250px' }}>
+                {["All", "Cardiology", "Dermatology", "Neurology", "Orthopedics","Gynecology","Ophthalmology","Oncology","Pediatrics","Psychiatry"].map((opt) => (
   <div 
     key={opt} 
     /* The logic below applies the 'selected' class equally to any active option */
