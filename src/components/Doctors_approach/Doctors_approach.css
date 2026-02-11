@@ -22,7 +22,7 @@
 
 /* --- 2. GENERAL CONTAINER --- */
 .container-approach { 
-    max-width: 1240px; 
+ max-width: 1430px;
     margin: 0 auto; 
     padding: 0 20px; 
     font-family: 'Inter', sans-serif; /* Ensuring clean font scaling */
