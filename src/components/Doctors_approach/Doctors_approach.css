@@ -293,6 +293,9 @@
     z-index: 10; 
     box-shadow: 0 8px 20px rgba(0,0,0,0.1); 
     transition: 0.3s; 
+    display: flex;              /* ADD THIS */
+    align-items: center;        /* ADD THIS */
+    justify-content: center; 
 }
 
 .nav-btn1:hover { background: #007bff; color: white; }
