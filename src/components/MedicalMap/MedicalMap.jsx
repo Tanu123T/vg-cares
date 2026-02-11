@@ -160,7 +160,7 @@ const MedicalMap = () => {
       } else {
         console.log('Google Maps not loaded, loading script...');
         const script = document.createElement('script');
-        script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyAjO6EMZjeaQv-NdHcBDFCS1mQH_xAgKH0&libraries=places&callback=initMap';
+        script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyAjO6EMZjeaQv-NdHcBDFCS1mQH_xAgKH0&libraries=places';
         script.async = true;
         script.defer = true;
         script.onload = () => console.log('Google Maps script loaded');
