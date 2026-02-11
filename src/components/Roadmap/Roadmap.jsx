@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import roadmapBg from "../../assets/images/roadmapbg.jpg"; // Correct: Goes up to src/ then into assets/
 
 const journeySteps = [
   { id: 1, title: "Get started", desc: "Create your account in just a few steps.", icon: "fa-solid fa-user-plus", color: "jt-icon-blue", cls: "jt-s1" },
@@ -87,8 +88,8 @@ export default function JourneyTimeline() {
           padding: 0;
           margin-top: 80px;
           overflow: hidden;
-          background: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)),
-                      url("../../assets/images/roadmapbg.jpg") center/cover;
+         background: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.85)),
+                      url(${roadmapBg}) center/cover;
           font-family: 'Plus Jakarta Sans', sans-serif;
         }
 
