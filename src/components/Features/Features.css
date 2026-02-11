@@ -2,15 +2,15 @@
     --brand-blue: #007bff; /* This is your UI blue */
     --brand-green: #22c55e;
     --text-main: #1e293b;
-    --bg-blue-section: #f0f7ff;
-    --bg-green-section: #f0fdf4;
+    --bg-blue-section: #a7c8ee30;
+    --bg-green-section: #ddfae6;
     --transition: cubic-bezier(0.4, 0, 0.2, 1);
     --card-gradient: linear-gradient(145deg, #ffffff, #f8faff);
 }
 
 /* --- CONTAINER STRUCTURE --- */
 .capabilities-container { 
-    max-width: 1200px; 
+   max-width: 1430px;
     margin: 60px auto; 
     padding: 0 20px; 
 }
