@@ -43,8 +43,7 @@ function Approach() {
           <h1 className="approach-h1">Onboard your Doctors & manage patients care at scale</h1>
           <p className="approach-p">Onboard doctors, streamline schedules, and serve more appointments digitally under one unified platform.</p>
           <div className="hero-btns1">
-            <button className="btn1 btn-blue1" onClick={() => navigate("/signin")}>Register your Hospital</button>
-            <button className="btn1 btn-green1" onClick={() => navigate("/signin")}>Onboard doctors now</button>
+            <button className="btn1 btn-green1" onClick={() => navigate("/signin")}>Register your Hospital</button>
           </div>
         </div>
 
