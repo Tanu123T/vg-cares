@@ -22,7 +22,7 @@
 
 /* --- 2. GENERAL CONTAINER --- */
 .container-approach { 
-    max-width: 1240px; 
+ max-width: 1430px;
     margin: 0 auto; 
     padding: 0 20px; 
     font-family: 'Inter', sans-serif; /* Ensuring clean font scaling */
@@ -39,7 +39,7 @@
     animation: revealUp 0.8s ease-out forwards; 
 }
 
-.hero-text1 { flex: 1.2; text-align: left; }
+.hero-text1 { flex: 1.7; text-align: left; }
 
 .badge1 { 
     background: #e8f5e9; 
@@ -63,7 +63,7 @@
 .approach-p { 
     color: #777; 
     font-size: 17px; 
-    max-width: 500px; 
+    max-width: 700px; 
     margin-bottom: 30px; 
 }
 
