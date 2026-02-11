@@ -10,14 +10,14 @@ const Hero = () => {
         <div className="hipaa-badge">HIPAA Compliant & Secure</div>
 
         <h1 className="hero-title">
-          Your Health, Your Schedule, <br />
-          <span className="animated-choice">Your Choice</span>
+          Your Health Journey, <br />
+          <span className="animated-choice">Across Borders</span>
         </h1>
 
         <p className="hero-description">
-          Quality care, simplified. Book appointments with trusted healthcare
-          providers, consult online, and manage your wellness journey—all in one
-          place.
+         Explore secure and budget-friendly treatment results across the globe.
+         VG Cares Global unites reliable healthcare providers with comprehensive
+         medical trip collaboration on a single platform.
         </p>
 
         <div className="cta-group">
