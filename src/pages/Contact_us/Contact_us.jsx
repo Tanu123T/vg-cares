@@ -44,7 +44,7 @@ const ContactUs = () => {
               <div className="info-icon"><Phone size={20} /></div>
               <div className="info-content">
                 <h3>Phone</h3>
-                <p>+91 75xxxxxxxs</p>
+                <p>+91 75XXXXXXXX</p>
               </div>
             </div>
 

@@ -62,7 +62,7 @@ const HospitalsPage = () => {
             </div>
             <p style={{ color: '#4a5568', lineHeight: '1.6' }}>{selectedHospital.desc}</p>
             <div className="details-grid">
-              <div className="detail-item"><label>Specialty</label><p>{selectedHospital.specialist}</p></div>
+              <div className="detail-item"><label>Speciality</label><p>{selectedHospital.specialist}</p></div>
               <div className="detail-item"><label>Address</label><p>{selectedHospital.address}</p></div>
               <div className="detail-item"><label>Phone</label><p>{selectedHospital.phone}</p></div>
               <div className="detail-item"><label>Accreditation</label><p>JCI & ISO Certified</p></div>
@@ -126,7 +126,7 @@ const HospitalsPage = () => {
             className={`dropdown-header ${openDropdown === 'specialist' ? 'active' : ''}`}
             onClick={() => setOpenDropdown(openDropdown === 'specialist' ? null : 'specialist')}
           >
-            <span>{specialist === "all" ? "All Specialties" : specialist}</span>
+            <span>{specialist === "all" ? "All Specialities" : specialist}</span>
             <ChevronDown size={18} className={openDropdown === 'specialist' ? 'rotate' : ''} />
           </div>
           {openDropdown === 'specialist' && (
@@ -134,7 +134,7 @@ const HospitalsPage = () => {
               {["all", "Cardiology", "Neurology", "Orthopedics", "Oncology", "Pediatrics"].map(s => (
                 <div key={s} className={`dropdown-item ${specialist === s ? 'selected' : ''}`} 
                   onClick={() => { setSpecialist(s); setOpenDropdown(null); }}>
-                  {s === "all" ? "All Specialties" : s}
+                  {s === "all" ? "All Specialities" : s}
                 </div>
               ))}
             </div>
