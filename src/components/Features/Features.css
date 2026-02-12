@@ -25,7 +25,7 @@
 .reveal.active, .reveal-left.active, .reveal-right.active { opacity: 1; transform: translate(0, 0); }
 
 /* --- HEADER --- */
-.capabilities-badge { background: #dcfce7; color: #22c55e; padding: 5px 15px; border-radius: 50px; font-size: 0.75rem; font-weight: 800; display: inline-block; margin-bottom: 10px; }
+.capabilities-badge { background: #d9f5e7; color: #2fa36b; padding: 5px 15px; border-radius: 20px; font-size: 0.75rem; font-weight: 800; display: inline-block; margin-bottom: 10px; }
 .capabilities-header-title { font-size: 3rem; font-weight: 800; color: var(--text-main); line-height: 1.1; margin: 0; }
 .capabilities-header-title span { 
     background: linear-gradient(to right, var(--brand-blue) 20%, #60a5fa 40%, #60a5fa 60%, var(--brand-blue) 80%);

@@ -21,8 +21,8 @@
 .blog-top-badge {
     display: inline-block;
     padding: 6px 16px;
-    background: var(--blog-accent-bg);
-    color: var(--blog-accent-text);
+    background: d9f5e7;
+    color:2fa36b;
     border-radius: 20px;
     font-size: 14px;
     font-weight: 600;
