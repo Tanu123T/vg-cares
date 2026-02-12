@@ -16,7 +16,7 @@ body {
 .contact-container {
     display: flex;
     max-width: 1000px;
-    margin: 60px auto;
+    margin: 90px auto;
     background: white;
     border-radius: 20px;
     overflow: hidden;

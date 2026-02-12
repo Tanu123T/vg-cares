@@ -11,7 +11,7 @@
 /* Base Styles */
 .blog-page-container {
     max-width: 1200px;
-    margin: auto;
+    margin:  90px auto;
     padding: 60px 20px 100px;
     position: relative;
 }
@@ -19,14 +19,14 @@
 /* Header */
 .blog-header-section { margin-bottom: 50px; }
 .blog-top-badge {
+        background: #e8fdf5;
+    color: #10b981;
+    padding: 6px 14px;
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 700;
     display: inline-block;
-    padding: 6px 16px;
-    background: d9f5e7;
-    color:2fa36b;
-    border-radius: 20px;
-    font-size: 14px;
-    font-weight: 600;
-    margin-bottom: 15px;
+    margin-bottom: 20px;;
 }
 .blog-main-title {
     font-size: 32px;

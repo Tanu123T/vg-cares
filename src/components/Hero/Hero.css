@@ -1,6 +1,6 @@
 .hero {
   background-color: #f4faff;
-  padding: 40px 7% 120px; /* reduced top padding */
+  padding: 200px 7% 120px; /* reduced top padding */
   display: flex;
   align-items: center;
   gap: 40px;
@@ -38,8 +38,8 @@
 
 /* BADGE */
 .hipaa-badge {
-  background: d9f5e7;
-  color: 2fa36b;
+  background: #d9f5e7;
+  color: #2fa36b;
   padding: 6px 14px;
   border-radius: 20px;
   font-size: 0.8rem;
@@ -141,6 +141,8 @@
 /* ================= TABLET ================= */
 @media (max-width: 1024px) {
   .hero {
+    margin-top: 20%;
+
     flex-direction: column;
     text-align: center;
   }

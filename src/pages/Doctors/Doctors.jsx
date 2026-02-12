@@ -65,7 +65,7 @@ export default function Doctors() {
     <div className="doctors-page-wrapper">
       {/* 1. Header */}
       <div className="doctors-header-container">
-        <div className="verified-header">✓ VERIFIED GLOBAL HEALTHCARE</div>
+        <div className="verified-header">VERIFIED GLOBAL HEALTHCARE</div>
         <h1>Our Doctor Network</h1>
         <p>Connecting you to world-class medical specialists globally.</p>
       </div>
