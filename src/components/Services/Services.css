@@ -1,8 +1,7 @@
 /* --- Container & Layout --- */
 .expertise {
   max-width: 1430px;
-  margin: 80px auto;
-  padding: 0 25px;
+  margin: 0px auto;
   width: 100%;
   box-sizing: border-box;
   overflow: hidden;

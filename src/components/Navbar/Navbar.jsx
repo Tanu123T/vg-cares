@@ -1,5 +1,5 @@
 import "./Navbar.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 
 const Navbar = () => {
@@ -22,6 +22,7 @@ const Navbar = () => {
 
   const handleNavigation = (targetId) => {
     setIsMenuOpen(false);
+
     if (location.pathname === "/") {
       const element = document.getElementById(targetId);
       if (element) {

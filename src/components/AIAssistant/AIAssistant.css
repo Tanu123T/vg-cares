@@ -1,18 +1,46 @@
-/* Intentionally left blank: Botpress webchat provides its own UI */
+/* --- PREVENT HORIZONTAL OVERFLOW --- */
+/* Target only the horizontal overflow to stop the "right-side space" 
+   without breaking vertical scrolling or fixed headers */
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
 
+/* --- RESPONSIVE BOT FIX --- */
+#bp-web-widget-container {
+  max-width: 100vw !important; 
+  right: 0 !important;         
+  margin: 0 !important;
+  z-index: 9999 !important; /* Keep below Navbar but above Hero */
+}
+
+/* --- MOBILE SPECIFIC UI --- */
+@media (max-width: 480px) {
+  /* Adjusted for "Tap Targets" - 25px is too small for fingers */
+  .bpw-floating-button {
+    bottom: 20px !important;
+    right: 20px !important;
+    width: 30px !important; 
+    height: 30px !important;
+    z-index: 999999 !important;
+  }
+
+  .bpw-widget-container {
+    width: 100% !important;
+    height: 100% !important;
+    bottom: 0 !important;
+    right: 0 !important;
+  }
+} 
+
+/* --- BRANDING HIDER --- */
 #bp-web-widget-container .bpw-powered,
-#bp-web-widget-container .bpw-powered-by,
-#bp-web-widget-container .bpw-powered-by-container,
 #bp-web-widget-container .bpw-branding,
-#bp-web-widget-container .bpw-credit,
-#bp-web-widget-container .bpw-widget-footer,
-#bp-web-widget-container [class*="powered" i],
-#bp-web-widget-container [class*="branding" i],
 #bp-web-widget-container a[href*="botpress" i] {
   display: none !important;
   visibility: hidden !important;
-  opacity: 0 !important;
   height: 0 !important;
-  width: 0 !important;
-  overflow: hidden !important;
+  pointer-events: none !important;
 }

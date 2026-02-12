@@ -28,7 +28,7 @@
 .app-card {
     position: relative;
     width: 90%;
-    max-width: 1200px;
+    max-width: 1000px;
     background: var(--glass-bg);
     backdrop-filter: blur(25px);
     -webkit-backdrop-filter: blur(25px);
