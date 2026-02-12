@@ -1,5 +1,4 @@
 /* --- BASE STYLES --- */
-/* This "cleans" the buttons without changing your layout */
 button.nav-item {
   background: none;
   border: none;
@@ -12,31 +11,27 @@ button.nav-item {
   display: flex;
   align-items: center;
   outline: none;
-  /* This line removes the dark "flicker" box when tapping on mobile */
   -webkit-tap-highlight-color: transparent; 
 }
-
-/* Specifically target the mobile menu items to stay clean */
-@media (max-width: 1024px) {
-  .nav-item {
-    background-color: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
-  }
-}
-
 
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 30px;
-  background:rgb(255, 255, 255,0.9);
-  position: sticky;
+  padding: 15px 30px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  
+  /* --- THE FIXED FIX --- */
+  position: fixed; 
   top: 0;
-  z-index: 1000;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+  left: 0;
+  right: 0;
   width: 100%;
+  z-index: 2000; /* Stays above Botpress (if bot is 1000) */
+  /* -------------------- */
+
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
   box-sizing: border-box;
 }
 
@@ -44,6 +39,7 @@ button.nav-item {
   display: flex;
   align-items: center;
   gap: 12px;
+  cursor: pointer;
 }
 
 .logo-mark {
@@ -60,14 +56,14 @@ button.nav-item {
 }
 
 .logo-text h2 {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   font-weight: 800;
   color: #333;
   margin: 0;
 }
 
 .logo-text p {
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   color: #888;
   margin: 0;
 }
@@ -88,34 +84,13 @@ button.nav-item {
   font-size: 0.95rem;
   position: relative;
   transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  cursor: pointer;
-}
-
-.nav-item::after {
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 2px;
-  bottom: -2px;
-  left: 50%;
-  background-color: #006ce0;
-  transition: all 0.3s ease;
-  transform: translateX(-50%);
 }
 
 .nav-item:hover {
   color: #006ce0;
-  transform: translateY(-2px);
 }
 
-.nav-item:hover::after {
-  width: 100%;
-}
-
-/* --- DROPDOWN (Desktop Defaults) --- */
+/* --- DROPDOWN --- */
 .more-dropdown-trigger {
   position: relative;
 }
@@ -134,7 +109,6 @@ button.nav-item {
   visibility: hidden;
   transition: all 0.3s ease;
   border: 1px solid #f0f0f0;
-  z-index: 1001;
 }
 
 .dropdown.show {
@@ -151,150 +125,65 @@ button.nav-item {
   text-decoration: none;
   color: #666;
   font-size: 0.9rem;
-  font-weight: 500;
   border-radius: 8px;
-  transition: 0.2s;
 }
 
 .dropdown-item:hover {
   background: #f0f7ff;
   color: #006ce0;
-  transform: translateX(5px);
 }
 
 .btn-signin {
-  padding: 0 32px;
-  /* remove vertical padding */
-  height: 50px;
-
-  display: flex;
-  align-items: center;
-  /* vertical center */
-  justify-content: center;
+  padding: 12px 25px;
   border-radius: 40px;
-  border: none;
+  background-color: #006ce0;
+  color: white;
+  text-decoration: none;
   font-weight: 600;
-  cursor: pointer;
-  font-size: 16px;
-  position: relative;
-  overflow: hidden;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  background-color: var(--primary-blue);
-  color: white;
-  height: 50px;
+  transition: 0.3s;
 }
 
-.btn-signin::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 50%;
-  height: 100%;
-  background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-  transition: all 0.6s;
-}
-
-.btn-signin:hover {
-  transform: translateY(-8px) scale(1.05);
-  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
-  color: white;
-}
-
-
-.btn-signin:hover::before {
-  animation: shineSweep 0.6s forwards;
-}
-/* --- MOBILE RESPONSIVE LOGIC --- */
+/* --- MOBILE RESPONSIVE --- */
 .menu-toggle {
   display: none;
   font-size: 1.5rem;
   cursor: pointer;
 }
 
-.mobile-only { display: none; }
-
 @media (max-width: 1024px) {
-  .menu-toggle {
-    display: block;
-    z-index: 1001;
-  }
-
-  .desktop-only {
-    display: none;
-  }
-
-  .mobile-only {
-    display: block;
-    width: 100%;
-    margin-top: 10px;
-  }
+  .menu-toggle { display: block; }
+  .desktop-only { display: none; }
 
   .nav-links {
-    position: absolute;
-    top: 100%;
+    position: fixed;
+    top: 70px; /* Height of navbar */
     left: 0;
     width: 100%;
-    
-    /* CHANGE 1: Remove max-height and overflow: hidden */
-    display: none; 
-    flex-direction: column;
+    height: calc(100vh - 70px);
     background: white;
-    padding: 20px 30px;
-    gap: 5px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-    align-items: flex-start;
-    border-top: 1px solid #f0f0f0;
+    flex-direction: column;
+    padding: 30px;
+    display: none;
+    overflow-y: auto;
   }
 
-  /* CHANGE 2: Use display: flex to show the menu instead of max-height */
-  .nav-links.active {
-    display: flex;
-  }
+  .nav-links.active { display: flex; }
 
   .nav-item {
     width: 100%;
     padding: 15px 0;
-    font-size: 1.1rem;
-    border-bottom: 1px solid #fafafa;
+    border-bottom: 1px solid #f0f0f0;
   }
 
-  /* CHANGE 3: Ensure dropdown pushes everything down */
   .dropdown {
-    position: static;      /* Removes the "floating" behavior */
-    transform: none;       /* Resets the desktop centering */
+    position: static;
+    transform: none;
+    display: none;
     opacity: 1;
     visibility: visible;
-    display: none;         /* Toggled by the 'show' class */
     box-shadow: none;
-    border: none;
-    width: 100%;
-    background: transparent;
-    
-    /* This moves the dropdown menu items to the right */
-    padding-left: 40px;    
-    margin-top: 5px;
+    padding-left: 20px;
   }
 
-  .dropdown.show {
-    display: block;        /* Pushes the 'Sign In' button down */
-  }
-
-  .dropdown-item {
-    padding: 10px 0;       /* Vertical spacing between items */
-    justify-content: flex-start;
-    font-size: 1rem;
-    color: #555;
-    background: transparent !important; /* Remove hover background on mobile for cleaner look */
-  }
-  
-  .dropdown-item i {
-    width: 25px;           /* Keeps icons aligned */
-    color: #006ce0;
-  }
-
-  .more-text {
-    color: var(--brand-blue, #006ce0);
-  }
+  .dropdown.show { display: block; }
 }
