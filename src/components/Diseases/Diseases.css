@@ -27,8 +27,8 @@
 }
 
 .disease-badge {
-  background-color: var(--badge-bg);
-  color: #28a745;
+  background-color: d9f5e7;
+  color: #2fa36b;
   padding: 6px 16px;
   border-radius: 20px;
   font-size: 13px;
