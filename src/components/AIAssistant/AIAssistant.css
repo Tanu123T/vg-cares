@@ -1,32 +1,32 @@
 /* --- PREVENT HORIZONTAL OVERFLOW --- */
-/* This stops the "white space on the right" issue globally */
+/* Target only the horizontal overflow to stop the "right-side space" 
+   without breaking vertical scrolling or fixed headers */
 html, body {
   overflow-x: hidden;
   width: 100%;
   margin: 0;
   padding: 0;
-  position: relative;
 }
 
 /* --- RESPONSIVE BOT FIX --- */
 #bp-web-widget-container {
-  max-width: 100vw !important; /* Ensure it never exceeds screen width */
-  right: 0 !important;         /* Reset any default right-side offset */
+  max-width: 100vw !important; 
+  right: 0 !important;         
   margin: 0 !important;
+  z-index: 9999 !important; /* Keep below Navbar but above Hero */
 }
 
 /* --- MOBILE SPECIFIC UI --- */
 @media (max-width: 480px) {
-  /* Smaller floating button for mobile */
+  /* Adjusted for "Tap Targets" - 25px is too small for fingers */
   .bpw-floating-button {
-    bottom: 15px !important;
-    right: 15px !important;
-    width: 25px !important;
-    height: 25px !important;
+    bottom: 20px !important;
+    right: 20px !important;
+    width: 30px !important; 
+    height: 30px !important;
     z-index: 999999 !important;
   }
 
-  /* Force the chat window to be full-width on tiny screens */
   .bpw-widget-container {
     width: 100% !important;
     height: 100% !important;
@@ -35,11 +35,12 @@ html, body {
   }
 } 
 
-/* --- BRANDING HIDER (Your existing logic) --- */
+/* --- BRANDING HIDER --- */
 #bp-web-widget-container .bpw-powered,
 #bp-web-widget-container .bpw-branding,
 #bp-web-widget-container a[href*="botpress" i] {
   display: none !important;
   visibility: hidden !important;
   height: 0 !important;
+  pointer-events: none !important;
 }
