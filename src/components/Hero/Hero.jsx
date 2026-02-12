@@ -1,11 +1,14 @@
 import "./hero.css";
-import heroImg from "../../assets/images/hero1.jpg";
 import { Link } from "react-router-dom";
-import { Check } from "lucide-react";
+import herobg from "../../assets/images/herobg.png";
 
-const Hero = () => {
+  const Hero = () => {
+  // Combine the white-to-transparent gradient with your background image
+  const backgroundStyle = {
+    backgroundImage: `linear-gradient(to right, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 70%, rgba(255, 255, 255, 0) 100%), url(${herobg})`
+  };
   return (
-    <section className="hero" id="home">
+    <section className="hero" id="home" style={backgroundStyle}>
       <div className="hero-content">
         <div className="hipaa-badge">HIPAA Compliant & Secure</div>
 
@@ -44,18 +47,6 @@ const Hero = () => {
           <div className="trust-item">
             <div className="check-circle-small">✓</div>
             24/7 Support
-          </div>
-        </div>
-      </div>
-
-      <div className="hero-visual">
-        <img src={heroImg} alt="Doctor" className="main-img" />
-
-        <div className="stats-card">
-          <div className="big-check"><Check size={30} /></div>
-          <div className="stats-text">
-            <h3>98%</h3>
-            <p>Satisfaction</p>
           </div>
         </div>
       </div>
