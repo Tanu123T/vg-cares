@@ -8,7 +8,6 @@ const AIAssistant = () => {
     const configSrc = 'https://files.bpcontent.cloud/2026/02/08/17/20260208173021-J6T01B2S.js';
     const injectSrc = 'https://cdn.botpress.cloud/webchat/v3.5/inject.js';
 
-    // 1. Prevent Duplicate Loading Conflict
     if (document.getElementById(injectId)) return;
 
     const scrub = () => {
@@ -24,7 +23,6 @@ const AIAssistant = () => {
       });
     };
 
-    // 2. Load Scripts
     const script = document.createElement('script');
     script.id = injectId;
     script.src = injectSrc;
@@ -38,27 +36,29 @@ const AIAssistant = () => {
     };
     document.body.appendChild(script);
 
-    // 3. Global Reset Cleanup
     return () => {
-      // Remove scripts
+      // 1. Remove script tags
       document.getElementById(injectId)?.remove();
       document.getElementById(configId)?.remove();
       
-      // Reset global bot variable
+      // 2. Clear global state
       if (window.botpressWebChat) {
         try {
+          // Send a hide signal before destroying
           window.botpressWebChat.sendEvent({ type: 'hide' });
-        } catch (e) {}
+        } catch (e) {
+          console.warn("Botpress hide failed", e);
+        }
         window.botpressWebChat = undefined;
       }
 
-      // Cleanup DOM
+      // 3. Heavy Scrub
       scrub();
       const interval = setInterval(scrub, 100);
+      
+      // Stop scrubbing after 2 seconds
       setTimeout(() => {
         clearInterval(interval);
-        // Final safety check: Reset scroll if the bot left any artifacts
-        document.documentElement.style.overflowX = 'hidden';
       }, 2000);
     };
   }, []);
