@@ -23,7 +23,7 @@ export default function Blogs() {
       `,
     },
     {
-      label: "Gynaecology",
+      label: "Gynecology",
       title: "Essential Tips For Women's Health",
       date: "Dec 2025",
       img: "https://images.pexels.com/photos/3850689/pexels-photo-3850689.jpeg?w=800",
