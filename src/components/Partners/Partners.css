@@ -26,7 +26,7 @@
 /* Slider */
 .slider-wrapper {
   width: 100%;
-  max-width: 1150px;
+  max-width: 1430px;
   margin: 0 auto;
   overflow: hidden;
   position: relative;
@@ -69,8 +69,8 @@
 /* Cards */
 .partner-card {
   width: var(--card-width);
-  height: 150px;
-  width: 170px;
+  height: 180px;
+  width: 220px;
   background: #fff;
   border-radius: 15px;
   display: flex;

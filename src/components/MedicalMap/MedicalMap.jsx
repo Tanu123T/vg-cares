@@ -19,7 +19,7 @@ const MedicalMap = () => {
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [mapLoaded, setMapLoaded] = useState(false);
   const [searchTimeout, setSearchTimeout] = useState(null);
-  
+
   const mapRef = useRef(null);
   const mapFrameRef = useRef(null);
 
@@ -27,9 +27,9 @@ const MedicalMap = () => {
     // Clear existing markers
     markers.forEach(marker => marker.setMap(null));
     setMarkers([]);
-    
+
     setLoaderVisible(true);
-    
+
     const query = `[out:json][timeout:25];
         (
           node["amenity"="${currentType}"](around:10000,${lat},${lon});
@@ -39,25 +39,25 @@ const MedicalMap = () => {
         out center;`;
 
     const url = `https://overpass-api.de/api/interpreter?data=${encodeURIComponent(query)}`;
-    
+
     try {
       const res = await fetch(url);
       const data = await res.json();
-      
+
       if (!data.elements) {
         console.error('No data returned from Overpass API');
         setLoaderVisible(false);
         return;
       }
-      
+
       const newMarkers = [];
-      
+
       data.elements.forEach(f => {
         const latVal = f.lat || f.center?.lat;
         const lonVal = f.lon || f.center?.lon;
-        
+
         if (!latVal || !lonVal) return;
-        
+
         const name = f.tags?.name || `Medical Facility (${currentType})`;
 
         const marker = new window.google.maps.Marker({
@@ -92,7 +92,7 @@ const MedicalMap = () => {
 
         newMarkers.push(marker);
       });
-      
+
       setMarkers(newMarkers);
     } catch (error) {
       console.error("Fetch failed:", error);
@@ -102,7 +102,7 @@ const MedicalMap = () => {
 
   const placePin = useCallback(async (lat, lon) => {
     console.log('Placing pin at:', lat, lon);
-    
+
     if (!map) {
       console.error('Map not initialized');
       return;
@@ -112,7 +112,7 @@ const MedicalMap = () => {
     if (mainMarker) {
       mainMarker.setMap(null);
     }
-    
+
     try {
       // Create main marker
       const newMainMarker = new window.google.maps.Marker({
@@ -135,10 +135,10 @@ const MedicalMap = () => {
       // Animate to location
       map.panTo({ lat, lng: lon });
       map.setZoom(14);
-      
+
       // Fetch medical facilities
       await fetchData(lat, lon);
-      
+
       // Handle marker drag
       newMainMarker.addListener('dragend', (e) => {
         console.log('Marker dragged to:', e.latLng.lat(), e.latLng.lng());
@@ -160,7 +160,7 @@ const MedicalMap = () => {
       } else {
         console.log('Google Maps not loaded, loading script...');
         const script = document.createElement('script');
-        script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyAjO6EMZjeaQv-NdHcBDFCS1mQH_xAgKH0&libraries=places&callback=initMap';
+        script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyAjO6EMZjeaQv-NdHcBDFCS1mQH_xAgKH0&libraries=places';
         script.async = true;
         script.defer = true;
         script.onload = () => console.log('Google Maps script loaded');
@@ -176,7 +176,7 @@ const MedicalMap = () => {
         console.error('Map ref is null');
         return;
       }
-      
+
       try {
         const mapInstance = new window.google.maps.Map(mapRef.current, {
           zoom: 2,
@@ -205,7 +205,7 @@ const MedicalMap = () => {
 
         const autocompleteServiceInstance = new window.google.maps.places.AutocompleteService();
         const placesServiceInstance = new window.google.maps.places.PlacesService(mapInstance);
-        
+
         setAutocompleteService(autocompleteServiceInstance);
         setPlacesService(placesServiceInstance);
 
@@ -231,17 +231,17 @@ const MedicalMap = () => {
       const searchContainer = document.querySelector('.search-container');
       const filterWrapper = document.querySelector('.dropdown-wrapper');
       const mapTypeWrapper = document.querySelectorAll('.dropdown-wrapper')[1];
-      
+
       // Close search suggestions
       if (searchContainer && !searchContainer.contains(e.target)) {
         setShowSuggestions(false);
       }
-      
+
       // Close filter dropdown
       if (filterWrapper && !filterWrapper.contains(e.target)) {
         setFilterMenuOpen(false);
       }
-      
+
       // Close map type dropdown
       if (mapTypeWrapper && !mapTypeWrapper.contains(e.target)) {
         setMapTypeMenuOpen(false);
@@ -259,7 +259,7 @@ const MedicalMap = () => {
     }
 
     setLoaderVisible(true);
-    
+
     navigator.geolocation.getCurrentPosition(
       (pos) => {
         console.log('Location obtained:', pos.coords);
@@ -267,13 +267,13 @@ const MedicalMap = () => {
         setOverlayHidden(true);
         setLoaderVisible(false);
         placePin(pos.coords.latitude, pos.coords.longitude);
-      }, 
+      },
       (error) => {
         setLoaderVisible(false);
         console.error('Geolocation error:', error);
         let errorMessage = "Unable to get your location. ";
-        
-        switch(error.code) {
+
+        switch (error.code) {
           case error.PERMISSION_DENIED:
             errorMessage += "Please allow location access in your browser settings.";
             break;
@@ -287,7 +287,7 @@ const MedicalMap = () => {
             errorMessage += "Please use the search bar to find your location.";
             break;
         }
-        
+
         alert(errorMessage);
       },
       {
@@ -303,12 +303,12 @@ const MedicalMap = () => {
       alert("Please enter a location to search.");
       return;
     }
-    
+
     setLoaderVisible(true);
     try {
       const res = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(searchQuery)}&limit=1`);
       const data = await res.json();
-      
+
       if (data && data[0]) {
         console.log('Search result:', data[0]);
         setMapBright(true);
@@ -330,7 +330,7 @@ const MedicalMap = () => {
       setSuggestions([]);
       return;
     }
-    
+
     autocompleteService.getPlacePredictions({
       input: query,
       types: [],
@@ -349,13 +349,13 @@ const MedicalMap = () => {
 
   const selectSuggestion = (placeId, description) => {
     if (!placesService) return;
-    
+
     console.log('Selecting suggestion:', description);
     setLoaderVisible(true);
-    
+
     placesService.getDetails({ placeId }, (place, status) => {
       setLoaderVisible(false);
-      
+
       if (status === window.google.maps.places.PlacesServiceStatus.OK && place?.geometry?.location) {
         console.log('Place details obtained:', place);
         setSearchQuery(description);
@@ -389,7 +389,7 @@ const MedicalMap = () => {
 
   const toggleFullscreen = () => {
     const mapFrame = mapFrameRef.current;
-    
+
     if (!document.fullscreenElement) {
       mapFrame.requestFullscreen().then(() => {
         setIsFullscreen(true);
@@ -439,13 +439,13 @@ const MedicalMap = () => {
       <div className="outer-container">
         <h1>Find Medical centers near you...</h1>
 
-        <div 
-          className={`map-frame ${mapBright ? 'map-bright' : ''} ${isFullscreen ? 'fullscreen-mode' : ''}`} 
+        <div
+          className={`map-frame ${mapBright ? 'map-bright' : ''} ${isFullscreen ? 'fullscreen-mode' : ''}`}
           id="mainFrame"
           ref={mapFrameRef}
         >
-          <div 
-            id="loader" 
+          <div
+            id="loader"
             style={{ display: loaderVisible ? 'block' : 'none' }}
           >
             <i className="fas fa-globe-americas fa-spin"></i> SCANNING GLOBAL DATABASE...
@@ -456,47 +456,48 @@ const MedicalMap = () => {
           <div className="top-controls">
             <div className="search-container">
               <i className="fa-solid fa-magnifying-glass"></i>
-              <input 
-                type="text" 
-                id="cityInput" 
-                placeholder="Enter city, address, or place..."
-                value={searchQuery}
-                onChange={(e) => {
-                  const value = e.target.value;
-                  setSearchQuery(value);
-                  
-                  // Clear existing timeout
-                  if (searchTimeout) {
-                    clearTimeout(searchTimeout);
-                  }
-                  
-                  // Debounce search suggestions
-                  const timeout = setTimeout(() => {
-                    handleSuggestions(value);
-                  }, 300);
-                  
-                  setSearchTimeout(timeout);
-                }}
-                onKeyPress={(e) => {
-                  if (e.key === 'Enter') search();
-                }}
-              />
-              <div 
-                id="searchSuggestions" 
+                <input
+                  type="text"
+                  id="cityInput"
+                  placeholder="Enter city, address, or place..."
+                  value={searchQuery}
+                  onChange={(e) => {
+                    const value = e.target.value;
+                    setSearchQuery(value);
+
+                    // Clear existing timeout
+                    if (searchTimeout) {
+                      clearTimeout(searchTimeout);
+                    }
+
+                    // Debounce search suggestions
+                    const timeout = setTimeout(() => {
+                      handleSuggestions(value);
+                    }, 300);
+
+                    setSearchTimeout(timeout);
+                  }}
+                  onKeyPress={(e) => {
+                    if (e.key === 'Enter') search();
+                  }}
+                />
+              
+              <div
+                id="searchSuggestions"
                 className={`search-suggestions ${showSuggestions ? 'show' : ''}`}
               >
                 {suggestions.map((prediction, index) => {
                   const parts = prediction.terms;
                   const mainName = parts[0]?.value || '';
                   const secondaryInfo = prediction.description.replace(mainName, '').trim();
-                  
+
                   return (
-                    <div 
+                    <div
                       key={index}
-                      className="suggestion-item" 
+                      className="suggestion-item"
                       onClick={() => selectSuggestion(prediction.place_id, prediction.description)}
                     >
-                      <i className={`fas ${getSuggestionIcon(prediction.types)}`} style={{marginRight: '8px', color: '#667eea'}}></i>
+                      <i className={`fas ${getSuggestionIcon(prediction.types)}`} style={{ marginRight: '8px', color: '#667eea' }}></i>
                       <span className="city-name">{mainName}</span>
                       {secondaryInfo && <span className="country-name">{secondaryInfo}</span>}
                     </div>
@@ -514,8 +515,8 @@ const MedicalMap = () => {
                 <button className="pill-btn" onClick={() => setFilterMenuOpen(!filterMenuOpen)}>
                   <i className="fa-solid fa-sliders"></i> Filters
                 </button>
-                <div 
-                  id="filterMenu" 
+                <div
+                  id="filterMenu"
                   className={`filter-menu ${filterMenuOpen ? 'show' : ''}`}
                 >
                   <div className="filter-item" onClick={() => changeType('hospital')}>
@@ -534,8 +535,8 @@ const MedicalMap = () => {
                 <button className="pill-btn" onClick={() => setMapTypeMenuOpen(!mapTypeMenuOpen)}>
                   <i className="fa-solid fa-layer-group"></i> Map Type
                 </button>
-                <div 
-                  id="mapTypeMenu" 
+                <div
+                  id="mapTypeMenu"
                   className={`filter-menu ${mapTypeMenuOpen ? 'show' : ''}`}
                 >
                   <div className="filter-item" onClick={() => changeMapType('roadmap')}>
@@ -559,7 +560,7 @@ const MedicalMap = () => {
             </div>
           </div>
 
-          <div 
+          <div
             id="enable-overlay"
             className={overlayHidden ? 'hidden' : ''}
           >

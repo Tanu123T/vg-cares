@@ -1,0 +1,9 @@
+
+
+/* MOBILE CLEANUP */
+@media (max-width: 768px) {
+  .jt-scroll-viewport {
+    -webkit-overflow-scrolling: touch;
+  }
+  .jt-scroll-viewport::-webkit-scrollbar { display: none; }
+}
