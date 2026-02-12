@@ -65,12 +65,20 @@ function Home() {
 ========================= */
 export default function App() {
   const location = useLocation();
-  const isHomePage = location.pathname === "/";
+  
+  const hiddenRoutes = ["/hospitals", "/blogs", "/doctors", "/contact"];
+  const shouldHideAI = hiddenRoutes.some(route => location.pathname.startsWith(route));
+
+  useEffect(() => {
+    if (location.pathname !== "/") {
+      window.scrollTo(0, 0);
+    }
+  }, [location.pathname]);
 
   return (
     <>
       <Navbar />
-      {isHomePage && <AIAssistant />}
+      {!shouldHideAI && <AIAssistant key="home-ai" />}
 
       <Routes>
         <Route path="/" element={<Home />} />

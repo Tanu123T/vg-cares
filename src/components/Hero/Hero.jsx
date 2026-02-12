@@ -1,5 +1,7 @@
 import "./hero.css";
 import heroImg from "../../assets/images/hero1.jpg";
+import { Link } from "react-router-dom";
+import { Check } from "lucide-react";
 
 const Hero = () => {
   return (
@@ -8,24 +10,24 @@ const Hero = () => {
         <div className="hipaa-badge">HIPAA Compliant & Secure</div>
 
         <h1 className="hero-title">
-          Your Health, Your Schedule, <br />
-          <span className="animated-choice">Your Choice</span>
+          Your Health Journey, <br />
+          <span className="animated-choice">Across Borders</span>
         </h1>
 
         <p className="hero-description">
-          Quality care, simplified. Book appointments with trusted healthcare
-          providers, consult online, and manage your wellness journey—all in one
-          place.
+         Explore secure and budget-friendly treatment results across the globe.
+         VG Cares Global unites reliable healthcare providers with comprehensive
+         medical trip collaboration on a single platform.
         </p>
 
         <div className="cta-group">
-          <a href="#services" className="btn-book1">
+          <Link to="/signin" className="btn-book1">
             <span className="shimmer-text">Book Appointment →</span>
-          </a>
+          </Link>
 
-          <a href="/doctors" className="btn-find">
+          <Link to="/doctors" className="btn-find">
             Find a Doctor
-          </a>
+          </Link>
         </div>
 
         <div className="trust-row">
@@ -50,7 +52,7 @@ const Hero = () => {
         <img src={heroImg} alt="Doctor" className="main-img" />
 
         <div className="stats-card">
-          <div className="big-check">✓</div>
+          <div className="big-check"><Check size={30} /></div>
           <div className="stats-text">
             <h3>98%</h3>
             <p>Satisfaction</p>

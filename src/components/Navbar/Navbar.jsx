@@ -1,5 +1,5 @@
 import "./Navbar.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 
 if ("scrollRestoration" in window.history) {
@@ -9,6 +9,7 @@ if ("scrollRestoration" in window.history) {
 const Navbar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const dropdownTimeoutRef = useRef(null);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -29,6 +30,19 @@ const Navbar = () => {
     document.addEventListener("click", handleClickOutside);
     return () => document.removeEventListener("click", handleClickOutside);
   }, []);
+
+  const handleDropdownMouseEnter = () => {
+    if (dropdownTimeoutRef.current) {
+      clearTimeout(dropdownTimeoutRef.current);
+    }
+    setIsDropdownOpen(true);
+  };
+
+  const handleDropdownMouseLeave = () => {
+    dropdownTimeoutRef.current = setTimeout(() => {
+      setIsDropdownOpen(false);
+    }, 150);
+  };
 
   /* =========================
      NAVIGATION HELPERS
@@ -80,7 +94,7 @@ const Navbar = () => {
 
       {/* MOBILE TOGGLE */}
       <div className="menu-toggle" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-        <i className={`fas ${isMenuOpen ? "fa-times" : "fa-bars"}`} />
+        <i className={`fa-solid ${isMenuOpen ? "fa-times" : "fa-bars"}`} />
       </div>
 
       {/* NAV LINKS */}
@@ -90,19 +104,35 @@ const Navbar = () => {
         <li><button className="nav-item" onClick={goToCapabilities}>Our Capabilities</button></li>
 
         {/* MORE */}
-        <li className="more-dropdown-trigger">
+        <li 
+          className="more-dropdown-trigger"
+          onMouseEnter={handleDropdownMouseEnter}
+          onMouseLeave={handleDropdownMouseLeave}
+        >
           <div
             className="nav-item more-text"
             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
           >
-            More <i className={`fas fa-chevron-down ${isDropdownOpen ? "rotate" : ""}`} />
+            More <i className={`fa-solid fa-chevron-down ${isDropdownOpen ? "rotate" : ""}`} />
           </div>
 
           <div className={`dropdown ${isDropdownOpen ? "show" : ""}`}>
-            <Link to="/doctors" className="dropdown-item" onClick={() => setIsMenuOpen(false)}>Doctor</Link>
-            <Link to="/hospitals" className="dropdown-item" onClick={() => setIsMenuOpen(false)}>Hospital</Link>
-            <Link to="/blogs" className="dropdown-item" onClick={() => setIsMenuOpen(false)}>Blogs</Link>
-            <Link to="/contact" className="dropdown-item" onClick={() => setIsMenuOpen(false)}>Contact</Link>
+            <Link to="/doctors" className="dropdown-item" onClick={() => setIsMenuOpen(false)}>
+              <i className="fa-solid fa-user-doctor" />
+              Doctor
+            </Link>
+            <Link to="/hospitals" className="dropdown-item" onClick={() => setIsMenuOpen(false)}>
+              <i className="fa-solid fa-hospital" />
+              Hospital
+            </Link>
+            <Link to="/blogs" className="dropdown-item" onClick={() => setIsMenuOpen(false)}>
+              <i className="fa-solid fa-book" />
+              Blogs
+            </Link>
+            <Link to="/contact" className="dropdown-item" onClick={() => setIsMenuOpen(false)}>
+              <i className="fa-solid fa-phone" />
+              Contact
+            </Link>
           </div>
         </li>
 

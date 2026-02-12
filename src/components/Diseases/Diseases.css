@@ -9,22 +9,23 @@
 }
 
 .consult-container {
-  max-width: 1250px;
+   max-width: 1430px;
   margin: 80px auto;
   padding: 0 20px;
   font-family: 'Poppins', sans-serif;
-  overflow: hidden;
+  overflow: visible; /* ✅ changed from hidden to visible */
   /* Prevent horizontal scroll on body */
 }
 
 .consult-container h1 {
-  color:var(--primary-blue); /* Darker black for better contrast */
-  font-size: clamp(1.8rem, 4vw, 2.4rem); /* Responsive size */
+  color:var(--primary-blue);
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
   line-height: 1.2;
   margin: 0;
-  font-weight: 800; /* This increases the thickness */
-  letter-spacing: -0.5px; /* Makes professional headings look tighter */
+  font-weight: 800;
+  letter-spacing: -0.5px;
 }
+
 .disease-badge {
   background-color: var(--badge-bg);
   color: #28a745;
@@ -41,7 +42,6 @@
   align-items: flex-end;
   margin-top: 15px;
   gap: 20px;
-
 }
 
 .consult-container h1 {
@@ -81,7 +81,7 @@
 .disease-slider-wrapper {
   position: relative;
   margin-top: 50px;
-  padding: 0 10px;
+  padding: 0 50px; /* ✅ changed from 10px to 50px */
 }
 
 /* Slider */
@@ -180,8 +180,8 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 45px;
-  height: 45px;
+  width: 50px;  /* ✅ changed from 45px */
+  height: 50px; /* ✅ changed from 45px */
   border-radius: 50%;
   border: 1px solid #ddd;
   background: white;
@@ -196,11 +196,11 @@
 }
 
 .disease-outside-arrow.left {
-  left: -25px;
+  left: 0; /* ✅ changed from -25px */
 }
 
 .disease-outside-arrow.right {
-  right: -25px;
+  right: 0; /* ✅ changed from -25px */
 }
 
 .disease-outside-arrow:hover {
@@ -219,7 +219,6 @@
     display: none;
   }
 
-  /* Use touch scroll on mobile/tablet */
   .disease-slider-viewport {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import "./Doctors_approach.css";
+import { useNavigate } from "react-router-dom";
 
 import hosp1 from "../../assets/images/DA1.png";
 import hosp2 from "../../assets/images/DA2.png";
@@ -19,6 +20,7 @@ const feedbacks = [
 
 function Approach() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const navigate = useNavigate();
 
   const nextSlide = useCallback(() => {
     setCurrentIndex((prev) => (prev + 1) % feedbacks.length);
@@ -41,8 +43,7 @@ function Approach() {
           <h1 className="approach-h1">Onboard your Doctors & manage patients care at scale</h1>
           <p className="approach-p">Onboard doctors, streamline schedules, and serve more appointments digitally under one unified platform.</p>
           <div className="hero-btns1">
-            <button className="btn1 btn-blue1">Register your Hospital</button>
-            <button className="btn1 btn-green1">Onboard doctors now</button>
+            <button className="btn1 btn-green1" onClick={() => navigate("/signin")}>Register your Hospital</button>
           </div>
         </div>
 

@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import "./Footer.css";
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   useEffect(() => {
@@ -52,10 +53,10 @@ const Footer = () => {
             <div className="col reveal">
               <h3>Company</h3>
               <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Capabilities</a></li>
-                <li><a href="#">Global Network</a></li>
-                <li><a href="#">Find a Doctor</a></li>
+                <li><Link to="/">Home</Link></li>
+                <li><a href="/#capabilities">Capabilities</a></li>
+                <li><Link to="/hospitals">Global Network</Link></li>
+                <li><Link to="/doctors">Find a Doctor</Link></li>
               </ul>
             </div>
 

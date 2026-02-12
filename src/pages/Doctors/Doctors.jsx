@@ -1,13 +1,57 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useRef, useEffect } from "react";
 import { doctorData } from "../../data/doctorData";
 import "./Doctors.css";
-import { Video, X, Star, Search } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Video, X, Star, Search, ChevronDown } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Doctors() {
   const [search, setSearch] = useState("");
   const [specialty, setSpecialty] = useState("All");
   const [selectedDoctor, setSelectedDoctor] = useState(null);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+  if (!isDropdownOpen) return;
+
+  // 1. Snapshot the vertical position of the dropdown when opened
+  const initialRect = dropdownRef.current?.getBoundingClientRect();
+  const initialTop = initialRect ? initialRect.top : 0;
+
+  const handleScrollBehavior = (event) => {
+    if (!dropdownRef.current) return;
+
+    // 2. CHECK: If the scroll is happening INSIDE the dropdown list, STOP here.
+    // This allows your new scrollbar to work!
+    if (event.target.classList?.contains('dropdown-floating-menu')) {
+      return;
+    }
+
+    // 3. Get the NEW position of the filter box
+    const currentRect = dropdownRef.current.getBoundingClientRect();
+    
+    // 4. If the box moved more than 1px (meaning the main page scrolled), CLOSE IT
+    if (Math.abs(currentRect.top - initialTop) > 1) {
+      setIsDropdownOpen(false); // FIXED: matched your state name
+    }
+  };
+
+  const handleOutsideClick = (event) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      setIsDropdownOpen(false); // FIXED: matched your state name
+    }
+  };
+
+  document.addEventListener("mousedown", handleOutsideClick);
+  // 'true' is critical to detect the scroll properly
+  window.addEventListener("scroll", handleScrollBehavior, true);
+
+  return () => {
+    document.removeEventListener("mousedown", handleOutsideClick);
+    window.removeEventListener("scroll", handleScrollBehavior, true);
+  };
+}, [isDropdownOpen]); // Re-run when it opens to reset lastScrollY// Keep dependency array empty to prevent infinite re-renders
 
   const filteredDoctors = useMemo(() => {
     return doctorData.filter((doctor) => {
@@ -33,20 +77,38 @@ export default function Doctors() {
             <Search className="search-icon" size={18} />
             <input
               type="text"
-              placeholder="Search by doctor name, specialty, or hospital..."
+              placeholder="Search by doctor name, speciality, or hospital..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
           </div>
 
-          <div className="filter-box">
-            <select value={specialty} onChange={(e) => setSpecialty(e.target.value)}>
-              <option value="All">All Specialties</option>
-              <option value="Cardiology">Cardiology</option>
-              <option value="Dermatology">Dermatology</option>
-              <option value="Neurology">Neurology</option>
-              <option value="Orthopedics">Orthopedics</option>
-            </select>
+          <div className="filter-box modern-dropdown" ref={dropdownRef}>
+            <div 
+              className={`dropdown-header ${isDropdownOpen ? "active" : ""}`} 
+              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+            >
+              <span>{specialty === "All" ? "All Specialities" : specialty}</span>
+              <ChevronDown className={`chevron ${isDropdownOpen ? "rotate" : ""}`} size={18} />
+            </div>
+
+            {isDropdownOpen && (
+              <div className="dropdown-floating-menu" style={{ overflowY: 'auto', maxHeight: '250px' }}>
+                {["All", "Cardiology", "Dermatology", "Neurology", "Orthopedics","Gynecology","Ophthalmology","Oncology","Pediatrics","Psychiatry"].map((opt) => (
+  <div 
+    key={opt} 
+    /* The logic below applies the 'selected' class equally to any active option */
+    className={`dropdown-item ${specialty === opt ? "selected" : ""}`}
+    onClick={() => {
+      setSpecialty(opt);
+      setIsDropdownOpen(false);
+    }}
+  >
+    {opt === "All" ? "All Specialties" : opt}
+  </div>
+))}
+              </div>
+            )}
           </div>
         </div>
         <div className="results-count">
@@ -75,7 +137,7 @@ export default function Doctors() {
 
             <div className="card-features">
               <span className="tele-link">
-                <Video size={14} /> Teleconsultation
+                Teleconsultation
               </span>
               <span className="board-badge">Am. Board of {doctor.specialty}</span>
             </div>
@@ -90,10 +152,8 @@ export default function Doctors() {
                 className="btn-book-now" 
                 onClick={() => setSelectedDoctor(doctor)} // Logic to open modal
               >
-                Book Now
-              </button>
-              <button className="btn-video-alt">
                 <Video size={18} />
+                Book Appointment
               </button>
             </div>
           </div>
@@ -123,8 +183,8 @@ export default function Doctors() {
             <button 
               className="confirm-btn"
               onClick={() => {
-                alert(`Appointment Requested with ${selectedDoctor.name}!`);
                 setSelectedDoctor(null);
+                navigate('/signin');
               }}
             >
               Confirm Appointment

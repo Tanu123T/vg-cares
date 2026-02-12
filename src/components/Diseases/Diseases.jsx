@@ -10,6 +10,7 @@ import d7 from "../../assets/images/d7.png";
 import d8 from "../../assets/images/d8.png";
 import d9 from "../../assets/images/d9.png";
 import d10 from "../../assets/images/d10.png";
+import { Link } from "react-router-dom";
 
 const diseases = [
   { img: d1, name: "Heart Failure" },
@@ -140,7 +141,9 @@ const Diseases = () => {
                   </div>
                 </div>
                 <h3>{item.name}</h3>
+                <Link to="/signin" >
                 <button className="disease-consult-btn">Consult Now</button>
+                </Link>
               </div>
             ))}
           </div>
