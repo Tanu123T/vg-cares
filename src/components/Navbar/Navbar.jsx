@@ -2,48 +2,87 @@ import "./Navbar.css";
 import { useState, useEffect, useRef } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 
+if ("scrollRestoration" in window.history) {
+  window.history.scrollRestoration = "manual";
+}
+
 const Navbar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const dropdownTimeoutRef = useRef(null);
+
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Close mobile menu when clicking outside
+  /* =========================
+     CLOSE DROPDOWN ON OUTSIDE CLICK
+  ========================= */
   useEffect(() => {
-    const handleClick = (e) => {
-      if (!e.target.closest(".navbar")) {
-        setIsMenuOpen(false);
+    const handleClickOutside = (e) => {
+      if (
+        !e.target.closest(".more-dropdown-trigger") &&
+        !e.target.closest(".menu-toggle")
+      ) {
         setIsDropdownOpen(false);
       }
     };
-    document.addEventListener("click", handleClick);
-    return () => document.removeEventListener("click", handleClick);
+
+    document.addEventListener("click", handleClickOutside);
+    return () => document.removeEventListener("click", handleClickOutside);
   }, []);
 
-  const handleNavigation = (targetId) => {
+  const handleDropdownMouseEnter = () => {
+    if (dropdownTimeoutRef.current) {
+      clearTimeout(dropdownTimeoutRef.current);
+    }
+    setIsDropdownOpen(true);
+  };
+
+  const handleDropdownMouseLeave = () => {
+    dropdownTimeoutRef.current = setTimeout(() => {
+      setIsDropdownOpen(false);
+    }, 150);
+  };
+
+  /* =========================
+     NAVIGATION HELPERS
+  ========================= */
+  const goToHome = () => {
     setIsMenuOpen(false);
 
     if (location.pathname === "/") {
-      const element = document.getElementById(targetId);
-      if (element) {
-        // Offset for the fixed navbar (approx 80px)
-        const headerOffset = 85;
-        const elementPosition = element.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: "smooth"
-        });
-      }
+      document.getElementById("home")?.scrollIntoView({ behavior: "smooth" });
     } else {
-      navigate("/", { state: { scrollTo: targetId } });
+      navigate("/");
+    }
+  };
+
+  const goToServices = () => {
+    setIsMenuOpen(false);
+
+    if (location.pathname === "/") {
+      document.getElementById("services")?.scrollIntoView({ behavior: "smooth" });
+    } else {
+      navigate("/", { state: { scrollTo: "services" } });
+    }
+  };
+
+  const goToCapabilities = () => {
+    setIsMenuOpen(false);
+
+    if (location.pathname === "/") {
+      document
+        .getElementById("capabilities")
+        ?.scrollIntoView({ behavior: "smooth" });
+    } else {
+      navigate("/", { state: { scrollTo: "capabilities" } });
     }
   };
 
   return (
     <nav className="navbar">
-      <div className="logo-container" onClick={() => handleNavigation("home")}>
+      {/* LOGO */}
+      <div className="logo-container" onClick={goToHome}>
         <div className="logo-mark">
           <span></span><span></span><span></span><span></span>
         </div>
@@ -53,32 +92,60 @@ const Navbar = () => {
         </div>
       </div>
 
+      {/* MOBILE TOGGLE */}
       <div className="menu-toggle" onClick={() => setIsMenuOpen(!isMenuOpen)}>
         <i className={`fa-solid ${isMenuOpen ? "fa-times" : "fa-bars"}`} />
       </div>
 
+      {/* NAV LINKS */}
       <ul className={`nav-links ${isMenuOpen ? "active" : ""}`}>
-        <li><button className="nav-item" onClick={() => handleNavigation("home")}>Home</button></li>
-        <li><button className="nav-item" onClick={() => handleNavigation("services")}>Services</button></li>
-        <li><button className="nav-item" onClick={() => handleNavigation("capabilities")}>Capabilities</button></li>
+        <li><button className="nav-item" onClick={goToHome}>Home</button></li>
+        <li><button className="nav-item" onClick={goToServices}>Services</button></li>
+        <li><button className="nav-item" onClick={goToCapabilities}>Our Capabilities</button></li>
 
-        <li className="more-dropdown-trigger">
-          <div className="nav-item" onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
-            More <i className="fa-solid fa-chevron-down" style={{marginLeft: '5px', fontSize: '0.7rem'}} />
+        {/* MORE */}
+        <li 
+          className="more-dropdown-trigger"
+          onMouseEnter={handleDropdownMouseEnter}
+          onMouseLeave={handleDropdownMouseLeave}
+        >
+          <div
+            className="nav-item more-text"
+            onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+          >
+            More <i className={`fa-solid fa-chevron-down ${isDropdownOpen ? "rotate" : ""}`} />
           </div>
+
           <div className={`dropdown ${isDropdownOpen ? "show" : ""}`}>
-            <Link to="/doctors" className="dropdown-item" onClick={() => setIsMenuOpen(false)}>Doctor</Link>
-            <Link to="/hospitals" className="dropdown-item" onClick={() => setIsMenuOpen(false)}>Hospital</Link>
-            <Link to="/contact" className="dropdown-item" onClick={() => setIsMenuOpen(false)}>Contact</Link>
+            <Link to="/doctors" className="dropdown-item" onClick={() => setIsMenuOpen(false)}>
+              <i className="fa-solid fa-user-doctor" />
+              Doctor
+            </Link>
+            <Link to="/hospitals" className="dropdown-item" onClick={() => setIsMenuOpen(false)}>
+              <i className="fa-solid fa-hospital" />
+              Hospital
+            </Link>
+            <Link to="/blogs" className="dropdown-item" onClick={() => setIsMenuOpen(false)}>
+              <i className="fa-solid fa-book" />
+              Blogs
+            </Link>
+            <Link to="/contact" className="dropdown-item" onClick={() => setIsMenuOpen(false)}>
+              <i className="fa-solid fa-phone" />
+              Contact
+            </Link>
           </div>
         </li>
 
         <li className="mobile-only">
-          <Link to="/signin" className="btn-signin" onClick={() => setIsMenuOpen(false)}>Sign In</Link>
+          <Link to="/signin" className="btn-signin" onClick={() => setIsMenuOpen(false)}>
+            Sign In / Sign Up
+          </Link>
         </li>
       </ul>
 
-      <Link to="/signin" className="btn-signin desktop-only">Sign In</Link>
+      <Link to="/signin" className="btn-signin desktop-only">
+        Sign In / Sign Up
+      </Link>
     </nav>
   );
 };
