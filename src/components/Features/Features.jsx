@@ -104,10 +104,10 @@ export default function Features() {
                 <div className="capabilities-mini-icon capabilities-blue-mini">
                   <Network className="anim-shield" />
                 </div>
-                <p>Provider Directory</p>
+                <p>Patient Data Security</p>
               </div>
               <div className="capabilities-mini-card-back">
-                Secure medical data vault for patient records and history
+                Protecting your health information, every step of the way
               </div>
             </div>
 
@@ -116,10 +116,10 @@ export default function Features() {
                 <div className="capabilities-mini-icon capabilities-blue-mini">
                   <Cpu className="anim-shield" />
                 </div>
-                <p>AI Quote Engine</p>
+                <p>AI Cost Calculator</p>
               </div>
               <div className="capabilities-mini-card-back">
-                Telehealth concierge for instant billing and cost estimates
+                Quickly calculate expected medical expenses in seconds
               </div>
             </div>
 
@@ -131,7 +131,7 @@ export default function Features() {
                 <p>Insurance Help</p>
               </div>
               <div className="capabilities-mini-card-back">
-                Seamless insurance concierge and global coverage support
+                Our team helps you manage claims and insurance processes smoothly.
               </div>
             </div>
           </div>
@@ -146,10 +146,10 @@ export default function Features() {
                 <div className="capabilities-mini-icon capabilities-green-mini">
                   <Globe className="anim-globe" />
                 </div>
-                <p>Travel & Visa</p>
+                <p>Travel Assistance</p>
               </div>
               <div className="capabilities-mini-card-back">
-                Medical transfers, flights, and hotel coordination globally
+                Complete travel support for a smooth medical trip
               </div>
             </div>
 
@@ -158,10 +158,10 @@ export default function Features() {
                 <div className="capabilities-mini-icon capabilities-green-mini">
                   <LayoutDashboard className="anim-video" />
                 </div>
-                <p>Visa Desk Dashboard</p>
+                <p>Visa Management</p>
               </div>
               <div className="capabilities-mini-card-back">
-                Managed medical transfer arrangements and homes
+                Easy and hassle-free medical visa support
               </div>
             </div>
 
@@ -170,10 +170,10 @@ export default function Features() {
                 <div className="capabilities-mini-icon capabilities-green-mini">
                   <HandHeart className="anim-heart" />
                 </div>
-                <p>Aftercare & Follow-ups</p>
+                <p>Aftercare & Followups</p>
               </div>
               <div className="capabilities-mini-card-back">
-                Emergency help and immediate post-op support 24/7
+                Continuous support and follow-up care after your treatment.
               </div>
             </div>
           </div>
