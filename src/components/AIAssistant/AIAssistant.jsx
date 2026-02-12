@@ -8,7 +8,9 @@ const AIAssistant = () => {
     const configSrc = 'https://files.bpcontent.cloud/2026/02/08/17/20260208173021-J6T01B2S.js';
     const injectSrc = 'https://cdn.botpress.cloud/webchat/v3.5/inject.js';
 
-    // Aggressive cleanup to prevent ghost icons on other pages
+    // 1. Prevent Duplicate Loading Conflict
+    if (document.getElementById(injectId)) return;
+
     const scrub = () => {
       const selectors = [
         '#bp-web-widget-container',
@@ -22,7 +24,7 @@ const AIAssistant = () => {
       });
     };
 
-    // Load Botpress Scripts
+    // 2. Load Scripts
     const script = document.createElement('script');
     script.id = injectId;
     script.src = injectSrc;
@@ -36,11 +38,13 @@ const AIAssistant = () => {
     };
     document.body.appendChild(script);
 
-    // Cleanup when component unmounts
+    // 3. Global Reset Cleanup
     return () => {
+      // Remove scripts
       document.getElementById(injectId)?.remove();
       document.getElementById(configId)?.remove();
       
+      // Reset global bot variable
       if (window.botpressWebChat) {
         try {
           window.botpressWebChat.sendEvent({ type: 'hide' });
@@ -48,10 +52,14 @@ const AIAssistant = () => {
         window.botpressWebChat = undefined;
       }
 
+      // Cleanup DOM
       scrub();
-      // Repeat scrub for 2 seconds to catch late injections
       const interval = setInterval(scrub, 100);
-      setTimeout(() => clearInterval(interval), 2000);
+      setTimeout(() => {
+        clearInterval(interval);
+        // Final safety check: Reset scroll if the bot left any artifacts
+        document.documentElement.style.overflowX = 'hidden';
+      }, 2000);
     };
   }, []);
 
