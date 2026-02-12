@@ -27,19 +27,23 @@ button.nav-item {
 
 
 .navbar {
-  display: flex;
+display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 20px 30px;
-  background:rgb(255, 255, 255,0.9);
-  position: sticky;
+  background: rgba(255, 255, 255, 0.95); /* Slightly more opaque looks better when fixed */
+  
+  /* --- CHANGE THESE --- */
+  position: fixed;    /* Changed from sticky to fixed */
   top: 0;
+  left: 0;            /* Ensure it starts from the very left */
+  width: 100%;        /* Span the full width */
+  /* -------------------- */
+
   z-index: 1000;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
-  width: 100%;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
   box-sizing: border-box;
 }
-
 .logo-container {
   display: flex;
   align-items: center;
@@ -260,6 +264,38 @@ button.nav-item {
     border-bottom: 1px solid #fafafa;
   }
 
+  .logo-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-mark {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3px;
+}
+
+.logo-mark span {
+  width: 10px;
+  height: 10px;
+  background: #000;
+  border-radius: 2px;
+}
+
+.logo-text h2 {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #333;
+  margin: 0;
+}
+
+.logo-text p {
+  font-size: 0.6  rem;
+  color: #888;
+  margin: 0;
+}
+
   /* CHANGE 3: Ensure dropdown pushes everything down */
   .dropdown {
     position: static;      /* Removes the "floating" behavior */
@@ -282,9 +318,10 @@ button.nav-item {
   }
 
   .dropdown-item {
+ margin-left: 15%;
     padding: 10px 0;       /* Vertical spacing between items */
     justify-content: flex-start;
-    font-size: 1rem;
+    font-size: 0.5rem;
     color: #555;
     background: transparent !important; /* Remove hover background on mobile for cleaner look */
   }
