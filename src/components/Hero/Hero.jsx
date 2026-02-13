@@ -5,7 +5,7 @@ import herobg from "../../assets/images/herobg.png";
   const Hero = () => {
   // Combine the white-to-transparent gradient with your background image
   const backgroundStyle = {
-    backgroundImage: `linear-gradient(to right, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 70%, rgba(255, 255, 255, 0) 100%), url(${herobg})`
+    backgroundImage: `linear-gradient(to right, rgba(255, 255, 255, 10) 30%, rgba(255, 255, 255, 0) 70%, rgba(255, 255, 255, 0) 100%), url(${herobg})`
   };
   return (
     <section className="hero" id="home" style={backgroundStyle}>
