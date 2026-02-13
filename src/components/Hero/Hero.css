@@ -38,14 +38,14 @@
 
 /* BADGE */
 .hipaa-badge {
-  background: #d9f5e7;
-  color: #2fa36b;
-  padding: 6px 14px;
-  border-radius: 20px;
-  font-size: 0.8rem;
-  font-weight: 700;
-  margin-bottom: 20px;
   display: inline-block;
+    padding: 8px 22px;
+    background: #d9f5e7;
+    color: #2fa36b;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 18px;
 }
 
 /* ANIMATED TEXT */

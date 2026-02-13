@@ -13,16 +13,14 @@
 }
 
 .badge {
-  display: inline-block;
-  padding: 8px 20px;
-  background:  #dcfce7;
-  color: #2fa36b;
-  border-radius: 20px;
-  font-size: 0.85rem;
-  font-weight: 700;
-  margin-bottom: 20px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+display: inline-block;
+    padding: 8px 22px;
+    background: #abf4cf;
+    color: #2fa36b;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 18px;  
 }
 
 .service-title {
