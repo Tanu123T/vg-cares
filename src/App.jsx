@@ -65,9 +65,6 @@ function Home() {
 ========================= */
 export default function App() {
   const location = useLocation();
-  
-  const hiddenRoutes = ["/hospitals", "/blogs", "/doctors", "/contact"];
-  const shouldHideAI = hiddenRoutes.some(route => location.pathname.startsWith(route));
 
   useEffect(() => {
     if (location.pathname !== "/") {
@@ -78,10 +75,9 @@ export default function App() {
   return (
     <>
       <Navbar />
-      {!shouldHideAI && <AIAssistant key="home-ai" />}
 
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<><AIAssistant /><Home /></>} />
         <Route path="/doctors" element={<><Doctors /><Footer /></>} />
         <Route path="/hospitals" element={<><Hospitals /><Footer /></>} />
         <Route path="/blogs" element={<><Blogs /><Footer /></>} />

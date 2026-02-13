@@ -11,6 +11,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@botpress/webchat": "^4.4.2",
     "@fortawesome/fontawesome-free": "^7.1.0",
     "dotenv": "^16.6.1",
     "express": "^5.1.0",

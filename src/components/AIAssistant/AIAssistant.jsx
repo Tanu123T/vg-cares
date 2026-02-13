@@ -1,68 +1,67 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
+import { Fab, Webchat } from "@botpress/webchat";
 import "./AIAssistant.css";
 
+const CLIENT_ID = "213be4cb-5531-47ad-9e1e-4a5682de13e1";
+const CHAT_RADIUS_PX = 24;
+const WEBCHAT_CONFIGURATION = {
+  botName: "VG-Cares Assistant",
+  botDescription: "",
+  color: "#007bff",
+  variant: "solid",
+  headerVariant: "solid",
+  themeMode: "light",
+  fontFamily: "Poppins",
+  radius: 4,
+  feedbackEnabled: false,
+};
+
 const AIAssistant = () => {
-  useEffect(() => {
-    const injectId = 'botpress-inject';
-    const configId = 'botpress-config';
+  const [isWebchatOpen, setIsWebchatOpen] = useState(false);
 
-    const configSrc = 'https://files.bpcontent.cloud/2026/02/08/17/20260208173021-J6T01B2S.js';
-    const injectSrc = 'https://cdn.botpress.cloud/webchat/v3.5/inject.js';
+  const toggleWebchat = () => {
+    setIsWebchatOpen((previousState) => !previousState);
+  };
 
-    const ensureConfigScript = () => {
-      if (document.getElementById(configId)) return;
+  return (
+    <>
+      <Webchat
+        clientId={CLIENT_ID}
+        configuration={WEBCHAT_CONFIGURATION}
+        className="vg-cares-webchat"
+        style={{
+          width: "400px",
+          maxWidth: "calc(100vw - 24px)",
+          height: "600px",
+          maxHeight: "calc(100vh - 110px)",
+          display: isWebchatOpen ? "flex" : "none",
+          position: "fixed",
+          bottom: "90px",
+          right: "12px",
+          borderRadius: `${CHAT_RADIUS_PX}px`,
+          boxShadow: "0 18px 40px rgba(0, 40, 90, 0.22)",
+          overflow: "hidden",
+          zIndex: 9999,
+        }}
+      />
 
-      const config = document.createElement('script');
-      config.id = configId;
-      config.src = configSrc;
-      config.defer = true;
-      config.onerror = (e) => {
-        console.error('Botpress config failed to load:', e);
-      };
-      document.body.appendChild(config);
-    };
-
-    const existingInject = document.getElementById(injectId);
-    if (existingInject) {
-      const currentSrc = existingInject.getAttribute('src');
-      if (currentSrc !== injectSrc) {
-        document.body.removeChild(existingInject);
-      } else {
-        ensureConfigScript();
-        return;
-      }
-    }
-
-    const inject = document.createElement('script');
-    inject.id = injectId;
-    inject.src = injectSrc;
-    inject.async = true;
-    inject.onerror = (e) => {
-      console.error('Botpress inject failed to load:', e);
-    };
-    inject.onload = () => {
-      ensureConfigScript();
-    };
-
-    document.body.appendChild(inject);
-
-    return () => {
-      const s1 = document.getElementById(injectId);
-      if (s1) document.body.removeChild(s1);
-
-      const s2 = document.getElementById(configId);
-      if (s2) document.body.removeChild(s2);
-
-      // Botpress often injects persistent DOM nodes (bubble + widget container).
-      // Remove them so the icon does not remain visible on other routes.
-      const widgetNodes = document.querySelectorAll(
-        '#bp-web-widget-container, .bpw-widget-container, .bpw-widget, .bpw-floating-button, iframe[src*="botpress"], iframe[title*="Botpress" i]'
-      );
-      widgetNodes.forEach((n) => n?.parentNode?.removeChild(n));
-    };
-  }, []);
-
-  return null;
+      <Fab
+        aria-label="Open VG-Cares Assistant"
+        onClick={toggleWebchat}
+        style={{
+          position: "fixed",
+          bottom: "20px",
+          right: "20px",
+          width: "64px",
+          height: "64px",
+          borderRadius: "999px",
+          background: "linear-gradient(135deg, #007bff 0%, #0059c9 100%)",
+          boxShadow: "0 12px 30px rgba(0, 108, 224, 0.35)",
+          zIndex: 9999,
+        }}
+      />
+    </>
+  );
 };
 
 export default AIAssistant;
