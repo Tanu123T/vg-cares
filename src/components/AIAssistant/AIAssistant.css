@@ -1,43 +1,76 @@
-.vg-cares-webchat,
-.vg-cares-webchat .bpWebchat,
-.vg-cares-webchat .bpContainer {
-  border-radius: 24px !important;
-  overflow: hidden !important;
+/* 1. PREVENT GLOBAL OVERFLOW */
+/* This is a safety net for the whole page */
+html, body {
+    overflow-x: hidden;
+    position: relative;
 }
 
-.vg-cares-webchat .bpHeaderContainer {
-  border-top-left-radius: 24px !important;
-  border-top-right-radius: 24px !important;
+/* 2. TARGET THE MAIN CONTAINER */
+#bp-web-widget-container, 
+.bpw-layout,
+.vg-cares-webchat {
+    transition: all 0.3s ease-in-out !important;
+    /* Ensure the wrapper itself never causes overflow */
+    max-width: 100vw !important;
+    overflow: hidden !important;
 }
 
-.vg-cares-webchat .bpComposerWrapper,
-.vg-cares-webchat .bpComposerContainer {
-  border-bottom-left-radius: 24px !important;
-  border-bottom-right-radius: 24px !important;
+/* --- DESKTOP VIEW --- */
+@media (min-width: 481px) {
+    #bp-web-widget-container iframe,
+    .vg-cares-webchat iframe {
+        width: 400px !important;
+        height: 600px !important;
+        border-radius: 24px !important;
+        bottom: 100px !important;
+        right: 30px !important;
+        position: fixed !important;
+    }
 }
 
+/* --- MOBILE VIEW (The Horizontal Scroll Fix) --- */
 @media (max-width: 480px) {
-  .vg-cares-webchat,
-  .vg-cares-webchat .bpWebchat,
-  .vg-cares-webchat .bpContainer {
-    border-radius: 18px !important;
-  }
+    #bp-web-widget-container,
+    .bpw-widget-container,
+    .vg-cares-webchat {
+        width: 100% !important;
+        height: 100% !important;
+        position: fixed !important;
+        pointer-events: none; 
+        left: 0 !important;
+        top: 0 !important;
+    }
 
-  .vg-cares-webchat .bpHeaderContainer {
-    border-top-left-radius: 18px !important;
-    border-top-right-radius: 18px !important;
-  }
+    /* Target the actual chat window iframe */
+    #bp-web-widget-container iframe,
+    .bpw-layout,
+    .vg-cares-webchat iframe {
+        pointer-events: auto;
+        /* Use fixed width with left/right auto to prevent overflow */
+        width: calc(100% - 40px) !important; 
+        max-width: calc(100vw - 40px) !important;
+        height: 70vh !important; 
+        
+        /* Centering logic */
+        left: 20px !important;
+        right: 20px !important;
+        
+        bottom: 90px !important; 
+        border-radius: 20px !important;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.2) !important;
+        position: fixed !important;
+    }
 
-  .vg-cares-webchat .bpComposerWrapper,
-  .vg-cares-webchat .bpComposerContainer {
-    border-bottom-left-radius: 18px !important;
-    border-bottom-right-radius: 18px !important;
-  }
-
-  .bpFab {
-    width: 56px !important;
-    height: 56px !important;
-    right: 16px !important;
-    bottom: 16px !important;
-  }
+    /* The Floating Button (FAB) */
+    .bpFab, 
+    button[class*="bpw-floating-button"],
+    #bp-web-widget-container .bpw-floating-button {
+        width: 56px !important;
+        height: 56px !important;
+        bottom: 20px !important;
+        right: 20px !important;
+        position: fixed !important;
+        /* Prevent the button from causing horizontal scroll if it animates */
+        margin: 0 !important; 
+    }
 }
