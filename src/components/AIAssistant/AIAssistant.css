@@ -1,76 +1,60 @@
-/* 1. PREVENT GLOBAL OVERFLOW */
-/* This is a safety net for the whole page */
+/* --- GLOBAL FIXES --- */
 html, body {
     overflow-x: hidden;
-    position: relative;
 }
 
-/* 2. TARGET THE MAIN CONTAINER */
-#bp-web-widget-container, 
-.bpw-layout,
-.vg-cares-webchat {
-    transition: all 0.3s ease-in-out !important;
-    /* Ensure the wrapper itself never causes overflow */
-    max-width: 100vw !important;
-    overflow: hidden !important;
+/* --- CHAT CONTAINER --- */
+.vg-cares-webchat-container.closed {
+    pointer-events: none;
+    opacity: 0;
+}
+
+.vg-cares-webchat-container.open {
+    pointer-events: auto;
+    opacity: 1;
 }
 
 /* --- DESKTOP VIEW --- */
 @media (min-width: 481px) {
-    #bp-web-widget-container iframe,
-    .vg-cares-webchat iframe {
-        width: 400px !important;
-        height: 600px !important;
-        border-radius: 24px !important;
-        bottom: 100px !important;
-        right: 30px !important;
-        position: fixed !important;
+    .vg-cares-webchat {
+        transition: transform 0.3s ease-in-out !important;
     }
 }
 
-/* --- MOBILE VIEW (The Horizontal Scroll Fix) --- */
+/* --- MOBILE VIEW (The "Cannot Type" Fix) --- */
 @media (max-width: 480px) {
-    #bp-web-widget-container,
-    .bpw-widget-container,
+    /* Main wrapper for the chat */
     .vg-cares-webchat {
+        width: 94% !important; /* Almost full width */
+        height: 70vh !important; /* Height adjusted for keyboard */
+        max-height: 500px !important;
+        left: 3% !important; /* Centered */
+        right: 3% !important;
+        bottom: 95px !important; /* Space above the FAB */
+        position: fixed !important;
+        
+        /* THE FIX: Ensure clicks are allowed */
+        pointer-events: auto !important; 
+        display: flex !important;
+        z-index: 9999 !important;
+    }
+
+    /* Force the iframe inside to be interactive */
+    .vg-cares-webchat iframe, 
+    .bpw-layout, 
+    .bpw-chat-container {
+        pointer-events: auto !important;
         width: 100% !important;
         height: 100% !important;
-        position: fixed !important;
-        pointer-events: none; 
-        left: 0 !important;
-        top: 0 !important;
     }
 
-    /* Target the actual chat window iframe */
-    #bp-web-widget-container iframe,
-    .bpw-layout,
-    .vg-cares-webchat iframe {
-        pointer-events: auto;
-        /* Use fixed width with left/right auto to prevent overflow */
-        width: calc(100% - 40px) !important; 
-        max-width: calc(100vw - 40px) !important;
-        height: 70vh !important; 
-        
-        /* Centering logic */
-        left: 20px !important;
-        right: 20px !important;
-        
-        bottom: 90px !important; 
-        border-radius: 20px !important;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.2) !important;
-        position: fixed !important;
-    }
-
-    /* The Floating Button (FAB) */
+    /* Adjust FAB size for mobile touch */
     .bpFab, 
-    button[class*="bpw-floating-button"],
-    #bp-web-widget-container .bpw-floating-button {
-        width: 56px !important;
-        height: 56px !important;
+    button[class*="bpw-floating-button"] {
+        width: 60px !important;
+        height: 60px !important;
         bottom: 20px !important;
         right: 20px !important;
         position: fixed !important;
-        /* Prevent the button from causing horizontal scroll if it animates */
-        margin: 0 !important; 
     }
 }
