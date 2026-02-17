@@ -9,6 +9,7 @@ if ("scrollRestoration" in window.history) {
 const Navbar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+const [activeSection, setActiveSection] = useState("home");
 
   // ✅ Detect Mobile Screen
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 1024);
@@ -17,6 +18,12 @@ const Navbar = () => {
 
   const navigate = useNavigate();
   const location = useLocation();
+  const isMoreActive =
+  location.pathname === "/doctors" ||
+  location.pathname === "/hospitals" ||
+  location.pathname === "/blogs" ||
+  location.pathname === "/contact";
+
 
   /* =========================
      SCREEN RESIZE DETECTION
@@ -48,6 +55,36 @@ const Navbar = () => {
     document.addEventListener("click", handleClickOutside);
     return () => document.removeEventListener("click", handleClickOutside);
   }, [isMobile]);
+  
+  useEffect(() => {
+  const handleScroll = () => {
+    if (location.pathname !== "/") return;
+
+    const sections = ["home", "services", "capabilities"];
+
+    sections.forEach((section) => {
+      const element = document.getElementById(section);
+      if (element) {
+        const rect = element.getBoundingClientRect();
+
+        if (rect.top <= 120 && rect.bottom >= 120) {
+          setActiveSection(section);
+        }
+      }
+    });
+  };
+
+  window.addEventListener("scroll", handleScroll);
+
+  return () => window.removeEventListener("scroll", handleScroll);
+}, [location.pathname]);
+
+useEffect(() => {
+  if (location.pathname !== "/") {
+    setActiveSection("");
+  }
+}, [location.pathname]);
+
 
   /* =========================
      DESKTOP HOVER HANDLERS
@@ -138,17 +175,32 @@ const Navbar = () => {
       {/* NAV LINKS */}
       <ul className={`nav-links ${isMenuOpen ? "active" : ""}`}>
         <li>
-          <button className="nav-item" onClick={goToHome}>Home</button>
+          <button
+  className={`nav-item ${activeSection === "home" ? "active" : ""}`}
+  onClick={goToHome}
+>
+  Home
+</button>
         </li>
 
         <li>
-          <button className="nav-item" onClick={goToServices}>Services</button>
+          <button
+  className={`nav-item ${activeSection === "services" ? "active" : ""}`}
+  onClick={goToServices}
+>
+  Services
+</button>
+
         </li>
 
         <li>
-          <button className="nav-item" onClick={goToCapabilities}>
-            Our Capabilities
-          </button>
+          <button
+  className={`nav-item ${activeSection === "capabilities" ? "active" : ""}`}
+  onClick={goToCapabilities}
+>
+  Our Capabilities
+</button>
+
         </li>
 
         {/* MORE */}
@@ -157,7 +209,8 @@ const Navbar = () => {
           onMouseEnter={handleDropdownMouseEnter}
           onMouseLeave={handleDropdownMouseLeave}
         >
-          <div className="nav-item more-text" onClick={handleMoreClick}>
+          <div className={`nav-item more-text ${isMoreActive ? "active" : ""}`} onClick={handleMoreClick}>
+
             More
             <i
               className={`fa-solid fa-chevron-down ${

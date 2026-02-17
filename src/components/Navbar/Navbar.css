@@ -44,6 +44,15 @@ display: flex;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
   box-sizing: border-box;
 }
+
+.nav-item.active {
+  color: #006ce0;
+}
+
+.nav-item.active::after {
+  width: 100%;
+}
+
 .logo-container {
   display: flex;
   align-items: center;
