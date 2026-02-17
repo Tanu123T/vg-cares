@@ -9,16 +9,34 @@ if ("scrollRestoration" in window.history) {
 const Navbar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  // ✅ Detect Mobile Screen
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 1024);
+
   const dropdownTimeoutRef = useRef(null);
 
   const navigate = useNavigate();
   const location = useLocation();
 
   /* =========================
-     CLOSE DROPDOWN ON OUTSIDE CLICK
+     SCREEN RESIZE DETECTION
+  ========================= */
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 1024);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  /* =========================
+     CLOSE DROPDOWN ON OUTSIDE CLICK (DESKTOP ONLY)
   ========================= */
   useEffect(() => {
     const handleClickOutside = (e) => {
+      if (isMobile) return; // ❌ disable for mobile
+
       if (
         !e.target.closest(".more-dropdown-trigger") &&
         !e.target.closest(".menu-toggle")
@@ -29,9 +47,14 @@ const Navbar = () => {
 
     document.addEventListener("click", handleClickOutside);
     return () => document.removeEventListener("click", handleClickOutside);
-  }, []);
+  }, [isMobile]);
 
+  /* =========================
+     DESKTOP HOVER HANDLERS
+  ========================= */
   const handleDropdownMouseEnter = () => {
+    if (isMobile) return; // ❌ no hover logic on mobile
+
     if (dropdownTimeoutRef.current) {
       clearTimeout(dropdownTimeoutRef.current);
     }
@@ -39,9 +62,21 @@ const Navbar = () => {
   };
 
   const handleDropdownMouseLeave = () => {
+    if (isMobile) return;
+
     dropdownTimeoutRef.current = setTimeout(() => {
       setIsDropdownOpen(false);
     }, 150);
+  };
+
+  /* =========================
+     MOBILE CLICK HANDLER
+  ========================= */
+  const handleMoreClick = (e) => {
+    if (!isMobile) return; // desktop handled by hover
+
+    e.stopPropagation();
+    setIsDropdownOpen((prev) => !prev);
   };
 
   /* =========================
@@ -49,6 +84,7 @@ const Navbar = () => {
   ========================= */
   const goToHome = () => {
     setIsMenuOpen(false);
+    setIsDropdownOpen(false);
 
     if (location.pathname === "/") {
       document.getElementById("home")?.scrollIntoView({ behavior: "smooth" });
@@ -59,6 +95,7 @@ const Navbar = () => {
 
   const goToServices = () => {
     setIsMenuOpen(false);
+    setIsDropdownOpen(false);
 
     if (location.pathname === "/") {
       document.getElementById("services")?.scrollIntoView({ behavior: "smooth" });
@@ -69,6 +106,7 @@ const Navbar = () => {
 
   const goToCapabilities = () => {
     setIsMenuOpen(false);
+    setIsDropdownOpen(false);
 
     if (location.pathname === "/") {
       document
@@ -99,21 +137,33 @@ const Navbar = () => {
 
       {/* NAV LINKS */}
       <ul className={`nav-links ${isMenuOpen ? "active" : ""}`}>
-        <li><button className="nav-item" onClick={goToHome}>Home</button></li>
-        <li><button className="nav-item" onClick={goToServices}>Services</button></li>
-        <li><button className="nav-item" onClick={goToCapabilities}>Our Capabilities</button></li>
+        <li>
+          <button className="nav-item" onClick={goToHome}>Home</button>
+        </li>
+
+        <li>
+          <button className="nav-item" onClick={goToServices}>Services</button>
+        </li>
+
+        <li>
+          <button className="nav-item" onClick={goToCapabilities}>
+            Our Capabilities
+          </button>
+        </li>
 
         {/* MORE */}
-        <li 
+        <li
           className="more-dropdown-trigger"
           onMouseEnter={handleDropdownMouseEnter}
           onMouseLeave={handleDropdownMouseLeave}
         >
-          <div
-            className="nav-item more-text"
-            onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-          >
-            More <i className={`fa-solid fa-chevron-down ${isDropdownOpen ? "rotate" : ""}`} />
+          <div className="nav-item more-text" onClick={handleMoreClick}>
+            More
+            <i
+              className={`fa-solid fa-chevron-down ${
+                isDropdownOpen ? "rotate" : ""
+              }`}
+            />
           </div>
 
           <div className={`dropdown ${isDropdownOpen ? "show" : ""}`}>
@@ -121,14 +171,17 @@ const Navbar = () => {
               <i className="fa-solid fa-user-doctor" />
               Doctor
             </Link>
+
             <Link to="/hospitals" className="dropdown-item" onClick={() => setIsMenuOpen(false)}>
               <i className="fa-solid fa-hospital" />
               Hospital
             </Link>
+
             <Link to="/blogs" className="dropdown-item" onClick={() => setIsMenuOpen(false)}>
               <i className="fa-solid fa-book" />
               Blogs
             </Link>
+
             <Link to="/contact" className="dropdown-item" onClick={() => setIsMenuOpen(false)}>
               <i className="fa-solid fa-phone" />
               Contact
