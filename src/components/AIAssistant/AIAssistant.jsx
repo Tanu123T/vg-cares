@@ -13,7 +13,7 @@ const WEBCHAT_CONFIGURATION = {
   headerVariant: "solid",
   themeMode: "light",
   fontFamily: "Poppins",
-  radius: 12,
+  radius: 4,
   feedbackEnabled: false,
 };
 
