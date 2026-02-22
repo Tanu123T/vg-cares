@@ -16,6 +16,7 @@ import Doctors_approach from "./components/Doctors_approach/Doctors_approach";
 import Features from "./components/Features/Features";
 import Roadmap from "./components/Roadmap/Roadmap";
 import AIAssistant from "./components/AIAssistant/AIAssistant";
+import Treatments from "./components/Treatments/Treatments";
 
 import Doctors from "./pages/Doctors/Doctors";
 import Blogs from "./pages/Blogs/Blogs";
@@ -47,6 +48,7 @@ function Home() {
       <Hero />
       <Services />
       <Diseases />
+      <Treatments />
       <Doctors_approach />
       <Roadmap />
       <Feedback />
