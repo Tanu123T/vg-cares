@@ -2,7 +2,8 @@
 
 /* --- DESKTOP STYLES --- */
 .treatments-section {
-
+    max-width: 1430px;
+    margin: 50px auto;
     background: #ffffff;
 }
 
@@ -48,6 +49,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 30px;
+    margin: 0 50px;
 }
 
 /* Treatment Card Image */
@@ -64,9 +66,20 @@
 }
 
 .luxury-image img {
+    margin-left: 30px;
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+.item-name{
+    margin-top:20px;
+    font-size:1rem;
+}
+
+.tagname_image {
+    display: inline-flex;
+    gap: 20px;
 }
 
 /* Modal Row Image */
@@ -85,7 +98,9 @@
 
 .luxury-card {
     background: white;
-    padding: 40px;
+    padding-left: 40px;
+    padding-top: 40px;
+    padding-bottom: 40px;
     border-radius: 30px;
     position: relative;
     border: 1px solid #f1f5f9;
@@ -101,10 +116,13 @@
 }
 
 .card-tag {
-    color: #000000;
+    max-width: fit-content;
+    background-color: #6fb3fc24;
+    color: #006ce0;
     padding: 6px 10px;
     font-size: 12px;
     font-weight: 700;
+    border-radius: 40px;
 }
 
 .luxury-icon {
@@ -531,9 +549,11 @@
         font-weight: 400;
 
     }
-.modern-heading p {
+
+    .modern-heading p {
         font-size: 0.9rem;
-    }   
+    }
+
     .modern-heading h2 {
         font-size: 2rem;
 

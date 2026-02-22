@@ -50,7 +50,7 @@ const Treatments = () => {
 
   return (
     <section className="treatments-section">
-      <div className="container">
+      <div className="container-treatment">
 
         {/* --- HERO SECTION --- */}
         <div className="modern-heading">
@@ -64,11 +64,17 @@ const Treatments = () => {
         <div className="preview-grid">
           {previews.map(item => (
             <div className="luxury-card" key={item.id}>
-              <div className="card-tag">{item.cat}</div>
-              <div className="luxury-image">
-                <img src={item.image} alt={item.name} />
+              <div className="tagname_image">
+                <div className="tag_name">
+                  <div className="card-tag">{item.cat}</div>
+                  <div className="item-name">
+                  <h3>{item.name}</h3>
+                  </div>
+                </div>
+                <div className="luxury-image">
+                  <img src={item.image} alt={item.name} />
+                </div>
               </div>
-              <h3>{item.name}</h3>
               <div className="luxury-divider"></div>
               <p className="luxury-price">Starting from <span>{item.price}</span></p>
               <div className="luxury-flags">
@@ -77,7 +83,7 @@ const Treatments = () => {
               <button className="vgc-btn-inquiry2">
                 Get Treatment Plans
                 <i className="fas fa-chevron-right"></i>
-                </button>
+              </button>
             </div>
           ))}
         </div>
