@@ -8,16 +8,16 @@ import Services from "./components/Services/Services";
 import Feedback from "./components/Feedback/Feedback";
 import Download_app from "./components/Download_app/Download_app";
 import Partners from "./components/Partners/Partners";
-import Stats from "./components/Stats/Stats";
+
 import Footer from "./components/Footer/Footer";
 import MedicalMap from "./components/MedicalMap/MedicalMap";
 import Diseases from "./components/Diseases/Diseases";
 import Doctors_approach from "./components/Doctors_approach/Doctors_approach";
-import Features from "./components/Features/Features";
+
 import Roadmap from "./components/Roadmap/Roadmap";
 import AIAssistant from "./components/AIAssistant/AIAssistant";
 import Treatments from "./components/Treatments/Treatments";
-import WhereWeAre from "./components/WhereWeAre/WhereWeAre";
+
 
 import Doctors from "./pages/Doctors/Doctors";
 import Blogs from "./pages/Blogs/Blogs";
@@ -53,9 +53,6 @@ function Home() {
       <Doctors_approach />
       <Roadmap />
       <Feedback />
-      <WhereWeAre />
-      <Stats />
-      <Features />
       <MedicalMap />
       <Download_app />
       <Partners />
