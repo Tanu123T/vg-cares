@@ -17,6 +17,7 @@ import Features from "./components/Features/Features";
 import Roadmap from "./components/Roadmap/Roadmap";
 import AIAssistant from "./components/AIAssistant/AIAssistant";
 import Treatments from "./components/Treatments/Treatments";
+import WhereWeAre from "./components/WhereWeAre/WhereWeAre";
 
 import Doctors from "./pages/Doctors/Doctors";
 import Blogs from "./pages/Blogs/Blogs";
@@ -47,11 +48,12 @@ function Home() {
     <>
       <Hero />
       <Services />
-      <Diseases />
       <Treatments />
+      <Diseases />
       <Doctors_approach />
       <Roadmap />
       <Feedback />
+      <WhereWeAre />
       <Stats />
       <Features />
       <MedicalMap />

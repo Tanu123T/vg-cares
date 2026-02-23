@@ -2,7 +2,7 @@ import "./hero.css";
 import { Link } from "react-router-dom";
 import herobg from "../../assets/images/herobg.png";
 
-  const Hero = () => {
+const Hero = () => {
   // Combine the white-to-transparent gradient with your background image
   const backgroundStyle = {
     backgroundImage: `linear-gradient(to right, rgba(255, 255, 255, 10) 40%, rgba(255, 255, 255, 0) 70%, rgba(255, 255, 255, 0) 100%), url(${herobg})`
@@ -18,38 +18,41 @@ import herobg from "../../assets/images/herobg.png";
         </h1>
 
         <p className="hero-description">
-         Explore secure and budget-friendly treatment results across the globe.
-         VG Cares Global unites reliable healthcare providers with comprehensive
-         medical trip collaboration on a single platform.
+          Explore secure and budget-friendly treatment results across the globe.
+          VG Cares Global unites reliable healthcare providers with comprehensive
+          medical trip collaboration on a single platform.
         </p>
 
-        <div className="cta-group">
-          <Link to="/signin" className="btn-book1">
-            <span className="shimmer-text">Book Appointment →</span>
-          </Link>
+        <div className="cta-group-container">
+          <h4>Start Your Medical Journey Today!</h4>
+          <div className="cta-group">
+            <Link to="/signin" className="btn-book1">
+              <span className="shimmer-text"> Get Started Now </span>
+            </Link>
 
-          <Link to="/doctors" className="btn-find">
-            Find a Doctor
-          </Link>
+            <Link to="/doctors" className="btn-find">
+              Find a Doctor
+            </Link>
+          </div>
+          </div>
+
+          <div className="trust-row">
+            <div className="trust-item">
+              <div className="check-circle-small">✓</div>
+              50K+ Patients
+            </div>
+
+            <div className="trust-item">
+              <div className="check-circle-small">✓</div>
+              500+ Doctors
+            </div>
+
+            <div className="trust-item">
+              <div className="check-circle-small">✓</div>
+              24/7 Support
+            </div>
+          </div>
         </div>
-
-        <div className="trust-row">
-          <div className="trust-item">
-            <div className="check-circle-small">✓</div>
-            50K+ Patients
-          </div>
-
-          <div className="trust-item">
-            <div className="check-circle-small">✓</div>
-            500+ Doctors
-          </div>
-
-          <div className="trust-item">
-            <div className="check-circle-small">✓</div>
-            24/7 Support
-          </div>
-        </div>
-      </div>
     </section>
   );
 };
