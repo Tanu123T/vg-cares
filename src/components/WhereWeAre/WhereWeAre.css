@@ -18,7 +18,7 @@
 }
 
 .title-overlay {
-  font-size: 3.5rem;
+  font-size: 3rem;
   font-weight: 800;
   line-height: 0.8;
   display: flex;
@@ -34,8 +34,8 @@
 }
 
 .title-overlay .outline {
-  margin-left: 50%; 
-  margin-top: 3%;
+  margin-left: 45%; 
+  margin-top: 2.5%;
   background: linear-gradient(to right, #007bff, #66b2ff, #007bff);
   background-size: 200% auto;
   -webkit-background-clip: text;
@@ -53,6 +53,7 @@
 }
 
 .location-table {
+  margin-top:5%;
   display: grid;
   grid-template-columns: 1fr 1fr;
   width: 50%;
@@ -60,6 +61,7 @@
   background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(8px);
   z-index: 5;
+  opacity: 85%;
 }
 
 .table-cell {
