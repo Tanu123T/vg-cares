@@ -27,7 +27,7 @@ const Hero = () => {
           <h4>Start Your Medical Journey Today!</h4>
           <div className="cta-group">
             <Link to="/signin" className="btn-book1">
-              <span className="shimmer-text"> Get Started Now </span>
+              <span className="shimmer-text"> Get Started Now  →</span>
             </Link>
 
             <Link to="/doctors" className="btn-find">
