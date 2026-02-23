@@ -10,7 +10,7 @@
 
 /* --- CONTAINER STRUCTURE --- */
 .capabilities-container { 
-   max-width: 1330px;
+    max-width: 1330 px;
     margin: 60px auto; 
     padding: 0 20px; 
 }
