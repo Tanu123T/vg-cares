@@ -32,7 +32,7 @@ const Footer = () => {
             <div className="brand-info">
               <div className="brand-logo">
                 <i className="fas fa-heart-pulse logo-symbol"></i>
-                <span className="brand-name">VG Care Global</span>
+                <span className="brand-name">VGCares Global</span>
               </div>
               <p className="brand-text">
                 Simplifying global healthcare through innovation. Access top-tier
@@ -99,24 +99,10 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="trust-bar reveal">
-            {[
-              "HIPAA Compliant",
-              "50k+ Patients",
-              "500+ Doctors",
-              "24/7 Support",
-              "Verified Clinics",
-            ].map((item, i) => (
-              <div className="footer-badge" key={i}>
-                <div className="check-box">✓</div> {item}
-              </div>
-            ))}
-          </div>
-
         </div>
 
         <div className="copyright">
-          © 2024 VG CARE GLOBAL. ALL RIGHTS RESERVED
+          VGCAREs GLOBAL. ALL RIGHTS RESERVED
         </div>
       </footer>
     </>
