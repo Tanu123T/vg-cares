@@ -110,6 +110,8 @@ export default function JourneyTimeline() {
           height: 1100px;
           margin: 0 auto;
           position: relative;
+          margin-top:-50px;
+          margin-bottom:-60px;
         }
 
         .jt-path-svg { position: absolute; inset: 0; pointer-events: none; }
