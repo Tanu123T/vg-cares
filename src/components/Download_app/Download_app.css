@@ -8,8 +8,9 @@
     padding: 100px 0;
     display: flex;
     justify-content: center;
-    align-items: center; 
-    overflow: hidden; /* Prevents blobs from causing scrollbars */
+    align-items: center;
+    overflow: hidden;
+    /* Prevents blobs from causing scrollbars */
 }
 
 /* 2. Background Decorative Blobs */
@@ -21,8 +22,16 @@
     filter: blur(80px);
     z-index: -1;
 }
-.blob-1 { top: -100px; right: -100px; }
-.blob-2 { bottom: -100px; left: -100px; }
+
+.blob-1 {
+    top: -100px;
+    right: -100px;
+}
+
+.blob-2 {
+    bottom: -100px;
+    left: -100px;
+}
 
 /* 3. The Glass Card - Fixed the "Double Border" issue */
 .app-card {
@@ -34,23 +43,23 @@
     -webkit-backdrop-filter: blur(25px);
     border: 1px solid rgba(255, 255, 255, 0.5);
     border-radius: 40px;
-    padding: 60px;
+    padding: 50px;
     display: grid;
     grid-template-columns: 1.2fr 1fr;
     gap: 40px;
     align-items: center;
-    box-shadow: 0 40px 100px rgba(0, 84, 255, 0.08);
+    box-shadow: 0 40px 100px rgba(0, 85, 255, 0.198);
     transform-style: preserve-3d;
-    transition: transform 0.3s ease-out; /* Smoother transition */
+    transition: transform 0.3s ease-out;
+    /* Smoother transition */
 }
 
 /* Text Styling */
 .app-title {
-    font-size: 48px;
+    font-size: 45px;
     font-weight: 800;
     line-height: 1.2;
     color: #1e293b;
-    margin-bottom: 20px;
 }
 
 .gradient-text {
@@ -62,7 +71,7 @@
 }
 
 .app-description {
-    font-size: 18px;
+    font-size: 16px;
     color: #475569;
     line-height: 1.6;
     margin-bottom: 35px;
@@ -79,10 +88,11 @@
 }
 
 .phone-img {
-    width: 100%;
+    height: 400px;
+    width: 70%;
     max-width: 280px;
     z-index: 2;
-    filter: drop-shadow(0 20px 50px rgba(0,0,0,0.2));
+    filter: drop-shadow(0 20px 50px rgba(0, 0, 0, 0.2));
     animation: float 5s ease-in-out infinite;
 }
 
@@ -101,53 +111,91 @@
 }
 
 /* Store Buttons */
-.store-btns { 
-    display: flex; 
+.store-btns {
+    display: flex;
     gap: 15px;
     flex-wrap: wrap;
 }
 
-.btn-link img { 
-    height: 48px; 
+.btn-link img {
+    height: 48px;
     border-radius: 8px;
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.btn-link:hover img { 
+.btn-link:hover img {
     transform: translateY(-5px) scale(1.05);
 }
 
 /* Animations */
 @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-20px); }
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
 }
 
 @keyframes shimmer {
-    to { background-position: 200% center; }
+    to {
+        background-position: 200% center;
+    }
 }
 
 @keyframes pulse {
-    0%, 100% { transform: scale(1); opacity: 0.15; }
-    50% { transform: scale(1.2); opacity: 0.3; }
+
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 0.15;
+    }
+
+    50% {
+        transform: scale(1.2);
+        opacity: 0.3;
+    }
 }
 
 /* Responsive Fixes */
 @media (max-width: 1024px) {
-    .app-title { font-size: 38px; }
-    .app-card { width: 95%; padding: 40px; }
-    .phone-img{ max-width: 220px; }
+    .app-title {
+        font-size: 38px;
+    }
+
+    .app-card {
+        width: 95%;
+        padding: 40px;
+    }
+
+    .phone-img {
+        max-width: 220px;
+    }
 }
 
 @media (max-width: 900px) {
-    .app-card { 
-        grid-template-columns: 1fr; 
-        text-align: center; 
+    .app-card {
+        grid-template-columns: 1fr;
+        text-align: center;
         padding: 50px 30px;
-            .phone-img{ max-width: 220px; }
-    }
-    .app-description { margin: 0 auto 30px; }
 
-    .store-btns { justify-content: center; }
-    .phone-wrapper { margin-top: 40px; }
+        .phone-img {
+            max-width: 220px;
+        }
+    }
+
+    .app-description {
+        margin: 0 auto 30px;
+    }
+
+    .store-btns {
+        justify-content: center;
+    }
+
+    .phone-wrapper {
+        margin-top: 40px;
+    }
 }
