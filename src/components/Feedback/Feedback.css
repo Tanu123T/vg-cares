@@ -1,186 +1,207 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+.feedback-container {
+    padding: 50px 0;
+    background-color: #f8fbff;
     font-family: 'Poppins', sans-serif;
-}
-
-body {
-    background: #ffffff;
-    overflow-x: hidden;
-}
-
-.feedback-section {
-    height: fit-content;
-    padding: 90px 20px;
-    text-align: center;
+    overflow: hidden;
     position: relative;
-    background-color: #fff;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    overflow: hidden; /* Prevent wave overflow */
+    /* This creates the high-end mesh gradient effect */
+    background-image: 
+        radial-gradient(at 0% 0%, rgba(13, 110, 253, 0.05) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(47, 163, 107, 0.05) 0px, transparent 50%);
 }
 
-.feedback-wave-container {
+/* --- BACKGROUND VISUALS --- */
+.bg-visuals {
     position: absolute;
-    bottom: 0;
+    top: 0;
     left: 0;
     width: 100%;
-    line-height: 0;
+    height: 100%;
     z-index: 0;
+    pointer-events: none;
 }
 
-.feedback-wave-container svg {
-    display: block;
-    width: 100%;
+.bg-blob {
+    position: absolute;
+    filter: blur(100px);
+    border-radius: 50%;
+    opacity: 0.6;
+    animation: blobFloat 20s infinite alternate ease-in-out;
+}
+
+.blob-blue {
+    width: 500px;
+    height: 500px;
+    background: rgba(13, 110, 253, 0.12);
+    top: -10px;
+    right: -100px;
+}
+
+.blob-green {
+    width: 400px; 
     height: 400px;
+    background: rgba(217, 245, 231, 0.15);
+    bottom: -50px;
+    left: -50px;
+    animation-delay: -5s;
 }
 
-.feedback-content-wrapper {
+.bg-grid-overlay {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(#0d6efd 0.5px, transparent 0.5px);
+    background-size: 40px 40px;
+    opacity: 0.05;
+}
+
+@keyframes blobFloat {
+    from { transform: translate(0, 0) scale(1); }
+    to { transform: translate(40px, 60px) scale(1.1); }
+}
+
+/* --- HEADER --- */
+.feedback-header {
+    text-align: center;
     position: relative;
-    z-index: 2;
+    z-index: 1;
 }
 
-.feedback-status-badge {
-    display: inline-block;
+.status-pill {
+   display: inline-block;
     padding: 8px 22px;
     background: #d9f5e7;
     color: #2fa36b;
     border-radius: 20px;
     font-size: 14px;
     font-weight: 600;
-    margin-bottom: 18px;
 }
 
-.feedback-main-title {
-    font-size: 36px;
+.main-heading {
+    font-size: 46px;
+    color: #1a1a1a;
+    margin-top: 20px;
     font-weight: 700;
+    letter-spacing: -1px;
+}
+
+.main-heading span {
     color: #0d6efd;
-    margin-bottom: 50px;
 }
 
-.patient-testimonial-card-stable {
-    max-width: 520px;
-    margin: auto;
-    padding: 40px;
-    border-radius: 24px;
-    background: rgba(255, 255, 255, 0.9);
-    backdrop-filter: blur(20px);
-    border: 2px solid rgba(255, 255, 255, 0.5);
-    box-shadow: 0 15px 35px rgba(0,0,0,0.08);
-    position: relative;
-    overflow: hidden;
-    text-align: left;
-    transition: border-color 0.4s ease, box-shadow 0.4s ease;
-    cursor: default;
-}
-
-.patient-testimonial-card-stable:hover {
-    border-color: #0d6efd;
-    box-shadow: 0 20px 45px rgba(13, 110, 253, 0.2);
-}
-
-.testimonial-viewport {
-    width: 100%;
-    overflow: hidden;
-}
-
-.testimonial-track {
+/* --- INFINITE SCROLL ROW --- */
+.infinite-wrapper {
+    padding: 40px 0;
     display: flex;
-    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+    width: 100%;
+    position: relative;
+    z-index: 1;
 }
 
-.testimonial-slide {
+.scroll-track {
+    display: flex;
+    gap: 30px;
+    width: max-content;
+    animation: infiniteScroll 60s linear infinite;
+}
+
+.infinite-wrapper:hover .scroll-track {
+    animation-play-state: paused;
+}
+
+@keyframes infiniteScroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+/* --- THE GLASS CARD --- */
+.patient-card-modern {
+    width: 400px;
+    height: 240px;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    border-radius: 30px;
+    padding: 35px;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.04);
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    cursor: pointer;
     flex-shrink: 0;
-    padding-right: 15px;
+}
+
+.patient-card-modern:hover {
+    transform: translateY(-15px) scale(1.02);
+    border-color: #0d6efd;
+    background: white;
+    box-shadow: 0 30px 60px rgba(13, 110, 253, 0.12);
+}
+
+.card-inner {
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
-.patient-comment {
-    font-size: 16px;
-    color: #333;
-    line-height: 1.6;
-    font-style: italic;
-    margin-bottom: 30px;
-    min-height: 80px;
+.quote-mark {
+    position: absolute;
+    top: 15px;
+    right: 30px;
+    font-size: 70px;
+    color: #0d6efd;
+    opacity: 0.08;
+    font-family: serif;
 }
 
-.patient-card-footer {
+.comment-text {
+    color: #4a5568;
+    font-style: italic;
+    font-size: 16px;
+    line-height: 1.8;
+    margin: 0;
+}
+
+.card-bottom {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.patient-profile {
+.user-meta {
     display: flex;
     align-items: center;
     gap: 12px;
 }
 
-.patient-avatar-icon {
-    width: 40px;
-    height: 40px;
-    background: #f0f2f5;
+.user-icon-box {
+    width: 44px;
+    height: 44px;
+    background: #f0f7ff;
+    color: #0d6efd;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #0d6efd;
+    font-size: 16px;
 }
 
-.patient-name {
+.user-name {
     font-weight: 600;
-    color: #222;
+    color: #2d3748;
+    font-size: 15px;
 }
 
-.patient-rating-stars i {
+.star-rating-group {
+    display: flex;
+    gap: 3px;
     color: #ffc107;
-    font-size: 14px;
+    font-size: 12px;
 }
 
-.feedback-dots-container {
-    margin-top: 40px;
-}
-
-.feedback-nav-dot {
-    width: 10px;
-    height: 10px;
-    background: #ccc;
-    border-radius: 50%;
-    display: inline-block;
-    margin: 0 6px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.feedback-nav-dot.active {
-    background: #0d6efd;
-    width: 25px;
-    border-radius: 10px;
-}
-
-/* --- MOBILE RESPONSIVENESS --- */
-@media (max-width: 600px) {
-    .feedback-main-title {
-        font-size: 28px;
-        margin-bottom: 30px;
-    }
-    
-    .patient-testimonial-card-stable {
-        padding: 25px;
-        max-width: 100%;
-    }
-
-    .patient-comment {
-        font-size: 14px;
-    }
-
-    .patient-card-footer {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 15px;
-    }
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .main-heading { font-size: 32px; }
+    .patient-card-modern { width: 320px; padding: 25px; }
 }
