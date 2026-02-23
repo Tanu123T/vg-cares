@@ -18,9 +18,7 @@ const Hero = () => {
         </h1>
 
         <p className="hero-description">
-          Explore secure and budget-friendly treatment results across the globe.
-          VG Cares Global unites reliable healthcare providers with comprehensive
-          medical trip collaboration on a single platform.
+          We help you access reliable doctors, modern hospitals, and complete medical travel support — all designed to be budget-friendly and stress-free.
         </p>
 
         <div className="cta-group-container">
