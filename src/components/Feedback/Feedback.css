@@ -92,6 +92,8 @@
 
 /* --- INFINITE SCROLL ROW --- */
 .infinite-wrapper {
+    margin-left:7%;
+    max-width: 1430px;
     padding: 40px 0;
     display: flex;
     mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
