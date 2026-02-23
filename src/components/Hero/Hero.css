@@ -1,10 +1,10 @@
 .hero {
   background-color: #fdfdfd;
-  padding: 200px 7% 120px; /* reduced top padding */
+  padding: 200px 7% 70px; /* reduced top padding */
   display: flex;
   align-items: center;
   gap: 40px;
-  min-height: calc(85vh - 80px); /* accounts for navbar */
+  min-height:65vh; /* accounts for navbar */
   font-family: "Poppins", sans-serif;
   background-size: cover;
   background-position: center right;
@@ -16,18 +16,19 @@
 .hero-content {
   flex: 1;
   max-width: 700px;
+  padding :0 10px;
   z-index: 2;
 }
 
 .hero-title {
-  font-size: clamp(2.2rem, 4vw, 3rem);
+  font-size: clamp(2.2rem, 4vw, 2.5rem);
   line-height: 1.1;
   margin-bottom: 20px;
   color: black;
 }
 
 .hero-description {
-  font-size: 1.1rem;
+  font-size: 0.9rem;
   line-height: 1.6;
   margin-bottom: 40px;
   max-width: 800px;
@@ -43,7 +44,7 @@
     background: #d9f5e7;
     color: #2fa36b;
     border-radius: 20px;
-    font-size: 14px;
+    font-size: 11px;
     font-weight: 600;
     margin-bottom: 18px;
 }
@@ -77,6 +78,7 @@
   text-decoration: none;
   display: flex;
   align-items: center;
+  font-size: 14px;;
   animation: pulse-blue 2s infinite;
 }
 
@@ -99,6 +101,7 @@
   font-weight: 600;
   border: 1px solid #e2e8f0;
   transition: 0.3s;
+  font-size: 14px;
 }
 
 .btn-find:hover {
@@ -119,7 +122,7 @@
   align-items: center;
   gap: 10px;
   font-weight: 700;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   opacity: 0;
   transform: scale(0.9);
   animation: popIn 0.5s forwards;

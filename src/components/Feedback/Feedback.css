@@ -48,13 +48,13 @@ body {
     background: #d9f5e7;
     color: #2fa36b;
     border-radius: 20px;
-    font-size: 14px;
+    font-size: 11px;
     font-weight: 600;
     margin-bottom: 18px;
 }
 
 .feedback-main-title {
-    font-size: 36px;
+    font-size: clamp(1.5rem, 4vw, 2rem);
     font-weight: 700;
     color: #0d6efd;
     margin-bottom: 50px;
@@ -100,7 +100,7 @@ body {
 }
 
 .patient-comment {
-    font-size: 16px;
+    font-size: 14px;
     color: #333;
     line-height: 1.6;
     font-style: italic;
@@ -121,8 +121,8 @@ body {
 }
 
 .patient-avatar-icon {
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     background: #f0f2f5;
     border-radius: 50%;
     display: flex;
@@ -134,11 +134,12 @@ body {
 .patient-name {
     font-weight: 600;
     color: #222;
+    font-size: 11px;
 }
 
 .patient-rating-stars i {
     color: #ffc107;
-    font-size: 14px;
+    font-size: 12px;
 }
 
 .feedback-dots-container {
@@ -146,8 +147,8 @@ body {
 }
 
 .feedback-nav-dot {
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
     background: #ccc;
     border-radius: 50%;
     display: inline-block;

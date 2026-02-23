@@ -99,7 +99,7 @@ export default function JourneyTimeline() {
           padding-top: 60px;
           text-align: center;
         }
-        .jt-header h1 { font-size: 2.25rem; font-weight: 800; color: #1e293b; }
+        .jt-header h1 { font-size: clamp(1.5rem, 4vw, 2.1rem); font-weight: 800; color: #1e293b; }
         .jt-header h1 span { color: #2563eb; }
         .jt-header p { color: #64748b; font-weight: 600; }
 
@@ -207,7 +207,7 @@ export default function JourneyTimeline() {
 
       <section className="roadmap-section">
         <div className="jt-header">
-          <h1>Your easy path to <span>World class Medical Care</span></h1>
+          <h1>How VG Cares Global   <span>actually works?</span></h1>
           <p>Hover to zoom details • Swipe to track progress</p>
         </div>
 

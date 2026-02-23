@@ -15,12 +15,13 @@
 
 .partners-header h2 {
   color: var(--primary-blue);
-  font-size: 2.5rem;
+  font-size: 2rem;
   margin: 0;
 }
 
 .partners-header p {
   color: var(--text-gray);
+  font-size: 0.9rem;
 }
 
 /* Slider */
