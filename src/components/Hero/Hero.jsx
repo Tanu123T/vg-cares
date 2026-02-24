@@ -1,14 +1,17 @@
 import "./hero.css";
 import { Link } from "react-router-dom";
 import herobg from "../../assets/images/herobg.png";
-
+import { useEffect } from "react";
 
 const Hero = () => {
   // Combine the white-to-transparent gradient with your background image
   const backgroundStyle = {
     backgroundImage: `linear-gradient(to right, rgba(255, 255, 255, 10) 40%, rgba(255, 255, 255, 0) 70%, rgba(255, 255, 255, 0) 100%), url(${herobg})`
   };
-
+ useEffect(() => {
+    animateCounter("patients", 0, 300, 1000);
+    animateCounter("doctors", 0, 150, 1000);
+  }, []);
   
   return (
     <section className="hero" id="home" style={backgroundStyle}>
@@ -21,7 +24,7 @@ const Hero = () => {
         </h1>
 
         <p className="hero-description">
-          We help you access reliable doctors, modern hospitals, and complete medical travel support — all designed to be budget-friendly and stress-free.
+          We help you access reliable doctors, modern hospitals, and complete medical travel support-all designed to be budget-friendly and stress-free.
         </p>
 
         <div className="cta-group-container">
@@ -38,50 +41,50 @@ const Hero = () => {
             </Link>
           </div>
           </div>
-<div class="trust-row">
+<div className="trust-row">
 
-  <div class="trust-item">
-    <h3><span class="counter" data-target="300">0</span>+</h3>
+  <div className="trust-item">
+    <h3><span id="patients">0</span>+</h3>
     <p>Patients Served</p>
   </div>
 
-  <div class="trust-item">
-    <h3><span class="counter" data-target="300">0</span>+</h3>
+  <div className="trust-item">
+    <h3><span id="doctors">0</span>+</h3>
     <p>Verified Doctors</p>
   </div>
 
-<div class="trust-item">
-  <h3><span>24/7</span> </h3>
-  <p>Support</p>
-</div>
+  <div className="trust-item">
+    <h3><span>24/7</span></h3>
+    <p>Support</p>
+  </div>
 
 </div>
           </div>
     </section>
   );
 };
-function animateCounter(id, start, end, duration) {
-  const element = document.getElementById(id);
-  let startTime = null;
+ function animateCounter(id, start, end, duration) {
+    const element = document.getElementById(id);
+    if (!element) return;
 
-  function animation(currentTime) {
-    if (!startTime) startTime = currentTime;
-    const progress = currentTime - startTime;
+    let startTime = null;
 
-    const percentage = Math.min(progress / duration, 1);
-    const value = Math.floor(start + (end - start) * percentage);
+    function animation(currentTime) {
+      if (!startTime) startTime = currentTime;
+      const progress = currentTime - startTime;
 
-    element.innerText = value;
+      const percentage = Math.min(progress / duration, 1);
+      const value = Math.floor(start + (end - start) * percentage);
 
-    if (percentage < 1) {
-      requestAnimationFrame(animation);
-    } else {
-      element.innerText = end; // ensure exact final value
+      element.innerText = value;
+
+      if (percentage < 1) {
+        requestAnimationFrame(animation);
+      } else {
+        element.innerText = end;
+      }
     }
-  }
 
-  requestAnimationFrame(animation);
-}
-animateCounter("patients", 0, 60, 700);      // 0 → 500 in 0.8 sec
-animateCounter("satisfaction", 0, 60, 700);   // 0 → 98 in 0.7 sec
+    requestAnimationFrame(animation);
+  }
 export default Hero;

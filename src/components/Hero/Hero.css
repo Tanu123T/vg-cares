@@ -1,6 +1,6 @@
 .hero {
   background-color: #fdfdfd;
-  padding: 120px 7% 100px; /* reduced top padding */
+  padding: 160px 7% 100px; /* reduced top padding */
   display: flex;
   align-items: center;
   gap: 40px;
@@ -51,11 +51,12 @@
   animation: choiceEntrance 1.2s ease-out forwards, choiceGlow 3s linear infinite;
   opacity: 0;
   transform: translateY(20px);
+
 }
 
 /* CTA */
 .cta-group {
-  margin-top:20px;
+  margin-top:8px;
   display: flex;
   gap: 15px;
   margin-bottom: 45px;
@@ -202,7 +203,7 @@
   transform: translateY(30px);
 
   animation: heroLineReveal 1s ease forwards,
-             gradientMove 3s linear infinite;
+          gradientMove 3s linear infinite;
 }
 
 /* Slide + Fade animation */
