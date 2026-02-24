@@ -20,15 +20,15 @@ const servicesData = [
     title: "Verified Hospitals",
     desc: "Access to accredited medical facilities with proven track records.",
     icon: "fa-circle-check",
-    color: "orange",
-    card: "card-orange",
+    color: "green",
+    card: "card-special1",
   },
   {
     title: "Cost Estimation",
-    desc: "Transparent pricing with no hidden fees.",
+    desc: "We provide transparent estimates so you can focus on your recovery, not your bills.",
     icon: "fa-indian-rupee-sign",
-    color: "sky",
-    card: "card-sky",
+    color: "blue",
+    card: "card-blue",
   },
   {
     title: "Data Security",
@@ -83,16 +83,31 @@ const Services = () => {
       </p>
     
       <div className="grid">
-        {servicesData.map((item, index) => (
-          <div className={`card ${item.card}`} key={index}>
-            <div className={`icon ${item.color}`}>
-              <i className={`fa-solid ${item.icon}`}></i>
-            </div>
-            <h3>{item.title}</h3>
-            <p>{item.desc}</p>
+  {servicesData.map((item, index) => {
+    return (
+      <div className={`card ${item.card}`} key={index}>
+        
+        <div className="card-top">
+          <div className={`icon ${item.color}`}>
+            <i className={`fa-solid ${item.icon}`}></i>
           </div>
-        ))}
+          <h3>{item.title}</h3>
+        </div>
+
+        <p className="main-desc">{item.desc}</p>
+                <div className="divider"></div>
+        <div className="extra-content">
+          <ul>
+            <li>✔ Trusted Specialists</li>
+            <li>✔ Fast Response</li>
+            <li>✔ Complete Assistance</li>
+          </ul>
+        </div>
+
       </div>
+    );
+  })}
+</div>
     
     </section>
   );
