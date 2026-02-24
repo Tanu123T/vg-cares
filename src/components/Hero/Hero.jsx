@@ -26,11 +26,11 @@ const Hero = () => {
 
         <div className="cta-group-container">
         <p class="hero-start-line">
-  Start Your Medical Journey
+  Start Your Medical Journey Now !
 </p>
           <div className="cta-group">
             <Link to="/signin" className="btn-book1">
-              <span className="shimmer-text"> Get Started Now  →</span>
+              <span className="shimmer-text"> Get Started →</span>
             </Link>
 
             <Link to="/doctors" className="btn-find">
