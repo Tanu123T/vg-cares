@@ -39,9 +39,9 @@ function Approach() {
     <div className="container-approach">
       <header className="hero-flex1">
         <div className="hero-text1">
-          <span className="badge1">For Hospitals and Clinics</span>
-          <h1 className="approach-h1">Onboard your Doctors & manage patients care at scale</h1>
-          <p className="approach-p">Onboard doctors, streamline schedules, and serve more appointments digitally under one unified platform.</p>
+          <span className="badge1">Provider Network</span>
+          <h1 className="approach-h1">Register hospitals on VGCares, <br /><span>Grow without Limits</span></h1>
+          <p className="approach-p">Onboard your specialists, automate your scheduling, and secure your data with a platform built for the demands of Medical Tourism.</p>
           <div className="hero-btns1">
             <button className="btn1 btn-green1" onClick={() => navigate("/signin")}>Register your Hospital</button>
           </div>
@@ -67,7 +67,7 @@ function Approach() {
         </div>
         <div className="card_DA1">
           <div className="icon-large1"><i className="fa-solid fa-laptop"></i></div>
-          <h2>Online Appointments</h2>
+          <h2>Digital Scheduling</h2>
           <p>Schedule and consult with ease</p>
         </div>
         <div className="card_DA1">
@@ -85,30 +85,7 @@ function Approach() {
       </nav>
 
       <div className="bottom-flex-container1">
-        <div className="vg-points-card1">
-          <div className="vg-point-item1">
-            <div className="vg-icon-sm1 v-green1"><i className="fa-solid fa-notes-medical"></i></div>
-            <div className="vg-point-text1">
-              <h4>VGCARE Wellness Plans</h4>
-              <p>Personalized health & fitness journeys for long-term health.</p>
-            </div>
-          </div>
-          <div className="vg-point-item1">
-            <div className="vg-icon-sm1 v-blue1"><i className="fa-solid fa-user-nurse"></i></div>
-            <div className="vg-point-text1">
-              <h4>Virtual Guidance & Support</h4>
-              <p>24/7 access to health coaches and medical professionals.</p>
-            </div>
-          </div>
-          <div className="vg-point-item1">
-            <div className="vg-icon-sm1 v-red1"><i className="fa-solid fa-heart-pulse"></i></div>
-            <div className="vg-point-text1">
-              <h4>Remote Monitoring & Alerts</h4>
-              <p>Receive critical health alerts and real-time vitals tracking.</p>
-            </div>
-          </div>
-        </div>
-
+       
         <div className="slider-column1">
           <section className="testimonial-carousel1">
             <button className="nav-btn1 prev-btn1" onClick={prevSlide}><i className="fa-solid fa-chevron-left"></i></button>

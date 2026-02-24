@@ -58,7 +58,13 @@
     font-weight: 700; 
     letter-spacing: -1px; 
     margin-bottom: 15px; 
+    color:#000000;
 }
+
+.approach-h1 span{
+    color: #0d6efd;
+}
+
 
 .approach-p { 
     color: #777; 
@@ -190,67 +196,18 @@
 /* --- 6. WELLNESS POINTS SECTION (FIXED STYLING) --- */
 .bottom-flex-container1 { 
     display: flex; 
-    align-items: flex-start; 
-    justify-content: space-between; 
+    align-items: center; 
+    justify-content: center; 
     gap: 60px; 
     margin-top: 40px; 
     animation: revealUp 1s ease-out 0.4s forwards; 
     opacity: 0; 
 }
 
-.vg-points-card1 { 
-    flex: 0.8; 
-    background: #fff; 
-    padding: 40px 35px; 
-    border-radius: 40px; 
-    border: 1px solid #f0f0f0; 
-    box-shadow: 0 10px 30px rgba(0,0,0,0.02); 
-}
 
-.vg-point-item1 { 
-    display: flex; 
-    align-items: flex-start; 
-    gap: 20px; 
-    margin-bottom: 30px; 
-    transition: 0.3s ease; 
-}
-
-.vg-point-item1:last-child { margin-bottom: 0; }
-
-.vg-point-item1:hover { transform: translateX(8px); }
-
-/* The specific icon styling from your screenshot */
-.vg-icon-sm1 { 
-    width: 42px; 
-    height: 42px; 
-    border-radius: 12px; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    flex-shrink: 0; 
-    font-size: 1.1rem; 
-}
-
-.v-green1 { background: #e8f5e9; color: #2e7d32; }
-.v-blue1 { background: #e3f2fd; color: #1976d2; }
-.v-red1 { background: #ffebee; color: #d32f2f; }
-
-.vg-point-text1 h4 { 
-    font-size: 18px; 
-    font-weight: 700; 
-    margin: 0 0 5px 0; 
-    color: #333; 
-}
-
-.vg-point-text1 p { 
-    font-size: 14px; 
-    color: #666; 
-    line-height: 1.5; 
-    margin: 0; 
-}
 
 /* --- 7. TESTIMONIAL SLIDER --- */
-.slider-column1 { flex: 1.2; max-width: 650px; position: relative; }
+.slider-column1 { flex: 1.2; max-width: 650px; position: relative;}
 
 .slider-viewport1 { 
     width: 100%; 
