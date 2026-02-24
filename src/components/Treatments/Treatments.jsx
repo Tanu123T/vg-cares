@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { treatmentData } from '../../data/treatments';
 import './Treatments.css';
+import { useNavigate } from "react-router-dom";   // ✅ added
 
 const Treatments = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -8,9 +9,11 @@ const Treatments = () => {
   const [search, setSearch] = useState('');
   const [animate, setAnimate] = useState(false);
 
+  const navigate = useNavigate(); // ✅ added
+
   if (!treatmentData) return null;
 
-  // BODY LOCK LOGIC: Stops background scroll on Mobile
+  // BODY LOCK LOGIC
   useEffect(() => {
     if (isModalOpen) {
       const timer = setTimeout(() => setAnimate(true), 10);
@@ -32,7 +35,6 @@ const Treatments = () => {
     }
   }, [isModalOpen]);
 
-  // Curated list for the main page preview
   const previews = [
     { ...treatmentData.Orthopedic[0], cat: 'Orthopedic' },
     { ...treatmentData.Cardiac[0], cat: 'Cardiac' },
@@ -70,15 +72,22 @@ const Treatments = () => {
                   <div className="item-name">
                     <h3>{item.name}</h3>
                   </div>
-                   <p className="luxury-price">Starting from <span>{item.price}</span></p>
+                  <p className="luxury-price">
+                    Starting from <span>{item.price}</span>
+                  </p>
                 </div>
                 <div className="luxury-image">
                   <img src={item.image} alt={item.name} />
                 </div>
               </div>
+
               <div className="luxury-divider"></div>
 
-              <button className="vgc-btn-inquiry2">
+              {/* ✅ Get Treatment Plans linked to signin */}
+              <button
+                className="vgc-btn-inquiry2"
+                onClick={() => navigate("/signin")}
+              >
                 Get Treatment Plans
                 <i className="fas fa-chevron-right"></i>
               </button>
@@ -87,7 +96,10 @@ const Treatments = () => {
         </div>
 
         <div className="cta-container">
-          <button className="shiny-view-btn" onClick={() => setIsModalOpen(true)}>
+          <button
+            className="shiny-view-btn"
+            onClick={() => setIsModalOpen(true)}
+          >
             <span>Explore 50+ Treatment Plans</span>
             <i className="fas fa-arrow-right"></i>
           </button>
@@ -95,23 +107,41 @@ const Treatments = () => {
 
         {/* --- FULL DASHBOARD MODAL --- */}
         {isModalOpen && (
-          <div className={`vgc-modal-overlay ${animate ? 'vgc-active' : ''}`} onClick={() => setIsModalOpen(false)}>
-            <div className="vgc-modal-window" onClick={e => e.stopPropagation()}>
+          <div
+            className={`vgc-modal-overlay ${animate ? 'vgc-active' : ''}`}
+            onClick={() => setIsModalOpen(false)}
+          >
+            <div
+              className="vgc-modal-window"
+              onClick={e => e.stopPropagation()}
+            >
 
               <aside className="vgc-modal-sidebar">
                 <div className="vgc-sidebar-header">
                   <div className="vgc-pulse-dot"></div>
                   <span>CATALOG</span>
                 </div>
+
                 <div className="vgc-sidebar-nav-container">
                   <nav className="vgc-sidebar-nav">
                     {categories.map(cat => (
                       <button
                         key={cat}
                         className={`vgc-nav-btn ${activeTab === cat ? 'vgc-active' : ''}`}
-                        onClick={() => { setActiveTab(cat); setSearch(''); }}
+                        onClick={() => {
+                          setActiveTab(cat);
+                          setSearch('');
+                        }}
                       >
-                        <i className={`fas ${cat === 'Orthopedic' ? 'fa-bone' : cat === 'Cardiac' ? 'fa-heartbeat' : cat === 'Cancer' ? 'fa-ribbon' : 'fa-spa'}`}></i>
+                        <i className={`fas ${
+                          cat === 'Orthopedic'
+                            ? 'fa-bone'
+                            : cat === 'Cardiac'
+                            ? 'fa-heartbeat'
+                            : cat === 'Cancer'
+                            ? 'fa-ribbon'
+                            : 'fa-spa'
+                        }`}></i>
                         <span>{cat}</span>
                       </button>
                     ))}
@@ -130,7 +160,11 @@ const Treatments = () => {
                       onChange={(e) => setSearch(e.target.value)}
                     />
                   </div>
-                  <button className="vgc-close-modal" onClick={() => setIsModalOpen(false)}>
+
+                  <button
+                    className="vgc-close-modal"
+                    onClick={() => setIsModalOpen(false)}
+                  >
                     <i className="fas fa-times"></i>
                   </button>
                 </header>
@@ -146,19 +180,32 @@ const Treatments = () => {
                   <div className="vgc-list-scroll">
                     {filteredData.length > 0 ? (
                       filteredData.map((item, idx) => (
-                        <div className="vgc-list-row" key={item.id || idx} style={{ '--delay': idx }}>
+                        <div
+                          className="vgc-list-row"
+                          key={item.id || idx}
+                          style={{ '--delay': idx }}
+                        >
                           <div className="vgc-row-name">
                             <div>
                               <h4>{item.name}</h4>
                               <small>Stay: {item.stay}</small>
                             </div>
                           </div>
+
                           <div className="vgc-row-recovery">
                             <span>{item.recovery}</span>
                           </div>
-                          <div className="vgc-row-price">{item.price}</div>
+
+                          <div className="vgc-row-price">
+                            {item.price}
+                          </div>
+
                           <div className="vgc-row-action">
-                            <button className="vgc-btn-inquiry">
+                            {/* ✅ Details linked to signin */}
+                            <button
+                              className="vgc-btn-inquiry"
+                              onClick={() => navigate("/signin")}
+                            >
                               Details
                               <i className="fas fa-chevron-right"></i>
                             </button>
@@ -173,6 +220,7 @@ const Treatments = () => {
                   </div>
                 </div>
               </main>
+
             </div>
           </div>
         )}
