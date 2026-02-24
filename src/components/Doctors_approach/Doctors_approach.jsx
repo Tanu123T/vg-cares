@@ -59,23 +59,39 @@ function Approach() {
         </div>
       </header>
 
-      <section className="feature-grid1">
-        <div className="card_DA1">
-          <div className="icon-large1"><i className="fa-solid fa-bullhorn"></i></div>
-          <h2>Expand Your Reach</h2>
-          <p>Connect with more patients online</p>
-        </div>
-        <div className="card_DA1">
-          <div className="icon-large1"><i className="fa-solid fa-laptop"></i></div>
-          <h2>Digital Scheduling</h2>
-          <p>Schedule and consult with ease</p>
-        </div>
-        <div className="card_DA1">
-          <div className="icon-large1"><i className="fa-solid fa-calendar-check"></i></div>
-          <h2>Manage patient Records</h2>
-          <p>Secure and streamline your practice</p>
-        </div>
-      </section>
+     <section className="feature-row1">
+
+  <div className="feature-panel1">
+    <div className="feature-icon1">
+      <i className="fa-solid fa-bullhorn"></i>
+    </div>
+    <div className="feature-content1">
+      <h2>Expand Your Reach</h2>
+      <p>Connect with more patients online.</p>
+    </div>
+  </div>
+
+  <div className="feature-panel1">
+    <div className="feature-icon1">
+      <i className="fa-solid fa-laptop"></i>
+    </div>
+    <div className="feature-content1">
+      <h2>Digital Scheduling</h2>
+      <p>Schedule and consult with ease.</p>
+    </div>
+  </div>
+
+  <div className="feature-panel1">
+    <div className="feature-icon1">
+      <i className="fa-solid fa-calendar-check"></i>
+    </div>
+    <div className="feature-content1">
+      <h2>Manage Patient Records</h2>
+      <p>Secure and streamline your practice.</p>
+    </div>
+  </div>
+
+</section>
 
       <nav className="pill-bar1">
         <div className="pill1"><i className="fa-solid fa-chart-pie"></i> Dashboard</div>
