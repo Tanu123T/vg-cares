@@ -15,7 +15,6 @@ const Treatments = () => {
     if (isModalOpen) {
       const timer = setTimeout(() => setAnimate(true), 10);
 
-      // Standard lock + iOS Scroll prevent
       document.body.style.overflow = 'hidden';
       document.body.style.position = 'fixed';
       document.body.style.width = '100%';
@@ -33,6 +32,7 @@ const Treatments = () => {
     }
   }, [isModalOpen]);
 
+  // Curated list for the main page preview
   const previews = [
     { ...treatmentData.Orthopedic[0], cat: 'Orthopedic' },
     { ...treatmentData.Cardiac[0], cat: 'Cardiac' },
@@ -60,7 +60,7 @@ const Treatments = () => {
           <p>We've curated 50+ specialized surgical plans with top-tier hospitals globally.</p>
         </div>
 
-        {/* --- TOP 3 CARDS --- */}
+        {/* --- TOP PREVIEW CARDS --- */}
         <div className="preview-grid">
           {previews.map(item => (
             <div className="luxury-card" key={item.id}>
@@ -68,18 +68,16 @@ const Treatments = () => {
                 <div className="tag_name">
                   <div className="card-tag">{item.cat}</div>
                   <div className="item-name">
-                  <h3>{item.name}</h3>
+                    <h3>{item.name}</h3>
                   </div>
+                   <p className="luxury-price">Starting from <span>{item.price}</span></p>
                 </div>
                 <div className="luxury-image">
                   <img src={item.image} alt={item.name} />
                 </div>
               </div>
               <div className="luxury-divider"></div>
-              <p className="luxury-price">Starting from <span>{item.price}</span></p>
-              <div className="luxury-flags">
-                {item.countries.map(flag => <span key={flag} className="floating-flag">{flag}</span>)}
-              </div>
+
               <button className="vgc-btn-inquiry2">
                 Get Treatment Plans
                 <i className="fas fa-chevron-right"></i>
@@ -105,7 +103,6 @@ const Treatments = () => {
                   <div className="vgc-pulse-dot"></div>
                   <span>CATALOG</span>
                 </div>
-                {/* Horizontal navigation container for mobile */}
                 <div className="vgc-sidebar-nav-container">
                   <nav className="vgc-sidebar-nav">
                     {categories.map(cat => (
@@ -141,7 +138,7 @@ const Treatments = () => {
                 <div className="vgc-modal-body">
                   <div className="vgc-list-head">
                     <span>Specialized Procedure</span>
-                    <span>Hubs</span>
+                    <span>Recovery Time</span>
                     <span>Starting Est.</span>
                     <span>Selection</span>
                   </div>
@@ -153,16 +150,16 @@ const Treatments = () => {
                           <div className="vgc-row-name">
                             <div>
                               <h4>{item.name}</h4>
-                              <small>Full Hospital Care</small>
+                              <small>Stay: {item.stay}</small>
                             </div>
                           </div>
-                          <div className="vgc-row-flags">
-                            {item.countries?.map(flag => <span key={flag} className="vgc-flag-bubble">{flag}</span>)}
+                          <div className="vgc-row-recovery">
+                            <span>{item.recovery}</span>
                           </div>
                           <div className="vgc-row-price">{item.price}</div>
                           <div className="vgc-row-action">
                             <button className="vgc-btn-inquiry">
-                              See all plans
+                              Details
                               <i className="fas fa-chevron-right"></i>
                             </button>
                           </div>
