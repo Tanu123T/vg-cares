@@ -19,8 +19,8 @@ const Hero = () => {
 
 
         <h1 className="hero-title">
-          Your Health Journey, <br />
-          <span className="animated-choice">Across Borders</span>
+        VGCares: <br />
+          <span className="animated-choice"> Your Wellness, Our Mission</span>
         </h1>
 
         <p className="hero-description">
@@ -33,7 +33,7 @@ const Hero = () => {
 </p>
           <div className="cta-group">
             <Link to="/signin" className="btn-book1">
-              <span className="shimmer-text"> Get Started  →</span>
+              <span className="shimmer-text"> Get Started   →</span>
             </Link>
 
             <Link to="/doctors" className="btn-find">
