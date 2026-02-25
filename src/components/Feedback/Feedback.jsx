@@ -24,7 +24,7 @@ const Card = ({ item }) => (
       <div className="card-bottom">
         <div className="user-meta">
           <div className="user-icon-box">
-            <i className="fa-solid fa-user-doctor"></i>
+            <i className="fa-solid fa-user"></i>
           </div>
           <span className="user-name">{item.name}</span>
         </div>
