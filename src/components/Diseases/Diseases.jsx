@@ -13,16 +13,16 @@ import d10 from "../../assets/images/d10.png";
 import { Link } from "react-router-dom";
 
 const diseases = [
-  { img: d1, name: "Heart Failure" },
-  { img: d2, name: "Brain Tumor" },
-  { img: d3, name: "Asthma" },
-  { img: d4, name: "Liver Cirrhosis" },
-  { img: d5, name: "Kidney Failure" },
-  { img: d6, name: "Peritonitis" },
-  { img: d7, name: "Neurology" },
-  { img: d8, name: "Orthopedics" },
-  { img: d9, name: "Urology" },
-  { img: d10, name: "Dermatology" },
+  { img: d1, name: "Heart Failure", desc: "Advanced Heart Care" },
+  { img: d2, name: "Brain Tumor", desc: "Comprehensive Neuro Oncology Care" },
+  { img: d3, name: "Asthma", desc: "Advanced Respiratory Care" },
+  { img: d4, name: "Liver Cirrhosis", desc: "Chronic Liver Disease Management" },
+  { img: d5, name: "Kidney Failure", desc: "Comprehensive Renal Care" },
+  { img: d6, name: "Peritonitis", desc: "Emergency Abdominal Infection Treatment" },
+  { img: d7, name: "Neurology" , desc: "Brain and Nerve Care"},
+  { img: d8, name: "Orthopedics", desc: "Bone and Joint Care" },
+  { img: d9, name: "Urology" , desc: "Urinary Tract Care"},
+  { img: d10, name: "Dermatology", desc: "Skin and Hair Care" },
 ];
 
 const Diseases = () => {
@@ -104,19 +104,19 @@ const Diseases = () => {
   return (
     <section className="consult-container">
       <div className="header">
-        <span className="disease-badge">Diseases</span>
+        <span className="disease-badge">Health Conditions</span>
         <div className="disease-title-row">
     
-          <h1>Consult top doctors online for any health concern</h1>
+          <h1>Expert Care for  <span>Health Conditions & Disorders</span></h1>
       
           <div className="disease-nav-wrapper">
             <a href="/doctors" className="disease-view-all-link">
-              <button className="disease-view-all">View all Specialists →</button>
+              <button className="disease-view-all">View More</button>
             </a>
           </div>
         </div>
         <p className="disease-subtitle">
-          Private online consultation with verified doctors in all specialties.
+          Connect with experienced specialists for accurate diagnosis and advanced treatment of complex<br /> health conditions.
         </p>
       </div>
 
@@ -129,7 +129,7 @@ const Diseases = () => {
 <div className="timeline-card">
   <div className="card-text">
     <h3>{item.name}</h3>
-    <p>{index < 5 ? "Specialized Treatment" : "Advanced Care"}</p>
+    <p>{item.desc}</p>
   </div>
 
   <div className="card-image">
@@ -150,7 +150,7 @@ const Diseases = () => {
           <div className="timeline-card">
   <div className="card-text">
     <h3>{item.name}</h3>
-    <p>{index < 5 ? "Specialized Treatment" : "Advanced Care"}</p>
+    <p>{item.desc}</p>
   </div>
 
   <div className="card-image">
