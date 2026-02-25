@@ -50,6 +50,7 @@
     background-color: #ffffff;
     max-width: 1430px;
     margin: 0 auto;
+    margin-bottom: 10px;
     padding: 0 20px;
     font-family: '', sans-serif;
     /* Ensuring clean font scaling */
