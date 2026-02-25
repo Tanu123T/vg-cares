@@ -20,7 +20,7 @@ const Hero = () => {
 
         <h1 className="hero-title">
         VGCares: <br />
-          <span className="animated-choice"> Your Wellness, Our Mission</span>
+          <span className="animated-choice">Care That Travels With You</span>
         </h1>
 
         <p className="hero-description">
