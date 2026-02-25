@@ -15,10 +15,10 @@ import { Link } from "react-router-dom";
 const diseases = [
   { img: d1, name: "Heart Failure" },
   { img: d2, name: "Brain Tumor" },
-  { img: d3, name: "Pulmonary Fibrosis" },
+  { img: d3, name: "Asthma" },
   { img: d4, name: "Liver Cirrhosis" },
   { img: d5, name: "Kidney Failure" },
-  { img: d6, name: "Gastroenterology" },
+  { img: d6, name: "Peritonitis" },
   { img: d7, name: "Neurology" },
   { img: d8, name: "Orthopedics" },
   { img: d9, name: "Urology" },
@@ -120,39 +120,48 @@ const Diseases = () => {
         </p>
       </div>
 
-      <div className="disease-slider-wrapper">
-        <button className="disease-outside-arrow left" onClick={prevSlide}>
-          &lt;
-        </button>
+        <div className="timeline-wrapper">
 
-        <div className="disease-slider-viewport">
-          <div
-            className="disease-specialist-grid"
-            ref={sliderRef}
-            onMouseEnter={() => (isPaused.current = true)}
-            onMouseLeave={() => (isPaused.current = false)}
-          >
-            {diseases.map((item, index) => (
-              <div className="disease-card" key={index}>
-                <div className="disease-circle-container">
-                  <div className="disease-dashed-outline"></div>
-                  <div className="disease-icon-inner">
-                    <img src={item.img} alt={item.name} />
-                  </div>
-                </div>
-                <h3>{item.name}</h3>
-                <Link to="/signin" >
-                <button className="disease-consult-btn">Consult Now</button>
-                </Link>
-              </div>
-            ))}
-          </div>
+    {/* TOP ROW */}
+    <div className="timeline-row top">
+      {diseases.slice(0, 5).map((item, index) => (
+      <div className="timeline-item" key={index}>
+<div className="timeline-card">
+  <div className="card-text">
+    <h3>{item.name}</h3>
+    <p>{index < 5 ? "Specialized Treatment" : "Advanced Care"}</p>
+  </div>
+
+  <div className="card-image">
+    <img src={item.img} alt={item.name} />
+  </div>
+</div>
+</div>
+      ))}
+    </div>
+
+    {/* CENTER LINE */}
+    <div className="timeline-line"></div>
+
+    {/* BOTTOM ROW */}
+    <div className="timeline-row bottom">
+      {diseases.slice(5, 10).map((item, index) => (
+        <div className="timeline-item" key={index}>
+          <div className="timeline-card">
+  <div className="card-text">
+    <h3>{item.name}</h3>
+    <p>{index < 5 ? "Specialized Treatment" : "Advanced Care"}</p>
+  </div>
+
+  <div className="card-image">
+    <img src={item.img} alt={item.name} />
+  </div>
+</div>
         </div>
+      ))}
+    </div>
 
-        <button className="disease-outside-arrow right" onClick={nextSlide}>
-          &gt;
-        </button>
-      </div>
+  </div>
     </section>
   );
 };
