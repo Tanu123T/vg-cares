@@ -1,6 +1,6 @@
 .hero {
   background-color: #fdfdfd;
-  padding: 200px 7% 120px; /* reduced top padding */
+  padding: 160px 7% 100px; /* reduced top padding */
   display: flex;
   align-items: center;
   gap: 40px;
@@ -26,6 +26,7 @@
   color: black;
 }
 
+
 .hero-description {
   font-size: 1.1rem;
   line-height: 1.6;
@@ -36,16 +37,8 @@
   animation: fadeUp 0.8s ease-out 0.8s forwards;
 }
 
-/* BADGE */
 .hipaa-badge {
-  display: inline-block;
-    padding: 8px 22px;
-    background: #d9f5e7;
-    color: #2fa36b;
-    border-radius: 20px;
-    font-size: 14px;
-    font-weight: 600;
-    margin-bottom: 18px;
+  display: none;
 }
 
 /* ANIMATED TEXT */
@@ -58,11 +51,12 @@
   animation: choiceEntrance 1.2s ease-out forwards, choiceGlow 3s linear infinite;
   opacity: 0;
   transform: translateY(20px);
+
 }
 
 /* CTA */
 .cta-group {
-  margin-top:20px;
+  margin-top:8px;
   display: flex;
   gap: 15px;
   margin-bottom: 45px;
@@ -92,50 +86,86 @@
 }
 
 .btn-find {
-  background: white;
-  color: var(--dark-heading);
+  background: transparent;
+  color: var(--brand-blue);
   padding: 15px 30px;
   border-radius: 60px;
   text-decoration: none;
   font-weight: 600;
-  border: 1px solid #e2e8f0;
-  transition: 0.3s;
+  border: 2px solid var(--brand-blue);
+  transition: all 0.3s ease;
 }
 
 .btn-find:hover {
-  border-color: var(--brand-blue);
-  color: var(--brand-blue);
+  background: rgba(0, 123, 255, 0.08);  /* light blue tint */
+  box-shadow: 0 8px 20px rgba(0, 123, 255, 0.15);
   transform: translateY(-3px);
 }
-/* TRUST */
+
+
+/* TRUST SECTION UPGRADE */
 .trust-row {
   display: flex;
+  align-items: center;
   gap: 25px;
-  flex-wrap: wrap;
+  margin-top: 35px;
 }
 
 .trust-item {
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-weight: 700;
-  font-size: 0.9rem;
-  opacity: 0;
-  transform: scale(0.9);
-  animation: popIn 0.5s forwards;
+  gap: 12px;
+
+  background: #f4f7fb;
+  padding: 14px 22px;
+  border-radius: 14px;
+
+  border: 1px solid #e3ecf7;
+  transition: all 0.01s ease;
+  position: relative;
 }
 
+/* Blue Accent Line (Clean & Thin) */
+.trust-item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 20%;
+  height: 60%;
+  width: 3px;
+  background: #007bff;
+  border-radius: 3px;
+}
+
+/* Hover Effect */
+.trust-item:hover {
+  transform: translateY(-4px);
+  background: #ffffff;
+  box-shadow: 0 10px 25px rgba(0, 123, 255, 0.08);
+}
+
+.trust-item h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0;
+  color: #007bff;
+}
+
+.trust-item span {
+  color: #007bff;
+  font-weight: 700;
+}
 .check-circle-small {
-  background: var(--success-green);
-  color: white;
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
+  background: #eaf4ff;
+  color: var(--brand-blue);
+  width: 30px;
+  height: 30px;
+  font-size: 14px;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-
 
 
 /* ================= TABLET ================= */
@@ -158,6 +188,38 @@
   }
 }
 
+.hero-start-line {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 25px;
+  display: inline-block;
+
+  background: linear-gradient(90deg, #007bff, #00c6ff, #007bff);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  opacity: 0;
+  transform: translateY(30px);
+
+  animation: heroLineReveal 1s ease forwards,
+          gradientMove 3s linear infinite;
+}
+
+/* Slide + Fade animation */
+@keyframes heroLineReveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Moving gradient effect */
+@keyframes gradientMove {
+  to {
+    background-position: 200% center;
+  }
+}
 /* ================= MOBILE ================= */
 @media (max-width: 600px) {
   .hero {
@@ -205,6 +267,9 @@
   }
 }
 
+
+
+
 @keyframes choiceEntrance {
   to {
     opacity: 1;
@@ -243,5 +308,14 @@
   }
   100% {
     box-shadow: 0 0 0 0 rgba(0, 123, 255, 0);
+  }
+}
+@media (max-width: 768px) {
+  .trust-row {
+    flex-direction: column;
+  }
+
+  .trust-item {
+    max-width: 100%;
   }
 }

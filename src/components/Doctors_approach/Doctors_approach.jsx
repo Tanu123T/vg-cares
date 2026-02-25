@@ -42,56 +42,48 @@ function Approach() {
           <span className="badge1">Provider Network</span>
           <h1 className="approach-h1">Register hospitals on VGCares, <br /><span>Grow without Limits</span></h1>
           <p className="approach-p">Onboard your specialists, automate your scheduling, and secure your data with a platform built for the demands of Medical Tourism.</p>
-          <div className="hero-btns1">
-            <button className="btn1 btn-green1" onClick={() => navigate("/signin")}>Register your Hospital</button>
-          </div>
         </div>
-
-        <div className="hero-side-cards1">
-          <div className="mini-card1">
-            <div className="icon-circle1 green-tint1"><i className="fa-solid fa-user-doctor"></i></div>
-            <h3>Onboard Doctors<br />easily</h3>
-          </div>
-          <div className="mini-card1">
-            <div className="icon-circle1 orange-tint1"><i className="fa-solid fa-id-card"></i></div>
-            <h3>Centralized Doctor<br />management</h3>
-          </div>
+        <div className="catchy-button">
+          <p className="catchy-text">Want to expand your hospital’s reach?</p>
+        <div className="hero-btn1">
+          <button className="btn1 btn-green1" onClick={() => navigate("/signin")}>Register your Hospital</button>
+        </div>
         </div>
       </header>
 
-     <section className="feature-row1">
+      <section className="feature-row1">
 
-  <div className="feature-panel1">
-    <div className="feature-icon1">
-      <i className="fa-solid fa-bullhorn"></i>
-    </div>
-    <div className="feature-content1">
-      <h2>Expand Your Reach</h2>
-      <p>Connect with more patients online.</p>
-    </div>
-  </div>
+        <div className="feature-panel1">
+          <div className="feature-icon1">
+            <i className="fa-solid fa-bullhorn"></i>
+          </div>
+          <div className="feature-content1">
+            <h2>Expand Your Reach</h2>
+            <p>Connect with more patients online.</p>
+          </div>
+        </div>
 
-  <div className="feature-panel1">
-    <div className="feature-icon1">
-      <i className="fa-solid fa-laptop"></i>
-    </div>
-    <div className="feature-content1">
-      <h2>Digital Scheduling</h2>
-      <p>Schedule and consult with ease.</p>
-    </div>
-  </div>
+        <div className="feature-panel1">
+          <div className="feature-icon1">
+            <i className="fa-solid fa-laptop"></i>
+          </div>
+          <div className="feature-content1">
+            <h2>Digital Scheduling</h2>
+            <p>Schedule and consult with ease.</p>
+          </div>
+        </div>
 
-  <div className="feature-panel1">
-    <div className="feature-icon1">
-      <i className="fa-solid fa-calendar-check"></i>
-    </div>
-    <div className="feature-content1">
-      <h2>Manage Patient Records</h2>
-      <p>Secure and streamline your practice.</p>
-    </div>
-  </div>
+        <div className="feature-panel1">
+          <div className="feature-icon1">
+            <i className="fa-solid fa-calendar-check"></i>
+          </div>
+          <div className="feature-content1">
+            <h2>Manage Patient Records</h2>
+            <p>Secure and streamline your practice.</p>
+          </div>
+        </div>
 
-</section>
+      </section>
 
       <nav className="pill-bar1">
         <div className="pill1"><i className="fa-solid fa-chart-pie"></i> Dashboard</div>
@@ -101,7 +93,7 @@ function Approach() {
       </nav>
 
       <div className="bottom-flex-container1">
-       
+
         <div className="slider-column1">
           <section className="testimonial-carousel1">
             <button className="nav-btn1 prev-btn1" onClick={prevSlide}><i className="fa-solid fa-chevron-left"></i></button>
@@ -122,12 +114,23 @@ function Approach() {
           </section>
           <div className="dots-container1">
             {feedbacks.map((_, index) => (
-              <span 
-                key={index} 
-                className={`dot1 ${currentIndex === index ? "active1" : ""}`} 
+              <span
+                key={index}
+                className={`dot1 ${currentIndex === index ? "active1" : ""}`}
                 onClick={() => setCurrentIndex(index)}
               ></span>
             ))}
+          </div>
+        </div>
+
+        <div className="hero-side-cards1">
+          <div className="mini-card1">
+            <div className="icon-circle1 green-tint1"><i className="fa-solid fa-user-doctor"></i></div>
+            <h3>Onboard Doctors<br />easily</h3>
+          </div>
+          <div className="mini-card1">
+            <div className="icon-circle1 orange-tint1"><i className="fa-solid fa-id-card"></i></div>
+            <h3>Centralized Doctor<br />management</h3>
           </div>
         </div>
       </div>
