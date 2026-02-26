@@ -1,26 +1,21 @@
 import "./hero.css";
 import { Link } from "react-router-dom";
 import herobg from "../../assets/images/herobg.png";
-import { useEffect } from "react";
+
 
 const Hero = () => {
   // Combine the white-to-transparent gradient with your background image
   const backgroundStyle = {
     backgroundImage: `linear-gradient(to right, rgba(255, 255, 255, 10) 40%, rgba(255, 255, 255, 0) 70%, rgba(255, 255, 255, 0) 100%), url(${herobg})`
   };
- useEffect(() => {
-    animateCounter("patients", 0, 300, 1000);
-    animateCounter("doctors", 0, 150, 1000);
-  }, []);
-  
+
   return (
     <section className="hero" id="home" style={backgroundStyle}>
       <div className="hero-content">
 
 
         <h1 className="hero-title">
-        VGCares: <br />
-          <span className="animated-choice">Care That Travels With You</span>
+ Care That Travels <span className="animated-choice"> With You</span>
         </h1>
 
         <p className="hero-description">
@@ -44,12 +39,12 @@ const Hero = () => {
 <div className="trust-row">
 
   <div className="trust-item">
-    <h3><span id="patients">0</span>+</h3>
+    <h3><span id="patients">500</span>+</h3>
     <p>Patients Served</p>
   </div>
 
   <div className="trust-item">
-    <h3><span id="doctors">0</span>+</h3>
+    <h3><span id="doctors">500</span>+</h3>
     <p>Verified Doctors</p>
   </div>
 
