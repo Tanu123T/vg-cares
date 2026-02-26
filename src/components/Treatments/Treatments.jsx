@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { treatmentData } from '../../data/treatments';
 import './Treatments.css';
+import { useNavigate } from "react-router-dom";   // ✅ added
 
 const Treatments = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -8,14 +9,15 @@ const Treatments = () => {
   const [search, setSearch] = useState('');
   const [animate, setAnimate] = useState(false);
 
+  const navigate = useNavigate(); // ✅ added
+
   if (!treatmentData) return null;
 
-  // BODY LOCK LOGIC: Stops background scroll on Mobile
+  // BODY LOCK LOGIC
   useEffect(() => {
     if (isModalOpen) {
       const timer = setTimeout(() => setAnimate(true), 10);
 
-      // Standard lock + iOS Scroll prevent
       document.body.style.overflow = 'hidden';
       document.body.style.position = 'fixed';
       document.body.style.width = '100%';
@@ -60,7 +62,7 @@ const Treatments = () => {
           <p>We've curated 50+ specialized surgical plans with top-tier hospitals globally.</p>
         </div>
 
-        {/* --- TOP 3 CARDS --- */}
+        {/* --- TOP PREVIEW CARDS --- */}
         <div className="preview-grid">
           {previews.map(item => (
             <div className="luxury-card" key={item.id}>
@@ -68,19 +70,24 @@ const Treatments = () => {
                 <div className="tag_name">
                   <div className="card-tag">{item.cat}</div>
                   <div className="item-name">
-                  <h3>{item.name}</h3>
+                    <h3>{item.name}</h3>
                   </div>
+                  <p className="luxury-price">
+                    Starting from <span>{item.price}</span>
+                  </p>
                 </div>
                 <div className="luxury-image">
                   <img src={item.image} alt={item.name} />
                 </div>
               </div>
+
               <div className="luxury-divider"></div>
-              <p className="luxury-price">Starting from <span>{item.price}</span></p>
-              <div className="luxury-flags">
-                {item.countries.map(flag => <span key={flag} className="floating-flag">{flag}</span>)}
-              </div>
-              <button className="vgc-btn-inquiry2">
+
+              {/* ✅ Get Treatment Plans linked to signin */}
+              <button
+                className="vgc-btn-inquiry2"
+                onClick={() => navigate("/signin")}
+              >
                 Get Treatment Plans
                 <i className="fas fa-chevron-right"></i>
               </button>
@@ -89,7 +96,10 @@ const Treatments = () => {
         </div>
 
         <div className="cta-container">
-          <button className="shiny-view-btn" onClick={() => setIsModalOpen(true)}>
+          <button
+            className="shiny-view-btn"
+            onClick={() => setIsModalOpen(true)}
+          >
             <span>Explore 50+ Treatment Plans</span>
             <i className="fas fa-arrow-right"></i>
           </button>
@@ -97,24 +107,41 @@ const Treatments = () => {
 
         {/* --- FULL DASHBOARD MODAL --- */}
         {isModalOpen && (
-          <div className={`vgc-modal-overlay ${animate ? 'vgc-active' : ''}`} onClick={() => setIsModalOpen(false)}>
-            <div className="vgc-modal-window" onClick={e => e.stopPropagation()}>
+          <div
+            className={`vgc-modal-overlay ${animate ? 'vgc-active' : ''}`}
+            onClick={() => setIsModalOpen(false)}
+          >
+            <div
+              className="vgc-modal-window"
+              onClick={e => e.stopPropagation()}
+            >
 
               <aside className="vgc-modal-sidebar">
                 <div className="vgc-sidebar-header">
                   <div className="vgc-pulse-dot"></div>
                   <span>CATALOG</span>
                 </div>
-                {/* Horizontal navigation container for mobile */}
+
                 <div className="vgc-sidebar-nav-container">
                   <nav className="vgc-sidebar-nav">
                     {categories.map(cat => (
                       <button
                         key={cat}
                         className={`vgc-nav-btn ${activeTab === cat ? 'vgc-active' : ''}`}
-                        onClick={() => { setActiveTab(cat); setSearch(''); }}
+                        onClick={() => {
+                          setActiveTab(cat);
+                          setSearch('');
+                        }}
                       >
-                        <i className={`fas ${cat === 'Orthopedic' ? 'fa-bone' : cat === 'Cardiac' ? 'fa-heartbeat' : cat === 'Cancer' ? 'fa-ribbon' : 'fa-spa'}`}></i>
+                        <i className={`fas ${
+                          cat === 'Orthopedic'
+                            ? 'fa-bone'
+                            : cat === 'Cardiac'
+                            ? 'fa-heartbeat'
+                            : cat === 'Cancer'
+                            ? 'fa-ribbon'
+                            : 'fa-spa'
+                        }`}></i>
                         <span>{cat}</span>
                       </button>
                     ))}
@@ -133,7 +160,11 @@ const Treatments = () => {
                       onChange={(e) => setSearch(e.target.value)}
                     />
                   </div>
-                  <button className="vgc-close-modal" onClick={() => setIsModalOpen(false)}>
+
+                  <button
+                    className="vgc-close-modal"
+                    onClick={() => setIsModalOpen(false)}
+                  >
                     <i className="fas fa-times"></i>
                   </button>
                 </header>
@@ -141,7 +172,7 @@ const Treatments = () => {
                 <div className="vgc-modal-body">
                   <div className="vgc-list-head">
                     <span>Specialized Procedure</span>
-                    <span>Hubs</span>
+                    <span>Recovery Time</span>
                     <span>Starting Est.</span>
                     <span>Selection</span>
                   </div>
@@ -149,20 +180,33 @@ const Treatments = () => {
                   <div className="vgc-list-scroll">
                     {filteredData.length > 0 ? (
                       filteredData.map((item, idx) => (
-                        <div className="vgc-list-row" key={item.id || idx} style={{ '--delay': idx }}>
+                        <div
+                          className="vgc-list-row"
+                          key={item.id || idx}
+                          style={{ '--delay': idx }}
+                        >
                           <div className="vgc-row-name">
                             <div>
                               <h4>{item.name}</h4>
-                              <small>Full Hospital Care</small>
+                              <small>Stay: {item.stay}</small>
                             </div>
                           </div>
-                          <div className="vgc-row-flags">
-                            {item.countries?.map(flag => <span key={flag} className="vgc-flag-bubble">{flag}</span>)}
+
+                          <div className="vgc-row-recovery">
+                            <span>{item.recovery}</span>
                           </div>
-                          <div className="vgc-row-price">{item.price}</div>
+
+                          <div className="vgc-row-price">
+                            {item.price}
+                          </div>
+
                           <div className="vgc-row-action">
-                            <button className="vgc-btn-inquiry">
-                              See all plans
+                            {/* ✅ Details linked to signin */}
+                            <button
+                              className="vgc-btn-inquiry"
+                              onClick={() => navigate("/signin")}
+                            >
+                              Details
                               <i className="fas fa-chevron-right"></i>
                             </button>
                           </div>
@@ -176,6 +220,7 @@ const Treatments = () => {
                   </div>
                 </div>
               </main>
+
             </div>
           </div>
         )}

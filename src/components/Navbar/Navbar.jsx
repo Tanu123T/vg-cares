@@ -145,13 +145,6 @@ useEffect(() => {
     setIsMenuOpen(false);
     setIsDropdownOpen(false);
 
-    if (location.pathname === "/") {
-      document
-        .getElementById("capabilities")
-        ?.scrollIntoView({ behavior: "smooth" });
-    } else {
-      navigate("/", { state: { scrollTo: "capabilities" } });
-    }
   };
 
   return (
@@ -162,7 +155,7 @@ useEffect(() => {
           <span></span><span></span><span></span><span></span>
         </div>
         <div className="logo-text">
-          <h2>VG Cares Global</h2>
+          <h2>VGCares Global</h2>
           <p>Powered by VishwaGuru Infotech</p>
         </div>
       </div>
@@ -189,16 +182,6 @@ useEffect(() => {
   onClick={goToServices}
 >
   Services
-</button>
-
-        </li>
-
-        <li>
-          <button
-  className={`nav-item ${activeSection === "capabilities" ? "active" : ""}`}
-  onClick={goToCapabilities}
->
-  Our Capabilities
 </button>
 
         </li>

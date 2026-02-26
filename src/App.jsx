@@ -47,11 +47,11 @@ function Home() {
   return (
     <>
       <Hero />
-      <Services />
       <Treatments />
-      <Diseases />
-      <Doctors_approach />
       <Roadmap />
+      <Diseases />
+      <Services />
+      <Doctors_approach />
       <Feedback />
       <MedicalMap />
       <Download_app />

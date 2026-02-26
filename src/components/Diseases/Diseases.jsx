@@ -13,16 +13,16 @@ import d10 from "../../assets/images/d10.png";
 import { Link } from "react-router-dom";
 
 const diseases = [
-  { img: d1, name: "Heart Failure" },
-  { img: d2, name: "Brain Tumor" },
-  { img: d3, name: "Pulmonary Fibrosis" },
-  { img: d4, name: "Liver Cirrhosis" },
-  { img: d5, name: "Kidney Failure" },
-  { img: d6, name: "Gastroenterology" },
-  { img: d7, name: "Neurology" },
-  { img: d8, name: "Orthopedics" },
-  { img: d9, name: "Urology" },
-  { img: d10, name: "Dermatology" },
+  { img: d1, name: "Heart Failure", desc: "Advanced Heart Care" },
+  { img: d2, name: "Brain Tumor", desc: "Comprehensive Neuro Oncology Care" },
+  { img: d3, name: "Asthma", desc: "Advanced Respiratory Care" },
+  { img: d4, name: "Liver Cirrhosis", desc: "Chronic Liver Disease Management" },
+  { img: d5, name: "Kidney Failure", desc: "Comprehensive Renal Care" },
+  { img: d6, name: "Peritonitis", desc: "Emergency Abdominal Infection Treatment" },
+  { img: d7, name: "Neurology" , desc: "Brain and Nerve Care"},
+  { img: d8, name: "Orthopedics", desc: "Bone and Joint Care" },
+  { img: d9, name: "Urology" , desc: "Urinary Tract Care"},
+  { img: d10, name: "Dermatology", desc: "Skin and Hair Care" },
 ];
 
 const Diseases = () => {
@@ -104,55 +104,64 @@ const Diseases = () => {
   return (
     <section className="consult-container">
       <div className="header">
-        <span className="disease-badge">Diseases</span>
+        <span className="disease-badge">Health Conditions</span>
         <div className="disease-title-row">
     
-          <h1>Consult top doctors online for any health concern</h1>
+          <h1>Expert Care for  <span>Health Conditions & Disorders</span></h1>
       
           <div className="disease-nav-wrapper">
             <a href="/doctors" className="disease-view-all-link">
-              <button className="disease-view-all">View all Specialists →</button>
+              <button className="disease-view-all">View More</button>
             </a>
           </div>
         </div>
         <p className="disease-subtitle">
-          Private online consultation with verified doctors in all specialties.
+          Connect with experienced specialists for accurate diagnosis and advanced treatment of complex<br /> health conditions.
         </p>
       </div>
 
-      <div className="disease-slider-wrapper">
-        <button className="disease-outside-arrow left" onClick={prevSlide}>
-          &lt;
-        </button>
+        <div className="timeline-wrapper">
 
-        <div className="disease-slider-viewport">
-          <div
-            className="disease-specialist-grid"
-            ref={sliderRef}
-            onMouseEnter={() => (isPaused.current = true)}
-            onMouseLeave={() => (isPaused.current = false)}
-          >
-            {diseases.map((item, index) => (
-              <div className="disease-card" key={index}>
-                <div className="disease-circle-container">
-                  <div className="disease-dashed-outline"></div>
-                  <div className="disease-icon-inner">
-                    <img src={item.img} alt={item.name} />
-                  </div>
-                </div>
-                <h3>{item.name}</h3>
-                <Link to="/signin" >
-                <button className="disease-consult-btn">Consult Now</button>
-                </Link>
-              </div>
-            ))}
-          </div>
+    {/* TOP ROW */}
+    <div className="timeline-row top">
+      {diseases.slice(0, 5).map((item, index) => (
+      <div className="timeline-item" key={index}>
+<div className="timeline-card">
+  <div className="card-text">
+    <h3>{item.name}</h3>
+    <p>{item.desc}</p>
+  </div>
+
+  <div className="card-image">
+    <img src={item.img} alt={item.name} />
+  </div>
+</div>
+</div>
+      ))}
+    </div>
+
+    {/* CENTER LINE */}
+    <div className="timeline-line"></div>
+
+    {/* BOTTOM ROW */}
+    <div className="timeline-row bottom">
+      {diseases.slice(5, 10).map((item, index) => (
+        <div className="timeline-item" key={index}>
+          <div className="timeline-card">
+  <div className="card-text">
+    <h3>{item.name}</h3>
+    <p>{item.desc}</p>
+  </div>
+
+  <div className="card-image">
+    <img src={item.img} alt={item.name} />
+  </div>
+</div>
         </div>
+      ))}
+    </div>
 
-        <button className="disease-outside-arrow right" onClick={nextSlide}>
-          &gt;
-        </button>
-      </div>
+  </div>
     </section>
   );
 };

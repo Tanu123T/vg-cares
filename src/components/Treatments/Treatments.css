@@ -3,13 +3,13 @@
 /* --- DESKTOP STYLES --- */
 .treatments-section {
     max-width: 1430px;
-    margin: 50px auto;
+    margin: 25px auto;
     background: #ffffff;
 }
 
 .modern-heading {
     text-align: center;
-    margin-bottom: 60px;
+    margin-bottom: 20px;
 }
 
 .glass-badge {
@@ -20,11 +20,11 @@
     border-radius: 20px;
     font-size: 14px;
     font-weight: 600;
-    margin-bottom: 18px;
+    margin-bottom: 5px;
 }
 
 .modern-heading h2 {
-    font-size: 3rem;
+    font-size: 2.2rem;
     color: #1a202c;
     margin: 15px 0;
     font-weight: 900;
@@ -34,14 +34,14 @@
     width: 80px;
     height: 4px;
     background: #006ce0;
-    margin: 20px auto;
+    margin: 10px auto;
     border-radius: 2px;
 }
 
 .modern-heading p {
     color: #718096;
     font-size: 1.1rem;
-    max-width: 600px;
+    max-width: 700px;
     margin: 0 auto;
 }
 
@@ -56,8 +56,10 @@
 .luxury-image {
     width: 90px;
     height: 90px;
+    min-width: 90px;
     border-radius: 20px;
     overflow: hidden;
+    flex-shrink: 0;
 }
 
 .luxury-image:hover {
@@ -66,14 +68,14 @@
 }
 
 .luxury-image img {
-    margin-left: 30px;
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
+
 .item-name{
-    margin-top:20px;
+    margin-top:10px;
     font-size:1rem;
 }
 
@@ -97,10 +99,11 @@
 }
 
 .luxury-card {
+    max-height:250px;
     background: white;
     padding-left: 40px;
-    padding-top: 40px;
-    padding-bottom: 40px;
+    padding-top: 30px;
+    padding-bottom: 30px;
     border-radius: 30px;
     position: relative;
     border: 1px solid #f1f5f9;
@@ -116,10 +119,10 @@
 }
 
 .card-tag {
-    max-width: fit-content;
+    max-width:100px;
     background-color: #6fb3fc24;
     color: #006ce0;
-    padding: 6px 10px;
+    padding: 2px 7px;
     font-size: 12px;
     font-weight: 700;
     border-radius: 40px;
@@ -148,8 +151,8 @@
 
 .luxury-price span {
     color: #006ce0;
-    font-weight: 900;
-    font-size: 1.6rem;
+    font-weight: 800;
+    font-size: 1.3rem;
 }
 
 .cta-container {

@@ -8,6 +8,12 @@ const servicesData = [
     icon: "fa-video",
     color: "green",
     card: "card-special1",
+     points: [
+      "Instant Specialist Matching",
+      "Secure HD Video Sessions",
+      "Digital Prescriptions",
+      "Easy Follow-up Scheduling"
+    ]
   },
   {
     title: "Travel Assistance",
@@ -15,6 +21,12 @@ const servicesData = [
     icon: "fa-plane",
     color: "blue",
     card: "card-blue",
+    points: [
+      "Medical Visa Documentation",
+      "Flight & Stay Coordination",
+      "Airport Pickup Support",
+      "End-to-End Travel Planning"
+    ]
   },
   {
     title: "Verified Hospitals",
@@ -22,6 +34,12 @@ const servicesData = [
     icon: "fa-circle-check",
     color: "green",
     card: "card-special1",
+    points: [
+      "Accredited Institutions",
+      "Advanced Infrastructure",
+      "Experienced Medical Teams",
+      "Proven Success Records"
+    ]
   },
   {
     title: "Cost Estimation",
@@ -29,6 +47,12 @@ const servicesData = [
     icon: "fa-indian-rupee-sign",
     color: "blue",
     card: "card-blue",
+    points: [
+      "Detailed Cost Breakdown",
+      "Transparent Pricing",
+      "No Hidden Charges",
+      "Insurance Guidance"
+    ]
   },
   {
     title: "Data Security",
@@ -36,6 +60,12 @@ const servicesData = [
     icon: "fa-lock",
     color: "green",
     card: "card-special1",
+    points: [
+      "End-to-End Encryption",
+      "Secure Cloud Storage",
+      "HIPAA-Compliant Systems",
+      "Role-Based Access Control"
+    ]
   },
   {
     title: "24/7 Support",
@@ -43,6 +73,12 @@ const servicesData = [
     icon: "fa-earth-americas",
     color: "blue",
     card: "card-blue",
+    points: [
+      "Dedicated Care Team",
+      "Multilingual Assistance",
+      "Emergency Coordination",
+      "Real-Time Query Resolution"
+    ]
   },
 ];
 
@@ -75,11 +111,11 @@ const Services = () => {
       <span className="badge">Our Expertise</span>
 
       <h1 className="service-title">
-        Comprehensive Care Designed for You
+        Smart, Secure & Seamless <span>Healthcare</span>
       </h1>
 
       <p className="desc"><b>
-        Healthcare that fits your life. Our services are built to be accessible, transparent and secure.</b>
+        Smart medical solutions tailored to your needs. We ensure accessibility, clarity, and complete data protection.</b>
       </p>
     
       <div className="grid">
@@ -98,10 +134,10 @@ const Services = () => {
                 <div className="divider"></div>
         <div className="extra-content">
           <ul>
-            <li>✔ Trusted Specialists</li>
-            <li>✔ Fast Response</li>
-            <li>✔ Complete Assistance</li>
-          </ul>
+  {item.points.map((point, i) => (
+    <li key={i}>✔ {point}</li>
+  ))}
+</ul>
         </div>
 
       </div>
