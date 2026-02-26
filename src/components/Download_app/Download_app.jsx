@@ -47,12 +47,12 @@ const DownloadApp = () => {
         <div className="app-content">
           <h1 className="app-title">
             Download the <br />
-            <span className="gradient-text">VG Care App</span> now!
+            <span className="gradient-text">VGCares App</span> now!
           </h1>
 
           <p className="app-description">
             Seamless access to international hospitals, doctors, and treatment
-            support with VG Care. Your health journey, simplified.
+            support with VGCares Global. Your health journey, simplified.
           </p>
 
           <div className="store-btns">

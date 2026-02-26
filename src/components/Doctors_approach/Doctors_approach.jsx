@@ -40,7 +40,7 @@ function Approach() {
       <header className="hero-flex1">
         <div className="hero-text1">
           <span className="badge1">Provider Network</span>
-          <h1 className="approach-h1">Register hospitals on VGCares, <br /><span>Grow without Limits</span></h1>
+          <h1 className="approach-h1">Register hospitals on VGCares Global, <br /><span>Grow without Limits</span></h1>
           <p className="approach-p">Onboard your specialists, automate your scheduling, and secure your data with a platform built for the demands of Medical Tourism.</p>
         </div>
         <div className="catchy-button">

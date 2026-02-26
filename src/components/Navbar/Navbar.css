@@ -68,14 +68,17 @@ display: flex;
 .logo-mark span {
   width: 10px;
   height: 10px;
-  background: #000;
+  background: #006ce0;
   border-radius: 2px;
 }
 
 .logo-text h2 {
   font-size: 1.5rem;
   font-weight: 800;
-  color: #333;
+    background: linear-gradient(to right, #007bff, #66b2ff, #007bff);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   margin: 0;
 }
 
