@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./Diseases.css";
 import d1 from "../../assets/images/d1.png";
 import d2 from "../../assets/images/d2.png";
@@ -25,11 +25,49 @@ const diseases = [
   { img: d10, name: "Dermatology", desc: "Skin and Hair Care" },
 ];
 
+// Modal Only Diseases (Different from main section)
+const modalDiseases = [
+  // Cardiology
+  { name: "Coronary Artery Disease", desc: "Blocked heart arteries", category: "Cardiology" },
+  { name: "Arrhythmia", desc: "Irregular heart rhythm disorder", category: "Cardiology" },
+  { name: "Cardiomyopathy", desc: "Heart muscle disease", category: "Cardiology" },
+
+  // Neurology
+  { name: "Stroke", desc: "Brain blood flow interruption", category: "Neurology" },
+  { name: "Epilepsy", desc: "Seizure disorder", category: "Neurology" },
+  { name: "Parkinson’s Disease", desc: "Progressive nervous system disorder", category: "Neurology" },
+
+  // Oncology
+  { name: "Lung Cancer", desc: "Malignant lung tumor", category: "Oncology" },
+  { name: "Breast Cancer", desc: "Cancer affecting breast tissue", category: "Oncology" },
+  { name: "Leukemia", desc: "Blood cancer", category: "Oncology" },
+
+  // Gastroenterology
+  { name: "Pancreatitis", desc: "Inflammation of pancreas", category: "Gastroenterology" },
+  { name: "Hepatitis B", desc: "Liver infection", category: "Gastroenterology" },
+
+  // Nephrology
+  { name: "Chronic Kidney Disease", desc: "Gradual kidney function loss", category: "Nephrology" },
+
+  // Pulmonology
+  { name: "COPD", desc: "Chronic obstructive pulmonary disease", category: "Pulmonology" },
+
+  // Dermatology
+  { name: "Psoriasis", desc: "Chronic skin condition", category: "Dermatology" },
+  { name: "Melanoma", desc: "Serious skin cancer", category: "Dermatology" },
+
+  // Orthopedics
+  { name: "Rheumatoid Arthritis", desc: "Autoimmune joint disorder", category: "Orthopedics" },
+
+  // Urology
+  { name: "Prostate Cancer", desc: "Cancer of prostate gland", category: "Urology" },
+];
 const Diseases = () => {
   const sliderRef = useRef(null);
   const scrollPosition = useRef(0);
   const isPaused = useRef(false);
-
+const [isOpen, setIsOpen] = useState(false);
+const dropdownRef = useRef(null);
   const scrollStep = 210;
   const autoScrollSpeed = 0.5;
 
@@ -71,6 +109,43 @@ const Diseases = () => {
     return () => cancelAnimationFrame(rafId);
   }, []);
 
+  useEffect(() => {
+  const handleClickOutside = (event) => {
+    if (
+      dropdownRef.current &&
+      !dropdownRef.current.contains(event.target)
+    ) {
+      setIsOpen(false);
+    }
+  };
+
+  document.addEventListener("mousedown", handleClickOutside);
+
+  return () => {
+    document.removeEventListener("mousedown", handleClickOutside);
+  };
+}, []);
+
+useEffect(() => {
+  if (!showModal) return;
+
+  const modalElement = document.querySelector(".explore-modal");
+
+  const handleScroll = () => {
+    setIsOpen(false);
+  };
+
+  if (modalElement) {
+    modalElement.addEventListener("scroll", handleScroll);
+  }
+
+  return () => {
+    if (modalElement) {
+      modalElement.removeEventListener("scroll", handleScroll);
+    }
+  };
+}, []);
+
   const nextSlide = () => {
     const slider = sliderRef.current;
     if (!slider) return;
@@ -101,6 +176,27 @@ const Diseases = () => {
     }, 450);
   };
 
+  const [showModal, setShowModal] = useState(false);
+const [searchTerm, setSearchTerm] = useState("");
+const [selectedCategory, setSelectedCategory] = useState("All");
+
+const categories = [
+  "All",
+  ...new Set(modalDiseases.map(d => d.category))
+];
+
+const filteredDiseases = modalDiseases.filter((d) => {
+  const matchesSearch = d.name
+    .toLowerCase()
+    .includes(searchTerm.toLowerCase());
+
+  const matchesCategory =
+    selectedCategory === "All" ||
+    d.category === selectedCategory;
+
+  return matchesSearch && matchesCategory;
+});
+
   return (
     <section className="consult-container">
       <div className="header">
@@ -110,9 +206,12 @@ const Diseases = () => {
           <h1>Expert Care for  <span>Health Conditions & Disorders</span></h1>
       
           <div className="disease-nav-wrapper">
-            <a href="/doctors" className="disease-view-all-link">
-              <button className="disease-view-all">View More</button>
-            </a>
+           <button
+  className="disease-view-all"
+  onClick={() => setShowModal(true)}
+>
+  Explore More
+</button>
           </div>
         </div>
         <p className="disease-subtitle">
@@ -162,6 +261,73 @@ const Diseases = () => {
     </div>
 
   </div>
+  {showModal && (
+  <div className="explore-modal-overlay">
+    <div className="explore-modal">
+
+    <button
+  className="explore-close"
+  onClick={() => {
+    setShowModal(false);
+    setSearchTerm("");
+    setSelectedCategory("All");
+    setIsOpen(false);
+  }}
+>
+  ✕
+</button>
+
+      <div className="explore-controls">
+        <input
+          type="text"
+          placeholder="Search disease..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+
+   <div className="dropdown-container" ref={dropdownRef}>
+  <div 
+    className="dropdown-header"
+    onClick={() => setIsOpen(!isOpen)}
+  >
+    {selectedCategory}
+    <span className={`dropdown-arrow ${isOpen ? "open" : ""}`}></span>
+  </div>
+
+  {isOpen && (
+    <div className="dropdown-menu">
+      {categories.map((cat, index) => (
+        <div
+          key={index}
+          className={`dropdown-item ${
+            selectedCategory === cat ? "active" : ""
+          }`}
+          onClick={() => {
+            setSelectedCategory(cat);
+            setIsOpen(false);
+          }}
+        >
+          {cat}
+        </div>
+      ))}
+    </div>
+  )}
+</div>
+      </div>
+
+      <div className="explore-grid">
+        {filteredDiseases.map((item, index) => (
+          <div className="explore-card" key={index}>
+            <img src={item.img} alt={item.name} />
+            <h3>{item.name}</h3>
+            <p>{item.desc}</p>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </div>
+)}
     </section>
   );
 };
