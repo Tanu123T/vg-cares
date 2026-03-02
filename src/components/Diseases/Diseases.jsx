@@ -262,21 +262,36 @@ const filteredDiseases = modalDiseases.filter((d) => {
 
   </div>
   {showModal && (
-  <div className="explore-modal-overlay">
-    <div className="explore-modal">
+  <div
+    className="explore-modal-overlay"
+    onClick={() => setShowModal(false)}
+  >
+    <div
+      className="explore-modal"
+      onClick={(e) => e.stopPropagation()}
+    >
+      
+      {/* HEADER */}
+      <div className="explore-header">
+  <div className="explore-title">
+    <h2>Explore Medical Conditions</h2>
+    <p>Browse diseases by category or search instantly</p>
+  </div>
 
-    <button
-  className="explore-close"
-  onClick={() => {
-    setShowModal(false);
-    setSearchTerm("");
-    setSelectedCategory("All");
-    setIsOpen(false);
-  }}
->
-  ✕
-</button>
+  <button
+    className="explore-close"
+    onClick={() => {
+      setShowModal(false);
+      setSearchTerm("");
+      setSelectedCategory("All");
+      setIsOpen(false);
+    }}
+  >
+    ×
+  </button>
+</div>
 
+      {/* CONTROLS */}
       <div className="explore-controls">
         <input
           type="text"
@@ -285,46 +300,51 @@ const filteredDiseases = modalDiseases.filter((d) => {
           onChange={(e) => setSearchTerm(e.target.value)}
         />
 
-   <div className="dropdown-container" ref={dropdownRef}>
-  <div 
-    className="dropdown-header"
-    onClick={() => setIsOpen(!isOpen)}
-  >
-    {selectedCategory}
-    <span className={`dropdown-arrow ${isOpen ? "open" : ""}`}></span>
-  </div>
+        <div className="dropdown-container" ref={dropdownRef}>
+          <div
+            className="dropdown-header"
+            onClick={() => setIsOpen(!isOpen)}
+          >
+            {selectedCategory}
+            <span className={`dropdown-arrow ${isOpen ? "open" : ""}`}></span>
+          </div>
 
-  {isOpen && (
-    <div className="dropdown-menu">
-      {categories.map((cat, index) => (
-        <div
-          key={index}
-          className={`dropdown-item ${
-            selectedCategory === cat ? "active" : ""
-          }`}
-          onClick={() => {
-            setSelectedCategory(cat);
-            setIsOpen(false);
-          }}
-        >
-          {cat}
+          {isOpen && (
+            <div className="dropdown-menu">
+              {categories.map((cat, index) => (
+                <div
+                  key={index}
+                  className={`dropdown-item ${
+                    selectedCategory === cat ? "active" : ""
+                  }`}
+                  onClick={() => {
+                    setSelectedCategory(cat);
+                    setIsOpen(false);
+                  }}
+                >
+                  {cat}
+                </div>
+              ))}
+            </div>
+          )}
         </div>
-      ))}
-    </div>
-  )}
-</div>
       </div>
 
+      {/* RESULTS COUNT */}
+      <div className="explore-results">
+        Showing {filteredDiseases.length} conditions
+      </div>
+
+      {/* GRID */}
       <div className="explore-grid">
         {filteredDiseases.map((item, index) => (
           <div className="explore-card" key={index}>
-            <img src={item.img} alt={item.name} />
             <h3>{item.name}</h3>
             <p>{item.desc}</p>
+            <span className="explore-category">{item.category}</span>
           </div>
         ))}
       </div>
-
     </div>
   </div>
 )}
