@@ -172,7 +172,7 @@
     gap: 10px;
 }
 
-.pill1:hover { background: #007bff; color: white; transform: scale(1.05); }
+.pill1:hover {   transform: scale(1.05); }
 
 /* --- 6. CONTINUOUS CARD SLIDER (The Fix) --- */
 .bottom-flex-container1 {
