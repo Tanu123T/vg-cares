@@ -114,8 +114,10 @@ const Services = () => {
                 <h3>{item.title}</h3>
               </div>
 
-              <p className="main-desc">{item.desc}</p>
-              <div className="divider"></div>
+              <div className="main-content">
+  <p className="main-desc">{item.desc}</p>
+  <div className="divider"></div>
+</div>
               <div className="extra-content">
                 <ul>
                   {item.points.map((point, i) => (
