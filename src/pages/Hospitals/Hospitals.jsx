@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { hospitalData } from "../../data/hospitalData";
-import { MapPin, Phone, Search, ChevronDown, Star } from "lucide-react";
+import { MapPin, Search, ChevronDown, Star } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Hospitals.css";
 
@@ -77,7 +77,6 @@ const HospitalsPage = () => {
             <div className="details-grid">
               <div className="detail-item"><label>Speciality</label><p>{selectedHospital.specialist}</p></div>
               <div className="detail-item"><label>Address</label><p>{selectedHospital.address}</p></div>
-              <div className="detail-item"><label>Phone</label><p>{selectedHospital.phone}</p></div>
               <div className="detail-item"><label>Accreditation</label><p>JCI & ISO Certified</p></div>
             </div>
             <div className="btn-group">
@@ -95,7 +94,7 @@ const HospitalsPage = () => {
   return (
     <section className="container">
       <header>
-        <span className="badge">Verified Global Healthcare</span>
+        <span className="badge">VERIFIED GLOBAL HEALTHCARE</span>
         <h1>Our Hospital Network</h1>
         <p>Connecting you to world-class medical facilities globally.</p>
       </header>
@@ -179,7 +178,6 @@ const HospitalsPage = () => {
                 <span className="rating"><Star size={15} fill="#ffcc00" color="#ffcc00" /> {h.rating}</span>
               </div>
               <div className="info-row"><MapPin size={16} /><span>{h.address}</span></div>
-              <div className="info-row"><Phone size={16} /><span>{h.phone}</span></div>
               <div className="btn-group">
                 <button className="btn btn-view" onClick={() => setSelectedHospital(h)}>View Hospital</button>
                 <button className="btn btn-request" onClick={() => navigate('/signin')}>Request Consultation</button>
