@@ -94,7 +94,7 @@ const Footer = () => {
               </div>
               <div className="contact-item">
                 <i className="fas fa-location-dot"></i>
-                <span>UG4, Indialand Techpark, Pune, India 411057</span>
+                <span>UG-04, Indialand Global Tech Park, Hinjewadi Phase 1, Pune, Maharashtra 411057</span>
               </div>
             </div>
           </div>
