@@ -20,7 +20,7 @@ const Card = ({ item }) => (
     <div className="card-inner">
       <div className="quote-mark">“</div>
       <p className="comment-text">{item.text}</p>
-      
+
       <div className="card-bottom">
         <div className="user-meta">
           <div className="user-icon-box">
@@ -48,7 +48,7 @@ export default function Feedback() {
         <div className="bg-grid-overlay"></div>
       </div>
 
-      <div className="feedback-header">
+      <div className="feedback-header" data-aos="fade-up">
         <span className="status-pill">Patient Testimonials</span>
         <h2 className="main-heading">Trusted by Patients <span>Worldwide</span></h2>
       </div>

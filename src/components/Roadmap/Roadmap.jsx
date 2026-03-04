@@ -208,7 +208,7 @@ export default function JourneyTimeline() {
       `}</style>
 
       <section className="roadmap-section">
-        <div className="jt-header">
+        <div className="jt-header" data-aos="fade-up">
           <h1>Your easy path to <span>World class Medical Care</span></h1>
           <p>Hover to zoom details • Swipe to track progress</p>
         </div>
@@ -233,7 +233,7 @@ export default function JourneyTimeline() {
                   </div>
                   <div className="jt-arrow-wrapper">
                     <svg width="12" height="18" viewBox="0 0 10 16" fill="none">
-                      <path d="M1.5 1L8.5 8L1.5 15" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+                      <path d="M1.5 1L8.5 8L1.5 15" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                   </div>
                 </div>

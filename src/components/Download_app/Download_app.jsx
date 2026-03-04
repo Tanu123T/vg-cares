@@ -16,11 +16,11 @@ const DownloadApp = () => {
     const handleMouseMove = (e) => {
       const { clientX, clientY } = e;
       const { left, top, width, height } = card.getBoundingClientRect();
-      
+
       // Calculate rotation
       const x = (clientX - left) / width - 0.5;
       const y = (clientY - top) / height - 0.5;
-      
+
       card.style.transform = `perspective(1000px) rotateY(${x * 10}deg) rotateX(${-y * 10}deg)`;
     };
 
@@ -44,7 +44,7 @@ const DownloadApp = () => {
 
       {/* Attach the ref here */}
       <section className="app-card" ref={cardRef}>
-        <div className="app-content">
+        <div className="app-content" data-aos="fade-right">
           <h1 className="app-title">
             Download the <br />
             <span className="gradient-text">VGCares App</span> now!
@@ -66,7 +66,7 @@ const DownloadApp = () => {
         </div>
 
         {/* Right Phone */}
-        <div className="phone-wrapper">
+        <div className="phone-wrapper" data-aos="fade-left">
           <div className="phone-frame"></div>
           <img
             src={phoneImg}

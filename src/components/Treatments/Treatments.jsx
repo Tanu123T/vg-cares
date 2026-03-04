@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { treatmentData } from '../../data/treatments';
 import './Treatments.css';
 import { useNavigate } from "react-router-dom";   // ✅ added
+import { addRipple } from "../../utils/useScrollReveal";
 
 const Treatments = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -55,7 +56,7 @@ const Treatments = () => {
       <div className="container-treatment">
 
         {/* --- HERO SECTION --- */}
-        <div className="modern-heading">
+        <div className="modern-heading" data-aos="fade-up">
           <span className="glass-badge">Explore Our Excellence</span>
           <h2>The World's Finest <span className="gradient-text">Medical Packages</span></h2>
           <div className="heading-line"></div>
@@ -64,8 +65,13 @@ const Treatments = () => {
 
         {/* --- TOP PREVIEW CARDS --- */}
         <div className="preview-grid">
-          {previews.map(item => (
-            <div className="luxury-card" key={item.id}>
+          {previews.map((item, idx) => (
+            <div
+              className="luxury-card vg-card-hover"
+              key={item.id}
+              data-aos="fade-up"
+              data-aos-delay={((idx % 3) + 1) * 100}
+            >
               <div className="tagname_image">
                 <div className="tag_name">
                   <div className="card-tag">{item.cat}</div>
@@ -76,7 +82,7 @@ const Treatments = () => {
                     Starting from <span>{item.price}</span>
                   </p>
                 </div>
-                <div className="luxury-image">
+                <div className="luxury-image vg-img-zoom">
                   <img src={item.image} alt={item.name} />
                 </div>
               </div>
@@ -95,10 +101,10 @@ const Treatments = () => {
           ))}
         </div>
 
-        <div className="cta-container">
+        <div className="cta-container" data-aos="fade-up">
           <button
-            className="shiny-view-btn"
-            onClick={() => setIsModalOpen(true)}
+            className="shiny-view-btn vg-ripple-btn"
+            onClick={(e) => { addRipple(e); setIsModalOpen(true); }}
           >
             <span>Explore 50+ Treatment Plans</span>
             <i className="fas fa-arrow-right"></i>
@@ -133,15 +139,14 @@ const Treatments = () => {
                           setSearch('');
                         }}
                       >
-                        <i className={`fas ${
-                          cat === 'Orthopedic'
-                            ? 'fa-bone'
-                            : cat === 'Cardiac'
+                        <i className={`fas ${cat === 'Orthopedic'
+                          ? 'fa-bone'
+                          : cat === 'Cardiac'
                             ? 'fa-heartbeat'
                             : cat === 'Cancer'
-                            ? 'fa-ribbon'
-                            : 'fa-spa'
-                        }`}></i>
+                              ? 'fa-ribbon'
+                              : 'fa-spa'
+                          }`}></i>
                         <span>{cat}</span>
                       </button>
                     ))}

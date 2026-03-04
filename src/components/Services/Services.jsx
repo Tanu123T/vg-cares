@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./Services.css";
 
 const servicesData = [
@@ -8,7 +8,7 @@ const servicesData = [
     icon: "fa-video",
     color: "green",
     card: "card-special1",
-     points: [
+    points: [
       "Instant Specialist Matching",
       "Secure HD Video Sessions",
       "Digital Prescriptions",
@@ -83,68 +83,52 @@ const servicesData = [
 ];
 
 const Services = () => {
-  useEffect(() => {
-    const cards = document.querySelectorAll(".card");
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("show");
-          } else {
-            // FIX: Remove "show" when scrolling away so it animates again next time
-            entry.target.classList.remove("show");
-          }
-        });
-      },
-      { threshold: 0.1 } 
-    );
-
-    cards.forEach((card) => observer.observe(card));
-
-    return () => observer.disconnect();
-  }, []);
-
   return (
     /* ADDED id="services" for the Navbar scroll logic */
     <section className="expertise" id="services">
-      <span className="badge">Our Expertise</span>
+      <span className="badge" data-aos="fade-up">Our Expertise</span>
 
-      <h1 className="service-title">
-        Smart, Secure & Seamless <span>Healthcare</span>
+      <h1 className="service-title" data-aos="fade-up" data-aos-delay="100">
+        Smart, Secure &amp; Seamless <span>Healthcare</span>
       </h1>
 
-      <p className="desc"><b>
+      <p className="desc" data-aos="fade-up" data-aos-delay="200"><b>
         Smart medical solutions tailored to your needs. We ensure accessibility, clarity, and complete data protection.</b>
       </p>
-    
+
       <div className="grid">
-  {servicesData.map((item, index) => {
-    return (
-      <div className={`card ${item.card}`} key={index}>
-        
-        <div className="card-top">
-          <div className={`icon ${item.color}`}>
-            <i className={`fa-solid ${item.icon}`}></i>
-          </div>
-          <h3>{item.title}</h3>
-        </div>
+        {servicesData.map((item, index) => {
+          const delay = (index % 3) + 1; // stagger 1-3 within each row
+          return (
+            <div
+              className={`card ${item.card} vg-card-hover`}
+              key={index}
+              data-aos="zoom-in"
+              data-aos-delay={delay * 100}
+            >
 
-        <p className="main-desc">{item.desc}</p>
-                <div className="divider"></div>
-        <div className="extra-content">
-          <ul>
-  {item.points.map((point, i) => (
-    <li key={i}>✔ {point}</li>
-  ))}
-</ul>
-        </div>
+              <div className="card-top">
+                <div className={`icon ${item.color}`}>
+                  <i className={`fa-solid ${item.icon}`}></i>
+                </div>
+                <h3>{item.title}</h3>
+              </div>
 
+              <p className="main-desc">{item.desc}</p>
+              <div className="divider"></div>
+              <div className="extra-content">
+                <ul>
+                  {item.points.map((point, i) => (
+                    <li key={i}>✔ {point}</li>
+                  ))}
+                </ul>
+              </div>
+
+            </div>
+          );
+        })}
       </div>
-    );
-  })}
-</div>
-    
+
     </section>
   );
 };

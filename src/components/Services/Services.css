@@ -5,7 +5,7 @@
   width: 100%;
   box-sizing: border-box;
   overflow: hidden;
- 
+
 }
 
 /* --- Header Section --- */
@@ -14,18 +14,19 @@
 }
 
 .badge {
-display: inline-block;
-    padding: 8px 22px;
-    background: #e8f5e9;
-    color: #2e7d32;
-    border-radius: 20px;
-    font-size: 14px;
-    font-weight: 600;
-    margin-bottom: 18px;  
+  display: inline-block;
+  padding: 8px 22px;
+  background: #e8f5e9;
+  color: #2e7d32;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 18px;
 }
 
 .service-title {
-  font-size: clamp(1.8rem, 5vw, 1.9rem); /* Adjusts size based on screen width */
+  font-size: clamp(1.8rem, 5vw, 1.9rem);
+  /* Adjusts size based on screen width */
   line-height: 1.2;
   margin-bottom: 20px;
   font-weight: 800;
@@ -41,16 +42,17 @@ display: inline-block;
   color: #555;
   font-size: 16px;
   line-height: 1.6;
-  font-weight:200;
+  font-weight: 200;
 }
 
 /* --- GRID SYSTEM --- */
 .grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Default 3 columns */
+  grid-template-columns: repeat(3, 1fr);
+  /* Default 3 columns */
   gap: 30px;
-  padding :20px;
-  align-items: start; 
+  padding: 20px;
+  align-items: start;
 }
 
 /* --- CARD STYLING --- */
@@ -60,22 +62,10 @@ display: inline-block;
   border-radius: 35px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
   cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
+    box-shadow 0.4s ease,
+    background-color 0.3s ease;
   border: 1px solid #f0f0f0;
-  
-  /* Initial state for Intersection Observer */
-  opacity: 0;
-  transform: translateY(30px);
-}
-
-.card.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
 }
 
 .card h3 {
@@ -83,8 +73,8 @@ display: inline-block;
   font-size: 1.3rem;
   font-weight: 700;
   color: #1a1a1a;
-  margin: 15px  35px 12px 0px;
-  
+  margin: 15px 35px 12px 0px;
+
 }
 
 .card p {
@@ -94,8 +84,13 @@ display: inline-block;
 }
 
 /* Hover Backgrounds */
-.card-special1:hover { background-color: rgba(220, 252, 231, 0.3); }
-.card-blue:hover { background-color: rgba(219, 234, 254, 0.3); }
+.card-special1:hover {
+  background-color: rgba(220, 252, 231, 0.3);
+}
+
+.card-blue:hover {
+  background-color: rgba(219, 234, 254, 0.3);
+}
 
 
 
@@ -119,18 +114,18 @@ display: inline-block;
 .card-top {
   display: flex;
   align-items: center;
-  justify-content: flex-start;  /* forces left alignment */
-gap: 2px; 
+  justify-content: flex-start;
+  /* forces left alignment */
+  gap: 2px;
   margin-bottom: 12px;
   text-align: left;
 }
 
 
 
-.card {
-  opacity: 0.6; /* slightly visible */
-  transform: translateY(20px); /* smaller movement */
- transition: opacity 0.5s ease, transform 0.5s ease;
+.card:hover {
+  transform: translateY(-10px) scale(1.015);
+  box-shadow: 0 24px 48px rgba(0, 108, 224, 0.12);
 }
 
 .extra-content {
@@ -138,11 +133,6 @@ gap: 2px;
   opacity: 0;
   transform: translateY(-10px);
   transition: all 0.45s ease;
-}
-
-.card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
 }
 
 .card:hover .extra-content {
@@ -184,15 +174,23 @@ gap: 2px;
   transform: scaleX(1);
 }
 
-.green { background: #dcfce7; color: #16a34a; }
-.blue { background: #dbeafe; color: #2563eb; }
+.green {
+  background: #dcfce7;
+  color: #16a34a;
+}
+
+.blue {
+  background: #dbeafe;
+  color: #2563eb;
+}
 
 
 /* --- RESPONSIVE BREAKPOINTS --- */
 
 @media (max-width: 1024px) {
   .grid {
-    grid-template-columns: repeat(2, 1fr); /* 2 Columns for Tablets */
+    grid-template-columns: repeat(2, 1fr);
+    /* 2 Columns for Tablets */
     gap: 20px;
   }
 }
@@ -213,7 +211,8 @@ gap: 2px;
   }
 
   .grid {
-    grid-template-columns: 1fr; /* 1 Column for Mobile */
+    grid-template-columns: 1fr;
+    /* 1 Column for Mobile */
     gap: 20px;
   }
 
@@ -223,22 +222,22 @@ gap: 2px;
   }
 
   /* 🔥 Make cards expanded by default on mobile */
-.extra-content {
-  max-height: 200px;
-  opacity: 1;
-  transform: translateY(0);
-  margin-top: 15px;
-}
+  .extra-content {
+    max-height: 200px;
+    opacity: 1;
+    transform: translateY(0);
+    margin-top: 15px;
+  }
 
-.divider {
-  opacity: 1;
-  margin: 18px 0;
-  transform: scaleX(1);
-}
+  .divider {
+    opacity: 1;
+    margin: 18px 0;
+    transform: scaleX(1);
+  }
 
-/* Optional: remove hover lift effect on mobile */
-.card:hover {
-  transform: none;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-}
+  /* Optional: remove hover lift effect on mobile */
+  .card:hover {
+    transform: none;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  }
 }

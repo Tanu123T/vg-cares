@@ -18,7 +18,7 @@ const partners = [
 function Partners() {
   return (
     <div className="partners-section">
-      <div className="partners-header">
+      <div className="partners-header" data-aos="fade-up">
         <h2>Our Trusted Partners</h2>
         <p>Key Supporters Empowering our Visions</p>
       </div>

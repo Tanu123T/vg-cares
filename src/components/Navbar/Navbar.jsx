@@ -1,6 +1,7 @@
 import "./Navbar.css";
 import { useState, useEffect, useRef } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useNavbarScroll } from "../../utils/useScrollReveal";
 
 if ("scrollRestoration" in window.history) {
   window.history.scrollRestoration = "manual";
@@ -9,7 +10,10 @@ if ("scrollRestoration" in window.history) {
 const Navbar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-const [activeSection, setActiveSection] = useState("home");
+  const [activeSection, setActiveSection] = useState("home");
+
+  // Blur + shadow on scroll
+  useNavbarScroll(".navbar", 30);
 
   // ✅ Detect Mobile Screen
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 1024);
@@ -19,10 +23,10 @@ const [activeSection, setActiveSection] = useState("home");
   const navigate = useNavigate();
   const location = useLocation();
   const isMoreActive =
-  location.pathname === "/doctors" ||
-  location.pathname === "/hospitals" ||
-  location.pathname === "/blogs" ||
-  location.pathname === "/contact";
+    location.pathname === "/doctors" ||
+    location.pathname === "/hospitals" ||
+    location.pathname === "/blogs" ||
+    location.pathname === "/contact";
 
 
   /* =========================
@@ -55,35 +59,35 @@ const [activeSection, setActiveSection] = useState("home");
     document.addEventListener("click", handleClickOutside);
     return () => document.removeEventListener("click", handleClickOutside);
   }, [isMobile]);
-  
+
   useEffect(() => {
-  const handleScroll = () => {
-    if (location.pathname !== "/") return;
+    const handleScroll = () => {
+      if (location.pathname !== "/") return;
 
-    const sections = ["home", "services", "capabilities"];
+      const sections = ["home", "services", "capabilities"];
 
-    sections.forEach((section) => {
-      const element = document.getElementById(section);
-      if (element) {
-        const rect = element.getBoundingClientRect();
+      sections.forEach((section) => {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
 
-        if (rect.top <= 120 && rect.bottom >= 120) {
-          setActiveSection(section);
+          if (rect.top <= 120 && rect.bottom >= 120) {
+            setActiveSection(section);
+          }
         }
-      }
-    });
-  };
+      });
+    };
 
-  window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll);
 
-  return () => window.removeEventListener("scroll", handleScroll);
-}, [location.pathname]);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [location.pathname]);
 
-useEffect(() => {
-  if (location.pathname !== "/") {
-    setActiveSection("");
-  }
-}, [location.pathname]);
+  useEffect(() => {
+    if (location.pathname !== "/") {
+      setActiveSection("");
+    }
+  }, [location.pathname]);
 
 
   /* =========================
@@ -169,20 +173,20 @@ useEffect(() => {
       <ul className={`nav-links ${isMenuOpen ? "active" : ""}`}>
         <li>
           <button
-  className={`nav-item ${activeSection === "home" ? "active" : ""}`}
-  onClick={goToHome}
->
-  Home
-</button>
+            className={`nav-item ${activeSection === "home" ? "active" : ""}`}
+            onClick={goToHome}
+          >
+            Home
+          </button>
         </li>
 
         <li>
           <button
-  className={`nav-item ${activeSection === "services" ? "active" : ""}`}
-  onClick={goToServices}
->
-  Services
-</button>
+            className={`nav-item ${activeSection === "services" ? "active" : ""}`}
+            onClick={goToServices}
+          >
+            Services
+          </button>
 
         </li>
 
@@ -196,9 +200,8 @@ useEffect(() => {
 
             More
             <i
-              className={`fa-solid fa-chevron-down ${
-                isDropdownOpen ? "rotate" : ""
-              }`}
+              className={`fa-solid fa-chevron-down ${isDropdownOpen ? "rotate" : ""
+                }`}
             />
           </div>
 

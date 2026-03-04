@@ -1,6 +1,10 @@
 import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import "./App.css";
+import "./animations.css";
+import { useParallax } from "./utils/useScrollReveal";
 
 import Navbar from "./components/Navbar/Navbar";
 import Hero from "./components/Hero/Hero";
@@ -66,6 +70,17 @@ function Home() {
 ========================= */
 export default function App() {
   const location = useLocation();
+
+  useEffect(() => {
+    AOS.init({
+      duration: 800,
+      once: true,
+      offset: 50,
+    });
+  }, []);
+
+  // Global parallax for all [data-vg-parallax] elements
+  useParallax();
 
   useEffect(() => {
     if (location.pathname !== "/") {

@@ -1,14 +1,17 @@
 .hero {
   background-color: #fdfdfd;
-  padding: 160px 7% 100px; /* reduced top padding */
+  padding: 160px 7% 100px;
+  /* reduced top padding */
   display: flex;
   align-items: center;
   gap: 40px;
-  min-height: calc(85vh - 80px); /* accounts for navbar */
+  min-height: calc(85vh - 80px);
+  /* accounts for navbar */
   font-family: "Poppins", sans-serif;
   background-size: cover;
   background-position: center right;
   background-repeat: no-repeat;
+  background-attachment: fixed;
   overflow: hidden;
 }
 
@@ -24,6 +27,7 @@
   line-height: 1.1;
   margin-bottom: 20px;
   color: black;
+  /* The global data-vg-anim handles the entry animation */
 }
 
 
@@ -32,9 +36,7 @@
   line-height: 1.6;
   margin-bottom: 40px;
   max-width: 800px;
-  opacity: 0;
-  transform: translateY(15px);
-  animation: fadeUp 0.8s ease-out 0.8s forwards;
+  /* Entry handled by data-vg-anim global system */
 }
 
 .hipaa-badge {
@@ -47,16 +49,16 @@
   background: linear-gradient(to right, #007bff, #66b2ff, #007bff);
   background-size: 200% auto;
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: choiceEntrance 1.2s ease-out forwards, choiceGlow 3s linear infinite;
   opacity: 0;
   transform: translateY(20px);
-
 }
 
 /* CTA */
 .cta-group {
-  margin-top:8px;
+  margin-top: 8px;
   display: flex;
   gap: 15px;
   margin-bottom: 45px;
@@ -73,6 +75,15 @@
   display: flex;
   align-items: center;
   animation: pulse-blue 2s infinite;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-book1:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(0, 123, 255, 0.6);
+  animation: none;
 }
 
 .shimmer-text {
@@ -81,6 +92,7 @@
   background: linear-gradient(to right, #ffffff 20%, #a5d6ff 40%, #ffffff 60%, #a5d6ff 80%);
   background-size: 200% auto;
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: shine 3s linear infinite;
 }
@@ -94,12 +106,15 @@
   font-weight: 600;
   border: 2px solid var(--brand-blue);
   transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
 }
 
 .btn-find:hover {
-  background: rgba(0, 123, 255, 0.08);  /* light blue tint */
-  box-shadow: 0 8px 20px rgba(0, 123, 255, 0.15);
-  transform: translateY(-3px);
+  background: rgba(0, 123, 255, 0.08);
+  box-shadow: 0 0 20px rgba(0, 123, 255, 0.4);
+  transform: scale(1.05);
+  border-color: #0055cc;
 }
 
 
@@ -121,7 +136,9 @@
   border-radius: 14px;
 
   border: 1px solid #e3ecf7;
-  transition: all 0.01s ease;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.35s ease,
+    background 0.25s ease;
   position: relative;
 }
 
@@ -155,6 +172,7 @@
   color: #007bff;
   font-weight: 700;
 }
+
 .check-circle-small {
   background: #eaf4ff;
   color: var(--brand-blue);
@@ -197,13 +215,14 @@
   background: linear-gradient(90deg, #007bff, #00c6ff, #007bff);
   background-size: 200% auto;
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 
   opacity: 0;
   transform: translateY(30px);
 
   animation: heroLineReveal 1s ease forwards,
-          gradientMove 3s linear infinite;
+    gradientMove 3s linear infinite;
 }
 
 /* Slide + Fade animation */
@@ -220,6 +239,7 @@
     background-position: 200% center;
   }
 }
+
 /* ================= MOBILE ================= */
 @media (max-width: 600px) {
   .hero {
@@ -233,7 +253,7 @@
     align-items: center;
   }
 
-   .stats-card {
+  .stats-card {
     position: static;
     margin: 16px auto 0;
     transform: none;
@@ -290,10 +310,12 @@
 }
 
 @keyframes floatingCard {
+
   0%,
   100% {
     transform: translateY(0);
   }
+
   50% {
     transform: translateY(-12px);
   }
@@ -303,13 +325,16 @@
   0% {
     box-shadow: 0 0 0 0 rgba(0, 123, 255, 0.4);
   }
+
   70% {
     box-shadow: 0 0 0 15px rgba(0, 123, 255, 0);
   }
+
   100% {
     box-shadow: 0 0 0 0 rgba(0, 123, 255, 0);
   }
 }
+
 @media (max-width: 768px) {
   .trust-row {
     flex-direction: column;
