@@ -25,7 +25,7 @@ display: inline-block;
 }
 
 .service-title {
-  font-size: clamp(1.8rem, 5vw, 2.8rem); /* Adjusts size based on screen width */
+  font-size: clamp(1.8rem, 5vw, 1.9rem); /* Adjusts size based on screen width */
   line-height: 1.2;
   margin-bottom: 20px;
   font-weight: 800;
