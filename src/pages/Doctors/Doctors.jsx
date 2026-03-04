@@ -12,46 +12,48 @@ export default function Doctors() {
   const dropdownRef = useRef(null);
   const navigate = useNavigate();
 
+  const fallbackDoctorImg = "data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23EBF4FF'/%3E%3Cpath d='M32 14a11 11 0 1 0 0 22 11 11 0 0 0 0-22zm-18 29c0-6 10-10 18-10s18 4 18 10v9H14v-9z' fill='%230055cc'/%3E%3Cpath d='M24 37v7c0 4.4 3.6 8 8 8s8-3.6 8-8v-7' fill='none' stroke='%23EBF4FF' stroke-width='3' stroke-linecap='round'/%3E%3Ccircle cx='32' cy='52' r='3' fill='%23EBF4FF'/%3E%3C/svg%3E";
+
   useEffect(() => {
-  if (!isDropdownOpen) return;
+    if (!isDropdownOpen) return;
 
-  // 1. Snapshot the vertical position of the dropdown when opened
-  const initialRect = dropdownRef.current?.getBoundingClientRect();
-  const initialTop = initialRect ? initialRect.top : 0;
+    // 1. Snapshot the vertical position of the dropdown when opened
+    const initialRect = dropdownRef.current?.getBoundingClientRect();
+    const initialTop = initialRect ? initialRect.top : 0;
 
-  const handleScrollBehavior = (event) => {
-    if (!dropdownRef.current) return;
+    const handleScrollBehavior = (event) => {
+      if (!dropdownRef.current) return;
 
-    // 2. CHECK: If the scroll is happening INSIDE the dropdown list, STOP here.
-    // This allows your new scrollbar to work!
-    if (event.target.classList?.contains('dropdown-floating-menu')) {
-      return;
-    }
+      // 2. CHECK: If the scroll is happening INSIDE the dropdown list, STOP here.
+      // This allows your new scrollbar to work!
+      if (event.target.classList?.contains('dropdown-floating-menu')) {
+        return;
+      }
 
-    // 3. Get the NEW position of the filter box
-    const currentRect = dropdownRef.current.getBoundingClientRect();
-    
-    // 4. If the box moved more than 1px (meaning the main page scrolled), CLOSE IT
-    if (Math.abs(currentRect.top - initialTop) > 1) {
-      setIsDropdownOpen(false); // FIXED: matched your state name
-    }
-  };
+      // 3. Get the NEW position of the filter box
+      const currentRect = dropdownRef.current.getBoundingClientRect();
 
-  const handleOutsideClick = (event) => {
-    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-      setIsDropdownOpen(false); // FIXED: matched your state name
-    }
-  };
+      // 4. If the box moved more than 1px (meaning the main page scrolled), CLOSE IT
+      if (Math.abs(currentRect.top - initialTop) > 1) {
+        setIsDropdownOpen(false); // FIXED: matched your state name
+      }
+    };
 
-  document.addEventListener("mousedown", handleOutsideClick);
-  // 'true' is critical to detect the scroll properly
-  window.addEventListener("scroll", handleScrollBehavior, true);
+    const handleOutsideClick = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsDropdownOpen(false); // FIXED: matched your state name
+      }
+    };
 
-  return () => {
-    document.removeEventListener("mousedown", handleOutsideClick);
-    window.removeEventListener("scroll", handleScrollBehavior, true);
-  };
-}, [isDropdownOpen]); // Re-run when it opens to reset lastScrollY// Keep dependency array empty to prevent infinite re-renders
+    document.addEventListener("mousedown", handleOutsideClick);
+    // 'true' is critical to detect the scroll properly
+    window.addEventListener("scroll", handleScrollBehavior, true);
+
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+      window.removeEventListener("scroll", handleScrollBehavior, true);
+    };
+  }, [isDropdownOpen]); // Re-run when it opens to reset lastScrollY// Keep dependency array empty to prevent infinite re-renders
 
   const filteredDoctors = useMemo(() => {
     return doctorData.filter((doctor) => {
@@ -84,8 +86,8 @@ export default function Doctors() {
           </div>
 
           <div className="filter-box modern-dropdown" ref={dropdownRef}>
-            <div 
-              className={`dropdown-header ${isDropdownOpen ? "active" : ""}`} 
+            <div
+              className={`dropdown-header ${isDropdownOpen ? "active" : ""}`}
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
             >
               <span>{specialty === "All" ? "All Specialities" : specialty}</span>
@@ -94,19 +96,19 @@ export default function Doctors() {
 
             {isDropdownOpen && (
               <div className="dropdown-floating-menu" style={{ overflowY: 'auto', maxHeight: '250px' }}>
-                {["All", "Cardiology", "Dermatology", "Neurology", "Orthopedics","Gynecology","Ophthalmology","Oncology","Pediatrics","Psychiatry"].map((opt) => (
-  <div 
-    key={opt} 
-    /* The logic below applies the 'selected' class equally to any active option */
-    className={`dropdown-item ${specialty === opt ? "selected" : ""}`}
-    onClick={() => {
-      setSpecialty(opt);
-      setIsDropdownOpen(false);
-    }}
-  >
-    {opt === "All" ? "All Specialties" : opt}
-  </div>
-))}
+                {["All", "Cardiology", "Dermatology", "Neurology", "Orthopedics", "Gynecology", "Ophthalmology", "Oncology", "Pediatrics", "Psychiatry"].map((opt) => (
+                  <div
+                    key={opt}
+                    /* The logic below applies the 'selected' class equally to any active option */
+                    className={`dropdown-item ${specialty === opt ? "selected" : ""}`}
+                    onClick={() => {
+                      setSpecialty(opt);
+                      setIsDropdownOpen(false);
+                    }}
+                  >
+                    {opt === "All" ? "All Specialties" : opt}
+                  </div>
+                ))}
               </div>
             )}
           </div>
@@ -121,7 +123,15 @@ export default function Doctors() {
         {filteredDoctors.map((doctor) => (
           <div key={doctor.id} className="doctor-card">
             <div className="card-top">
-              <img src={doctor.image} alt={doctor.name} className="doctor-img" />
+              <img
+                src={doctor.image}
+                alt={doctor.name}
+                className="doctor-img"
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src = fallbackDoctorImg;
+                }}
+              />
               <div className="doctor-title">
                 <h3 className="doctor-name">{doctor.name}</h3>
                 <p className="doctor-specialty">{doctor.specialty}</p>
@@ -148,8 +158,8 @@ export default function Doctors() {
             </div>
 
             <div className="card-footer">
-              <button 
-                className="btn-book-now" 
+              <button
+                className="btn-book-now"
                 onClick={() => setSelectedDoctor(doctor)} // Logic to open modal
               >
                 <Video size={18} />
@@ -167,20 +177,28 @@ export default function Doctors() {
             <button className="close-btn" onClick={() => setSelectedDoctor(null)}>
               <X size={24} />
             </button>
-            
-            <img src={selectedDoctor.image} alt="" className="modal-avatar" />
+
+            <img
+              src={selectedDoctor.image}
+              alt=""
+              className="modal-avatar"
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src = fallbackDoctorImg;
+              }}
+            />
             <h2>Confirm Booking</h2>
             <p className="modal-text">
-              Schedule your appointment with <br/> 
+              Schedule your appointment with <br />
               <b>{selectedDoctor.name}</b>
             </p>
-            
+
             <div className="modal-fee-box">
-                <label>Consultation Fee</label>
-                <div className="fee">{selectedDoctor.consultationFee}</div>
+              <label>Consultation Fee</label>
+              <div className="fee">{selectedDoctor.consultationFee}</div>
             </div>
 
-            <button 
+            <button
               className="confirm-btn"
               onClick={() => {
                 setSelectedDoctor(null);
@@ -192,7 +210,7 @@ export default function Doctors() {
           </div>
         </div>
       )}
-      <Link to="/"  className="doctor-home-btn"><i class="fa-solid fa-house"></i></Link>
+      <Link to="/" className="doctor-home-btn"><i class="fa-solid fa-house"></i></Link>
     </div>
   );
 }
