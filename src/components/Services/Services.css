@@ -62,10 +62,15 @@
   border-radius: 35px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
   cursor: pointer;
-  transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
-    box-shadow 0.4s ease,
-    background-color 0.3s ease;
+  transition: 0.4s ease;
   border: 1px solid #f0f0f0;
+
+  height: 300px;              /* slightly adjusted */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  position: relative;
+  overflow: hidden;
 }
 
 .card h3 {
@@ -123,24 +128,13 @@
 
 
 
-.card:hover {
-  transform: translateY(-10px) scale(1.015);
-  box-shadow: 0 24px 48px rgba(0, 108, 224, 0.12);
-}
-
-.extra-content {
-  max-height: 0;
-  opacity: 0;
-  transform: translateY(-10px);
-  transition: all 0.45s ease;
-}
-
 .card:hover .extra-content {
-  max-height: 200px;
   opacity: 1;
   transform: translateY(0);
-  margin-top: 15px;
 }
+
+
+
 
 .extra-content ul {
   padding-left: 0;
@@ -183,7 +177,25 @@
   background: #dbeafe;
   color: #2563eb;
 }
+.main-content {
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
 
+.card:hover .main-content {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+/* Hide extra content by default */
+.extra-content {
+  opacity: 0;
+  transform: translateY(15px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  position: absolute;
+  top: 120px;
+  left: 40px;
+  right: 40px;
+}
 
 /* --- RESPONSIVE BREAKPOINTS --- */
 
@@ -221,13 +233,7 @@
     border-radius: 25px;
   }
 
-  /* 🔥 Make cards expanded by default on mobile */
-  .extra-content {
-    max-height: 200px;
-    opacity: 1;
-    transform: translateY(0);
-    margin-top: 15px;
-  }
+
 
   .divider {
     opacity: 1;
