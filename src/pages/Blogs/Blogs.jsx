@@ -52,16 +52,27 @@ export default function Blogs() {
           </ul>
         `,
       },
-      // Add more blog objects here as needed
   ];
 
-  // Disable body scroll when modal is open
+  // 100% Background Scroll Lock Logic (Original Code me fix)
   useEffect(() => {
     if (activeBlog) {
-      document.body.style.overflow = "hidden";
+      const scrollY = window.scrollY;
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.width = '100%';
     } else {
-      document.body.style.overflow = "auto";
+      const scrollY = document.body.style.top;
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
+      window.scrollTo(0, parseInt(scrollY || '0') * -1);
     }
+    return () => {
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
+    };
   }, [activeBlog]);
 
   return (
@@ -136,7 +147,6 @@ export default function Blogs() {
         </div>
       )}
 
-      {/* Floating Home Button */}
       <Link to="/" className="blog-home-btn">
         <i className="fa-solid fa-house"></i>
       </Link>
