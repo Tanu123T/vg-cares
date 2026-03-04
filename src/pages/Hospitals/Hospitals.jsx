@@ -1,8 +1,8 @@
 import { useState, useRef, useEffect } from "react";
 import { hospitalData } from "../../data/hospitalData";
-import { MapPin, Phone, Search, ChevronDown, Star } from "lucide-react";
+import { MapPin, Search, ChevronDown, Star } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
-import "./Hospitals.css"; 
+import "./Hospitals.css";
 
 const HospitalsPage = () => {
   const [search, setSearch] = useState("");
@@ -10,32 +10,34 @@ const HospitalsPage = () => {
   const [specialist, setSpecialist] = useState("all");
   const [selectedHospital, setSelectedHospital] = useState(null);
   const [openDropdown, setOpenDropdown] = useState(null); // 'country' or 'specialist'
-  
+
   const countryRef = useRef(null);
   const specialistRef = useRef(null);
   const navigate = useNavigate();
 
+  const fallbackHospitalImg = "data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 400'%3E%3Crect width='100%25' height='100%25' fill='%23f1f5f9'/%3E%3Cg transform='translate(364, 164) scale(3)' fill='none' stroke='%2394a3b8' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 6v4'/%3E%3Cpath d='M14 8h-4'/%3E%3Cpath d='M16 21V5a2 2 0 0 0-2-2H10a2 2 0 0 0-2 2v16'/%3E%3Cpath d='M6 21V9a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v12'/%3E%3Cpath d='M22 21v-3a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v3'/%3E%3Cpath d='M2 21h20'/%3E%3C/g%3E%3C/svg%3E";
+
   // Handle clicking outside to close dropdowns
- useEffect(() => {
-  const closeAll = (e) => {
-    if (
-      countryRef.current && !countryRef.current.contains(e.target) &&
-      specialistRef.current && !specialistRef.current.contains(e.target)
-    ) {
-      setOpenDropdown(null);
-    }
-  };
+  useEffect(() => {
+    const closeAll = (e) => {
+      if (
+        countryRef.current && !countryRef.current.contains(e.target) &&
+        specialistRef.current && !specialistRef.current.contains(e.target)
+      ) {
+        setOpenDropdown(null);
+      }
+    };
 
-  const handleScroll = () => setOpenDropdown(null);
+    const handleScroll = () => setOpenDropdown(null);
 
-  document.addEventListener("mousedown", closeAll);
-  window.addEventListener("scroll", handleScroll);
+    document.addEventListener("mousedown", closeAll);
+    window.addEventListener("scroll", handleScroll);
 
-  return () => {
-    document.removeEventListener("mousedown", closeAll);
-    window.removeEventListener("scroll", handleScroll);
-  };
-}, []);
+    return () => {
+      document.removeEventListener("mousedown", closeAll);
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
 
   const filteredHospitals = hospitalData.filter(h =>
@@ -51,23 +53,30 @@ const HospitalsPage = () => {
         <button className="back-link" onClick={() => setSelectedHospital(null)}>
           ← Back to Hospitals
         </button>
-        
+
 
         <div className="details-card">
-          <img src={selectedHospital.img} className="details-banner" alt={selectedHospital.name} />
+          <img
+            src={selectedHospital.img}
+            className="details-banner"
+            alt={selectedHospital.name}
+            onError={(e) => {
+              e.target.onerror = null;
+              e.target.src = fallbackHospitalImg;
+            }}
+          />
           <div className="details-content">
             <div className="card-top" style={{ marginBottom: '20px' }}>
               <div>
                 <span className="badge">Verified • {selectedHospital.country}</span>
                 <h1>{selectedHospital.name}</h1>
               </div>
-              <div className="rating"><Star size={16} fill="#ffcc00" color="#ffcc00"/> {selectedHospital.rating}</div>
+              <div className="rating"><Star size={16} fill="#ffcc00" color="#ffcc00" /> {selectedHospital.rating}</div>
             </div>
             <p style={{ color: '#4a5568', lineHeight: '1.6' }}>{selectedHospital.desc}</p>
             <div className="details-grid">
               <div className="detail-item"><label>Speciality</label><p>{selectedHospital.specialist}</p></div>
               <div className="detail-item"><label>Address</label><p>{selectedHospital.address}</p></div>
-              <div className="detail-item"><label>Phone</label><p>{selectedHospital.phone}</p></div>
               <div className="detail-item"><label>Accreditation</label><p>JCI & ISO Certified</p></div>
             </div>
             <div className="btn-group">
@@ -85,7 +94,7 @@ const HospitalsPage = () => {
   return (
     <section className="container">
       <header>
-        <span className="badge">Verified Global Healthcare</span>
+        <span className="badge">VERIFIED GLOBAL HEALTHCARE</span>
         <h1>Our Hospital Network</h1>
         <p>Connecting you to world-class medical facilities globally.</p>
       </header>
@@ -104,7 +113,7 @@ const HospitalsPage = () => {
 
         {/* MODERN COUNTRY DROPDOWN */}
         <div className="modern-dropdown" ref={countryRef}>
-          <div 
+          <div
             className={`dropdown-header ${openDropdown === 'country' ? 'active' : ''}`}
             onClick={() => setOpenDropdown(openDropdown === 'country' ? null : 'country')}
           >
@@ -114,7 +123,7 @@ const HospitalsPage = () => {
           {openDropdown === 'country' && (
             <div className="dropdown-floating-menu">
               {["all", "India", "USA", "UK", "UAE", "Germany"].map(c => (
-                <div key={c} className={`dropdown-item ${country === c ? 'selected' : ''}`} 
+                <div key={c} className={`dropdown-item ${country === c ? 'selected' : ''}`}
                   onClick={() => { setCountry(c); setOpenDropdown(null); }}>
                   {c === "all" ? "All Countries" : c}
                 </div>
@@ -125,7 +134,7 @@ const HospitalsPage = () => {
 
         {/* MODERN SPECIALIST DROPDOWN */}
         <div className="modern-dropdown" ref={specialistRef}>
-          <div 
+          <div
             className={`dropdown-header ${openDropdown === 'specialist' ? 'active' : ''}`}
             onClick={() => setOpenDropdown(openDropdown === 'specialist' ? null : 'specialist')}
           >
@@ -135,7 +144,7 @@ const HospitalsPage = () => {
           {openDropdown === 'specialist' && (
             <div className="dropdown-floating-menu">
               {["all", "Cardiology", "Neurology", "Orthopedics", "Oncology", "Pediatrics"].map(s => (
-                <div key={s} className={`dropdown-item ${specialist === s ? 'selected' : ''}`} 
+                <div key={s} className={`dropdown-item ${specialist === s ? 'selected' : ''}`}
                   onClick={() => { setSpecialist(s); setOpenDropdown(null); }}>
                   {s === "all" ? "All Specialities" : s}
                 </div>
@@ -153,15 +162,22 @@ const HospitalsPage = () => {
       <div className="hospital-grid">
         {filteredHospitals.map(h => (
           <div className="hospital-card" key={h.id}>
-            <img src={h.img} className="card-img" alt={h.name} />
+            <img
+              src={h.img}
+              className="card-img"
+              alt={h.name}
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src = fallbackHospitalImg;
+              }}
+            />
             <div className="card-body">
               <span className="specialist-tag">{h.specialist}</span>
               <div className="card-top">
                 <h3>{h.name}</h3>
-                <span className="rating"><Star size={15} fill="#ffcc00" color="#ffcc00"/> {h.rating}</span>
+                <span className="rating"><Star size={15} fill="#ffcc00" color="#ffcc00" /> {h.rating}</span>
               </div>
               <div className="info-row"><MapPin size={16} /><span>{h.address}</span></div>
-              <div className="info-row"><Phone size={16} /><span>{h.phone}</span></div>
               <div className="btn-group">
                 <button className="btn btn-view" onClick={() => setSelectedHospital(h)}>View Hospital</button>
                 <button className="btn btn-request" onClick={() => navigate('/signin')}>Request Consultation</button>
