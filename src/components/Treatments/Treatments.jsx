@@ -175,12 +175,12 @@ const Treatments = () => {
                 </header>
 
                 <div className="vgc-modal-body">
-                  <div className="vgc-list-head">
-                    <span>Specialized Procedure</span>
-                    <span>Recovery Time</span>
-                    <span>Starting Est.</span>
-                    <span>Selection</span>
-                  </div>
+               <div className="vgc-list-head">
+  <span>Specialized Procedure</span>
+  <span className="center-col">Recovery Time</span>
+  <span className="right-col">Starting Est.</span>
+  <span>Selection</span>
+</div>
 
                   <div className="vgc-list-scroll">
                     {filteredData.length > 0 ? (

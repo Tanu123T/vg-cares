@@ -562,3 +562,36 @@
 
     }
 }
+
+.vgc-list-head {
+    grid-template-columns: 2fr 1fr 1fr 160px;  /* was 140px */
+    column-gap: 20px;  /* add this */
+}
+
+.vgc-list-row {
+    grid-template-columns: 2fr 1fr 1fr 160px;  /* was 140px */
+    column-gap: 20px;  /* add this */
+}
+
+.vgc-row-price {
+    text-align: right;
+    font-weight: 700;
+    color: #006ce0;
+    padding-right: 10px;  /* space before button */
+}
+
+.vgc-list-head span:nth-child(3) {
+    text-align: right;
+    padding-right: 10px;
+}
+
+/* Center Recovery Time heading */
+.vgc-list-head span:nth-child(2) {
+    text-align: center;
+}
+
+/* Center Recovery Time data */
+.vgc-row-recovery {
+    text-align: center;
+    font-weight: 600;
+}
