@@ -189,11 +189,12 @@
     display: flex;
     flex-direction: column;
     height: 100%;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
 }
 
 .doctor-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
 }
 
 .doctor-home-btn {
