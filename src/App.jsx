@@ -8,7 +8,9 @@ import { useParallax } from "./utils/useScrollReveal";
 
 import Navbar from "./components/Navbar/Navbar";
 import Hero from "./components/Hero/Hero";
+import About from "./components/About/About";
 import Services from "./components/Services/Services";
+
 import Feedback from "./components/Feedback/Feedback";
 import Download_app from "./components/Download_app/Download_app";
 import Partners from "./components/Partners/Partners";
@@ -51,6 +53,7 @@ function Home() {
   return (
     <>
       <Hero />
+         <About />
       <Treatments />
       <Roadmap />
       <Diseases />
