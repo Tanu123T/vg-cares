@@ -63,7 +63,7 @@ const Footer = () => {
             <div className="col reveal">
               <h3>Services</h3>
               <ul>
-                <li><a href="#">2Primary Care</a></li>
+                <li><a href="#">Primary Care</a></li>
                 <li><a href="#">Specialty Care</a></li>
                 <li><a href="#">Emergency Help</a></li>
                 <li><a href="#">Wellness & Prevention</a></li>
@@ -86,11 +86,11 @@ const Footer = () => {
               <h3>Global Contact</h3>
               <div className="contact-item">
                 <i className="fas fa-phone-alt"></i>
-                <span>1800-123-4567</span>
+                <span>+91 90 9631 4957</span>
               </div>
               <div className="contact-item">
                 <i className="fas fa-envelope"></i>
-                <span>contact@vgcareglobal.com</span>
+                <span>info@techvishwaguru.com</span>
               </div>
               <div className="contact-item">
                 <i className="fas fa-location-dot"></i>
