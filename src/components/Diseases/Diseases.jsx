@@ -10,6 +10,20 @@ import d7 from "../../assets/images/d7.png";
 import d8 from "../../assets/images/d8.png";
 import d9 from "../../assets/images/d9.png";
 import d10 from "../../assets/images/d10.png";
+import m1 from "../../assets/images/m1.png";
+import m2 from "../../assets/images/m2.png";
+import m5 from "../../assets/images/m5.png";
+import m6 from "../../assets/images/m6.png";
+import m7 from "../../assets/images/m7.png";
+import m8 from "../../assets/images/m8.png";
+// import m9 from "../../assets/images/m9.png";
+import m10 from "../../assets/images/m10.png";
+import m11 from "../../assets/images/m11.png";
+import m12 from "../../assets/images/m12.png";
+import m14 from "../../assets/images/m14.png";
+// import m9 from "../../assets/images/m9.png";
+import m16 from "../../assets/images/m16.png";
+import m17 from "../../assets/images/m17.png";
 import { Link } from "react-router-dom";
 
 const diseases = [
@@ -28,23 +42,23 @@ const diseases = [
 // Modal Only Diseases (Different from main section)
 const modalDiseases = [
   // Cardiology
-  { name: "Coronary Artery Disease", desc: "Blocked heart arteries", category: "Cardiology" },
-  { name: "Arrhythmia", desc: "Irregular heart rhythm disorder", category: "Cardiology" },
+  { img: m1,name: "Coronary Artery Disease", desc: "Blocked heart arteries", category: "Cardiology" },
+  { img: m2,name: "Arrhythmia", desc: "Irregular heart rhythm disorder", category: "Cardiology" },
   { name: "Cardiomyopathy", desc: "Heart muscle disease", category: "Cardiology" },
 
   // Neurology
   { name: "Stroke", desc: "Brain blood flow interruption", category: "Neurology" },
-  { name: "Epilepsy", desc: "Seizure disorder", category: "Neurology" },
-  { name: "Parkinson’s Disease", desc: "Progressive nervous system disorder", category: "Neurology" },
+  { img: m5,name: "Epilepsy", desc: "Seizure disorder", category: "Neurology" },
+  {name: "Parkinson’s Disease", desc: "Progressive nervous system disorder", category: "Neurology" },
 
   // Oncology
-  { name: "Lung Cancer", desc: "Malignant lung tumor", category: "Oncology" },
+  {img: m7, name: "Lung Cancer", desc: "Malignant lung tumor", category: "Oncology" },
   { name: "Breast Cancer", desc: "Cancer affecting breast tissue", category: "Oncology" },
   { name: "Leukemia", desc: "Blood cancer", category: "Oncology" },
 
   // Gastroenterology
-  { name: "Pancreatitis", desc: "Inflammation of pancreas", category: "Gastroenterology" },
-  { name: "Hepatitis B", desc: "Liver infection", category: "Gastroenterology" },
+  {img: m10, name: "Pancreatitis", desc: "Inflammation of pancreas", category: "Gastroenterology" },
+  {img: m11, name: "Hepatitis B", desc: "Liver infection", category: "Gastroenterology" },
 
   // Nephrology
   { name: "Chronic Kidney Disease", desc: "Gradual kidney function loss", category: "Nephrology" },
@@ -53,14 +67,14 @@ const modalDiseases = [
   { name: "COPD", desc: "Chronic obstructive pulmonary disease", category: "Pulmonology" },
 
   // Dermatology
-  { name: "Psoriasis", desc: "Chronic skin condition", category: "Dermatology" },
+  {img: m14, name: "Psoriasis", desc: "Chronic skin condition", category: "Dermatology" },
   { name: "Melanoma", desc: "Serious skin cancer", category: "Dermatology" },
 
   // Orthopedics
-  { name: "Rheumatoid Arthritis", desc: "Autoimmune joint disorder", category: "Orthopedics" },
+  {img: m16, name: "Rheumatoid Arthritis", desc: "Autoimmune joint disorder", category: "Orthopedics" },
 
   // Urology
-  { name: "Prostate Cancer", desc: "Cancer of prostate gland", category: "Urology" },
+  {img: m17, name: "Prostate Cancer", desc: "Cancer of prostate gland", category: "Urology" },
 ];
 const Diseases = () => {
   const sliderRef = useRef(null);
@@ -338,12 +352,21 @@ const filteredDiseases = modalDiseases.filter((d) => {
       {/* GRID */}
       <div className="explore-grid">
         {filteredDiseases.map((item, index) => (
-          <div className="explore-card" key={index}>
-            <h3>{item.name}</h3>
-            <p>{item.desc}</p>
-            <span className="explore-category">{item.category}</span>
-          </div>
-        ))}
+  <div className="explore-card" key={index}>
+    {/* This wrapper is the key for side-by-side alignment */}
+    <div className="explore-card-content">
+      <div className="explore-card-img">
+        <img src={item.img} alt={item.name} />
+      </div>
+      
+      <div className="explore-card-text">
+        <h3>{item.name}</h3>
+        <p>{item.desc}</p>
+        <span className="explore-category">{item.category}</span>
+      </div>
+    </div>
+  </div>
+))}
       </div>
     </div>
   </div>
