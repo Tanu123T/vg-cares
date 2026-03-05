@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import "./Footer.css";
 import { Link } from 'react-router-dom';
+import logoImg from "../../assets/images/vgcares.png";
 
 const Footer = () => {
   useEffect(() => {
@@ -31,7 +32,7 @@ const Footer = () => {
           <div className="footer-header reveal">
             <div className="brand-info">
               <div className="brand-logo">
-                <i className="fas fa-heart-pulse logo-symbol"></i>
+                <img src={logoImg} alt="VGCares Global" className="site-logo" />
                 <span className="brand-name">VGCares Global</span>
               </div>
               <p className="brand-text">
