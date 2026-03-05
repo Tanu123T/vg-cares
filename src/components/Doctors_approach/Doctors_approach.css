@@ -2,23 +2,47 @@
 
 /* --- 1. KEYFRAMES --- */
 @keyframes revealUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 @keyframes shineSweep {
-    0% { left: -100%; }
-    100% { left: 100%; }
+    0% {
+        left: -100%;
+    }
+
+    100% {
+        left: 100%;
+    }
 }
 
 @keyframes subtlePulse {
-    0%, 100% { box-shadow: 0 4px 15px rgba(66, 211, 133, 0.3); }
-    50% { box-shadow: 0 4px 25px rgba(66, 211, 133, 0.6); }
+
+    0%,
+    100% {
+        box-shadow: 0 4px 15px rgba(66, 211, 133, 0.3);
+    }
+
+    50% {
+        box-shadow: 0 4px 25px rgba(66, 211, 133, 0.6);
+    }
 }
 
 @keyframes continuousSlide {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
 }
 
 /* --- 2. GENERAL CONTAINER --- */
@@ -33,15 +57,24 @@
 
 /* --- 3. HERO SECTION --- */
 .hero-flex1 {
+    max-width:100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 40px;
+    margin-left: 0px;
     margin-bottom: 50px;
     animation: revealUp 0.8s ease-out forwards;
 }
+.catchy-button{
+    max-width: fit-content;
+}
 
-.hero-text1 { flex: 1.7; text-align: left; }
+.hero-text1 {
+    flex: 1.7;
+    text-align: left;
+    max-width: fit-content;
+}
 
 .badge1 {
     background: #e8f5e9;
@@ -63,8 +96,15 @@
     color: #000000;
 }
 
-.approach-h1 span { color: #0d6efd; }
-.approach-p { color: #777; font-size: 17px; max-width: 950px; }
+.approach-h1 span {
+    color: #0d6efd;
+}
+
+.approach-p {
+    color: #777;
+    font-size: 17px;
+    max-width: 950px;
+}
 
 .catchy-text {
     margin-bottom: 10px;
@@ -107,8 +147,14 @@
     background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
 }
 
-.btn1:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); }
-.btn1:hover::after { animation: shineSweep 0.6s forwards; }
+.btn1:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.btn1:hover::after {
+    animation: shineSweep 0.6s forwards;
+}
 
 /* --- 4. FEATURE GRID --- */
 .feature-row1 {
@@ -172,7 +218,9 @@
     gap: 10px;
 }
 
-.pill1:hover {   transform: scale(1.05); }
+.pill1:hover {
+    transform: scale(1.05);
+}
 
 /* --- 6. CONTINUOUS CARD SLIDER (The Fix) --- */
 .bottom-flex-container1 {
@@ -185,7 +233,8 @@
 .slider-column1 {
     flex: 1;
     overflow: hidden;
-    max-width:800px ; /* Only shows what's in the window */
+    max-width: 800px;
+    /* Only shows what's in the window */
 }
 
 .marquee-window {
@@ -196,7 +245,8 @@
 
 .marquee-track {
     display: flex;
-    gap: 25px; /* Space between the moving cards */
+    gap: 25px;
+    /* Space between the moving cards */
     width: max-content;
     animation: continuousSlide 35s linear infinite;
 }
@@ -213,14 +263,17 @@
     border: 1px solid #f0f0f0;
     border-radius: 25px;
     padding: 10px 15px;
-    max-width: 380px; /* Each card's individual size */
+    max-width: 380px;
+    /* Each card's individual size */
     height: 200px;
     gap: 20px;
 }
+
 .individual-feedback-card:hover {
-    border:1px solid #007bff; 
+    border: 1px solid #007bff;
 
 }
+
 .hosp-img-slide {
     width: 110px;
     height: 115px;
@@ -243,10 +296,10 @@
 }
 
 /* --- 7. SIDE CARDS (Size Strictly Fixed) --- */
-.hero-side-cards1 { 
-    display: flex; 
-    gap: 15px; 
-    flex-shrink: 0; 
+.hero-side-cards1 {
+    display: flex;
+    gap: 15px;
+    flex-shrink: 0;
 }
 
 .mini-card1 {
@@ -255,8 +308,10 @@
     border-radius: 35px;
     padding: 20px;
     text-align: center;
-    width: 250px; /* Fixed width */
-    height: 240px; /* Fixed height */
+    width: 250px;
+    /* Fixed width */
+    height: 240px;
+    /* Fixed height */
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
     display: flex;
     flex-direction: column;
@@ -275,11 +330,24 @@
     font-size: 1.5rem;
 }
 
-.green-tint1 { background: #dff6e9; color: #2ecc71; }
-.orange-tint1 { background: #fff2e0; color: #f39c12; }
+.green-tint1 {
+    background: #dff6e9;
+    color: #2ecc71;
+}
+
+.orange-tint1 {
+    background: #fff2e0;
+    color: #f39c12;
+}
 
 /* Responsive Settings */
 @media (max-width: 1100px) {
-    .bottom-flex-container1 { flex-direction: column; }
-    .hero-flex1 { flex-direction: column; text-align: center; }
+    .bottom-flex-container1 {
+        flex-direction: column;
+    }
+
+    .hero-flex1 {
+        flex-direction: column;
+        text-align: center;
+    }
 }
