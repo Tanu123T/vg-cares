@@ -65,7 +65,7 @@
   transition: 0.4s ease;
   border: 1px solid #f0f0f0;
 
-  height: 300px;              /* slightly adjusted */
+  height: 230px;              /* slightly adjusted */
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -74,12 +74,12 @@
 }
 
 .card h3 {
-  padding-left: 50px;
   font-size: 1.3rem;
   font-weight: 700;
   color: #1a1a1a;
-  margin: 15px 35px 12px 0px;
-
+  margin-left:25px; 
+margin-bottom:auto;
+margin-top:auto;
 }
 
 .card p {
@@ -100,7 +100,7 @@
 
 
 /* --- ICON STYLING --- */
-.icon {
+.icon1 {
   width: 60px;
   height: 60px;
   border-radius: 18px;
@@ -108,21 +108,20 @@
   align-items: center;
   justify-content: center;
   font-size: 24px;
-  margin-bottom: 25px;
   transition: transform 0.3s ease;
 }
 
-.card:hover .icon {
+.card:hover .icon1 {
   transform: scale(1.1) rotate(5deg);
 }
 
-.card-top {
+.card-top1 {
   display: flex;
   align-items: center;
   justify-content: flex-start;
   /* forces left alignment */
   gap: 2px;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   text-align: left;
 }
 
