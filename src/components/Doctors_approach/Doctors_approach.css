@@ -351,3 +351,106 @@
         text-align: center;
     }
 }
+
+/* Tablet and Mobile improvements: keep desktop unchanged */
+@media (max-width: 1024px) {
+    .hero-side-cards1 {
+        /* allow side cards to wrap beneath the marquee on smaller screens */
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-top: 18px;
+    }
+
+    .mini-card1 {
+        /* make cards responsive: two per row on tablet, full width on small phones */
+        width: calc(50% - 12px);
+        height: auto;
+        padding: 18px;
+    }
+
+    .slider-column1 {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .individual-feedback-card {
+        max-width: 100%;
+        width: 100%;
+        height: auto;
+        flex-direction: row;
+        padding: 12px;
+    }
+
+    .hosp-img-slide {
+        width: 90px;
+        height: 90px;
+    }
+}
+
+@media (max-width: 640px) {
+    .feature-row1 {
+        grid-template-columns: 1fr;
+    }
+
+    .mini-card1 {
+        width: 100%;
+        margin-bottom: 12px;
+    }
+
+    .hero-flex1 {
+        align-items: center;
+    }
+
+    .individual-feedback-card {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        height: auto;
+        text-align: left;
+    }
+
+    .hosp-img-slide {
+        width: 90px;
+        height: 90px;
+        border-radius: 10px;
+        object-fit: cover;
+        flex-shrink: 0;
+    }
+
+    .marquee-window {
+        /* enable horizontal scrolling for touch devices */
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .marquee-track {
+        /* stop automatic sliding on small screens and switch to user-scrollable row */
+        animation: none;
+        width: auto;
+        flex-direction: row;
+        gap: 14px;
+        scroll-snap-type: x mandatory;
+        padding-bottom: 6px;
+    }
+
+    .marquee-track::-webkit-scrollbar {
+        height: 8px;
+    }
+
+    .marquee-track::-webkit-scrollbar-thumb {
+        background: rgba(0,0,0,0.12);
+        border-radius: 8px;
+    }
+
+    .individual-feedback-card {
+        min-width: 280px;
+        width: 85%;
+        max-width: 360px;
+        flex: 0 0 auto;
+        scroll-snap-align: start;
+        flex-direction: column;
+        align-items: flex-start;
+        height: auto;
+    }
+}

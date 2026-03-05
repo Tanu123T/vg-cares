@@ -67,6 +67,17 @@ body {
   min-height: 100vh;
 }
 
+/* Smooth scrolling for anchor navigation and keyboard scrolling */
+html {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Prevent fixed header from overlapping anchor targets */
+@supports (scroll-padding-top: 1px) {
+  html { scroll-padding-top: 90px; }
+}
+
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
