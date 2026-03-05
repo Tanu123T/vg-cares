@@ -1,16 +1,10 @@
 import "./hero.css";
 import { Link } from "react-router-dom";
-import { useRef } from "react";
 import herobg from "../../assets/images/herobg.png";
-import { useCountUp, addRipple } from "../../utils/useScrollReveal";
+import { addRipple } from "../../utils/useScrollReveal";
 
 const Hero = () => {
-  const patientsRef = useRef(null);
-  const doctorsRef = useRef(null);
-
-  // Count-up animations that fire on visibility
-  useCountUp(patientsRef, 500, 2000);
-  useCountUp(doctorsRef, 500, 2200);
+  // Static trust numbers (removed count-up animation)
 
   const backgroundStyle = {
     backgroundImage: `linear-gradient(to right, rgba(255, 255, 255, 10) 40%, rgba(255, 255, 255, 0) 70%, rgba(255, 255, 255, 0) 100%), url(${herobg})`
@@ -65,12 +59,12 @@ const Hero = () => {
 
         <div className="trust-row" data-aos="fade-up" data-aos-delay="400">
           <div className="trust-item">
-            <h3><span ref={patientsRef}>0</span>+</h3>
+            <h3><span>500</span>+</h3>
             <p>Patients Served</p>
           </div>
 
           <div className="trust-item">
-            <h3><span ref={doctorsRef}>0</span>+</h3>
+            <h3><span>500</span>+</h3>
             <p>Verified Doctors</p>
           </div>
 
