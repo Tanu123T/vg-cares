@@ -1,5 +1,6 @@
 import "./Navbar.css";
 import { useState, useEffect, useRef } from "react";
+import logoImg from "../../assets/images/vgcares.png";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useNavbarScroll } from "../../utils/useScrollReveal";
 
@@ -155,9 +156,7 @@ const Navbar = () => {
     <nav className="navbar">
       {/* LOGO */}
       <div className="logo-container" onClick={goToHome}>
-        <div className="logo-mark">
-          <span></span><span></span><span></span><span></span>
-        </div>
+        <img src={logoImg} alt="VGCares Global" className="site-logo" />
         <div className="logo-text">
           <h2>VGCares Global</h2>
           <p>Powered by VishwaGuru Infotech</p>
