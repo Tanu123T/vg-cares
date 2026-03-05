@@ -10,6 +10,9 @@
 
   --text-main: #333;
 
+
+/* Mobile-only: convert timeline to stacked list and remove absolute images */
+@media (max-width: 640px) {
   --text-light: #666;
 
   --badge-bg: #e6f4ea;
@@ -62,6 +65,7 @@
 
 
 
+}
 
 
 
