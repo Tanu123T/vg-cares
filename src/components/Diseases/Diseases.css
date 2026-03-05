@@ -1,745 +1,1477 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
+
+
 :root {
+
   --primary-blue: #007bff;
+
   --border-gray: #eee;
+
   --text-main: #333;
+
   --text-light: #666;
+
   --badge-bg: #e6f4ea;
+
 }
+
+
 
 .consult-container {
+
    max-width: 1430px;
+
   margin: 50px auto;
+
   padding: 0 20px;
+
   font-family: 'Poppins', sans-serif;
+
   overflow: visible; /* ✅ changed from hidden to visible */
+
   /* Prevent horizontal scroll on body */
+
 }
+
+
 
 .consult-container h1 {
+
   color:var(--primary-blue);
+
   font-size: clamp(1.8rem, 4vw, 2.4rem);
+
   line-height: 1.2;
+
   margin: 0;
+
   font-weight: 800;
+
   letter-spacing: -0.5px;
+
 }
 
+
+
 .consult-container h1 span {
+
   color: #0d6efd;
+
 }
+
+
+
+
 
 
 
 .disease-badge {
+
 display: inline-block;
+
     padding: 8px 22px;
+
     background: #e8f5e9;
+
     color: #2e7d32;
+
     border-radius: 20px;
+
     font-size: 14px;
+
     font-weight: 600;
+
     margin-bottom: 10px;
+
 }
+
+
 
 .disease-title-row {
+
   display: flex;
+
   justify-content: space-between;
+
   align-items: flex-end;
+
   margin-top: 15px;
+
   gap: 20px;
+
 }
+
+
 
 .consult-container h1 {
+
   color: #1a1a1a;
+
   font-size: clamp(1.5rem, 3vw, 2rem);
+
   line-height: 1.3;
+
   max-width: 800px;
+
 }
+
+
 
 .disease-subtitle {
+
   color: var(--text-light);
+
   font-size: 1.05rem;
+
   margin-top: 10px;
+
 }
+
+
 
 .disease-view-all {
+
   display: inline-flex;
+
   align-items: center;
+
   padding: 10px 18px;
+
   border-radius: 30px;
+
   background-color: white;
+
   color: var(--primary-blue);
+
   font-weight: 600;
+
   text-decoration: none;
+
   border: 1.5px solid var(--primary-blue);
+
   transition: 0.3s;
+
   white-space: nowrap;
+
   cursor: pointer;
+
 }
+
+
 
 .disease-view-all:hover {
+
   background-color: var(--primary-blue);
+
   color: white;
+
 }
+
+
 
 /* Slider Layout */
+
 .disease-slider-wrapper {
+
   position: relative;
+
   margin-top: 50px;
+
   padding: 0 50px; /* ✅ changed from 10px to 50px */
+
 }
+
+
 
 /* Slider */
+
 .disease-slider-viewport {
+
   overflow: hidden;
+
   position: relative;
+
   width: 100%;
+
 }
+
+
 
 .disease-specialist-grid {
+
   display: flex;
+
   gap: 40px;
+
   padding: 30px 0;
+
   will-change: transform;
+
 }
+
+
 
 .disease-card {
+
   flex: 0 0 180px;
+
   text-align: center;
+
 }
+
+
 
 .disease-circle-container {
+
   position: relative;
+
   width: 140px;
+
   height: 140px;
+
   margin: 0 auto 20px;
+
   display: flex;
+
   align-items: center;
+
   justify-content: center;
+
 }
+
+
 
 .disease-dashed-outline {
+
   position: absolute;
+
   width: 100%;
+
   height: 100%;
+
   border-radius: 50%;
+
   border: 2px dashed #ddd;
+
   transition: 0.4s;
+
 }
+
+
 
 .disease-icon-inner {
+
   width: 115px;
+
   height: 115px;
+
   border-radius: 50%;
+
   background: #f8fbff;
+
   display: flex;
+
   align-items: center;
+
   justify-content: center;
+
   overflow: hidden;
+
   z-index: 2;
+
 }
+
+
 
 .disease-icon-inner img {
+
   width: 70%;
+
   height: auto;
+
   transition: 0.4s ease;
+
 }
+
+
 
 /* Hover effects */
+
 .disease-card:hover .disease-dashed-outline {
+
   border-style: solid;
+
   border-color: var(--primary-blue);
+
   transform: scale(1.05);
+
 }
+
+
 
 .disease-card:hover img {
+
   transform: scale(1.15);
+
 }
+
+
 
 .disease-card h3 {
+
   font-size: 16px;
+
   font-weight: 600;
+
   margin-bottom: 12px;
+
   color: #333;
+
 }
+
+
 
 .disease-consult-btn {
+
   padding: 8px 24px;
+
   border-radius: 20px;
+
   background-color: #eff6ff;
+
   color: var(--primary-blue);
+
   font-size: 14px;
+
   font-weight: 600;
+
   border: none;
+
   cursor: pointer;
+
   transition: 0.3s;
+
 }
+
+
 
 .disease-consult-btn:hover {
+
   background-color: var(--primary-blue);
+
   color: white;
+
 }
+
+
 
 /* Navigation Arrows */
+
 .disease-outside-arrow {
+
   position: absolute;
+
   top: 50%;
+
   transform: translateY(-50%);
+
   width: 50px;  /* ✅ changed from 45px */
+
   height: 50px; /* ✅ changed from 45px */
+
   border-radius: 50%;
+
   border: 1px solid #ddd;
+
   background: white;
+
   color: var(--primary-blue);
+
   cursor: pointer;
+
   display: flex;
+
   font-size: 22px;;
+
   align-items: center;
+
   justify-content: center;
+
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
   z-index: 30;
+
   transition: 0.3s;
+
 }
+
+
 
 .disease-outside-arrow.left {
+
   left: 0; /* ✅ changed from -25px */
+
 }
+
+
 
 .disease-outside-arrow.right {
+
   right: 0; /* ✅ changed from -25px */
+
 }
+
+
 
 .disease-outside-arrow:hover {
+
   background: var(--primary-blue);
+
   color: white;
+
   border-color: var(--primary-blue);
+
 }
+
+
 
 /* RESPONSIVE */
+
 .mobile-only-btn {
+
   display: none;
+
 }
+
+
 
 /* ===============================
+
    TIMELINE SECTION
+
 ================================ */
 
+
+
 .timeline-wrapper {
+
   position: relative;
+
   margin-top: 50px;
+
 }
+
+
 
 /* ROW STRUCTURE */
+
 .timeline-row {
+
   display: flex;
+
   justify-content: space-between;
+
   position: relative;
+
 }
+
+
 
 .timeline-row.top {
+
   margin-bottom: 80px;
+
 }
+
+
 
 .timeline-row.bottom {
+
   margin-top: 80px;
+
 }
+
+
 
 /* CENTER HORIZONTAL LINE */
+
 .timeline-line {
+
   position: absolute;
+
   top: 50%;
+
   left: 0;
+
   width: 100%;
+
   height: 4px;
+
   background: #007bff;
+
   transform: translateY(-50%);
+
   z-index: 0;
+
 }
+
+
 
 /* LEFT + RIGHT DOTS */
+
 .timeline-line::before,
+
 .timeline-line::after {
+
   content: "";
+
   position: absolute;
+
   width: 20px;
+
   height: 20px;
+
   border: 4px solid var(--primary-blue);
+
   border-radius: 50%;
+
   background: white;
+
   top: 50%;
+
   transform: translateY(-50%);
+
 }
+
+
 
 .timeline-line::before {
+
   left: 0;
+
 }
+
+
 
 .timeline-line::after {
+
   right: 0;
+
 }
+
+
 
 /* EACH ITEM */
+
 .timeline-item {
+
   position: relative;
+
   width: 18%;
+
   display: flex;
+
   justify-content: center;
+
   z-index: 2;
+
 }
+
+
 
 /* VERTICAL CONNECTING LINE */
+
 .timeline-item::after {
+
   content: "";
+
   position: absolute;
+
   width: 3px;
+
   background: #007bff;
+
   z-index: 1;
+
 }
+
+
 
 /* TOP */
+
 .timeline-row.top .timeline-item::after {
+
   height: 100px;
+
   bottom: -80px;
+
 }
+
+
 
 /* BOTTOM */
+
 .timeline-row.bottom .timeline-item::after {
+
   height: 80px;
+
   top: -80px;
+
 }
 
+
+
 /* CARD DESIGN */
+
 /* CARD DESIGN */
+
 /* CARD */
+
 .timeline-card {
+
   background: #ffffff;
+
   border-radius: 22px;
+
   padding: 28px 30px;
+
   width: 100%;
+
   position: relative;
+
   overflow: hidden;
+
   border: 1px solid #f1f1f1;
+
   transition: all 0.35s ease;
+
   cursor: pointer;
-    z-index: 3; 
+
+    z-index: 3;
+
 }
+
+
+
 
 
 /* Soft floating hover */
+
 .timeline-card:hover {
+
   transform: translateY(-6px);
+
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.06);
+
 }
+
+
 
 /* TEXT */
+
 .card-text h3 {
+
   margin: 0;
+
   font-size: 18px;
+
   font-weight: 600;
+
   color: #222;
+
 }
+
+
 
 .card-text p {
+
   font-size: 14px;
+
   color: #888;
+
   margin-top: 6px;
+
 }
+
+
 
 .timeline-card:hover .card-text h3 {
+
   color: #007bff;
+
 }
 
+
+
 .timeline-card:hover .card-text p {
+
   color: #444;
+
 }
+
+
 
 /* IMAGE WRAPPER */
 
 
+
+
+
 .card-image {
+
   position: absolute;
+
   right: 0px;
+
   top: 40%;
+
   transform: translateY(-50%);
+
   opacity: 100; /* very light */
+
   transition: all 0.3s ease;
+
   pointer-events: none;
+
 }
+
+
 
 .card-image img {
+
   width: 70px;     /* small size */
+
   height: 70px;
+
   filter: grayscale(0%);
+
   transition: all 0.3s ease;
+
 }
+
+
 
 /* HOVER EFFECT */
+
 .timeline-card:hover .card-image {
-  opacity: 100; 
+
+  opacity: 100;
+
    /* slightly visible */
+
 }
+
+
 
 .timeline-card:hover .card-image img {
+
   filter: grayscale(0%);
+
   transform: scale(1.05);
+
 }
 
+
+
 /* ===============================
+
    EXPLORE MORE MODAL
+
 ================================ */
+
 /* ===============================
+
    PREMIUM EXPLORE MODAL
+
 ================================ */
+
+
 
 .explore-modal-overlay {
+
   position: fixed;
+
   inset: 0;
+
   background: rgba(0, 0, 0, 0.55);
+
   backdrop-filter: blur(6px);
+
   display: flex;
+
   align-items: center;
+
   justify-content: center;
+
   z-index: 9999;
+
   padding: 20px;
+
   animation: fadeOverlay 0.3s ease;
+
 }
+
+
 
 @keyframes fadeOverlay {
+
   from { opacity: 0; }
+
   to { opacity: 1; }
+
 }
+
+
 
 .explore-modal {
+
   background: #ffffff;
+
   width: 100%;
+
   max-width: 1100px;
+
   max-height: 90vh;
+
   border-radius: 24px;
+
   padding: 0;
+
   overflow: hidden;
+
   animation: modalSlide 0.35s ease;
+
   display: flex;
+
   flex-direction: column;
+
 }
+
+
 
 @keyframes modalSlide {
+
   from { transform: translateY(40px); opacity: 0; }
+
   to { transform: translateY(0); opacity: 1; }
+
 }
+
+
 
 /* HEADER */
+
 /* PERFECT CLOSE BUTTON */
 
+
+
 .explore-header {
+
   display: flex;
+
   justify-content: space-between;
+
   align-items: flex-start;
+
   padding: 25px 30px;
+
   border-bottom: 1px solid #f0f0f0;
+
   position: sticky;
+
   top: 0;
+
   background: white;
+
   z-index: 10;
+
 }
+
+
 
 /* Clean minimal close button */
+
 .explore-close {
+
   background: transparent;
+
   border: none;
+
   font-size: 26px;
+
   font-weight: 400;
+
   color: #9aa3af;
+
   cursor: pointer;
+
   line-height: 1;
+
   padding: 0;
+
   transition: 0.25s ease;
+
 }
+
+
 
 /* Hover effect */
+
 .explore-close:hover {
+
   color: #007bff;
+
   transform: rotate(90deg);
+
 }
+
+
 
 .explore-title h2 {
+
   margin: 0;
+
   font-size: 22px;
+
   font-weight: 700;
+
   color:#2563eb;
+
 }
 
+
+
 .explore-title p {
+
   margin: 4px 0 0;
+
   font-size: 14px;
+
   color: #777;
+
 }
+
+
+
 
 
 /* CONTROLS */
+
 .explore-controls {
+
   display: flex;
+
   gap: 20px;
+
   padding: 20px 30px;
+
   border-bottom: 1px solid #f5f5f5;
+
 }
+
+
 
 .explore-controls input {
+
   flex: 1;
+
   padding: 14px 18px;
+
   border-radius: 14px;
+
   border: 1px solid #dfe6f1;
+
   font-size: 14px;
+
   transition: 0.3s;
+
 }
+
+
 
 .explore-controls input:focus {
+
   outline: none;
+
   border-color: #007bff;
+
   box-shadow: 0 4px 15px rgba(0, 123, 255, 0.1);
+
 }
+
+
 
 /* RESULTS COUNT */
+
 .explore-results {
+
   padding: 15px 30px;
+
   font-size: 14px;
+
   color: #666;
+
 }
 
+
+
 /* GRID */
+
+
+
+
+.explore-card-text h3 {
+
+  margin: 0 0 8px;
+
+  font-size: 16px;
+
+  font-weight: 600;
+
+ 
+
+}
+
+
+
+.explore-card-text p {
+
+  font-size: 13px;
+
+  color: #777;
+
+  margin-bottom: 10px;
+
+}
+
+
+
+/* ===============================
+   EXPLORE MORE MODAL - updated styles
+================================ */
+
+/* Update the grid for better layout with larger cards */
 .explore-grid {
   padding: 20px 30px 40px;
   overflow-y: auto;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  /* Use a column count appropriate for larger horizontal cards */
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 22px;
 }
 
+/* 1. Change the card to a light background so the icon is perfect */
 .explore-card {
-  background: #f9fbff;
-  padding: 22px;
-  border-radius: 18px;
+  background: #ffffff; /* This removes the dark background from the entire card */
+  padding: 24px;
+  border-radius: 20px;
   border: 1px solid #eef2f7;
-  transition: 0.3s;
+  transition: all 0.3s ease;
   cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.03); /* Subtle premium shadow */
 }
 
-.explore-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.06);
+/* 2. Use Flexbox to align icon and text perfectly side-by-side on the left */
+.explore-card-content {
+  display: flex;
+  align-items: center; /* Vertically aligns image and text with each other */
+  gap: 20px; /* Space between the icon and the text content */
 }
 
-.explore-card h3 {
-  margin: 0 0 8px;
-  font-size: 16px;
-  font-weight: 600;
-  
+/* 3. Style the image container on the left */
+.explore-card-img {
+  flex-shrink: 0; /* Prevents the image from being squished if text is long */
+  width: 70px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.explore-card p {
-  font-size: 13px;
-  color: #777;
-  margin-bottom: 10px;
+/* Ensure the transparent image displays at its true size within the container */
+.explore-card-img img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
 }
 
+/* 4. Style the text container on the right */
+
+
+/* 5. Update the category badge style */
 .explore-category {
+  display: inline-block;
   font-size: 12px;
-  padding: 6px 12px;
+  padding: 6px 16px;
   background: #eaf3ff;
   color: #007bff;
   border-radius: 20px;
-  font-weight: 500;
+  font-weight: 600;
+  margin: 0;
 }
 
-.explore-card img {
-  width: 60px;
-  height: 60px;
-  margin-bottom: 10px;
-}
+/* 2. Text styling to match the first photo */
 
-.explore-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-}
+
+
 
 /* ===============================
+
    PREMIUM CUSTOM DROPDOWN
+
 ================================ */
 
+
+
 /* =========================
+
    CUSTOM PREMIUM DROPDOWN
+
 ========================= */
 
+
+
 .dropdown-container {
+
   position: relative;
+
   width: 50%;
+
   z-index: 1000; /* important */
+
 }
+
+
+
 
 
 /* Header */
+
 .dropdown-header {
+
   background: #ffffff;
+
   padding: 14px 18px;
+
   border-radius: 14px;
+
   border: 1.5px solid #dfe6f1;
+
   font-weight: 600;
+
   cursor: pointer;
+
   transition: 0.3s ease;
+
   display: flex;
+
   justify-content: space-between;
+
   align-items: center;
+
 }
+
+
 
 .dropdown-header:hover {
+
   border-color: #2a6fd6;
+
   box-shadow: 0 4px 18px rgba(42, 111, 214, 0.08);
+
 }
+
+
 
 /* Arrow */
+
 .dropdown-arrow {
+
   width: 10px;
+
   height: 10px;
+
   border-right: 2px solid #2a6fd6;
+
   border-bottom: 2px solid #2a6fd6;
+
   transform: rotate(45deg);
+
   transition: 0.3s ease;
+
 }
+
+
 
 .dropdown-arrow.open {
+
   transform: rotate(-135deg);
+
 }
 
+
+
 /* Dropdown Panel */
+
 .dropdown-menu {
+
   position: absolute;
+
   top: calc(100% + 8px);
+
   left: 0;
+
   right: 0; /* instead of width: 100% */
-  
+
+ 
+
   background: #f4f7fb;
+
   border-radius: 18px;
+
   padding: 8px;
 
+
+
   max-height: 220px;
+
   overflow-y: auto;
+
   overflow-x: hidden;
+
+
 
   box-shadow: 0 15px 35px rgba(0,0,0,0.08);
 
+
+
   z-index: 9999;
 
+
+
   /* VERY IMPORTANT */
+
   box-sizing: border-box;
+
 }
+
+
 
 /* Item */
+
 .dropdown-item {
+
   padding: 12px 16px;
+
   border-radius: 12px;
+
   font-weight: 500;
+
   cursor: pointer;
+
   transition: 0.25s ease;
+
 }
+
+
 
 /* Hover */
+
 .dropdown-item:hover {
+
   background: #e3ecfa;
+
   transform: translateX(4px);
+
 }
+
+
 
 /* Active (like 2nd image highlight) */
+
 .dropdown-item.active {
+
   background: #d9e7fc;
+
   font-weight: 600;
+
   color: #2a6fd6;
+
 }
+
+
 
 /* Scrollbar Styling */
+
 .dropdown-menu::-webkit-scrollbar {
+
   width: 6px;
+
 }
+
+
 
 .dropdown-menu::-webkit-scrollbar-track {
+
   background: transparent;
+
 }
+
+
 
 .dropdown-menu::-webkit-scrollbar-thumb {
+
   background: #b4b9c0;
+
   border-radius: 20px;
+
 }
+
+
 
 .dropdown-menu::-webkit-scrollbar-thumb:hover {
+
   background: #9fbbe6;
+
 }
+
+
 
 /* Animation */
+
 @keyframes fadeIn {
+
   from {
+
     opacity: 0;
+
     transform: translateY(-8px);
+
   }
+
   to {
+
     opacity: 1;
+
     transform: translateY(0);
+
   }
+
 }
+
+
 
 @media (max-width: 1024px) {
+
  .timeline-row {
+
     flex-wrap: wrap;
+
     gap: 30px;
+
     justify-content: center;
+
   }
+
+
 
   .timeline-item {
+
     width: 45%;
+
   }
+
+
 
   .timeline-line,
+
   .timeline-item::after {
+
     display: none;
+
   }
+
 }
 
+
+
 @media (max-width: 768px) {
+
   .consult-container {
+
     margin: 40px auto;
+
   }
+
+
 
   .disease-title-row {
+
     flex-direction: column;
+
     align-items: flex-start;
+
     text-align: left;
+
   }
+
+
 
   .desktop-only {
+
     display: none;
+
   }
+
+
 
   .mobile-only-btn {
+
     display: block;
+
     text-align: center;
+
     margin-top: 30px;
+
   }
+
+
 
   .disease-view-all {
+
     width: 100%;
+
     justify-content: center;
+
   }
+
+
 
   .disease-card {
+
     flex: 0 0 150px;
+
   }
+
+
 
   .disease-circle-container {
+
     width: 120px;
+
     height: 120px;
+
   }
 
+
+
   .disease-icon-inner {
+
     width: 100px;
+
     height: 100px;
+
   }
+
 }
