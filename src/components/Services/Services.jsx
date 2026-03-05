@@ -5,12 +5,11 @@ const servicesData = [
   {
     title: "Video Consultation",
     desc: "Connect with world class specialist with comfort of your home.",
-    icon: "fa-video",
+    icon1: "fa-video",
     color: "green",
     card: "card-special1",
     points: [
       "Instant Specialist Matching",
-      "Secure HD Video Sessions",
       "Digital Prescriptions",
       "Easy Follow-up Scheduling"
     ]
@@ -18,51 +17,47 @@ const servicesData = [
   {
     title: "Travel Assistance",
     desc: "Complete medical visa support and travel arrangements handled for you.",
-    icon: "fa-plane",
+    icon1: "fa-plane",
     color: "blue",
     card: "card-blue",
     points: [
       "Medical Visa Documentation",
       "Flight & Stay Coordination",
-      "Airport Pickup Support",
       "End-to-End Travel Planning"
     ]
   },
   {
     title: "Verified Hospitals",
     desc: "Access to accredited medical facilities with proven track records.",
-    icon: "fa-circle-check",
+    icon1: "fa-circle-check",
     color: "green",
     card: "card-special1",
     points: [
       "Accredited Institutions",
       "Advanced Infrastructure",
       "Experienced Medical Teams",
-      "Proven Success Records"
     ]
   },
   {
     title: "Cost Estimation",
     desc: "We provide transparent estimates so you can focus on your recovery, not your bills.",
-    icon: "fa-indian-rupee-sign",
+    icon1: "fa-indian-rupee-sign",
     color: "blue",
     card: "card-blue",
     points: [
       "Detailed Cost Breakdown",
-      "Transparent Pricing",
-      "No Hidden Charges",
+      "No Hidden Charges and Transparent Pricing",
       "Insurance Guidance"
     ]
   },
   {
     title: "Data Security",
     desc: "All patient information is encrypted and fully protected.",
-    icon: "fa-lock",
+    icon1: "fa-lock",
     color: "green",
     card: "card-special1",
     points: [
       "End-to-End Encryption",
-      "Secure Cloud Storage",
       "HIPAA-Compliant Systems",
       "Role-Based Access Control"
     ]
@@ -70,14 +65,13 @@ const servicesData = [
   {
     title: "24/7 Support",
     desc: "Our team is available around the clock to assist you anytime.",
-    icon: "fa-earth-americas",
+    icon1: "fa-earth-americas",
     color: "blue",
     card: "card-blue",
     points: [
       "Dedicated Care Team",
       "Multilingual Assistance",
       "Emergency Coordination",
-      "Real-Time Query Resolution"
     ]
   },
 ];
@@ -107,9 +101,9 @@ const Services = () => {
               data-aos-delay={delay * 100}
             >
 
-              <div className="card-top">
-                <div className={`icon ${item.color}`}>
-                  <i className={`fa-solid ${item.icon}`}></i>
+              <div className="card-top1">
+                <div className={`icon1 ${item.color}`}>
+                  <i className={`fa-solid ${item.icon1}`}></i>
                 </div>
                 <h3>{item.title}</h3>
               </div>
