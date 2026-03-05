@@ -36,7 +36,7 @@ const ContactUs = () => {
               <div className="info-icon"><Mail size={20} /></div>
               <div className="info-content">
                 <h3>Email</h3>
-                <p>support@vgcare.com</p>
+                <p>info@techvishwaguru.com</p>
               </div>
             </div>
 
@@ -44,7 +44,7 @@ const ContactUs = () => {
               <div className="info-icon"><Phone size={20} /></div>
               <div className="info-content">
                 <h3>Phone</h3>
-                <p>+91 75XXXXXXXX</p>
+                <p>+91 90 9631 4957</p>
               </div>
             </div>
 
@@ -52,7 +52,7 @@ const ContactUs = () => {
               <div className="info-icon"><MapPin size={20} /></div>
               <div className="info-content">
                 <h3>Office</h3>
-                <p>123 Medical Center, Healthcare City, Bangalore, India</p>
+                <p>UG-04 Vishwaguru Infotech,< br /> Indialand Global Tech Park, <br />Hinjewadi Phase 1, Pune, Maharashtra 411057</p>
               </div>
             </div>
           </div>
