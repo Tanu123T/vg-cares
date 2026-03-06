@@ -1,10 +1,10 @@
 /* --- VGC CUSTOM STYLING --- */
 .vgc-about-wrapper {
-    padding: 140px 8%;
-    background: #fdfdff;
+    padding: 0px 8%;
+    background: #ffffff;
     position: relative;
     overflow: hidden;
-    min-height: 100vh;
+    min-height: 80vh;
     display: flex;
     align-items: center;
 }
@@ -65,81 +65,17 @@
     position: relative;
     display: flex;
     justify-content: center;
-}
-
-.vgc-nucleus-container {
-    position: relative;
-    width: 550px;
-    height: 550px;
-}
-
-.vgc-morph-svg {
-    width: 100%;
-    height: 100%;
-    filter: drop-shadow(0 40px 60px rgba(0, 102, 255, 0.15));
-    animation: vgc-morph-pulse 12s ease-in-out infinite alternate;
-}
-
-@keyframes vgc-morph-pulse {
-    0% {
-        transform: scale(1) rotate(0deg);
-    }
-
-    100% {
-        transform: scale(1.08) rotate(3deg);
-    }
-}
-
-/* --- MAGNETIC NODES (FEATURES) --- */
-.vgc-magnetic-node {
-    position: absolute;
-    background: white;
-    padding: 18px 28px;
-    border-radius: 60px;
-    display: flex;
     align-items: center;
-    gap: 14px;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.07);
-    color: #0066ff;
-    font-weight: 700;
-    cursor: pointer;
-    transition: 0.2s ease-out;
-    white-space: nowrap;
-    z-index: 5;
 }
 
-.vgc-magnetic-node span {
-    font-size: 15px;
-    color: #444;
-}
-
-.vgc-magnetic-node:hover {
-    background: #0066ff;
-    color: white;
-}
-
-.vgc-magnetic-node:hover span {
-    color: white;
-}
-
-.vgc-node-top {
-    top: 5%;
-    left: 0%;
-}
-
-.vgc-node-right {
-    top: 20%;
-    right: -5%;
-}
-
-.vgc-node-bottom {
-    bottom: 10%;
-    right: 10%;
-}
-
-.vgc-node-left {
-    bottom: 20%;
-    left: -10%;
+.vgc-gallery-container {
+    width: 80%;
+    height: 500px;
+    position: relative;
+    border-radius: 0;
+    overflow: hidden;
+    background: transparent;
+    box-shadow: none;
 }
 
 /* --- CONTENT STYLING --- */
@@ -153,7 +89,7 @@
 }
 
 .vgc-hero-title {
-    font-size: 50px;
+    font-size: 40px;
     font-weight: 900;
     line-height: 1;
     margin-bottom: 30px;
@@ -167,7 +103,7 @@
 }
 
 .vgc-description-pillar {
-    font-size: 18px;
+    font-size: 16px;
     color: #555;
     line-height: 1.8;
     margin-bottom: 40px;
@@ -175,27 +111,6 @@
     border-left: 5px solid #0066ff;
 }
 
-/* --- STATS GRID --- */
-.vgc-stats-grid {
-    display: flex;
-    gap: 50px;
-    margin-bottom: 50px;
-}
-
-.vgc-stat-val {
-    display: block;
-    font-size: 36px;
-    font-weight: 900;
-    color: #0066ff;
-}
-
-.vgc-stat-lbl {
-    font-size: 14px;
-    font-weight: 600;
-    color: #888;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
 
 /* --- MISSION VISION PANELS --- */
 .vgc-mission-vision-stage {
@@ -229,27 +144,23 @@
 
 /* --- CTA BUTTON --- */
 .vgc-action-trigger {
-    padding: 20px 45px;
-    background: #0066ff;
-    color: white;
-    border: none;
-    border-radius: 100px;
-    font-weight: 800;
-    font-size: 17px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 15px;
+  background: var(--brand-blue);
+  padding: 15px 30px;
+  border-radius: 60px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  animation: pulse-blue 2s infinite;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  color:white;
 }
 
 .vgc-action-trigger:hover {
-    box-shadow: 0 0 20px rgba(0, 123, 255, 0.4);
-    color: white;
-    transform: scale(1.05) translateY(-5px);
-}
-
-.vgc-action-trigger:hover::before {
-    animation: shineSweep 0.6s forwards;
+ transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(0, 123, 255, 0.6);
+  animation: none;
 }
 
 /* --- ANIMATION CORE --- */
@@ -278,10 +189,10 @@
         text-align: center;
     }
 
-    .vgc-nucleus-container {
-        width: 400px;
+    .vgc-gallery-container {
         height: 400px;
         margin: 0 auto 100px;
+        max-width: 600px;
     }
 
     .vgc-description-pillar {
