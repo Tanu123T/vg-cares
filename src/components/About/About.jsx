@@ -36,10 +36,10 @@ function About() {
           <div className="vgc-gallery-container">
             <CircularGallery 
               items={[
-                { image: '/src/assets/images/about1.jpeg', text: 'VGCares Global' },
-                { image: `https://picsum.photos/seed/2/800/600?grayscale`, text: 'Healthcare Excellence' },
-                { image: `https://picsum.photos/seed/3/800/600?grayscale`, text: 'Medical Tourism' },
-                { image: `https://picsum.photos/seed/4/800/600?grayscale`, text: 'Patient Care' }
+                { image: '/src/assets/images/aboutus2.jpeg', text: 'VGCares Team' },
+                { image: '/src/assets/images/aboutus3.jpeg', text: 'Our Facilities' },
+                { image: '/src/assets/images/aboutus4.jpeg', text: 'Patient Care' },
+                { image: '/src/assets/images/about1.jpeg', text: 'VGCares Global' }
               ]}
               bend={3}
               borderRadius={0.05}
