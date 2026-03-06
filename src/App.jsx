@@ -53,7 +53,6 @@ function Home() {
   return (
     <>
       <Hero />
-         <About />
       <Treatments />
       <Roadmap />
       <Diseases />
@@ -62,6 +61,7 @@ function Home() {
       <Feedback />
       <MedicalMap />
       <Download_app />
+      <About />
       <Partners />
       <Footer />
     </>
