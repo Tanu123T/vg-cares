@@ -194,6 +194,13 @@
     font-size: 27px;
 }
 
+.feature-content1 h2{
+    font-size: 21px;
+}
+
+.feature-content1 p{
+    font-size: 15px;
+}
 /* --- 5. PILL BAR --- */
 .pill-bar1 {
     display: flex;
