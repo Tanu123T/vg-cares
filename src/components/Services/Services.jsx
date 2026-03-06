@@ -1,6 +1,7 @@
 import React from "react";
 import "./Services.css";
 
+
 const servicesData = [
   {
     title: "Video Consultation",
@@ -27,15 +28,15 @@ const servicesData = [
     ]
   },
   {
-    title: "Verified Hospitals",
-    desc: "Access to accredited medical facilities with proven track records.",
+    title: "Follow-Up Care",
+    desc: "Continuous medical support even after treatment.",
     icon1: "fa-circle-check",
     color: "green",
     card: "card-special1",
     points: [
-      "Accredited Institutions",
-      "Advanced Infrastructure",
-      "Experienced Medical Teams",
+      "Post-treatment consultation",
+      "Recovery monitoring",
+      "Doctor follow-up scheduling",
     ]
   },
   {
@@ -51,15 +52,15 @@ const servicesData = [
     ]
   },
   {
-    title: "Data Security",
-    desc: "All patient information is encrypted and fully protected.",
-    icon1: "fa-lock",
+    title: "Patient Support",
+    desc: "Dedicated assistance to guide patients throughout their medical journey..",
+    icon1: "fa-hands-helping",
     color: "green",
     card: "card-special1",
     points: [
-      "End-to-End Encryption",
-      "HIPAA-Compliant Systems",
-      "Role-Based Access Control"
+      "Treatment guidance",
+      "24/7 patient assistance",
+      "Help with hospital processes"
     ]
   },
   {
