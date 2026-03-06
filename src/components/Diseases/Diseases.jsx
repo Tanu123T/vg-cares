@@ -197,6 +197,23 @@ useEffect(() => {
 const [searchTerm, setSearchTerm] = useState("");
 const [selectedCategory, setSelectedCategory] = useState("All");
 
+useEffect(() => {
+  if (showModal) {
+    const scrollY = window.scrollY;
+
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.left = "0";
+    document.body.style.right = "0";
+  } else {
+    const scrollY = document.body.style.top;
+
+    document.body.style.position = "";
+    document.body.style.top = "";
+
+    window.scrollTo(0, parseInt(scrollY || "0") * -1);
+  }
+}, [showModal]);
 const categories = [
   "All",
   ...new Set(modalDiseases.map(d => d.category))
