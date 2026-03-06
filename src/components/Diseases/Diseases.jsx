@@ -309,7 +309,7 @@ const filteredDiseases = modalDiseases.filter((d) => {
       <div className="explore-header">
   <div className="explore-title">
     <h2>Explore Medical Conditions</h2>
-    <p>Browse diseases by category or search instantly</p>
+    <p>Browse health conditions by category or search instantly</p>
   </div>
 
   <button
