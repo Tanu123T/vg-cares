@@ -46,6 +46,8 @@ function About() {
               scrollSpeed={2}
               scrollEase={0.05}
               textColor="#ffffff"
+              autoScroll={true}         // enable automatic rotation
+              autoSpeed={0.2}           // control scroll pace (optional)
             />
           </div>
         </div>
