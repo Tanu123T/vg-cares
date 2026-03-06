@@ -12,16 +12,19 @@ import d9 from "../../assets/images/d9.png";
 import d10 from "../../assets/images/d10.png";
 import m1 from "../../assets/images/m1.png";
 import m2 from "../../assets/images/m2.png";
+import m3 from "../../assets/images/m3.png";
+import m4 from "../../assets/images/m4.png";
 import m5 from "../../assets/images/m5.png";
 import m6 from "../../assets/images/m6.png";
 import m7 from "../../assets/images/m7.png";
-import m8 from "../../assets/images/m8.png";
-// import m9 from "../../assets/images/m9.png";
+
+import m9 from "../../assets/images/m9.png";
 import m10 from "../../assets/images/m10.png";
 import m11 from "../../assets/images/m11.png";
 import m12 from "../../assets/images/m12.png";
+import m13 from "../../assets/images/m13.png";
 import m14 from "../../assets/images/m14.png";
-// import m9 from "../../assets/images/m9.png";
+import m15 from "../../assets/images/m15.png";
 import m16 from "../../assets/images/m16.png";
 import m17 from "../../assets/images/m17.png";
 import { Link } from "react-router-dom";
@@ -44,31 +47,31 @@ const modalDiseases = [
   // Cardiology
   { img: m1,name: "Coronary Artery Disease", desc: "Blocked heart arteries", category: "Cardiology" },
   { img: m2,name: "Arrhythmia", desc: "Irregular heart rhythm disorder", category: "Cardiology" },
-  { name: "Cardiomyopathy", desc: "Heart muscle disease", category: "Cardiology" },
+  { img: m3,name: "Cardiomyopathy", desc: "Heart muscle disease", category: "Cardiology" },
 
   // Neurology
-  { name: "Stroke", desc: "Brain blood flow interruption", category: "Neurology" },
+  { img: m4,name: "Stroke", desc: "Brain blood flow interruption", category: "Neurology" },
   { img: m5,name: "Epilepsy", desc: "Seizure disorder", category: "Neurology" },
-  {name: "Parkinson’s Disease", desc: "Progressive nervous system disorder", category: "Neurology" },
+  { img: m6,name: "Parkinson’s Disease", desc: "Progressive nervous system disorder", category: "Neurology" },
 
   // Oncology
   {img: m7, name: "Lung Cancer", desc: "Malignant lung tumor", category: "Oncology" },
-  { name: "Breast Cancer", desc: "Cancer affecting breast tissue", category: "Oncology" },
-  { name: "Leukemia", desc: "Blood cancer", category: "Oncology" },
+  
+  { img: m9,name: "Leukemia", desc: "Blood cancer", category: "Oncology" },
 
   // Gastroenterology
   {img: m10, name: "Pancreatitis", desc: "Inflammation of pancreas", category: "Gastroenterology" },
   {img: m11, name: "Hepatitis B", desc: "Liver infection", category: "Gastroenterology" },
 
   // Nephrology
-  { name: "Chronic Kidney Disease", desc: "Gradual kidney function loss", category: "Nephrology" },
+  {img: m12, name: "Chronic Kidney Disease", desc: "Gradual kidney function loss", category: "Nephrology" },
 
   // Pulmonology
-  { name: "COPD", desc: "Chronic obstructive pulmonary disease", category: "Pulmonology" },
+  { img: m13,name: "COPD", desc: "Chronic obstructive pulmonary disease", category: "Pulmonology" },
 
   // Dermatology
   {img: m14, name: "Psoriasis", desc: "Chronic skin condition", category: "Dermatology" },
-  { name: "Melanoma", desc: "Serious skin cancer", category: "Dermatology" },
+  { img: m15,name: "Melanoma", desc: "Serious skin cancer", category: "Dermatology" },
 
   // Orthopedics
   {img: m16, name: "Rheumatoid Arthritis", desc: "Autoimmune joint disorder", category: "Orthopedics" },
