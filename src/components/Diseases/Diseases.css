@@ -1059,6 +1059,7 @@ display: inline-block;
   /* Use a column count appropriate for larger horizontal cards */
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 22px;
+  overscroll-behavior: contain;
 }
 
 /* 1. Change the card to a light background so the icon is perfect */
