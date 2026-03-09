@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import "./About.css";
 import { FaArrowRight } from "react-icons/fa";
-import CircularGallery from './CircularGallery'
+
+// Static image grid replaces the previous circular gallery
 
 function About() {
   useEffect(() => {
@@ -31,29 +32,8 @@ function About() {
 
       <div className="vgc-main-layout">
 
-        {/* LEFT: VERTICAL CIRCULAR GALLERY */}
-        <div className="vgc-visual-nucleus vgc-reveal vgc-fade-left">
-          <div className="vgc-gallery-container">
-            <CircularGallery 
-              items={[
-                { image: '/src/assets/images/aboutus2.jpeg', text: 'VGCares Team' },
-                { image: '/src/assets/images/aboutus3.jpeg', text: 'Our Facilities' },
-                { image: '/src/assets/images/aboutus4.jpeg', text: 'Patient Care' },
-                { image: '/src/assets/images/about1.jpeg', text: 'VGCares Global' }
-              ]}
-              bend={3}
-              borderRadius={0.05}
-              scrollSpeed={2}
-              scrollEase={0.05}
-              textColor="#ffffff"
-              autoScroll={true}         // enable automatic rotation
-              autoSpeed={0.2}           // control scroll pace (optional)
-            />
-          </div>
-        </div>
-
-        {/* RIGHT: DYNAMIC CONTENT FLOW */}
-        <div className="vgc-text-nucleus">
+        {/* LEFT: DYNAMIC CONTENT FLOW */}
+        <div className="vgc-text-nucleus vgc-reveal vgc-fade-left">
           <h2 className="vgc-hero-title vgc-reveal vgc-fade-up">
             About <span>VGCares Global</span>
           </h2>
@@ -64,11 +44,9 @@ function About() {
             </p>
             <p>
               With India's growing reputation as a global healthcare hub, VGCares ensures transparency, affordability, and world-class treatment options for patients across the globe while maintaining the highest standards of medical care and patient safety.
-
             </p>
           </div>
 
-       
           {/* MISSION & VISION GLASS-SHAPES */}
           <div className="vgc-mission-vision-stage vgc-reveal vgc-fade-up">
             <div className="vgc-leaf-panel vgc-mission-panel">
@@ -86,8 +64,27 @@ function About() {
           </div>
 
           <button className="vgc-action-trigger vgc-reveal vgc-fade-up">
-            Get Started<FaArrowRight />
+            <span>Get Started</span>
+            <FaArrowRight className="btn-icon" />
           </button>
+        </div>
+
+        {/* RIGHT: STATIC IMAGE GRID */}
+        <div className="vgc-visual-nucleus vgc-reveal vgc-fade-right">
+          <div className="vgc-static-images">
+            <div className="vgc-image-wrapper">
+              <img src="/src/assets/images/aboutus2.jpeg" alt="VGCares Team" />
+              <div className="vgc-image-overlay">VGCares Team</div>
+            </div>
+            <div className="vgc-image-wrapper">
+              <img src="/src/assets/images/aboutus3.jpeg" alt="Our Facilities" />
+              <div className="vgc-image-overlay">Our Facilities</div>
+            </div>
+            <div className="vgc-image-wrapper">
+              <img src="/src/assets/images/about1.jpeg" alt="VGCares Global" />
+              <div className="vgc-image-overlay">VGCares Global</div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
