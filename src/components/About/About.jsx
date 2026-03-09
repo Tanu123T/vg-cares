@@ -74,11 +74,11 @@ function About() {
           <div className="vgc-static-images">
             <div className="vgc-image-wrapper">
               <img src="/src/assets/images/aboutus2.jpeg" alt="VGCares Team" />
-              <div className="vgc-image-overlay">VGCares Team</div>
+              <div className="vgc-image-overlay">VGCares Global</div>
             </div>
             <div className="vgc-image-wrapper">
               <img src="/src/assets/images/aboutus3.jpeg" alt="Our Facilities" />
-              <div className="vgc-image-overlay">Our Facilities</div>
+              <div className="vgc-image-overlay">VGCares Global</div>
             </div>
             <div className="vgc-image-wrapper">
               <img src="/src/assets/images/about1.jpeg" alt="VGCares Global" />
