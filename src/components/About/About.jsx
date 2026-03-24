@@ -1,10 +1,13 @@
 import React, { useEffect } from "react";
 import "./About.css";
 import { FaArrowRight } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 // Static image grid replaces the previous circular gallery
 
 function About() {
+  const navigate = useNavigate();
+
   useEffect(() => {
     const vgcObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
@@ -22,7 +25,7 @@ function About() {
   }, []);
 
   return (
-    <section className="vgc-about-wrapper">
+    <section id="about" className="vgc-about-wrapper">
       {/* Animated Organic Backdrop */}
       <div className="vgc-fluid-bg">
         <div className="vgc-liquid-sphere vgc-sphere-one"></div>
@@ -63,7 +66,11 @@ function About() {
             </div>
           </div>
 
-          <button className="vgc-action-trigger vgc-reveal vgc-fade-up">
+          <button
+            type="button"
+            className="vgc-action-trigger vgc-reveal vgc-fade-up"
+            onClick={() => navigate("/signin")}
+          >
             <span>Get Started</span>
             <FaArrowRight className="btn-icon" />
           </button>

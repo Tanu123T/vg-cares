@@ -122,6 +122,23 @@
     padding-left: 5px; 
 }
 
+.footer-link-btn {
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: 0.3s ease;
+    font-size: 14px;
+    background: none;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+.footer-link-btn:hover {
+    color: var(--primary-blue);
+    padding-left: 5px;
+}
+
 /* Contact Info */
 .contact-item { 
     display: flex; 

@@ -1,9 +1,12 @@
 import { useEffect } from "react";
 import "./Footer.css";
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import logoImg from "../../assets/images/vgcares.png";
 
 const Footer = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -21,6 +24,14 @@ const Footer = () => {
 
     return () => observer.disconnect();
   }, []);
+
+  const goToAbout = () => {
+    if (location.pathname === "/") {
+      document.getElementById("about")?.scrollIntoView({ behavior: "smooth" });
+    } else {
+      navigate("/", { state: { scrollTo: "about" } });
+    }
+  };
 
   return (
     <>
@@ -55,8 +66,12 @@ const Footer = () => {
               <h3>Company</h3>
               <ul>
                 <li><Link to="/">Home</Link></li>
-    
-                <li><Link to="/hospitals">Global Network</Link></li>
+
+                <li>
+                  <button type="button" className="footer-link-btn" onClick={goToAbout}>
+                    About Us
+                  </button>
+                </li>
                 <li><Link to="/doctors">Find a Doctor</Link></li>
               </ul>
             </div>

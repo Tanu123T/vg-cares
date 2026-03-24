@@ -65,7 +65,7 @@ const Navbar = () => {
     const handleScroll = () => {
       if (location.pathname !== "/") return;
 
-      const sections = ["home", "services", "capabilities"];
+      const sections = ["home", "services", "about"];
 
       sections.forEach((section) => {
         const element = document.getElementById(section);
@@ -150,6 +150,11 @@ const Navbar = () => {
     setIsMenuOpen(false);
     setIsDropdownOpen(false);
 
+    if (location.pathname === "/") {
+      document.getElementById("about")?.scrollIntoView({ behavior: "smooth" });
+    } else {
+      navigate("/", { state: { scrollTo: "about" } });
+    }
   };
 
   return (
@@ -187,6 +192,15 @@ const Navbar = () => {
             Services
           </button>
 
+        </li>
+
+        <li>
+          <button
+            className={`nav-item ${activeSection === "about" ? "active" : ""}`}
+            onClick={goToCapabilities}
+          >
+            About Us
+          </button>
         </li>
 
         {/* MORE */}
