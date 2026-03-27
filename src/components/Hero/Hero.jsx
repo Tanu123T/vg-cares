@@ -23,7 +23,7 @@ const Hero = () => {
           data-aos="fade-down"
           data-vg-delay="1"
         >
-          Care That Travels <span className="animated-choice"> With You</span>
+         Connecting World<span className="animated-choice"> With Care</span>
         </h1>
 
         <p
